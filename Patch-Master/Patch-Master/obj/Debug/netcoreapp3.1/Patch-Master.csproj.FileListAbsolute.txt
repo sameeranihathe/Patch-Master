@@ -1,0 +1,17 @@
+D:\private\Commercial\Patch-Master\Patch-Master\bin\Debug\netcoreapp3.1\Patch-Master.exe
+D:\private\Commercial\Patch-Master\Patch-Master\bin\Debug\netcoreapp3.1\Patch-Master.deps.json
+D:\private\Commercial\Patch-Master\Patch-Master\bin\Debug\netcoreapp3.1\Patch-Master.runtimeconfig.json
+D:\private\Commercial\Patch-Master\Patch-Master\bin\Debug\netcoreapp3.1\Patch-Master.runtimeconfig.dev.json
+D:\private\Commercial\Patch-Master\Patch-Master\bin\Debug\netcoreapp3.1\Patch-Master.dll
+D:\private\Commercial\Patch-Master\Patch-Master\bin\Debug\netcoreapp3.1\Patch-Master.pdb
+D:\private\Commercial\Patch-Master\Patch-Master\obj\Debug\netcoreapp3.1\Patch-Master.csprojAssemblyReference.cache
+D:\private\Commercial\Patch-Master\Patch-Master\obj\Debug\netcoreapp3.1\Patch_Master.Forms.Login.resources
+D:\private\Commercial\Patch-Master\Patch-Master\obj\Debug\netcoreapp3.1\Patch_Master.Properties.Resources.resources
+D:\private\Commercial\Patch-Master\Patch-Master\obj\Debug\netcoreapp3.1\Patch-Master.csproj.GenerateResource.cache
+D:\private\Commercial\Patch-Master\Patch-Master\obj\Debug\netcoreapp3.1\Patch-Master.AssemblyInfoInputs.cache
+D:\private\Commercial\Patch-Master\Patch-Master\obj\Debug\netcoreapp3.1\Patch-Master.AssemblyInfo.cs
+D:\private\Commercial\Patch-Master\Patch-Master\obj\Debug\netcoreapp3.1\Patch-Master.csproj.CoreCompileInputs.cache
+D:\private\Commercial\Patch-Master\Patch-Master\obj\Debug\netcoreapp3.1\Patch-Master.dll
+D:\private\Commercial\Patch-Master\Patch-Master\obj\Debug\netcoreapp3.1\Patch-Master.pdb
+D:\private\Commercial\Patch-Master\Patch-Master\obj\Debug\netcoreapp3.1\Patch-Master.genruntimeconfig.cache
+D:\private\Commercial\Patch-Master\Patch-Master\obj\Debug\netcoreapp3.1\Patch_Master.Home.resources
