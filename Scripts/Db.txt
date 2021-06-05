@@ -1,1 +1,162 @@
 CREATE DATABASE PatchMaster   -- run this from a master
+----------------------------------------------------------------
+CREATE TABLE [dbo].[PM_AuditQueryTable](
+	[AuditQueryid] [int] IDENTITY(1,1) NOT NULL,
+	[TableName] [nvarchar](max) NULL,
+	[TableRow_key] [nvarchar](max) NULL,
+	[ColumnName] [nvarchar](max) NULL,
+	[PreviousValue] [nvarchar](max) NULL,
+	[NewValue] [nvarchar](max) NULL,
+	[SubQueryId] [int] NULL,
+	[CrreatedDate] [datetime2](7) NULL,
+	[CreatedBy] [datetime2](7) NULL,
+	[QueryType] [int] NULL,
+ CONSTRAINT [PK_PM_AuditQueryTable] PRIMARY KEY CLUSTERED 
+(
+	[AuditQueryid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[PM_BuiltQueries]    Script Date: 6/5/2021 12:34:51 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PM_BuiltQueries](
+	[QueryId] [int] IDENTITY(1,1) NOT NULL,
+	[QueryCatogary] [varchar](50) NOT NULL,
+	[QueryString] [nvarchar](max) NULL,
+	[SubQueryId] [int] NULL,
+	[CreatedDate] [datetime2](7) NULL,
+	[CreatedBy] [int] NULL,
+ CONSTRAINT [PK_PM_BuiltQueries] PRIMARY KEY CLUSTERED 
+(
+	[QueryId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[PM_Databases]    Script Date: 6/5/2021 12:34:51 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PM_Databases](
+	[DB_Id] [int] IDENTITY(1,1) NOT NULL,
+	[DBName] [nvarchar](max) NOT NULL,
+	[ServerName] [nvarchar](max) NOT NULL,
+	[UserName] [nvarchar](50) NOT NULL,
+	[Password] [nvarchar](max) NOT NULL,
+	[Status] [bit] NOT NULL,
+	[Is_Intregatedsecurity] [bit] NOT NULL,
+	[CreatedDate] [datetime2](7) NOT NULL,
+	[CreatedBy] [int] NULL,
+ CONSTRAINT [PK_PM_Databases] PRIMARY KEY CLUSTERED 
+(
+	[DB_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[PM_QueryRequairement]    Script Date: 6/5/2021 12:34:51 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PM_QueryRequairement](
+	[Requairement_Id] [int] IDENTITY(1,1) NOT NULL,
+	[RequairementName] [nvarchar](max) NULL,
+	[SubQueryId] [int] NULL,
+	[Database_Id] [int] NULL,
+	[IsApproved] [bit] NULL,
+	[CreatedBy] [int] NULL,
+	[ApprovedBy] [int] NULL,
+	[CreatedDate] [datetime2](7) NULL,
+	[ApprovedDate] [datetime2](7) NULL,
+	[Status] [bit] NULL,
+ CONSTRAINT [PK_PM_QueryRequairement] PRIMARY KEY CLUSTERED 
+(
+	[Requairement_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[PM_SubQuery]    Script Date: 6/5/2021 12:34:51 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PM_SubQuery](
+	[SubQueryId] [int] IDENTITY(1,1) NOT NULL,
+	[SubQueryName] [nvarchar](max) NULL,
+	[Createdby] [int] NULL,
+	[CreatedDate] [datetime2](7) NULL,
+	[Status] [bit] NULL,
+ CONSTRAINT [PK_PM_SubQuery] PRIMARY KEY CLUSTERED 
+(
+	[SubQueryId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[PM_User_role]    Script Date: 6/5/2021 12:34:51 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PM_User_role](
+	[RoleId] [int] IDENTITY(1,1) NOT NULL,
+	[RoleName] [nvarchar](100) NOT NULL,
+	[CreatedDate] [datetime2](7) NOT NULL,
+	[Status] [bit] NOT NULL,
+ CONSTRAINT [PK_PM_User_role] PRIMARY KEY CLUSTERED 
+(
+	[RoleId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[PM_Users]    Script Date: 6/5/2021 12:34:51 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PM_Users](
+	[User_Id] [int] IDENTITY(1,1) NOT NULL,
+	[UserName] [nvarchar](max) NULL,
+	[Password] [nvarchar](max) NULL,
+	[First_Name] [nvarchar](100) NULL,
+	[Last_Name] [nvarchar](100) NOT NULL,
+	[RoleId] [int] NULL,
+	[Createddate] [datetime2](7) NULL,
+	[Status] [bit] NULL,
+ CONSTRAINT [PK_PM_Users] PRIMARY KEY CLUSTERED 
+(
+	[User_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[PM_AuditQueryTable]  WITH CHECK ADD  CONSTRAINT [FK_PM_AuditQueryTable_PM_SubQuery] FOREIGN KEY([SubQueryId])
+REFERENCES [dbo].[PM_SubQuery] ([SubQueryId])
+GO
+ALTER TABLE [dbo].[PM_AuditQueryTable] CHECK CONSTRAINT [FK_PM_AuditQueryTable_PM_SubQuery]
+GO
+ALTER TABLE [dbo].[PM_BuiltQueries]  WITH CHECK ADD  CONSTRAINT [FK_PM_BuiltQueries_PM_SubQuery] FOREIGN KEY([SubQueryId])
+REFERENCES [dbo].[PM_SubQuery] ([SubQueryId])
+GO
+ALTER TABLE [dbo].[PM_BuiltQueries] CHECK CONSTRAINT [FK_PM_BuiltQueries_PM_SubQuery]
+GO
+ALTER TABLE [dbo].[PM_QueryRequairement]  WITH CHECK ADD  CONSTRAINT [FK_PM_QueryRequairement_PM_Databases] FOREIGN KEY([Database_Id])
+REFERENCES [dbo].[PM_Databases] ([DB_Id])
+GO
+ALTER TABLE [dbo].[PM_QueryRequairement] CHECK CONSTRAINT [FK_PM_QueryRequairement_PM_Databases]
+GO
+ALTER TABLE [dbo].[PM_QueryRequairement]  WITH CHECK ADD  CONSTRAINT [FK_PM_QueryRequairement_PM_SubQuery] FOREIGN KEY([SubQueryId])
+REFERENCES [dbo].[PM_SubQuery] ([SubQueryId])
+GO
+ALTER TABLE [dbo].[PM_QueryRequairement] CHECK CONSTRAINT [FK_PM_QueryRequairement_PM_SubQuery]
+GO
+ALTER TABLE [dbo].[PM_Users]  WITH CHECK ADD  CONSTRAINT [FK_PM_Users_PM_User_role] FOREIGN KEY([RoleId])
+REFERENCES [dbo].[PM_User_role] ([RoleId])
+GO
+ALTER TABLE [dbo].[PM_Users] CHECK CONSTRAINT [FK_PM_Users_PM_User_role]
+GO
+USE [master]
+GO
+ALTER DATABASE [PatchMaster] SET  READ_WRITE 
+GO
