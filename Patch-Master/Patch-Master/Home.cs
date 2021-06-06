@@ -28,20 +28,36 @@ namespace Patch_Master
         public static string Role = string.Empty;
         public static int RoleId =0;
 
-        private void Login_Click(object sender, EventArgs e)
+        //private void Login_Click(object sender, EventArgs e)
+        //{
+        //    Login login = new Login();
+        //    login.Show();
+        //}
+
+        //private void label_loginMouseMove(object sender, MouseEventArgs e)
+        //{
+        //    label_login.Font = new Font(label_login.Font.FontFamily, label_login.Font.SizeInPoints, FontStyle.Underline);
+        //}
+
+        //private void label_loginMouseLeave(object sender, EventArgs e)
+        //{
+        //    label_login.Font = new Font(label_login.Font.FontFamily, label_login.Font.SizeInPoints, FontStyle.Regular);
+
+        //}
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void menuStrip1_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void menuStripLogin_Click(object sender, EventArgs e)
         {
             Login login = new Login();
             login.Show();
-        }
-
-        private void label_loginMouseMove(object sender, MouseEventArgs e)
-        {
-            label_login.Font = new Font(label_login.Font.FontFamily, label_login.Font.SizeInPoints, FontStyle.Underline);
-        }
-
-        private void label_loginMouseLeave(object sender, EventArgs e)
-        {
-            label_login.Font = new Font(label_login.Font.FontFamily, label_login.Font.SizeInPoints, FontStyle.Regular);
 
         }
     }
