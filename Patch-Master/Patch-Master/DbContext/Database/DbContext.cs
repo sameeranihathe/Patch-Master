@@ -16,6 +16,7 @@ namespace Patch_Master.DbContext.Database
         public DbContext()
         {
             ConnectionString = GetConnectionString();
+            OpenConection();
         }
 
         public string GetConnectionString()
@@ -100,6 +101,58 @@ namespace Patch_Master.DbContext.Database
             dr.Fill(ds);
             object dataum = ds.Tables[0];
             return dataum;
+        }
+
+        private readonly object syncLock = new object();
+
+        public IDataReader[] ExecuteQueryWithIDataReader(string sql, List<SqlParameter> sqlParams)
+        {
+            DateTime startTime = DateTime.Now;
+            int commandTimeOut = int.Parse(System.Configuration.ConfigurationManager.AppSettings["TimeOut"].ToString());
+            string paramValues = "";
+            lock (syncLock)
+            {
+                IDataReader[] result = new IDataReader[1];
+
+                try
+                {
+                    foreach (SqlParameter sqlParam in sqlParams)
+                    {
+                        sql = sql.Replace("??" + sqlParam.ParameterName, sqlParam.Value.ToString());
+                        sql = sql.Replace("_@" + sqlParam.ParameterName, "_" + sqlParam.Value.ToString());
+                        sql = sql.Replace("N@" + sqlParam.ParameterName, "N'" + sqlParam.Value.ToString() + "'");
+
+                        if (null != sqlParam.Value)
+                            paramValues = sqlParam.ParameterName + "=" + sqlParam.Value.ToString() + " ";
+                    }
+
+
+                    SqlCommand sqlCommand = new SqlCommand(sql, con);
+                    foreach (SqlParameter sqlParam in sqlParams)
+                    {
+                        sqlCommand.Parameters.Add(sqlParam);
+                    }
+
+                    sqlCommand.CommandTimeout = commandTimeOut;
+
+                    SqlDataReader drGet = sqlCommand.ExecuteReader(CommandBehavior.CloseConnection);
+
+                    result[0] = (IDataReader)drGet;
+
+                    return result;
+
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+                finally
+                {
+                    //if (ExecutionMode != Execution.Multiple)
+                    //  CloseConnection();
+                }
+            }
         }
     }
 }

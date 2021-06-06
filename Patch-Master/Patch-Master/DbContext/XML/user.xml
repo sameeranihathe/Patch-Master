@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SqlQueryStrings>
+
+  <SqlQueryString Id="CheckAuthentication">
+    SELECT X.Username,X.First_Name,X.RoleId,Y.RoleName,X.Status AS Authenticated
+    FROM PM_Users X, PM_User_role Y
+    WHERE X.UserName=@UserName AND X.Password=@Password
+    AND X.RoleId=Y.RoleId
+    AND X.Status=1
+  </SqlQueryString>
+
+
+</SqlQueryStrings>

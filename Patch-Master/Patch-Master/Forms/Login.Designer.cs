@@ -38,7 +38,7 @@ namespace Patch_Master.Forms
             this.textBox_Password = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.label_errorMessage = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,6 +72,7 @@ namespace Patch_Master.Forms
             this.button_login.TabIndex = 2;
             this.button_login.Text = "Login";
             this.button_login.UseVisualStyleBackColor = true;
+            this.button_login.Click += new System.EventHandler(this.button_login_Click);
             // 
             // button_Cancel
             // 
@@ -123,23 +124,23 @@ namespace Patch_Master.Forms
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
             // 
-            // label4
+            // label_errorMessage
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(302, 203);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(239, 17);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Username and password do not match.";
+            this.label_errorMessage.AutoSize = true;
+            this.label_errorMessage.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label_errorMessage.ForeColor = System.Drawing.Color.Red;
+            this.label_errorMessage.Location = new System.Drawing.Point(302, 203);
+            this.label_errorMessage.Name = "label_errorMessage";
+            this.label_errorMessage.Size = new System.Drawing.Size(239, 17);
+            this.label_errorMessage.TabIndex = 8;
+            this.label_errorMessage.Text = "Username and password do not match.";
             // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label_errorMessage);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox_Password);
@@ -166,6 +167,6 @@ namespace Patch_Master.Forms
         private System.Windows.Forms.TextBox textBox_Password;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label_errorMessage;
     }
 }

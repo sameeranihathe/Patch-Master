@@ -22,6 +22,11 @@ namespace Patch_Master
         {
 
         }
+        public static bool Userlogged = false;
+        public static string UserName = string.Empty;
+        public static string FirstName = string.Empty;
+        public static string Role = string.Empty;
+        public static int RoleId =0;
 
         private void Login_Click(object sender, EventArgs e)
         {
