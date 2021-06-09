@@ -40,11 +40,13 @@
             this.ServerName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.DatabaseCheckList = new System.Windows.Forms.CheckedListBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
-            //this.dataBaseListCheckBox = new System.Windows.Forms.CheckedListBox();
+            this.SavedDBChecklist = new System.Windows.Forms.CheckedListBox();
+            this.btnSaveDB = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -72,7 +74,7 @@
             this.groupBox1.Size = new System.Drawing.Size(309, 369);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.groupBox1.Text = "Test the connection";
             // 
             // connectProgress
             // 
@@ -100,6 +102,7 @@
             // connectToDB
             // 
             this.connectToDB.Location = new System.Drawing.Point(210, 262);
+            this.connectToDB.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
             this.connectToDB.Name = "connectToDB";
             this.connectToDB.Size = new System.Drawing.Size(99, 32);
             this.connectToDB.TabIndex = 4;
@@ -152,46 +155,59 @@
             // 
             // groupBox2
             // 
-           // this.groupBox2.Controls.Add(this.dataBaseListCheckBox);
+            this.groupBox2.Controls.Add(this.DatabaseCheckList);
             this.groupBox2.Location = new System.Drawing.Point(363, 53);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(166, 368);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
+            this.groupBox2.Text = "Database list";
+            // 
+            // DatabaseCheckList
+            // 
+            this.DatabaseCheckList.FormattingEnabled = true;
+            this.DatabaseCheckList.Location = new System.Drawing.Point(6, 23);
+            this.DatabaseCheckList.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
+            this.DatabaseCheckList.Name = "DatabaseCheckList";
+            this.DatabaseCheckList.Size = new System.Drawing.Size(155, 310);
+            this.DatabaseCheckList.TabIndex = 0;
+            this.DatabaseCheckList.SelectedIndexChanged += new System.EventHandler(this.DatabaseCheckList_SelectedIndexChanged);
             // 
             // groupBox3
             // 
-            this.groupBox3.Location = new System.Drawing.Point(556, 53);
+            this.groupBox3.Controls.Add(this.SavedDBChecklist);
+            this.groupBox3.Location = new System.Drawing.Point(575, 53);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(299, 367);
+            this.groupBox3.Size = new System.Drawing.Size(246, 367);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "groupBox3";
+            this.groupBox3.Text = "Saved databases";
             // 
-            // button2
+            // SavedDBChecklist
             // 
-            this.button2.Location = new System.Drawing.Point(756, 429);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(99, 32);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.SavedDBChecklist.FormattingEnabled = true;
+            this.SavedDBChecklist.Location = new System.Drawing.Point(55, 23);
+            this.SavedDBChecklist.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
+            this.SavedDBChecklist.Name = "SavedDBChecklist";
+            this.SavedDBChecklist.Size = new System.Drawing.Size(155, 310);
+            this.SavedDBChecklist.TabIndex = 0;
             // 
-            // dataBaseListCheckBox
+            // btnSaveDB
             // 
-            /*this.dataBaseListCheckBox.FormattingEnabled = true;
-            this.dataBaseListCheckBox.Location = new System.Drawing.Point(16, 29);
-            this.dataBaseListCheckBox.Name = "dataBaseListCheckBox";
-            this.dataBaseListCheckBox.Size = new System.Drawing.Size(133, 310);
-            this.dataBaseListCheckBox.TabIndex = 0;*/
+            this.btnSaveDB.Location = new System.Drawing.Point(721, 429);
+            this.btnSaveDB.Name = "btnSaveDB";
+            this.btnSaveDB.Size = new System.Drawing.Size(99, 32);
+            this.btnSaveDB.TabIndex = 4;
+            this.btnSaveDB.Text = "Save";
+            this.btnSaveDB.UseVisualStyleBackColor = true;
+            this.btnSaveDB.Click += new System.EventHandler(this.button2_Click);
             // 
             // DBAdder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(867, 473);
-            this.Controls.Add(this.button2);
+            this.ClientSize = new System.Drawing.Size(847, 473);
+            this.Controls.Add(this.btnSaveDB);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -202,6 +218,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -222,7 +239,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnSaveDB;
+        private System.Windows.Forms.CheckedListBox DatabaseCheckList;
+        private System.Windows.Forms.CheckedListBox SavedDBChecklist;
         //private System.Windows.Forms.CheckedListBox dataBaseListCheckBox;
     }
 }

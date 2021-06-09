@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<SqlQueryStrings>
+  <SqlQueryString Id="SaveDatabaseDetails">
+    INSERT INTO PM_Databases (DBName, ServerName, UserName, Password, Status,Is_Intregatedsecurity,CreatedDate,CreatedBy)
+    OUTPUT INSERTED.DB_Id
+    VALUES (@DBName, @ServerName, @UserName,@Password, 1, @Is_Intregatedsecurity, GETDATE(), @CreatedBy);
+  </SqlQueryString>
+  <SqlQueryString Id="getAvailableDatabses">
+    select DBName from PM_Databases where serverName = @ServerName and status = 1
+  </SqlQueryString>
+</SqlQueryStrings>
