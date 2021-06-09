@@ -30,21 +30,22 @@ namespace Patch_Master
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.databaseToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.requirementsToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.requestToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.reportToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.userToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.logintoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuIAddUser = new System.Windows.Forms.ToolStripMenuItem();
+            this.databaseToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.connectDbToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.requirementsToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.QueryToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.requirementToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.AprovalToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.processesToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.requirementToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.QueryToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.requestToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.MakeRequestToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.ApproveRequestToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.ExecuteRequestToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,42 +62,8 @@ namespace Patch_Master
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked_1);
             this.menuStrip1.Click += new System.EventHandler(this.menuStrip1_Click);
-            // 
-            // databaseToolStripMenu
-            // 
-            this.databaseToolStripMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.connectDbToolStripMenu});
-            this.databaseToolStripMenu.Name = "databaseToolStripMenu";
-            this.databaseToolStripMenu.Size = new System.Drawing.Size(67, 20);
-            this.databaseToolStripMenu.Text = "Database";
-            // 
-            // requirementsToolStripMenu
-            // 
-            this.requirementsToolStripMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.QueryToolStripMenu,
-            this.requirementToolStripMenu,
-            this.AprovalToolStripMenu,
-            this.processesToolStripMenu});
-            this.requirementsToolStripMenu.Name = "requirementsToolStripMenu";
-            this.requirementsToolStripMenu.Size = new System.Drawing.Size(92, 20);
-            this.requirementsToolStripMenu.Text = "Requirements";
-            // 
-            // requestToolStripMenu
-            // 
-            this.requestToolStripMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MakeRequestToolStripMenu,
-            this.ApproveRequestToolStripMenu,
-            this.ExecuteRequestToolStripMenu});
-            this.requestToolStripMenu.Name = "requestToolStripMenu";
-            this.requestToolStripMenu.Size = new System.Drawing.Size(66, 20);
-            this.requestToolStripMenu.Text = "Requests";
-            // 
-            // reportToolStripMenu
-            // 
-            this.reportToolStripMenu.Name = "reportToolStripMenu";
-            this.reportToolStripMenu.Size = new System.Drawing.Size(59, 20);
-            this.reportToolStripMenu.Text = "Reports";
             // 
             // userToolStripMenu
             // 
@@ -120,11 +87,42 @@ namespace Patch_Master
             this.toolStripMenuIAddUser.Size = new System.Drawing.Size(122, 22);
             this.toolStripMenuIAddUser.Text = "Add User";
             // 
+            // databaseToolStripMenu
+            // 
+            this.databaseToolStripMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.connectDbToolStripMenu});
+            this.databaseToolStripMenu.Name = "databaseToolStripMenu";
+            this.databaseToolStripMenu.Size = new System.Drawing.Size(67, 20);
+            this.databaseToolStripMenu.Text = "Database";
+            // 
             // connectDbToolStripMenu
             // 
             this.connectDbToolStripMenu.Name = "connectDbToolStripMenu";
             this.connectDbToolStripMenu.Size = new System.Drawing.Size(119, 22);
             this.connectDbToolStripMenu.Text = "Connect";
+            // 
+            // requirementsToolStripMenu
+            // 
+            this.requirementsToolStripMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.QueryToolStripMenu,
+            this.requirementToolStripMenu,
+            this.AprovalToolStripMenu,
+            this.processesToolStripMenu});
+            this.requirementsToolStripMenu.Name = "requirementsToolStripMenu";
+            this.requirementsToolStripMenu.Size = new System.Drawing.Size(92, 20);
+            this.requirementsToolStripMenu.Text = "Requirements";
+            // 
+            // QueryToolStripMenu
+            // 
+            this.QueryToolStripMenu.Name = "QueryToolStripMenu";
+            this.QueryToolStripMenu.Size = new System.Drawing.Size(202, 22);
+            this.QueryToolStripMenu.Text = "Formulate Query";
+            // 
+            // requirementToolStripMenu
+            // 
+            this.requirementToolStripMenu.Name = "requirementToolStripMenu";
+            this.requirementToolStripMenu.Size = new System.Drawing.Size(202, 22);
+            this.requirementToolStripMenu.Text = "Requirement Definitions";
             // 
             // AprovalToolStripMenu
             // 
@@ -138,17 +136,15 @@ namespace Patch_Master
             this.processesToolStripMenu.Size = new System.Drawing.Size(202, 22);
             this.processesToolStripMenu.Text = "Processes";
             // 
-            // requirementToolStripMenu
+            // requestToolStripMenu
             // 
-            this.requirementToolStripMenu.Name = "requirementToolStripMenu";
-            this.requirementToolStripMenu.Size = new System.Drawing.Size(202, 22);
-            this.requirementToolStripMenu.Text = "Requirement Definitions";
-            // 
-            // QueryToolStripMenu
-            // 
-            this.QueryToolStripMenu.Name = "QueryToolStripMenu";
-            this.QueryToolStripMenu.Size = new System.Drawing.Size(202, 22);
-            this.QueryToolStripMenu.Text = "Formulate Query";
+            this.requestToolStripMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MakeRequestToolStripMenu,
+            this.ApproveRequestToolStripMenu,
+            this.ExecuteRequestToolStripMenu});
+            this.requestToolStripMenu.Name = "requestToolStripMenu";
+            this.requestToolStripMenu.Size = new System.Drawing.Size(66, 20);
+            this.requestToolStripMenu.Text = "Requests";
             // 
             // MakeRequestToolStripMenu
             // 
@@ -168,11 +164,28 @@ namespace Patch_Master
             this.ExecuteRequestToolStripMenu.Size = new System.Drawing.Size(164, 22);
             this.ExecuteRequestToolStripMenu.Text = "Execute Request";
             // 
+            // reportToolStripMenu
+            // 
+            this.reportToolStripMenu.Name = "reportToolStripMenu";
+            this.reportToolStripMenu.Size = new System.Drawing.Size(59, 20);
+            this.reportToolStripMenu.Text = "Reports";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(668, 415);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(109, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "GoToAddDatabase";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Home";
@@ -205,6 +218,7 @@ namespace Patch_Master
         private System.Windows.Forms.ToolStripMenuItem MakeRequestToolStripMenu;
         private System.Windows.Forms.ToolStripMenuItem ApproveRequestToolStripMenu;
         private System.Windows.Forms.ToolStripMenuItem ExecuteRequestToolStripMenu;
+        private System.Windows.Forms.Button button1;
     }
 }
 

@@ -60,5 +60,23 @@ namespace Patch_Master
             login.Show();
 
         }
+
+        private void menuStrip1_ItemClicked_1(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            DBAdder DBAdder = new DBAdder();
+            DBAdder.Show();
+          
+
+            //this.Hide();
+            /// DBAdder DBAdder = new DBAdder();
+            //DBAdder.show();
+
+        }
     }
 }
