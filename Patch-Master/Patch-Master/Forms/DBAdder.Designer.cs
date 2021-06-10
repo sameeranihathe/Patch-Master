@@ -94,7 +94,6 @@
             this.connectProgress.Name = "connectProgress";
             this.connectProgress.Size = new System.Drawing.Size(291, 20);
             this.connectProgress.TabIndex = 7;
-            this.connectProgress.Value = 5;
             // 
             // passWord
             // 
