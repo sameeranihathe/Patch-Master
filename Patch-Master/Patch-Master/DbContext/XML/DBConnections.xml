@@ -8,4 +8,8 @@
   <SqlQueryString Id="getAvailableDatabses">
     select DBName from PM_Databases where serverName = @ServerName and status = 1
   </SqlQueryString>
+  <SqlQueryString Id="removeDatabasefromName">
+    update [PM_Databases] set Status = 0  where ServerName = @ServerName and DBName = @DBName
+  </SqlQueryString>
+  
 </SqlQueryStrings>

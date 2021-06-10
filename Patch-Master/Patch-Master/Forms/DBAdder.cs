@@ -20,9 +20,17 @@ namespace Patch_Master.Forms
 
         private void connectToDB_Click(object sender, EventArgs e)
         {
-            // string connectionString = string.Format("Data Source={0};Initial Catalog={1};User ID={2};Password={3};", cboServer.Text, txtDatabase.Text, txtUserName.Text, txtPasssword.Text);
             string connectionString = string.Format("Data Source={0};Initial Catalog={1};Integrated Security = true;", ServerName.Text.Trim(), "master");
 
+            if (!ConnectionIntregatedSecurity.Checked)
+            {
+                if (userName.Text.Trim() == "")
+                {
+                    MessageBox.Show("Please add username", "Empty username", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                connectionString = string.Format("Data Source={0};Initial Catalog={1};User ID={2};Password={3};", ServerName.Text.Trim(), "master", userName.Text.Trim(), passWord.Text.Trim());
+            }       
             try
             {
                 sqlHelper helper = new sqlHelper(connectionString);
@@ -36,9 +44,18 @@ namespace Patch_Master.Forms
                     }
 
                     List<string> SavedDatabasesNameList = getAvailableDatabses(ServerName.Text.ToString().Trim());
-                    foreach(string savedDB in SavedDatabasesNameList)
+                    SavedDBChecklist.Items.Clear();
+                    foreach (string savedDB in SavedDatabasesNameList)
                     {
-                        SavedDBChecklist.Items.Add(savedDB,CheckState.Checked);
+                        SavedDBChecklist.Items.Add(savedDB,CheckState.Indeterminate);
+                        for(int i =0;i< DatabaseCheckList.Items.Count; i++)
+                        {
+                            if (DatabaseCheckList.Items[i].ToString() == savedDB)
+                            {
+                                DatabaseCheckList.SetItemChecked(i,true);
+                            }
+                        }
+                       
                     }
                     
 
@@ -97,47 +114,116 @@ namespace Patch_Master.Forms
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e) //save btn
         {
             List<string> DatabaseList = new List<string>();
+            List<string> RemovableDatabaseList = new List<string>();
 
             for (int i = 0; i <= (DatabaseCheckList.Items.Count - 1); i++)
             {
                 if (DatabaseCheckList.GetItemChecked(i))
                 {
-                    DatabaseList.Add(DatabaseCheckList.Items[i].ToString());
+                    bool IsSavedDatabase = false;
+                    for (int j = 0; j < SavedDBChecklist.Items.Count; j++)
+                    {
+                        if (SavedDBChecklist.Items[j].ToString() == DatabaseCheckList.Items[i].ToString())
+                        {
+                            IsSavedDatabase = true;
+                           
+                        }
+                    }
+                    if (!IsSavedDatabase)
+                    {
+                        DatabaseList.Add(DatabaseCheckList.Items[i].ToString());
+                    }
+                    
+                }
+                else
+                {
+                    RemovableDatabaseList.Add(DatabaseCheckList.Items[i].ToString());
+                }
+
+            }
+
+            if (RemovableDatabaseList.Count > 0)
+            {
+                string DatabaseServerName = ServerName.Text.ToString();
+                foreach (string removeDBname in RemovableDatabaseList)
+                {
+                    removeDatabase(DatabaseServerName, removeDBname);
                 }
             }
+
             if (DatabaseList.Count > 0)
             {
                 foreach (string DatabaseName in DatabaseList)
                 {
+
                     int i = 0;
                     int databaseId = SaveDatabaseDetails(DatabaseName);
                     if (databaseId > 1)
                     {
                         SavedDBChecklist.Items.Add(DatabaseName,CheckState.Checked);
-                        /*CheckBox rdo = new CheckBox();
-                        rdo.Name = "DBCheckboxButton" + databaseId;
-                        rdo.Text = DatabaseName;
-                        rdo.Location = new Point(15, 30 + 30 * i);
-                        this.Controls.Add(rdo);
-                        groupBox3.Controls.Add(rdo);*/
 
                     }
                 }
 
             }
 
+            //get available database list
+            List<string> SavedDatabasesNameList = getAvailableDatabses(ServerName.Text.ToString().Trim());
+            SavedDBChecklist.Items.Clear();
+            foreach (string savedDB in SavedDatabasesNameList)
+            {
+                SavedDBChecklist.Items.Add(savedDB, CheckState.Indeterminate);
+                for (int i = 0; i < DatabaseCheckList.Items.Count; i++)
+                {
+                    if (DatabaseCheckList.Items[i].ToString() == savedDB)
+                    {
+                        DatabaseCheckList.SetItemChecked(i, true);
+                    }
+                }
+
+            }
+
+
         }
 
+        public void removeDatabase(string DatabaseServerName, string removeDBname)
+        {
+            DbContext.Database.DbContext dbContext = new DbContext.Database.DbContext();
+
+            // DbContext dbContext = new DbContext();
+            string queryString = SqlQueryStringReader.GetQueryStringById("removeDatabasefromName", "DBConnections");
+            List<SqlParameter> sqlParams = new List<SqlParameter>();
+            sqlParams.Add(new SqlParameter("DBName", removeDBname));
+            sqlParams.Add(new SqlParameter("ServerName", DatabaseServerName));
+
+
+            var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
+
+            if (dataReaders.Length == 0)
+            {
+                //label_errorMessage.Text = "Incorrect Username or Password.";
+                //return 0;
+            }
+            var reader = dataReaders[0];
+
+            while (reader.Read())
+            {
+               // DatabaseId = Convert.ToInt32(reader["DB_Id"].ToString());
+            }
+
+            dbContext.CloseConnection();
+            //return DatabaseId;
+        }
         public int SaveDatabaseDetails(string DatabaseName)
         {
             int DatabaseId = 0;
             string DatabaseServerName = ServerName.Text.ToString();
             string UserName = userName.Text.ToString();
             string Password = passWord.Text.ToString();
-            bool isIntregatedSecurity = IntegratedSecurity.Checked;
+            bool isIntregatedSecurity = ConnectionIntregatedSecurity.Checked;//IntegratedSecurity.Checked;
 
             DbContext.Database.DbContext dbContext = new DbContext.Database.DbContext();
 
@@ -188,7 +274,7 @@ namespace Patch_Master.Forms
             string DatabaseServerName = ServerName.Text.ToString();
             string UserName = userName.Text.ToString();
             string Password = passWord.Text.ToString();
-            bool isIntregatedSecurity = IntegratedSecurity.Checked;
+            bool isIntregatedSecurity = ConnectionIntregatedSecurity.Checked;
 
             DbContext.Database.DbContext dbContext = new DbContext.Database.DbContext();
 

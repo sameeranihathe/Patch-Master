@@ -30,13 +30,13 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ConnectionIntregatedSecurity = new System.Windows.Forms.CheckBox();
             this.connectProgress = new System.Windows.Forms.ProgressBar();
             this.passWord = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.connectToDB = new System.Windows.Forms.Button();
             this.userName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.IntegratedSecurity = new System.Windows.Forms.RadioButton();
             this.ServerName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -60,13 +60,13 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.ConnectionIntregatedSecurity);
             this.groupBox1.Controls.Add(this.connectProgress);
             this.groupBox1.Controls.Add(this.passWord);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.connectToDB);
             this.groupBox1.Controls.Add(this.userName);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.IntegratedSecurity);
             this.groupBox1.Controls.Add(this.ServerName);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(25, 53);
@@ -76,12 +76,25 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Test the connection";
             // 
+            // ConnectionIntregatedSecurity
+            // 
+            this.ConnectionIntregatedSecurity.AutoSize = true;
+            this.ConnectionIntregatedSecurity.Checked = true;
+            this.ConnectionIntregatedSecurity.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ConnectionIntregatedSecurity.Location = new System.Drawing.Point(23, 113);
+            this.ConnectionIntregatedSecurity.Name = "ConnectionIntregatedSecurity";
+            this.ConnectionIntregatedSecurity.Size = new System.Drawing.Size(196, 19);
+            this.ConnectionIntregatedSecurity.TabIndex = 8;
+            this.ConnectionIntregatedSecurity.Text = "Use windows Intregated security";
+            this.ConnectionIntregatedSecurity.UseVisualStyleBackColor = true;
+            // 
             // connectProgress
             // 
-            this.connectProgress.Location = new System.Drawing.Point(12, 313);
+            this.connectProgress.Location = new System.Drawing.Point(12, 315);
             this.connectProgress.Name = "connectProgress";
             this.connectProgress.Size = new System.Drawing.Size(291, 20);
             this.connectProgress.TabIndex = 7;
+            this.connectProgress.Value = 5;
             // 
             // passWord
             // 
@@ -101,7 +114,7 @@
             // 
             // connectToDB
             // 
-            this.connectToDB.Location = new System.Drawing.Point(210, 262);
+            this.connectToDB.Location = new System.Drawing.Point(210, 260);
             this.connectToDB.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
             this.connectToDB.Name = "connectToDB";
             this.connectToDB.Size = new System.Drawing.Size(99, 32);
@@ -125,17 +138,6 @@
             this.label3.Size = new System.Drawing.Size(63, 15);
             this.label3.TabIndex = 3;
             this.label3.Text = "User name";
-            // 
-            // IntegratedSecurity
-            // 
-            this.IntegratedSecurity.AutoSize = true;
-            this.IntegratedSecurity.Location = new System.Drawing.Point(23, 87);
-            this.IntegratedSecurity.Name = "IntegratedSecurity";
-            this.IntegratedSecurity.Size = new System.Drawing.Size(195, 19);
-            this.IntegratedSecurity.TabIndex = 2;
-            this.IntegratedSecurity.TabStop = true;
-            this.IntegratedSecurity.Text = "Use windows Intregated security";
-            this.IntegratedSecurity.UseVisualStyleBackColor = true;
             // 
             // ServerName
             // 
@@ -189,6 +191,7 @@
             this.SavedDBChecklist.Location = new System.Drawing.Point(55, 23);
             this.SavedDBChecklist.Margin = new System.Windows.Forms.Padding(3, 10, 3, 10);
             this.SavedDBChecklist.Name = "SavedDBChecklist";
+            this.SavedDBChecklist.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.SavedDBChecklist.Size = new System.Drawing.Size(155, 310);
             this.SavedDBChecklist.TabIndex = 0;
             // 
@@ -234,7 +237,6 @@
         private System.Windows.Forms.Button connectToDB;
         private System.Windows.Forms.TextBox userName;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.RadioButton IntegratedSecurity;
         private System.Windows.Forms.TextBox ServerName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -242,6 +244,7 @@
         private System.Windows.Forms.Button btnSaveDB;
         private System.Windows.Forms.CheckedListBox DatabaseCheckList;
         private System.Windows.Forms.CheckedListBox SavedDBChecklist;
+        private System.Windows.Forms.CheckBox ConnectionIntregatedSecurity;
         //private System.Windows.Forms.CheckedListBox dataBaseListCheckBox;
     }
 }
