@@ -1,4 +1,5 @@
-﻿using Patch_Master.DbContext.QueryReader;
+﻿using Patch_Master.DbContext.Database;
+using Patch_Master.DbContext.QueryReader;
 using Patch_Master.DBHelper;
 using System;
 using System.Collections.Generic;
@@ -191,7 +192,7 @@ namespace Patch_Master.Forms
 
         public void removeDatabase(string DatabaseServerName, string removeDBname)
         {
-            DbContext.Database.DbContext dbContext = new DbContext.Database.DbContext();
+            DbConnector dbContext = new DbConnector();
 
             // DbContext dbContext = new DbContext();
             string queryString = SqlQueryStringReader.GetQueryStringById("removeDatabasefromName", "DBConnections");
@@ -225,7 +226,7 @@ namespace Patch_Master.Forms
             string Password = passWord.Text.ToString();
             bool isIntregatedSecurity = ConnectionIntregatedSecurity.Checked;//IntegratedSecurity.Checked;
 
-            DbContext.Database.DbContext dbContext = new DbContext.Database.DbContext();
+            DbConnector dbContext = new DbConnector();
 
             // DbContext dbContext = new DbContext();
             string queryString = SqlQueryStringReader.GetQueryStringById("SaveDatabaseDetails", "DBConnections");
@@ -276,7 +277,7 @@ namespace Patch_Master.Forms
             string Password = passWord.Text.ToString();
             bool isIntregatedSecurity = ConnectionIntregatedSecurity.Checked;
 
-            DbContext.Database.DbContext dbContext = new DbContext.Database.DbContext();
+           DbConnector dbContext = new DbConnector();
 
             // DbContext dbContext = new DbContext();
             string queryString = SqlQueryStringReader.GetQueryStringById("getAvailableDatabses", "DBConnections");
