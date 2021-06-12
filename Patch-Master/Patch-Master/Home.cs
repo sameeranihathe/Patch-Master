@@ -60,6 +60,19 @@ namespace Patch_Master
             login.Show();
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            DBAdder DBAdder = new DBAdder();
+            DBAdder.Show();
+          
+
+            //this.Hide();
+            /// DBAdder DBAdder = new DBAdder();
+            //DBAdder.show();
+
+        }
         private void DefineRequirements_Click(object sender, EventArgs e)
         {
             Requirements requirements = new Requirements();
