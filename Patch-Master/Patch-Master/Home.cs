@@ -60,5 +60,20 @@ namespace Patch_Master
             login.Show();
 
         }
+        private void DefineRequirements_Click(object sender, EventArgs e)
+        {
+            Requirements requirements = new Requirements();
+            requirements.Show();
+
+        }
+        private void Processes_Click(object sender, EventArgs e)
+        {
+            Processes processes = new Processes();
+            processes.Show();
+        }
+        private void menuStrip1_ItemClicked_1(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 }

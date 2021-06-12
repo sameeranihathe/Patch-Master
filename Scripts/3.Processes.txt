@@ -1,0 +1,17 @@
+CREATE TABLE PM_Processes
+(
+ProcessId int identity(1,1),
+ProcessName varchar(100),
+ProcessDescription varchar(max),
+Status bit not null
+PRIMARY KEY (ProcessId)
+)
+
+CREATE TABLE PM_SubProcesses
+(
+SubProcessId int identity(1,1),
+SubProcessName varchar(100),
+ProcessId int FOREIGN KEY REFERENCES PM_Processes(ProcessId),
+Status bit not null,
+PRIMARY KEY (SubProcessId)
+)

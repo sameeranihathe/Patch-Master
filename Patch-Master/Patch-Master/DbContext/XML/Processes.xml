@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SqlQueryStrings>
+
+  <SqlQueryString Id="LoadAvailableProcesses">
+    SELECT ProcessId,ProcessName,ProcessDescription
+    FROM PM_Processes
+    WHERE Status=@Status
+  </SqlQueryString>
+  <SqlQueryString Id="AddProcess">
+    INSERT INTO PM_Processes(ProcessName,ProcessDescription,Status)
+    OUTPUT Inserted.ProcessId
+    VALUES(@ProcessName,@ProcessDescription,1)
+  </SqlQueryString>
+  <SqlQueryString Id="DeleteProcesses">
+    UPDATE PM_SubProcesses
+    SET Status=0
+    WHERE ProcessId in (@ProcessIdList)
+
+    UPDATE PM_Processes
+    SET Status=0
+    WHERE ProcessId in (@ProcessIdList)
+  </SqlQueryString>
+  <SqlQueryString Id="LoadAvailableSubProcesses">
+    SELECT SubProcessId,SubProcessName
+    FROM PM_SubProcesses
+    WHERE ProcessId=@ProcessId AND Status=1
+  </SqlQueryString>
+  <SqlQueryString Id="DeleteSubProcesses">
+    UPDATE PM_SubProcesses
+    SET Status=0
+    WHERE SubProcessId in (@SubProcessIdList)
+  </SqlQueryString>
+  <SqlQueryString Id="AddSubProcess">
+    INSERT INTO PM_SubProcesses(SubProcessName,ProcessId,Status)
+    OUTPUT Inserted.SubProcessId
+    VALUES(@SubProcessName,@ProcessId,1)
+  </SqlQueryString>
+  AddSubProcess
+</SqlQueryStrings>

@@ -8,12 +8,12 @@ using System.Collections.Specialized;
 
 namespace Patch_Master.DbContext.Database
 {
-    public class DbContext
+    public class DbConnector
     {
         string ConnectionString = "";
         SqlConnection con;
 
-        public DbContext()
+        public DbConnector()
         {
             ConnectionString = GetConnectionString();
             OpenConection();
@@ -152,6 +152,49 @@ namespace Patch_Master.DbContext.Database
                     //if (ExecutionMode != Execution.Multiple)
                     //  CloseConnection();
                 }
+            }
+        }
+
+        public DataSet ExecuteQueryWithDataSet(string sql, List<SqlParameter> sqlParams)
+        {
+            DataSet ds = new DataSet();
+            DateTime startTime = DateTime.Now;
+            int commandTimeOut = int.Parse(System.Configuration.ConfigurationManager.AppSettings["TimeOut"].ToString());
+            string paramValues = "";
+            try
+            {
+                foreach (SqlParameter sqlParam in sqlParams)
+                {
+                    sql = sql.Replace("??" + sqlParam.ParameterName, sqlParam.Value.ToString());
+                    sql = sql.Replace("_@" + sqlParam.ParameterName, "_" + sqlParam.Value.ToString());
+                    sql = sql.Replace("N@" + sqlParam.ParameterName, "N'" + sqlParam.Value.ToString() + "'");
+
+                    if (null != sqlParam.Value)
+                        paramValues = sqlParam.ParameterName + "=" + sqlParam.Value.ToString() + " ";
+                }
+
+                SqlCommand com = new SqlCommand(sql, con);
+                com.CommandTimeout = commandTimeOut;
+                foreach (SqlParameter sqlParam in sqlParams)
+                {
+                    com.Parameters.Add(sqlParam);
+                }
+                SqlDataAdapter da = new SqlDataAdapter(com);
+
+
+                da.Fill(ds);
+
+                return ds;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                //if (ExecutionMode != Execution.Multiple)
+                //    CloseConnection();
             }
         }
     }

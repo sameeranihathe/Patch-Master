@@ -41,9 +41,8 @@ namespace Patch_Master.Forms
 
             password = EncryptProvider.Base64Encrypt(password);
 
-            DbContext.Database.DbContext dbContext = new DbContext.Database.DbContext();
+            DbConnector dbContext = new DbConnector();
 
-           // DbContext dbContext = new DbContext();
             string queryString = SqlQueryStringReader.GetQueryStringById("CheckAuthentication", "user");
             List<SqlParameter> sqlParams = new List<SqlParameter>();
             sqlParams.Add(new SqlParameter("UserName", usernme));
@@ -73,6 +72,9 @@ namespace Patch_Master.Forms
             if (Home.Userlogged)
             {
                 label_errorMessage.Text = "Login Successfull.";
+                Home newHome = new Home();
+                newHome.Show();
+                this.Hide();
                 return;
 
             }
