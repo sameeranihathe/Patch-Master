@@ -1,0 +1,20 @@
+USE [PatchMaster]
+GO
+
+INSERT INTO [dbo].[PM_Users]
+           ([UserName]
+           ,[Password]
+           ,[First_Name]
+           ,[Last_Name]
+           ,[RoleId]
+           ,[Createddate]
+           ,[Status])
+     VALUES
+           ('admin'
+           ,'YWRtaW4='
+           ,'Admin_FirstName'
+           ,'Admin_LastName'
+           ,1
+           ,GETDATE()
+           ,1)
+GO

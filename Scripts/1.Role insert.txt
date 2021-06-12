@@ -1,0 +1,21 @@
+USE [PatchMaster]
+GO
+
+INSERT INTO [dbo].[PM_User_role]
+           ([RoleName]
+           ,[CreatedDate]
+           ,[Status])
+     VALUES
+           ('Admin'
+           ,GetDate()
+           ,1)
+GO
+
+INSERT INTO [dbo].[PM_User_role]
+           ([RoleName]
+           ,[CreatedDate]
+           ,[Status])
+     VALUES
+           ('User'
+           ,GetDate()
+           ,1)
