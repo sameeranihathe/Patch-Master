@@ -61,11 +61,6 @@ namespace Patch_Master
 
         }
 
-        private void menuStrip1_ItemClicked_1(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
