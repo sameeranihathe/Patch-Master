@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace Patch_Master
 {
     partial class Home
@@ -123,6 +125,7 @@ namespace Patch_Master
             this.requirementToolStripMenu.Name = "requirementToolStripMenu";
             this.requirementToolStripMenu.Size = new System.Drawing.Size(202, 22);
             this.requirementToolStripMenu.Text = "Requirement Definitions";
+            this.requirementToolStripMenu.Click += new System.EventHandler(this.DefineRequirements_Click);
             // 
             // AprovalToolStripMenu
             // 
@@ -135,6 +138,8 @@ namespace Patch_Master
             this.processesToolStripMenu.Name = "processesToolStripMenu";
             this.processesToolStripMenu.Size = new System.Drawing.Size(202, 22);
             this.processesToolStripMenu.Text = "Processes";
+            this.processesToolStripMenu.Click += new System.EventHandler(Processes_Click);
+
             // 
             // requestToolStripMenu
             // 
@@ -190,6 +195,7 @@ namespace Patch_Master
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Home";
             this.Text = "PatchMaster";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -197,6 +203,7 @@ namespace Patch_Master
             this.PerformLayout();
 
         }
+
 
         #endregion
         private System.Windows.Forms.MenuStrip menuStrip1;
