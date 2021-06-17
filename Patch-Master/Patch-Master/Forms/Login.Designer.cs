@@ -111,12 +111,13 @@ namespace Patch_Master.Forms
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(78, 32);
             this.label3.TabIndex = 6;
+             
             this.label3.Text = "Login";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            //this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(29, 44);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(212, 191);
