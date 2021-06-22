@@ -1,0 +1,17 @@
+DROP TABLE PM_QueryRequairement
+
+CREATE TABLE PM_Requiremenet(
+RequirementId int identity(1,1),
+RequirementName varchar(100) not null,
+Description varchar(max),
+Objective varchar(max),
+SubProcessId int FOREIGN KEY REFERENCES PM_SubProcesses(SubProcessId),
+DB_Id int FOREIGN KEY REFERENCES PM_Databases(DB_Id),
+CreatedBy int,
+CreatedDate datetime,
+IsApproved bit not null,
+ApprovedBy int,
+ApprovedDate datetime,
+Status bit not null,
+PRIMARY KEY (RequirementId)
+);

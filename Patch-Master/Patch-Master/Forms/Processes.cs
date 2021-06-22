@@ -161,9 +161,10 @@ namespace Patch_Master.Forms
 
         private void DeleteSelectedProcesses(List<string> processIdList)
         {
+            DbConnector dbContext = new DbConnector();
+
             try
             {
-                DbConnector dbContext = new DbConnector();
 
                 string joinedprocessIdList = string.Join(",", processIdList);
 
@@ -176,6 +177,10 @@ namespace Patch_Master.Forms
             {
 
                 throw ex;
+            }
+            finally
+            {
+                dbContext.CloseConnection();
             }
 
         }
@@ -239,6 +244,11 @@ namespace Patch_Master.Forms
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                                dbContext.CloseConnection();
+
             }
 
             return dt;

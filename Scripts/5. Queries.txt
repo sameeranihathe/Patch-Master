@@ -1,0 +1,28 @@
+CREATE TABLE PM_QueryTypes
+(
+QueryTypeId int identity(1,1),
+QueryType varchar(100),
+ApprovalRequired bit not null,
+Status bit not null,
+PRIMARY KEY (QueryTypeId)
+)
+
+CREATE TABLE PM_Queries
+(
+QueryId int identity(1,1),
+QueryName varchar(100) not null,
+QueryDescription varchar(max),
+QueryTypeId int FOREIGN KEY REFERENCES PM_QueryTypes(QueryTypeId),
+RequirementId int FOREIGN KEY REFERENCES PM_Requiremenet(RequirementId),
+CreatedDate DATETIME not null,
+CreatedBy int,
+Status bit not null
+PRIMARY KEY (QueryId)
+)
+
+--Default values
+INSERT INTO PM_QueryTypes(QueryType,ApprovalRequired,Status)
+VALUES('SELECT',0,1),
+('INSERT',1,1),
+('UPDATE',1,1),
+('DELETE',1,1)

@@ -21,6 +21,7 @@ namespace Patch_Master
                 components.Dispose();
             }
             base.Dispose(disposing);
+            System.Environment.Exit(0);
         }
 
         #region Windows Form Designer generated code
@@ -47,7 +48,8 @@ namespace Patch_Master
             this.ApproveRequestToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.ExecuteRequestToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.reportToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.UserFirstName_label = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,7 +82,7 @@ namespace Patch_Master
             // 
             this.logintoolStripMenuItem.Name = "logintoolStripMenuItem";
             this.logintoolStripMenuItem.Size = new System.Drawing.Size(122, 22);
-            this.logintoolStripMenuItem.Text = "Login";
+            this.logintoolStripMenuItem.Text = "Logout";
             this.logintoolStripMenuItem.Click += new System.EventHandler(this.menuStripLogin_Click);
             // 
             // toolStripMenuIAddUser
@@ -88,6 +90,7 @@ namespace Patch_Master
             this.toolStripMenuIAddUser.Name = "toolStripMenuIAddUser";
             this.toolStripMenuIAddUser.Size = new System.Drawing.Size(122, 22);
             this.toolStripMenuIAddUser.Text = "Add User";
+            this.toolStripMenuIAddUser.Click += new System.EventHandler(this.UserList_Click);
             // 
             // databaseToolStripMenu
             // 
@@ -102,6 +105,7 @@ namespace Patch_Master
             this.connectDbToolStripMenu.Name = "connectDbToolStripMenu";
             this.connectDbToolStripMenu.Size = new System.Drawing.Size(119, 22);
             this.connectDbToolStripMenu.Text = "Connect";
+            this.connectDbToolStripMenu.Click += new System.EventHandler(this.ConnectDb_Click);
             // 
             // requirementsToolStripMenu
             // 
@@ -138,8 +142,7 @@ namespace Patch_Master
             this.processesToolStripMenu.Name = "processesToolStripMenu";
             this.processesToolStripMenu.Size = new System.Drawing.Size(202, 22);
             this.processesToolStripMenu.Text = "Processes";
-            this.processesToolStripMenu.Click += new System.EventHandler(Processes_Click);
-
+            this.processesToolStripMenu.Click += new System.EventHandler(this.Processes_Click);
             // 
             // requestToolStripMenu
             // 
@@ -175,22 +178,30 @@ namespace Patch_Master
             this.reportToolStripMenu.Size = new System.Drawing.Size(59, 20);
             this.reportToolStripMenu.Text = "Reports";
             // 
-            // button1
+            // label1
             // 
-            this.button1.Location = new System.Drawing.Point(668, 415);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(109, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "GoToAddDatabase";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.label1.Location = new System.Drawing.Point(668, 35);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(57, 15);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Welcome";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // UserFirstName_label
+            // 
+            this.UserFirstName_label.Location = new System.Drawing.Point(725, 35);
+            this.UserFirstName_label.Name = "UserFirstName_label";
+            this.UserFirstName_label.Size = new System.Drawing.Size(57, 15);
+            this.UserFirstName_label.TabIndex = 4;
+            this.UserFirstName_label.Text = "xxx";
             // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.UserFirstName_label);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Home";
@@ -203,6 +214,7 @@ namespace Patch_Master
             this.PerformLayout();
 
         }
+
 
 
         #endregion
@@ -225,7 +237,8 @@ namespace Patch_Master
         private System.Windows.Forms.ToolStripMenuItem MakeRequestToolStripMenu;
         private System.Windows.Forms.ToolStripMenuItem ApproveRequestToolStripMenu;
         private System.Windows.Forms.ToolStripMenuItem ExecuteRequestToolStripMenu;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label UserFirstName_label;
     }
 }
 
