@@ -262,7 +262,7 @@ namespace Patch_Master.Forms
             }
             finally
             {
-                                dbContext.CloseConnection();
+                dbContext.CloseConnection();
 
             }
 

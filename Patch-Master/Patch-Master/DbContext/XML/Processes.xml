@@ -40,5 +40,11 @@
     FROM PM_Processes
     WHERE Status=@Status
   </SqlQueryString>
+
+  <SqlQueryString Id="LoadUserWiseProcessCount">
+    SELECT COUNT(ProcessId) AS ProcessCount
+    FROM PM_Processes
+    WHERE Status=1 AND CreatedBy = @loggedUserId
+  </SqlQueryString>
   
 </SqlQueryStrings>

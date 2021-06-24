@@ -1,8 +1,11 @@
-﻿using Patch_Master.Forms;
+﻿using Patch_Master.DbContext.Database;
+using Patch_Master.DbContext.QueryReader;
+using Patch_Master.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -23,6 +26,10 @@ namespace Patch_Master
         {
             InitializeComponent();
 
+
+            label_processCount.Text = LoadProcessCount().ToString();
+
+
             if (Role!="Admin")
             {
                 this.toolStripMenuIAddUser.Visible = false;
@@ -31,9 +38,37 @@ namespace Patch_Master
             }
             else
             {
-               // LoadProcessCount();
             }
 
+        }
+
+        private int LoadProcessCount()
+        {
+            DbConnector dbContext = new DbConnector();
+            int ProcessCount = 0;
+
+            try
+            {
+                string queryString = SqlQueryStringReader.GetQueryStringById("LoadUserWiseProcessCount", "Processes");
+                List<SqlParameter> sqlParams = new List<SqlParameter>();
+                sqlParams.Add(new SqlParameter("@loggedUserId", loggedUserId));
+                var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
+                var reader = dataReaders[0];
+
+                while (reader.Read())
+                {
+                    ProcessCount = Convert.ToInt32(reader["ProcessCount"]);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                dbContext.CloseConnection();
+            }
+            return ProcessCount;
         }
 
         private void Form1_Load(object sender, EventArgs e)

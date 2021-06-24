@@ -53,7 +53,7 @@ namespace Patch_Master
             this.tabControl_home = new System.Windows.Forms.TabControl();
             this.hometabPage_mine = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.label_processCount = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.hometabPage_all = new System.Windows.Forms.TabPage();
             this.menuStrip1.SuspendLayout();
@@ -218,7 +218,7 @@ namespace Patch_Master
             // hometabPage_mine
             // 
             this.hometabPage_mine.Controls.Add(this.label4);
-            this.hometabPage_mine.Controls.Add(this.label3);
+            this.hometabPage_mine.Controls.Add(this.label_processCount);
             this.hometabPage_mine.Controls.Add(this.label2);
             this.hometabPage_mine.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.hometabPage_mine.Location = new System.Drawing.Point(4, 24);
@@ -241,15 +241,15 @@ namespace Patch_Master
             this.label4.MouseEnter += new System.EventHandler(this.label4_MouseEnter);
             this.label4.MouseLeave += new System.EventHandler(this.label4_MouseLeave);
             // 
-            // label3
+            // label_processCount
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(142, 19);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(19, 21);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "0";
+            this.label_processCount.AutoSize = true;
+            this.label_processCount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label_processCount.Location = new System.Drawing.Point(142, 19);
+            this.label_processCount.Name = "label_processCount";
+            this.label_processCount.Size = new System.Drawing.Size(19, 21);
+            this.label_processCount.TabIndex = 1;
+            this.label_processCount.Text = "0";
             // 
             // label2
             // 
@@ -326,7 +326,7 @@ namespace Patch_Master
         private System.Windows.Forms.TabPage hometabPage_all;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label_processCount;
     }
 }
 
