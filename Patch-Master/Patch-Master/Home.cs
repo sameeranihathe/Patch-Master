@@ -13,20 +13,30 @@ namespace Patch_Master
 {
     public partial class Home : Form
     {
-        public Home()
-        {
-            InitializeComponent();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
+        public static int loggedUserId = 0;
         public static bool Userlogged = false;
         public static string UserName = string.Empty;
         public static string FirstName = string.Empty;
         public static string Role = string.Empty;
-        public static int RoleId =0;
+        public static int RoleId = 0;
+        public Home()
+        {
+            InitializeComponent();
+
+            if (Role!="Admin")
+            {
+                this.toolStripMenuIAddUser.Visible = false;
+                //this.ta tabControl.TabPages.Remove(tabPage);
+                this.tabControl_home.TabPages.Remove(hometabPage_all);
+            }
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            UserFirstName_label.Text = FirstName;
+        }
+
 
         //private void Login_Click(object sender, EventArgs e)
         //{
@@ -56,16 +66,22 @@ namespace Patch_Master
         }
         private void menuStripLogin_Click(object sender, EventArgs e)
         {
-            Login login = new Login();
-            login.Show();
+            //Login login = new Login();
+            //login.Show();
+
+            this.Dispose();
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void ConnectDb_Click(object sender, EventArgs e)
         {
-            this.Hide();
             DBAdder DBAdder = new DBAdder();
             DBAdder.Show();
+
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //this.Hide();
           
 
             //this.Hide();
@@ -87,6 +103,28 @@ namespace Patch_Master
         private void menuStrip1_ItemClicked_1(object sender, ToolStripItemClickedEventArgs e)
         {
 
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UserList_Click(object sender, EventArgs e)
+        {
+            Users users = new Users();
+            users.Show();
+        }
+
+        private void label4_MouseEnter(object sender, EventArgs e)
+        {
+            label4.Font = new Font(label4.Font.Name, label4.Font.SizeInPoints, FontStyle.Underline);
+
+        }
+
+        private void label4_MouseLeave(object sender, EventArgs e)
+        {
+            label4.Font = new Font(label4.Font.Name, label4.Font.SizeInPoints, FontStyle.Regular);
         }
     }
 }

@@ -35,5 +35,10 @@
     OUTPUT Inserted.SubProcessId
     VALUES(@SubProcessName,@ProcessId,1)
   </SqlQueryString>
-  AddSubProcess
+  <SqlQueryString Id="LoadAvailableProcessNameList">
+    SELECT ProcessId,ProcessName
+    FROM PM_Processes
+    WHERE Status=@Status
+  </SqlQueryString>
+  
 </SqlQueryStrings>
