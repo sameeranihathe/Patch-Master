@@ -50,7 +50,15 @@ namespace Patch_Master
             this.reportToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.UserFirstName_label = new System.Windows.Forms.Label();
+            this.tabControl_home = new System.Windows.Forms.TabControl();
+            this.hometabPage_mine = new System.Windows.Forms.TabPage();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.hometabPage_all = new System.Windows.Forms.TabPage();
             this.menuStrip1.SuspendLayout();
+            this.tabControl_home.SuspendLayout();
+            this.hometabPage_mine.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -63,7 +71,7 @@ namespace Patch_Master
             this.reportToolStripMenu});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1086, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked_1);
@@ -89,7 +97,7 @@ namespace Patch_Master
             // 
             this.toolStripMenuIAddUser.Name = "toolStripMenuIAddUser";
             this.toolStripMenuIAddUser.Size = new System.Drawing.Size(122, 22);
-            this.toolStripMenuIAddUser.Text = "Add User";
+            this.toolStripMenuIAddUser.Text = "Manage Users";
             this.toolStripMenuIAddUser.Click += new System.EventHandler(this.UserList_Click);
             // 
             // databaseToolStripMenu
@@ -180,7 +188,7 @@ namespace Patch_Master
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(668, 35);
+            this.label1.Location = new System.Drawing.Point(973, 35);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 15);
             this.label1.TabIndex = 3;
@@ -189,27 +197,99 @@ namespace Patch_Master
             // 
             // UserFirstName_label
             // 
-            this.UserFirstName_label.Location = new System.Drawing.Point(725, 35);
+            this.UserFirstName_label.Location = new System.Drawing.Point(1030, 35);
             this.UserFirstName_label.Name = "UserFirstName_label";
             this.UserFirstName_label.Size = new System.Drawing.Size(57, 15);
             this.UserFirstName_label.TabIndex = 4;
             this.UserFirstName_label.Text = "xxx";
             // 
+            // tabControl_home
+            // 
+            this.tabControl_home.Controls.Add(this.hometabPage_mine);
+            this.tabControl_home.Controls.Add(this.hometabPage_all);
+            this.tabControl_home.Location = new System.Drawing.Point(0, 57);
+            this.tabControl_home.Name = "tabControl_home";
+            this.tabControl_home.SelectedIndex = 0;
+            this.tabControl_home.Size = new System.Drawing.Size(964, 373);
+            this.tabControl_home.TabIndex = 5;
+            // 
+            // hometabPage_mine
+            // 
+            this.hometabPage_mine.Controls.Add(this.label4);
+            this.hometabPage_mine.Controls.Add(this.label3);
+            this.hometabPage_mine.Controls.Add(this.label2);
+            this.hometabPage_mine.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.hometabPage_mine.Location = new System.Drawing.Point(4, 24);
+            this.hometabPage_mine.Name = "hometabPage_mine";
+            this.hometabPage_mine.Padding = new System.Windows.Forms.Padding(3);
+            this.hometabPage_mine.Size = new System.Drawing.Size(956, 345);
+            this.hometabPage_mine.TabIndex = 0;
+            this.hometabPage_mine.Text = "View";
+            this.hometabPage_mine.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(185, 19);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(44, 21);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "View";
+            this.label4.MouseEnter += new System.EventHandler(this.label4_MouseEnter);
+            this.label4.MouseLeave += new System.EventHandler(this.label4_MouseLeave);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(142, 19);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(19, 21);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "0";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(8, 19);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(117, 21);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Your Processes:";
+            // 
+            // hometabPage_all
+            // 
+            this.hometabPage_all.Location = new System.Drawing.Point(4, 24);
+            this.hometabPage_all.Name = "hometabPage_all";
+            this.hometabPage_all.Padding = new System.Windows.Forms.Padding(3);
+            this.hometabPage_all.Size = new System.Drawing.Size(956, 345);
+            this.hometabPage_all.TabIndex = 1;
+            this.hometabPage_all.Text = "All";
+            this.hometabPage_all.UseVisualStyleBackColor = true;
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1086, 591);
+            this.Controls.Add(this.tabControl_home);
             this.Controls.Add(this.UserFirstName_label);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Home";
             this.Text = "PatchMaster";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.tabControl_home.ResumeLayout(false);
+            this.hometabPage_mine.ResumeLayout(false);
+            this.hometabPage_mine.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -239,6 +319,12 @@ namespace Patch_Master
         private System.Windows.Forms.ToolStripMenuItem ExecuteRequestToolStripMenu;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label UserFirstName_label;
+        private System.Windows.Forms.TabControl tabControl_home;
+        private System.Windows.Forms.TabPage hometabPage_mine;
+        private System.Windows.Forms.TabPage hometabPage_all;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
     }
 }
 

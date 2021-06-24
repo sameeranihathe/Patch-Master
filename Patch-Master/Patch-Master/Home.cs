@@ -13,9 +13,22 @@ namespace Patch_Master
 {
     public partial class Home : Form
     {
+        public static int loggedUserId = 0;
+        public static bool Userlogged = false;
+        public static string UserName = string.Empty;
+        public static string FirstName = string.Empty;
+        public static string Role = string.Empty;
+        public static int RoleId = 0;
         public Home()
         {
             InitializeComponent();
+
+            if (Role!="Admin")
+            {
+                this.toolStripMenuIAddUser.Visible = false;
+                //this.ta tabControl.TabPages.Remove(tabPage);
+                this.tabControl_home.TabPages.Remove(hometabPage_all);
+            }
 
         }
 
@@ -23,12 +36,7 @@ namespace Patch_Master
         {
             UserFirstName_label.Text = FirstName;
         }
-        public static int loggedUserId = 0;
-        public static bool Userlogged = false;
-        public static string UserName = string.Empty;
-        public static string FirstName = string.Empty;
-        public static string Role = string.Empty;
-        public static int RoleId =0;
+
 
         //private void Login_Click(object sender, EventArgs e)
         //{
@@ -106,6 +114,17 @@ namespace Patch_Master
         {
             Users users = new Users();
             users.Show();
+        }
+
+        private void label4_MouseEnter(object sender, EventArgs e)
+        {
+            label4.Font = new Font(label4.Font.Name, label4.Font.SizeInPoints, FontStyle.Underline);
+
+        }
+
+        private void label4_MouseLeave(object sender, EventArgs e)
+        {
+            label4.Font = new Font(label4.Font.Name, label4.Font.SizeInPoints, FontStyle.Regular);
         }
     }
 }
