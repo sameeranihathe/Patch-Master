@@ -7,9 +7,9 @@
     WHERE Status=@Status
   </SqlQueryString>
   <SqlQueryString Id="AddProcess">
-    INSERT INTO PM_Processes(ProcessName,ProcessDescription,Status)
+    INSERT INTO PM_Processes(ProcessName,ProcessDescription,Status,CreatedBy,CreatedDate)
     OUTPUT Inserted.ProcessId
-    VALUES(@ProcessName,@ProcessDescription,1)
+    VALUES(@ProcessName,@ProcessDescription,1,@CreatedBy,GETDATE())
   </SqlQueryString>
   <SqlQueryString Id="DeleteProcesses">
     UPDATE PM_SubProcesses

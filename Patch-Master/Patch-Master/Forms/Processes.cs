@@ -14,11 +14,25 @@ namespace Patch_Master.Forms
 {
     public partial class Processes : Form
     {
+        bool userLogged = false;
+        int loggedUserId = 0;
+        string loggedUserName = string.Empty;
+        string roleName = string.Empty;
+        int roleId = 0;
         public Processes()
         {
-            InitializeComponent();
+            InitializeComponent(); 
+            CheckLogin();
         }
+        private void CheckLogin()
+        {
+            userLogged = Home.Userlogged;
+            loggedUserId = Home.loggedUserId;
+            loggedUserName = Home.UserName;
+            roleId = Home.RoleId;
+            roleName = Home.Role;
 
+        }
         private void Processes_Load(object sender, EventArgs e)
         {
             try
@@ -91,6 +105,7 @@ namespace Patch_Master.Forms
                 List<SqlParameter> sqlParams = new List<SqlParameter>();
                 sqlParams.Add(new SqlParameter("ProcessName", ProcessName));
                 sqlParams.Add(new SqlParameter("ProcessDescription", ProcessDescription));
+                sqlParams.Add(new SqlParameter("CreatedBy", loggedUserId));
                 var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
 
                 var reader = dataReaders[0];

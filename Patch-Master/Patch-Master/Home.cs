@@ -29,6 +29,10 @@ namespace Patch_Master
                 //this.ta tabControl.TabPages.Remove(tabPage);
                 this.tabControl_home.TabPages.Remove(hometabPage_all);
             }
+            else
+            {
+               // LoadProcessCount();
+            }
 
         }
 

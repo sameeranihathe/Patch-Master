@@ -89,14 +89,14 @@ namespace Patch_Master
             // logintoolStripMenuItem
             // 
             this.logintoolStripMenuItem.Name = "logintoolStripMenuItem";
-            this.logintoolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.logintoolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.logintoolStripMenuItem.Text = "Logout";
             this.logintoolStripMenuItem.Click += new System.EventHandler(this.menuStripLogin_Click);
             // 
             // toolStripMenuIAddUser
             // 
             this.toolStripMenuIAddUser.Name = "toolStripMenuIAddUser";
-            this.toolStripMenuIAddUser.Size = new System.Drawing.Size(122, 22);
+            this.toolStripMenuIAddUser.Size = new System.Drawing.Size(148, 22);
             this.toolStripMenuIAddUser.Text = "Manage Users";
             this.toolStripMenuIAddUser.Click += new System.EventHandler(this.UserList_Click);
             // 
@@ -188,16 +188,18 @@ namespace Patch_Master
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(973, 35);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(866, 39);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 15);
+            this.label1.Size = new System.Drawing.Size(68, 15);
             this.label1.TabIndex = 3;
             this.label1.Text = "Welcome";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // UserFirstName_label
             // 
-            this.UserFirstName_label.Location = new System.Drawing.Point(1030, 35);
+            this.UserFirstName_label.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.UserFirstName_label.Location = new System.Drawing.Point(934, 39);
             this.UserFirstName_label.Name = "UserFirstName_label";
             this.UserFirstName_label.Size = new System.Drawing.Size(57, 15);
             this.UserFirstName_label.TabIndex = 4;
