@@ -7,9 +7,9 @@
     WHERE Status=@Status
   </SqlQueryString>
   <SqlQueryString Id="AddProcess">
-    INSERT INTO PM_Processes(ProcessName,ProcessDescription,Status)
+    INSERT INTO PM_Processes(ProcessName,ProcessDescription,Status,CreatedBy,CreatedDate)
     OUTPUT Inserted.ProcessId
-    VALUES(@ProcessName,@ProcessDescription,1)
+    VALUES(@ProcessName,@ProcessDescription,1,@CreatedBy,GETDATE())
   </SqlQueryString>
   <SqlQueryString Id="DeleteProcesses">
     UPDATE PM_SubProcesses
@@ -39,6 +39,12 @@
     SELECT ProcessId,ProcessName
     FROM PM_Processes
     WHERE Status=@Status
+  </SqlQueryString>
+
+  <SqlQueryString Id="LoadUserWiseProcessCount">
+    SELECT COUNT(ProcessId) AS ProcessCount
+    FROM PM_Processes
+    WHERE Status=1 AND CreatedBy = @loggedUserId
   </SqlQueryString>
   
 </SqlQueryStrings>

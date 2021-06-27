@@ -53,7 +53,7 @@ namespace Patch_Master
             this.tabControl_home = new System.Windows.Forms.TabControl();
             this.hometabPage_mine = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.label_processCount = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.hometabPage_all = new System.Windows.Forms.TabPage();
             this.menuStrip1.SuspendLayout();
@@ -89,14 +89,14 @@ namespace Patch_Master
             // logintoolStripMenuItem
             // 
             this.logintoolStripMenuItem.Name = "logintoolStripMenuItem";
-            this.logintoolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.logintoolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.logintoolStripMenuItem.Text = "Logout";
             this.logintoolStripMenuItem.Click += new System.EventHandler(this.menuStripLogin_Click);
             // 
             // toolStripMenuIAddUser
             // 
             this.toolStripMenuIAddUser.Name = "toolStripMenuIAddUser";
-            this.toolStripMenuIAddUser.Size = new System.Drawing.Size(122, 22);
+            this.toolStripMenuIAddUser.Size = new System.Drawing.Size(148, 22);
             this.toolStripMenuIAddUser.Text = "Manage Users";
             this.toolStripMenuIAddUser.Click += new System.EventHandler(this.UserList_Click);
             // 
@@ -188,16 +188,18 @@ namespace Patch_Master
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(973, 35);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(866, 39);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 15);
+            this.label1.Size = new System.Drawing.Size(68, 15);
             this.label1.TabIndex = 3;
             this.label1.Text = "Welcome";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // UserFirstName_label
             // 
-            this.UserFirstName_label.Location = new System.Drawing.Point(1030, 35);
+            this.UserFirstName_label.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.UserFirstName_label.Location = new System.Drawing.Point(934, 39);
             this.UserFirstName_label.Name = "UserFirstName_label";
             this.UserFirstName_label.Size = new System.Drawing.Size(57, 15);
             this.UserFirstName_label.TabIndex = 4;
@@ -216,7 +218,7 @@ namespace Patch_Master
             // hometabPage_mine
             // 
             this.hometabPage_mine.Controls.Add(this.label4);
-            this.hometabPage_mine.Controls.Add(this.label3);
+            this.hometabPage_mine.Controls.Add(this.label_processCount);
             this.hometabPage_mine.Controls.Add(this.label2);
             this.hometabPage_mine.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.hometabPage_mine.Location = new System.Drawing.Point(4, 24);
@@ -236,18 +238,19 @@ namespace Patch_Master
             this.label4.Size = new System.Drawing.Size(44, 21);
             this.label4.TabIndex = 2;
             this.label4.Text = "View";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             this.label4.MouseEnter += new System.EventHandler(this.label4_MouseEnter);
             this.label4.MouseLeave += new System.EventHandler(this.label4_MouseLeave);
             // 
-            // label3
+            // label_processCount
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(142, 19);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(19, 21);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "0";
+            this.label_processCount.AutoSize = true;
+            this.label_processCount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label_processCount.Location = new System.Drawing.Point(142, 19);
+            this.label_processCount.Name = "label_processCount";
+            this.label_processCount.Size = new System.Drawing.Size(19, 21);
+            this.label_processCount.TabIndex = 1;
+            this.label_processCount.Text = "0";
             // 
             // label2
             // 
@@ -324,7 +327,7 @@ namespace Patch_Master
         private System.Windows.Forms.TabPage hometabPage_all;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label_processCount;
     }
 }
 
