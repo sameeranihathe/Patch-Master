@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Patch_Master.Dto;
 
 namespace Patch_Master
 {
@@ -168,7 +169,47 @@ namespace Patch_Master
 
         private void label4_Click(object sender, EventArgs e)
         {
+            List<ProcessDetails> ProcessDetails = LoadAvailableProcessesUserWise(loggedUserId);
+        }
 
+        private List<ProcessDetails> LoadAvailableProcessesUserWise(int loggedUserId)
+        {
+            List<ProcessDetails> ProcessDetailsList = new List<ProcessDetails>();
+            DbConnector dbContext = new DbConnector();
+
+            try
+            {
+                string queryString = SqlQueryStringReader.GetQueryStringById("LoadUserWiseProcessDetails", "Processes");
+                List<SqlParameter> sqlParams = new List<SqlParameter>();
+                sqlParams.Add(new SqlParameter("@CreatedUser", loggedUserId));
+                var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
+                var reader = dataReaders[0];
+
+                while (reader.Read())
+                {
+                    ProcessDetails processDetails = new ProcessDetails
+                    {
+                        ProcessId = Convert.ToInt32(reader["ProcessId"]),
+                        ProcessName = reader["ProcessName"].ToString(),
+                        ProcessDescription = reader["ProcessDescription"].ToString(),
+                        CreatedDate = reader["CreatedDate"].ToString()
+                    };
+                    ProcessDetailsList.Add(processDetails);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            finally
+            {
+                dbContext.CloseConnection();
+
+            }
+
+            return ProcessDetailsList;
         }
     }
 }

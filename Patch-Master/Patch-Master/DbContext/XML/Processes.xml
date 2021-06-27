@@ -46,5 +46,10 @@
     FROM PM_Processes
     WHERE Status=1 AND CreatedBy = @loggedUserId
   </SqlQueryString>
-  
+  LoadUserWiseProcessDetails
+  <SqlQueryString Id="LoadUserWiseProcessDetails">
+    SELECT ProcessId,ProcessName,ProcessDescription,CreatedDate
+    FROM PM_Processes
+    WHERE Status=1 AND CreatedBy= @CreatedUser
+  </SqlQueryString>
 </SqlQueryStrings>
