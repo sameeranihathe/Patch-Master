@@ -59,6 +59,7 @@ namespace Patch_Master
             this.label3 = new System.Windows.Forms.Label();
             this.AllProcessCount_label = new System.Windows.Forms.Label();
             this.ViewAllProcesses_label = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl_home.SuspendLayout();
             this.hometabPage_mine.SuspendLayout();
@@ -192,6 +193,14 @@ namespace Patch_Master
             // 
             // label1
             // 
+            this.button1.Location = new System.Drawing.Point(653, 415);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(124, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "GoToAddDatabase";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(866, 39);
             this.label1.Name = "label1";
@@ -200,7 +209,16 @@ namespace Patch_Master
             this.label1.Text = "Welcome";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // UserFirstName_label
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(653, 374);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(124, 23);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "Go to Query builder";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            //             // UserFirstName_label
             // 
             this.UserFirstName_label.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.UserFirstName_label.Location = new System.Drawing.Point(934, 39);
@@ -316,6 +334,9 @@ namespace Patch_Master
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.ClientSize = new System.Drawing.Size(1086, 591);
             this.Controls.Add(this.tabControl_home);
             this.Controls.Add(this.UserFirstName_label);
@@ -373,6 +394,7 @@ namespace Patch_Master
         private System.Windows.Forms.Label ViewAllProcesses_label;
         private System.Windows.Forms.Label AllProcessCount_label;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button2;
     }
 }
 

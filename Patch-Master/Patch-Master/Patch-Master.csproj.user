@@ -4,7 +4,13 @@
     <Compile Update="Forms\DBAdder.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\Processes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\QueryTypeSelector.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\Requirements.cs">
@@ -14,9 +20,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Home.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Forms\Login.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

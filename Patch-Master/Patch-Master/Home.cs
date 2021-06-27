@@ -145,6 +145,13 @@ namespace Patch_Master
 
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            QueryTypeSelector QueryTypeSelector = new QueryTypeSelector();
+            QueryTypeSelector.Show();
+        }
+
         private void label1_Click(object sender, EventArgs e)
         {
 
