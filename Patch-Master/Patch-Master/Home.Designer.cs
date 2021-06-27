@@ -56,9 +56,13 @@ namespace Patch_Master
             this.label_processCount = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.hometabPage_all = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
+            this.AllProcessCount_label = new System.Windows.Forms.Label();
+            this.ViewAllProcesses_label = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl_home.SuspendLayout();
             this.hometabPage_mine.SuspendLayout();
+            this.hometabPage_all.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -264,6 +268,9 @@ namespace Patch_Master
             // 
             // hometabPage_all
             // 
+            this.hometabPage_all.Controls.Add(this.ViewAllProcesses_label);
+            this.hometabPage_all.Controls.Add(this.AllProcessCount_label);
+            this.hometabPage_all.Controls.Add(this.label3);
             this.hometabPage_all.Location = new System.Drawing.Point(4, 24);
             this.hometabPage_all.Name = "hometabPage_all";
             this.hometabPage_all.Padding = new System.Windows.Forms.Padding(3);
@@ -271,6 +278,39 @@ namespace Patch_Master
             this.hometabPage_all.TabIndex = 1;
             this.hometabPage_all.Text = "All";
             this.hometabPage_all.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(8, 16);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(103, 21);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "All Processes:";
+            // 
+            // AllProcessCount_label
+            // 
+            this.AllProcessCount_label.AutoSize = true;
+            this.AllProcessCount_label.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.AllProcessCount_label.Location = new System.Drawing.Point(130, 16);
+            this.AllProcessCount_label.Name = "AllProcessCount_label";
+            this.AllProcessCount_label.Size = new System.Drawing.Size(19, 21);
+            this.AllProcessCount_label.TabIndex = 1;
+            this.AllProcessCount_label.Text = "0";
+            // 
+            // ViewAllProcesses_label
+            // 
+            this.ViewAllProcesses_label.AutoSize = true;
+            this.ViewAllProcesses_label.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ViewAllProcesses_label.Location = new System.Drawing.Point(183, 16);
+            this.ViewAllProcesses_label.Name = "ViewAllProcesses_label";
+            this.ViewAllProcesses_label.Size = new System.Drawing.Size(44, 21);
+            this.ViewAllProcesses_label.TabIndex = 2;
+            this.ViewAllProcesses_label.Text = "View";
+            this.ViewAllProcesses_label.MouseEnter += new System.EventHandler(this.ViewAllProcesses_label_MouseEnter);
+            this.ViewAllProcesses_label.MouseLeave += new System.EventHandler(this.ViewAllProcesses_label_MouseLeave);
+
             // 
             // Home
             // 
@@ -293,6 +333,8 @@ namespace Patch_Master
             this.tabControl_home.ResumeLayout(false);
             this.hometabPage_mine.ResumeLayout(false);
             this.hometabPage_mine.PerformLayout();
+            this.hometabPage_all.ResumeLayout(false);
+            this.hometabPage_all.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -328,6 +370,9 @@ namespace Patch_Master
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label_processCount;
+        private System.Windows.Forms.Label ViewAllProcesses_label;
+        private System.Windows.Forms.Label AllProcessCount_label;
+        private System.Windows.Forms.Label label3;
     }
 }
 

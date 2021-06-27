@@ -166,6 +166,16 @@ namespace Patch_Master
         {
             label4.Font = new Font(label4.Font.Name, label4.Font.SizeInPoints, FontStyle.Regular);
         }
+        private void ViewAllProcesses_label_MouseEnter(object sender, EventArgs e)
+        {
+            ViewAllProcesses_label.Font = new Font(ViewAllProcesses_label.Font.Name, ViewAllProcesses_label.Font.SizeInPoints, FontStyle.Underline);
+
+        }
+
+        private void ViewAllProcesses_label_MouseLeave(object sender, EventArgs e)
+        {
+            ViewAllProcesses_label.Font = new Font(ViewAllProcesses_label.Font.Name, ViewAllProcesses_label.Font.SizeInPoints, FontStyle.Regular);
+        }
 
         private void label4_Click(object sender, EventArgs e)
         {
