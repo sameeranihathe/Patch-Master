@@ -165,5 +165,10 @@ namespace Patch_Master
         {
             label4.Font = new Font(label4.Font.Name, label4.Font.SizeInPoints, FontStyle.Regular);
         }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
