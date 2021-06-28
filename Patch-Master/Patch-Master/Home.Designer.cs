@@ -136,6 +136,7 @@ namespace Patch_Master
             this.QueryToolStripMenu.Name = "QueryToolStripMenu";
             this.QueryToolStripMenu.Size = new System.Drawing.Size(202, 22);
             this.QueryToolStripMenu.Text = "Formulate Query";
+            this.QueryToolStripMenu.Click += new System.EventHandler(this.FormulateQuery_Click);
             // 
             // requirementToolStripMenu
             // 
@@ -192,14 +193,6 @@ namespace Patch_Master
             this.reportToolStripMenu.Text = "Reports";
             // 
             // label1
-            // 
-            //this.button1.Location = new System.Drawing.Point(653, 415);
-            //this.button1.Name = "button1";
-            //this.button1.Size = new System.Drawing.Size(124, 23);
-            //this.button1.TabIndex = 2;
-            //this.button1.Text = "GoToAddDatabase";
-            //this.button1.UseVisualStyleBackColor = true;
-            //this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(866, 39);

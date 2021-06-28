@@ -151,7 +151,12 @@ namespace Patch_Master
             QueryTypeSelector QueryTypeSelector = new QueryTypeSelector();
             QueryTypeSelector.Show();
         }
+        private void FormulateQuery_Click(object sender, EventArgs e)
+        {
+            QueryTypeSelector QueryTypeSelector = new QueryTypeSelector();
+            QueryTypeSelector.Show();
 
+        }
         private void label1_Click(object sender, EventArgs e)
         {
 
