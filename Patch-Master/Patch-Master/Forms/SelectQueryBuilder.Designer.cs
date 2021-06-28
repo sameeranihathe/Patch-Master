@@ -28,26 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Colomn1");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Column2");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Column3");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Table1", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3});
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Table2");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Database01", new System.Windows.Forms.TreeNode[] {
-            treeNode4,
-            treeNode5});
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Table21");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Table22");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Table22", new System.Windows.Forms.TreeNode[] {
-            treeNode7,
-            treeNode8});
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Colomn1");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Column2");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Column3");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Table1", new System.Windows.Forms.TreeNode[] {
+            treeNode10,
+            treeNode11,
+            treeNode12});
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Table2");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Database01", new System.Windows.Forms.TreeNode[] {
+            treeNode13,
+            treeNode14});
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Table21");
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Table22");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Table22", new System.Windows.Forms.TreeNode[] {
+            treeNode16,
+            treeNode17});
             this.label1 = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.treeView1 = new System.Windows.Forms.TreeView();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.DatabaseList_comboBox = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -80,40 +80,40 @@
             // 
             this.treeView1.Location = new System.Drawing.Point(23, 150);
             this.treeView1.Name = "treeView1";
-            treeNode1.Name = "Column1";
-            treeNode1.Text = "Colomn1";
-            treeNode2.Name = "Column2";
-            treeNode2.Text = "Column2";
-            treeNode3.Name = "Column3";
-            treeNode3.Text = "Column3";
-            treeNode4.Name = "Table1";
-            treeNode4.Text = "Table1";
-            treeNode5.Name = "Table2";
-            treeNode5.Text = "Table2";
-            treeNode6.Name = "Database01";
-            treeNode6.Text = "Database01";
-            treeNode7.Name = "Table21";
-            treeNode7.Text = "Table21";
-            treeNode8.Name = "Table22";
-            treeNode8.Text = "Table22";
-            treeNode9.Name = "Table22";
-            treeNode9.Text = "Table22";
+            treeNode10.Name = "Column1";
+            treeNode10.Text = "Colomn1";
+            treeNode11.Name = "Column2";
+            treeNode11.Text = "Column2";
+            treeNode12.Name = "Column3";
+            treeNode12.Text = "Column3";
+            treeNode13.Name = "Table1";
+            treeNode13.Text = "Table1";
+            treeNode14.Name = "Table2";
+            treeNode14.Text = "Table2";
+            treeNode15.Name = "Database01";
+            treeNode15.Text = "Database01";
+            treeNode16.Name = "Table21";
+            treeNode16.Text = "Table21";
+            treeNode17.Name = "Table22";
+            treeNode17.Text = "Table22";
+            treeNode18.Name = "Table22";
+            treeNode18.Text = "Table22";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode6,
-            treeNode9});
+            treeNode15,
+            treeNode18});
             this.treeView1.Size = new System.Drawing.Size(197, 322);
             this.treeView1.TabIndex = 2;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
-            // comboBox1
+            // DatabaseList_comboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.DatabaseList_comboBox.FormattingEnabled = true;
+            this.DatabaseList_comboBox.Items.AddRange(new object[] {
             "Database01"});
-            this.comboBox1.Location = new System.Drawing.Point(23, 65);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(197, 23);
-            this.comboBox1.TabIndex = 3;
+            this.DatabaseList_comboBox.Location = new System.Drawing.Point(23, 65);
+            this.DatabaseList_comboBox.Name = "DatabaseList_comboBox";
+            this.DatabaseList_comboBox.Size = new System.Drawing.Size(197, 23);
+            this.DatabaseList_comboBox.TabIndex = 3;
             // 
             // button1
             // 
@@ -222,7 +222,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.DatabaseList_comboBox);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.label1);
@@ -238,7 +238,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.TreeView treeView1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox DatabaseList_comboBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
