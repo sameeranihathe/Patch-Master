@@ -172,6 +172,7 @@ namespace Patch_Master.Forms
                 {
                     checkedListBox.Items.Add(column);
                 }
+                checkedListBox.ItemCheck += (s, e) => BeginInvoke((MethodInvoker)(() => CheckTableColumn(s, e)));
                 checkedListBox.Location = new Point(availablecheckedListBoxCount * (10 + 100), 30);
                 checkedListBox.Size = new Size(100, 150);
 
@@ -182,7 +183,9 @@ namespace Patch_Master.Forms
 
 
         }
-
+        private void CheckTableColumn(object sender, EventArgs e)
+        {
+        }
         private List<string> LoadAllColumns(string dbName, string tableName)
         {
             DbConnector dbContext = new DbConnector();
