@@ -147,28 +147,39 @@ namespace Patch_Master.Forms
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            bool tableAlreadyAdded = false;
             string DbName = (((KeyValuePair<int, string>)DatabaseList_comboBox.SelectedItem).Value).ToString();
             string tableName = e.Node.Text;
 
             List<string> columnNameList = LoadAllColumns(DbName, tableName);
-            
-            Label label = new Label();
-            label.Name = tableName + "_label";
-            label.Text = tableName;
-            label.Location = new Point(availablecheckedListBoxCount * (10 + 100), 0);
-
-            CheckedListBox checkedListBox = new CheckedListBox();
-            checkedListBox.Name = tableName + "_checkedListBox";
-            foreach (var column in columnNameList)
+            foreach (Control ctrl in TableView_panel.Controls)
             {
-                checkedListBox.Items.Add(column);
+                if (ctrl.Name == tableName+ "_label")
+                {
+                    tableAlreadyAdded = true;
+                }
             }
-            checkedListBox.Location = new Point(availablecheckedListBoxCount*(10+100), 30);
-            checkedListBox.Size = new Size(100, 150);
+            if (!tableAlreadyAdded)
+            {
+                Label label = new Label();
+                label.Name = tableName + "_label";
+                label.Text = tableName;
+                label.Location = new Point(availablecheckedListBoxCount * (10 + 100), 0);
 
-            TableView_panel.Controls.Add(label);
-            TableView_panel.Controls.Add(checkedListBox);
-            availablecheckedListBoxCount++;
+                CheckedListBox checkedListBox = new CheckedListBox();
+                checkedListBox.Name = tableName + "_checkedListBox";
+                foreach (var column in columnNameList)
+                {
+                    checkedListBox.Items.Add(column);
+                }
+                checkedListBox.Location = new Point(availablecheckedListBoxCount * (10 + 100), 30);
+                checkedListBox.Size = new Size(100, 150);
+
+                TableView_panel.Controls.Add(label);
+                TableView_panel.Controls.Add(checkedListBox);
+                availablecheckedListBoxCount++; 
+            }
+
 
         }
 
