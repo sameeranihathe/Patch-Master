@@ -28,41 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Colomn1");
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Column2");
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Column3");
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Table1", new System.Windows.Forms.TreeNode[] {
-            treeNode10,
-            treeNode11,
-            treeNode12});
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Table2");
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Database01", new System.Windows.Forms.TreeNode[] {
-            treeNode13,
-            treeNode14});
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Table21");
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Table22");
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Table22", new System.Windows.Forms.TreeNode[] {
-            treeNode16,
-            treeNode17});
             this.label1 = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.TableList_treeView = new System.Windows.Forms.TreeView();
             this.DatabaseList_comboBox = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.btnSingleSelectCondition = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
+            this.TableView_panel = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(353, 8);
+            this.label1.Location = new System.Drawing.Point(282, 73);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(127, 15);
             this.label1.TabIndex = 0;
@@ -70,40 +51,19 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(282, 312);
+            this.richTextBox1.Location = new System.Drawing.Point(282, 324);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(532, 155);
+            this.richTextBox1.Size = new System.Drawing.Size(532, 143);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = "";
             // 
-            // treeView1
+            // TableList_treeView
             // 
-            this.treeView1.Location = new System.Drawing.Point(23, 150);
-            this.treeView1.Name = "treeView1";
-            treeNode10.Name = "Column1";
-            treeNode10.Text = "Colomn1";
-            treeNode11.Name = "Column2";
-            treeNode11.Text = "Column2";
-            treeNode12.Name = "Column3";
-            treeNode12.Text = "Column3";
-            treeNode13.Name = "Table1";
-            treeNode13.Text = "Table1";
-            treeNode14.Name = "Table2";
-            treeNode14.Text = "Table2";
-            treeNode15.Name = "Database01";
-            treeNode15.Text = "Database01";
-            treeNode16.Name = "Table21";
-            treeNode16.Text = "Table21";
-            treeNode17.Name = "Table22";
-            treeNode17.Text = "Table22";
-            treeNode18.Name = "Table22";
-            treeNode18.Text = "Table22";
-            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode15,
-            treeNode18});
-            this.treeView1.Size = new System.Drawing.Size(197, 322);
-            this.treeView1.TabIndex = 2;
-            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+            this.TableList_treeView.Location = new System.Drawing.Point(23, 150);
+            this.TableList_treeView.Name = "TableList_treeView";
+            this.TableList_treeView.Size = new System.Drawing.Size(197, 322);
+            this.TableList_treeView.TabIndex = 2;
+            this.TableList_treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
             // DatabaseList_comboBox
             // 
@@ -114,15 +74,6 @@
             this.DatabaseList_comboBox.Name = "DatabaseList_comboBox";
             this.DatabaseList_comboBox.Size = new System.Drawing.Size(197, 23);
             this.DatabaseList_comboBox.TabIndex = 3;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(90, 95);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(130, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Connect to database";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -150,39 +101,11 @@
             this.button2.TabIndex = 7;
             this.button2.Text = "Save Query";
             this.button2.UseVisualStyleBackColor = true;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Table1",
-            "Table2",
-            "Table3",
-            "Table4",
-            "Table5"});
-            this.comboBox2.Location = new System.Drawing.Point(282, 94);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(149, 23);
-            this.comboBox2.TabIndex = 8;
-            // 
-            // checkedListBox1
-            // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
-            "Column1",
-            "Column2",
-            "Column3",
-            "Column4",
-            "Column5",
-            "Column6"});
-            this.checkedListBox1.Location = new System.Drawing.Point(474, 95);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(120, 184);
-            this.checkedListBox1.TabIndex = 9;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnSingleSelectCondition
             // 
-            this.btnSingleSelectCondition.Location = new System.Drawing.Point(615, 95);
+            this.btnSingleSelectCondition.Location = new System.Drawing.Point(616, 61);
             this.btnSingleSelectCondition.Name = "btnSingleSelectCondition";
             this.btnSingleSelectCondition.Size = new System.Drawing.Size(100, 23);
             this.btnSingleSelectCondition.TabIndex = 11;
@@ -192,38 +115,33 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(728, 95);
+            this.button5.Location = new System.Drawing.Point(728, 61);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(86, 23);
             this.button5.TabIndex = 12;
             this.button5.Text = "Build Query";
             this.button5.UseVisualStyleBackColor = true;
             // 
-            // label4
+            // TableView_panel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(288, 72);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 15);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "Select table";
+            this.TableView_panel.Location = new System.Drawing.Point(282, 114);
+            this.TableView_panel.Name = "TableView_panel";
+            this.TableView_panel.Size = new System.Drawing.Size(549, 192);
+            this.TableView_panel.TabIndex = 13;
             // 
             // SelectQueryBuilder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(866, 511);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.TableView_panel);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.btnSingleSelectCondition);
-            this.Controls.Add(this.checkedListBox1);
-            this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.DatabaseList_comboBox);
-            this.Controls.Add(this.treeView1);
+            this.Controls.Add(this.TableList_treeView);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.label1);
             this.Name = "SelectQueryBuilder";
@@ -237,16 +155,13 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TreeView TableList_treeView;
         private System.Windows.Forms.ComboBox DatabaseList_comboBox;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.Button btnSingleSelectCondition;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel TableView_panel;
     }
 }
