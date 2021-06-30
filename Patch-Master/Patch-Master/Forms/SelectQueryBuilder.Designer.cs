@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.Query_richTextBox = new System.Windows.Forms.RichTextBox();
             this.TableList_treeView = new System.Windows.Forms.TreeView();
             this.DatabaseList_comboBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -49,13 +49,13 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Build your select query";
             // 
-            // richTextBox1
+            // Query_richTextBox
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(282, 324);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(532, 143);
-            this.richTextBox1.TabIndex = 1;
-            this.richTextBox1.Text = "";
+            this.Query_richTextBox.Location = new System.Drawing.Point(282, 324);
+            this.Query_richTextBox.Name = "Query_richTextBox";
+            this.Query_richTextBox.Size = new System.Drawing.Size(532, 143);
+            this.Query_richTextBox.TabIndex = 1;
+            this.Query_richTextBox.Text = "";
             // 
             // TableList_treeView
             // 
@@ -142,7 +142,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.DatabaseList_comboBox);
             this.Controls.Add(this.TableList_treeView);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.Query_richTextBox);
             this.Controls.Add(this.label1);
             this.Name = "SelectQueryBuilder";
             this.Text = "SelectQueryBuilder";
@@ -163,5 +163,6 @@
         private System.Windows.Forms.Button btnSingleSelectCondition;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Panel TableView_panel;
+        private System.Windows.Forms.RichTextBox Query_richTextBox;
     }
 }

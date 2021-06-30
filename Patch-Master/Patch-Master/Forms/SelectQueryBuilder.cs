@@ -167,7 +167,7 @@ namespace Patch_Master.Forms
                 label.Location = new Point(availablecheckedListBoxCount * (10 + 100), 0);
 
                 CheckedListBox checkedListBox = new CheckedListBox();
-                checkedListBox.Name = tableName + "_checkedListBox";
+                checkedListBox.Name = tableName;
                 foreach (var column in columnNameList)
                 {
                     checkedListBox.Items.Add(column);
@@ -185,6 +185,26 @@ namespace Patch_Master.Forms
         }
         private void CheckTableColumn(object sender, EventArgs e)
         {
+            CheckedListBox btn = (CheckedListBox)sender;
+            string selectedTable = btn.AccessibilityObject.Name;
+
+            string selectedColumn = btn.SelectedItem.ToString();
+
+            string AvailableQuery = Query_richTextBox.Text;
+
+            if (AvailableQuery == null || AvailableQuery=="")
+            {
+                string QuerySelect = "SELECT " + selectedTable + "." + selectedColumn;
+                Query_richTextBox.Text = QuerySelect;
+
+                string QueryFrom = "FROM " + selectedTable;
+                Query_richTextBox.Text += Environment.NewLine + QueryFrom;
+
+            }
+            else
+            {
+
+            }
         }
         private List<string> LoadAllColumns(string dbName, string tableName)
         {
