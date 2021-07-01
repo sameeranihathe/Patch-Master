@@ -36,7 +36,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.btnSingleSelectCondition = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.BuildQuery_button = new System.Windows.Forms.Button();
             this.TableView_panel = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
@@ -113,14 +113,15 @@
             this.btnSingleSelectCondition.UseVisualStyleBackColor = true;
             this.btnSingleSelectCondition.Click += new System.EventHandler(this.btnSingleSelectCondition_Click);
             // 
-            // button5
+            // BuildQuery_button
             // 
-            this.button5.Location = new System.Drawing.Point(728, 61);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(86, 23);
-            this.button5.TabIndex = 12;
-            this.button5.Text = "Build Query";
-            this.button5.UseVisualStyleBackColor = true;
+            this.BuildQuery_button.Location = new System.Drawing.Point(728, 61);
+            this.BuildQuery_button.Name = "BuildQuery_button";
+            this.BuildQuery_button.Size = new System.Drawing.Size(86, 23);
+            this.BuildQuery_button.TabIndex = 12;
+            this.BuildQuery_button.Text = "Build Query";
+            this.BuildQuery_button.UseVisualStyleBackColor = true;
+            this.BuildQuery_button.Click += new System.EventHandler(this.BuildQuery_button_Click);
             // 
             // TableView_panel
             // 
@@ -135,7 +136,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(866, 511);
             this.Controls.Add(this.TableView_panel);
-            this.Controls.Add(this.button5);
+            this.Controls.Add(this.BuildQuery_button);
             this.Controls.Add(this.btnSingleSelectCondition);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label3);
@@ -161,7 +162,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnSingleSelectCondition;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button BuildQuery_button;
         private System.Windows.Forms.Panel TableView_panel;
         private System.Windows.Forms.RichTextBox Query_richTextBox;
     }

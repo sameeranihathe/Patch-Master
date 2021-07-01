@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -21,6 +22,8 @@ namespace Patch_Master.Forms
         int roleId = 0;
 
         int availablecheckedListBoxCount = 0;
+
+        Dictionary<string, string> SelectedColumnList = new Dictionary<string, string>();
         public SelectQueryBuilder()
         {
             InitializeComponent();
@@ -183,28 +186,39 @@ namespace Patch_Master.Forms
 
 
         }
-        private void CheckTableColumn(object sender, EventArgs e)
+        private void CheckTableColumn(object sender, ItemCheckEventArgs e)
         {
+
             CheckedListBox btn = (CheckedListBox)sender;
             string selectedTable = btn.AccessibilityObject.Name;
 
             string selectedColumn = btn.SelectedItem.ToString();
 
-            string AvailableQuery = Query_richTextBox.Text;
+            string key = selectedTable + "&" + selectedColumn;
 
-            if (AvailableQuery == null || AvailableQuery=="")
+            if (e.NewValue == CheckState.Checked)
             {
-                string QuerySelect = "SELECT " + selectedTable + "." + selectedColumn;
-                Query_richTextBox.Text = QuerySelect;
-
-                string QueryFrom = "FROM " + selectedTable;
-                Query_richTextBox.Text += Environment.NewLine + QueryFrom;
-
+                SelectedColumnList.Add(key, selectedColumn);
             }
             else
             {
-
+                SelectedColumnList.Remove(key);
             }
+            //string AvailableQuery = Query_richTextBox.Text;
+
+                //if (AvailableQuery == null || AvailableQuery=="")
+                //{
+                //    string QuerySelect = "SELECT " + selectedTable + "." + selectedColumn;
+                //    Query_richTextBox.Text = QuerySelect;
+
+                //    string QueryFrom = "FROM " + selectedTable;
+                //    Query_richTextBox.Text += Environment.NewLine + QueryFrom;
+
+                //}
+                //else
+                //{
+                //    string AvailableText = Query_richTextBox.Text;
+                //}
         }
         private List<string> LoadAllColumns(string dbName, string tableName)
         {
@@ -246,6 +260,43 @@ namespace Patch_Master.Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
+        }
+
+        private void BuildQuery_button_Click(object sender, EventArgs e)
+        {
+            if (SelectedColumnList.Count>0)
+            {
+                int i = 0;
+                string SelectString = string.Empty;
+                string FromString = "FROM";
+                string TableString = string.Empty;
+
+                foreach (var item in SelectedColumnList)
+                {
+                    var column = item.Value;
+                    var table = (item.Key).Split('&')[0];
+
+                    if (i==0)
+                    {
+                        SelectString = "SELECT " + table + "." + column;
+                        TableString = table;
+                    }
+                    else
+                    {
+                        SelectString += "," + table + "." + column;
+                        string[] tableList = TableString.Split(',');
+
+                        if (!tableList.Contains(table))
+                        {
+                            TableString += "," + table;
+                        }
+                    }
+                    i++;
+                }
+                Query_richTextBox.Text = SelectString;
+                Query_richTextBox.Text += Environment.NewLine + FromString + " "+  TableString;
+
+            }
         }
     }
 }
