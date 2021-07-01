@@ -34,10 +34,11 @@
             this.DatabaseList_comboBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.SaveQuery_button = new System.Windows.Forms.Button();
             this.btnSingleSelectCondition = new System.Windows.Forms.Button();
             this.BuildQuery_button = new System.Windows.Forms.Button();
             this.TableView_panel = new System.Windows.Forms.Panel();
+            this.Clear_button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -93,15 +94,15 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "select  database ";
             // 
-            // button2
+            // SaveQuery_button
             // 
-            this.button2.Location = new System.Drawing.Point(748, 476);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(83, 23);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Save Query";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.SaveQuery_button.Location = new System.Drawing.Point(748, 476);
+            this.SaveQuery_button.Name = "SaveQuery_button";
+            this.SaveQuery_button.Size = new System.Drawing.Size(83, 23);
+            this.SaveQuery_button.TabIndex = 7;
+            this.SaveQuery_button.Text = "Save Query";
+            this.SaveQuery_button.UseVisualStyleBackColor = true;
+            this.SaveQuery_button.Click += new System.EventHandler(this.SaveQuerybutton_Click);
             // 
             // btnSingleSelectCondition
             // 
@@ -130,15 +131,26 @@
             this.TableView_panel.Size = new System.Drawing.Size(549, 192);
             this.TableView_panel.TabIndex = 13;
             // 
+            // Clear_button
+            // 
+            this.Clear_button.Location = new System.Drawing.Point(667, 476);
+            this.Clear_button.Name = "Clear_button";
+            this.Clear_button.Size = new System.Drawing.Size(75, 23);
+            this.Clear_button.TabIndex = 14;
+            this.Clear_button.Text = "Clear";
+            this.Clear_button.UseVisualStyleBackColor = true;
+            this.Clear_button.Click += new System.EventHandler(this.Clear_button_Click);
+            // 
             // SelectQueryBuilder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(866, 511);
+            this.Controls.Add(this.Clear_button);
             this.Controls.Add(this.TableView_panel);
             this.Controls.Add(this.BuildQuery_button);
             this.Controls.Add(this.btnSingleSelectCondition);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.SaveQuery_button);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.DatabaseList_comboBox);
@@ -160,10 +172,11 @@
         private System.Windows.Forms.ComboBox DatabaseList_comboBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button SaveQuery_button;
         private System.Windows.Forms.Button btnSingleSelectCondition;
         private System.Windows.Forms.Button BuildQuery_button;
         private System.Windows.Forms.Panel TableView_panel;
         private System.Windows.Forms.RichTextBox Query_richTextBox;
+        private System.Windows.Forms.Button Clear_button;
     }
 }

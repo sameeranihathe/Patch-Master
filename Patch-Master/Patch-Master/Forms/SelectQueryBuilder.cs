@@ -258,7 +258,7 @@ namespace Patch_Master.Forms
             selectConditionBuilder.Show();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void SaveQuerybutton_Click(object sender, EventArgs e)
         {
         }
 
@@ -297,6 +297,21 @@ namespace Patch_Master.Forms
                 Query_richTextBox.Text += Environment.NewLine + FromString + " "+  TableString;
 
             }
+        }
+
+        private void Clear_button_Click(object sender, EventArgs e)
+        {
+            availablecheckedListBoxCount = 0;
+            SelectedColumnList = new Dictionary<string, string>();
+            foreach (Control item in TableView_panel.Controls.OfType<CheckedListBox>())
+            {
+                TableView_panel.Controls.Remove(item);
+            }
+            foreach (Control item in TableView_panel.Controls.OfType<Label>())
+            {
+                TableView_panel.Controls.Remove(item);
+            }
+            Query_richTextBox.Text = string.Empty;
         }
     }
 }
