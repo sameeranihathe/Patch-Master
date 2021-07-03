@@ -39,7 +39,7 @@ namespace Patch_Master.Forms
 
             DbConnector dbContext = new DbConnector();
 
-            string queryString = SqlQueryStringReader.GetQueryStringById("CheckAuthentication", "User");
+            string queryString = SqlQueryStringReader.GetQueryStringById("CheckAuthentication", "user");
             List<SqlParameter> sqlParams = new List<SqlParameter>();
             sqlParams.Add(new SqlParameter("UserName", usernme));
             sqlParams.Add(new SqlParameter("Password", password));

@@ -139,6 +139,7 @@ namespace Patch_Master
             this.QueryToolStripMenu.Name = "QueryToolStripMenu";
             this.QueryToolStripMenu.Size = new System.Drawing.Size(253, 26);
             this.QueryToolStripMenu.Text = "Formulate Query";
+            this.QueryToolStripMenu.Click += new System.EventHandler(this.FormulateQuery_Click);
             // 
             // requirementToolStripMenu
             // 
@@ -206,8 +207,7 @@ namespace Patch_Master
             this.requirmentsByProcessToolStripMenuItem.Text = "Requirments By Process";
             this.requirmentsByProcessToolStripMenuItem.Click += new System.EventHandler(this.requirmentsByProcessToolStripMenuItem_Click);
             // 
-            // label1
-            // 
+
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(919, 52);
             this.label1.Name = "label1";
@@ -348,6 +348,9 @@ namespace Patch_Master
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1241, 788);
             this.Controls.Add(this.button2);
+
+            this.ClientSize = new System.Drawing.Size(1086, 591);
+
             this.Controls.Add(this.tabControl_home);
             this.Controls.Add(this.UserFirstName_label);
             this.Controls.Add(this.label1);
