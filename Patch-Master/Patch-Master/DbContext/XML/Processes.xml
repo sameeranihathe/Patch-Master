@@ -2,14 +2,16 @@
 <SqlQueryStrings>
 
   <SqlQueryString Id="LoadAvailableProcesses">
-    SELECT ProcessId,ProcessName,ProcessDescription
-    FROM PM_Processes
-    WHERE Status=@Status
+	  SELECT ProcessId as 'Main Process ID',ProcessName as 'Process Name',ProcessDescription as 'Process Desc'
+	  , CreatedUserName as 'Created User', CreatedDate as 'Created Date'
+	  FROM PM_Processes
+	  WHERE Status=@Status
   </SqlQueryString>
+	
   <SqlQueryString Id="AddProcess">
-    INSERT INTO PM_Processes(ProcessName,ProcessDescription,Status,CreatedBy,CreatedDate)
-    OUTPUT Inserted.ProcessId
-    VALUES(@ProcessName,@ProcessDescription,1,@CreatedBy,GETDATE())
+	  INSERT INTO PM_Processes(ProcessName,ProcessDescription,Status,CreatedBy,CreatedDate,CreatedUserName)
+	  OUTPUT Inserted.ProcessId
+	  VALUES(@ProcessName,@ProcessDescription,1,@CreatedBy,GETDATE(),@CreatedUserName)
   </SqlQueryString>
   <SqlQueryString Id="DeleteProcesses">
     UPDATE PM_SubProcesses
@@ -21,9 +23,10 @@
     WHERE ProcessId in (@ProcessIdList)
   </SqlQueryString>
   <SqlQueryString Id="LoadAvailableSubProcesses">
-    SELECT SubProcessId,SubProcessName
-    FROM PM_SubProcesses
-    WHERE ProcessId=@ProcessId AND Status=1
+	  SELECT SubProcessId as 'Sub Process ID',SubProcessName as 'Sub Process Name', Description as 'Description',
+	  CreatedUserName as 'Created User', CreatedDate as 'Created Date'
+	  FROM PM_SubProcesses
+	  WHERE ProcessId=@ProcessId AND Status=1
   </SqlQueryString>
   <SqlQueryString Id="DeleteSubProcesses">
     UPDATE PM_SubProcesses
@@ -31,9 +34,9 @@
     WHERE SubProcessId in (@SubProcessIdList)
   </SqlQueryString>
   <SqlQueryString Id="AddSubProcess">
-    INSERT INTO PM_SubProcesses(SubProcessName,ProcessId,Status)
-    OUTPUT Inserted.SubProcessId
-    VALUES(@SubProcessName,@ProcessId,1)
+	  INSERT INTO PM_SubProcesses(SubProcessName,ProcessId,Status,CreatedDate,CreatedUserID,CreatedUserName)
+	  OUTPUT Inserted.SubProcessId
+	  VALUES(@SubProcessName,@ProcessId,1,GETDATE(),@CreatedBy,@CreatedUserName)
   </SqlQueryString>
   <SqlQueryString Id="LoadAvailableProcessNameList">
     SELECT ProcessId,ProcessName
@@ -52,4 +55,14 @@
     FROM PM_Processes
     WHERE Status=1 AND CreatedBy= @CreatedUser
   </SqlQueryString>
+	<SqlQueryString Id="ModifyProcess">
+		update PM_Processes
+		set ProcessDescription = @Description
+		where ProcessId = @ProcessID
+	</SqlQueryString>
+	<SqlQueryString Id="ModifySubProcess">
+		update PM_SubProcesses
+		set Description = @Description
+		where SubProcessId = @ProcessID
+	</SqlQueryString>
 </SqlQueryStrings>

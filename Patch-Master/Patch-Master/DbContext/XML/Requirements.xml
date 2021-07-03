@@ -2,36 +2,51 @@
 <SqlQueryStrings>
 
   <SqlQueryString Id="AddRequirement">
-    INSERT INTO PM_Requiremenet
-    ([RequirementName]
-    ,[Description]
-    ,[Objective]
-    ,[SubProcessId]
-    ,[DB_Id]
-    ,[CreatedBy]
-    ,[CreatedDate]
-    ,[IsApproved]
-    ,[ApprovedBy]
-    ,[Status])
-    OUTPUT Inserted.RequirementId
-    VALUES
-    (@RequirementName,
-    @RequirementDescription,
-    @RequirementObjective,
-    @SubProcessId,
-    @DatabaseId,
-    99,
-    GETDATE(),
-    0,
-    0,
-    1)
+	  INSERT INTO PM_Requiremenet
+	  ([RequirementName]
+	  ,[Description]
+	  ,[Objective]
+	  ,[SubProcessId]
+	  ,[DB_Id]
+	  ,[CreatedBy]
+	  ,[CreatedDate]
+	  ,[IsApproved]
+	  ,[ApprovedBy]
+	  ,[Status]
+	  ,[FormulationStatus]
+	  ,[CreatedUserName])
+	  OUTPUT Inserted.RequirementId
+	  VALUES
+	  (@RequirementName,
+	  @RequirementDescription,
+	  @RequirementObjective,
+	  @SubProcessId,
+	  @DatabaseId,
+	  @UserID,
+	  GETDATE(),
+	  0,
+	  0,
+	  2,
+	  0,
+	  @UserName)
   </SqlQueryString>
   <SqlQueryString Id="LoadAvailableRequirements">
-    SELECT RequirementId,RequirementName,Description,Objective
-    FROM PM_Requiremenet
-    WHERE SubProcessId=@SubProcessId AND Status=1
+	  SELECT RQ.RequirementId as 'Requirement ID' ,RQ. RequirementName as 'Requirment Name',RQ.Description as 'Req Description',
+	  RQ.Objective as 'Req Objective', Db.DBName as 'Database', RQ.CreatedUserName as 'CreatedBy', RQ.CreatedDate as 'Created Date'
+	  , RQ.FormulationStatus as 'Query Formulated'
+	  FROM PM_Requiremenet RQ
+	  inner join PM_Databases DB
+	  on RQ.DB_Id = Db.DB_Id
+	  WHERE RQ.SubProcessId=@SubProcessId AND RQ.DB_Id = @DB_Id AND RQ.Status = @Status
   </SqlQueryString>
-
+	<SqlQueryString Id="LoadFormulatedRequirements">
+		SELECT RQ.RequirementId as 'Requirement ID' ,RQ. RequirementName as 'Requirment Name',RQ.Description as 'Req Description',
+		RQ.Objective as 'Req Objective', Db.DBName as 'Database',RQ.CreatedUserName as 'Created By', RQ.CreatedDate as 'Created Date'
+		FROM PM_Requiremenet RQ
+		inner join PM_Databases DB
+		on RQ.DB_Id = Db.DB_Id
+		WHERE RQ.SubProcessId=@SubProcessId AND RQ.Status = @Status AND RQ.DB_Id = @DB_Id AND RQ.FormulationStatus = @FormulationStatus
+	</SqlQueryString>
   <SqlQueryString Id="DeleteRequirements">
     UPDATE PM_Queries
     SET status=0
@@ -42,4 +57,9 @@
     WHERE RequirementId in (@RequirementIdList)
   </SqlQueryString>
 
+	<SqlQueryString Id="UpdateRequirement">
+		update PM_Requiremenet
+		set Objective = @Objective, Description = @Description
+		where RequirementId = @RequirmentId
+	</SqlQueryString>
 </SqlQueryStrings>

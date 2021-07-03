@@ -18,12 +18,6 @@ namespace Patch_Master.Forms
         {
             InitializeComponent();
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button_login_Click(object sender, EventArgs e)
         {
             string usernme = textBox_UserName.Text.ToString();
@@ -90,6 +84,10 @@ namespace Patch_Master.Forms
 
             }
 
+        }
+        private void button_Cancel_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Application.ExitThread();
         }
     }
 }
