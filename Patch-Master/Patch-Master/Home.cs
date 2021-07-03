@@ -12,6 +12,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Patch_Master.Dto;
+using Microsoft.Reporting.WebForms;
+using Microsoft.ReportingServices.Interfaces;
+using Report = Microsoft.ReportingServices.Interfaces.Report;
 
 namespace Patch_Master
 {
@@ -26,25 +29,14 @@ namespace Patch_Master
         public Home()
         {
             InitializeComponent();
-
+            this.HideFunctionalitesByRoles();
 
             label_processCount.Text = LoadProcessCount().ToString();
 
-
-            if (Role!="Admin")
-            {
-                this.toolStripMenuIAddUser.Visible = false;
-                //this.ta tabControl.TabPages.Remove(tabPage);
-                this.tabControl_home.TabPages.Remove(hometabPage_all);
-            }
-            else
-            {
-            }
-
         }
-
         private int LoadProcessCount()
         {
+            
             DbConnector dbContext = new DbConnector();
             int ProcessCount = 0;
 
@@ -71,35 +63,25 @@ namespace Patch_Master
             }
             return ProcessCount;
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             UserFirstName_label.Text = FirstName;
         }
-
-
-        //private void Login_Click(object sender, EventArgs e)
-        //{
-        //    Login login = new Login();
-        //    login.Show();
-        //}
-
-        //private void label_loginMouseMove(object sender, MouseEventArgs e)
-        //{
-        //    label_login.Font = new Font(label_login.Font.FontFamily, label_login.Font.SizeInPoints, FontStyle.Underline);
-        //}
-
-        //private void label_loginMouseLeave(object sender, EventArgs e)
-        //{
-        //    label_login.Font = new Font(label_login.Font.FontFamily, label_login.Font.SizeInPoints, FontStyle.Regular);
-
-        //}
-
+        private void HideFunctionalitesByRoles()
+        {
+            if (Role != "Admin")
+            {
+                toolStripMenuIAddUser.Visible = false;
+                connectDbToolStripMenu.Visible = false;
+                AprovalToolStripMenu.Visible = false;
+                processesToolStripMenu.Visible = false;
+                ApproveRequestToolStripMenu.Visible = false;
+            }
+        }
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
         }
-
         private void menuStrip1_Click(object sender, EventArgs e)
         {
 
@@ -112,12 +94,10 @@ namespace Patch_Master
             this.Dispose();
 
         }
-
         private void ConnectDb_Click(object sender, EventArgs e)
         {
             DBAdder DBAdder = new DBAdder();
             DBAdder.Show();
-
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -144,31 +124,26 @@ namespace Patch_Master
         {
 
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
             this.Hide();
             QueryTypeSelector QueryTypeSelector = new QueryTypeSelector();
             QueryTypeSelector.Show();
         }
-
         private void label1_Click(object sender, EventArgs e)
         {
 
         }
-
         private void UserList_Click(object sender, EventArgs e)
         {
             Users users = new Users();
             users.Show();
         }
-
         private void label4_MouseEnter(object sender, EventArgs e)
         {
             label4.Font = new Font(label4.Font.Name, label4.Font.SizeInPoints, FontStyle.Underline);
 
         }
-
         private void label4_MouseLeave(object sender, EventArgs e)
         {
             label4.Font = new Font(label4.Font.Name, label4.Font.SizeInPoints, FontStyle.Regular);
@@ -178,17 +153,14 @@ namespace Patch_Master
             ViewAllProcesses_label.Font = new Font(ViewAllProcesses_label.Font.Name, ViewAllProcesses_label.Font.SizeInPoints, FontStyle.Underline);
 
         }
-
         private void ViewAllProcesses_label_MouseLeave(object sender, EventArgs e)
         {
             ViewAllProcesses_label.Font = new Font(ViewAllProcesses_label.Font.Name, ViewAllProcesses_label.Font.SizeInPoints, FontStyle.Regular);
         }
-
         private void label4_Click(object sender, EventArgs e)
         {
             List<ProcessDetails> ProcessDetails = LoadAvailableProcessesUserWise(loggedUserId);
         }
-
         private List<ProcessDetails> LoadAvailableProcessesUserWise(int loggedUserId)
         {
             List<ProcessDetails> ProcessDetailsList = new List<ProcessDetails>();
@@ -227,6 +199,34 @@ namespace Patch_Master
             }
 
             return ProcessDetailsList;
+        }
+        private void MakeRequestToolStripMenu_Click(object sender, EventArgs e)
+        {
+            Request request = new Request();
+            request.Show();
+        }
+        private void ApproveRequestToolStripMenu_Click(object sender, EventArgs e)
+        {
+            InquireRequest inquireRequest = new InquireRequest();
+            inquireRequest.NavigatedFrom = "ApproveRequest";
+            inquireRequest.Show();
+        }
+        private void ExecuteRequestToolStripMenu_Click(object sender, EventArgs e)
+        {
+            InquireRequest inquireRequest = new InquireRequest();
+            inquireRequest.NavigatedFrom = "ExecuteRequest";
+            inquireRequest.Show();
+        }
+
+        private void hometabPage_mine_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void requirmentsByProcessToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            
         }
     }
 }

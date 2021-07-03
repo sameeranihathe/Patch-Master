@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Academic\\Projects\\ColomboMITSqlQuerybuilder\\GitRepoSQlQueryBuilder_03\\Patch-Master\\Patch-Master\\Patch-Master\\Patch-Master.csproj": {}
+    "C:\\Users\\Dell Admin\\Documents\\Project Apps\\GitHub\\Patch-Master\\Patch-Master\\Patch-Master\\Patch-Master.csproj": {}
   },
   "projects": {
-    "E:\\Academic\\Projects\\ColomboMITSqlQuerybuilder\\GitRepoSQlQueryBuilder_03\\Patch-Master\\Patch-Master\\Patch-Master\\Patch-Master.csproj": {
+    "C:\\Users\\Dell Admin\\Documents\\Project Apps\\GitHub\\Patch-Master\\Patch-Master\\Patch-Master\\Patch-Master.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Academic\\Projects\\ColomboMITSqlQuerybuilder\\GitRepoSQlQueryBuilder_03\\Patch-Master\\Patch-Master\\Patch-Master\\Patch-Master.csproj",
+        "projectUniqueName": "C:\\Users\\Dell Admin\\Documents\\Project Apps\\GitHub\\Patch-Master\\Patch-Master\\Patch-Master\\Patch-Master.csproj",
         "projectName": "Patch-Master",
-        "projectPath": "E:\\Academic\\Projects\\ColomboMITSqlQuerybuilder\\GitRepoSQlQueryBuilder_03\\Patch-Master\\Patch-Master\\Patch-Master\\Patch-Master.csproj",
-        "packagesPath": "C:\\Users\\Lapstore.lk\\.nuget\\packages\\",
-        "outputPath": "E:\\Academic\\Projects\\ColomboMITSqlQuerybuilder\\GitRepoSQlQueryBuilder_03\\Patch-Master\\Patch-Master\\Patch-Master\\obj\\",
+        "projectPath": "C:\\Users\\Dell Admin\\Documents\\Project Apps\\GitHub\\Patch-Master\\Patch-Master\\Patch-Master\\Patch-Master.csproj",
+        "packagesPath": "C:\\Users\\Dell Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Dell Admin\\Documents\\Project Apps\\GitHub\\Patch-Master\\Patch-Master\\Patch-Master\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Lapstore.lk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Dell Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,6 +30,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -37,7 +42,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Microsoft.ReportingServices.ReportViewerControl.WebForms": {
+              "target": "Package",
+              "version": "[150.1449.0, )"
+            },
             "NETCore.Encrypt": {
               "target": "Package",
               "version": "[2.0.9, )"
@@ -65,7 +75,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }
