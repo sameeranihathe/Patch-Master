@@ -39,6 +39,7 @@
             this.BuildQuery_button = new System.Windows.Forms.Button();
             this.TableView_panel = new System.Windows.Forms.Panel();
             this.Clear_button = new System.Windows.Forms.Button();
+            this.AddJoins_button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -106,7 +107,7 @@
             // 
             // btnSingleSelectCondition
             // 
-            this.btnSingleSelectCondition.Location = new System.Drawing.Point(616, 61);
+            this.btnSingleSelectCondition.Location = new System.Drawing.Point(622, 61);
             this.btnSingleSelectCondition.Name = "btnSingleSelectCondition";
             this.btnSingleSelectCondition.Size = new System.Drawing.Size(100, 23);
             this.btnSingleSelectCondition.TabIndex = 11;
@@ -141,11 +142,23 @@
             this.Clear_button.UseVisualStyleBackColor = true;
             this.Clear_button.Click += new System.EventHandler(this.Clear_button_Click);
             // 
+            // AddJoins_button
+            // 
+            this.AddJoins_button.Location = new System.Drawing.Point(541, 61);
+            this.AddJoins_button.Name = "AddJoins_button";
+            this.AddJoins_button.Size = new System.Drawing.Size(75, 23);
+            this.AddJoins_button.TabIndex = 15;
+            this.AddJoins_button.Text = "Add Joins";
+            this.AddJoins_button.UseVisualStyleBackColor = true;
+            this.AddJoins_button.Enabled = false;
+            this.AddJoins_button.Click += new System.EventHandler(this.AddJoins_button_Click);
+            // 
             // SelectQueryBuilder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(866, 511);
+            this.Controls.Add(this.AddJoins_button);
             this.Controls.Add(this.Clear_button);
             this.Controls.Add(this.TableView_panel);
             this.Controls.Add(this.BuildQuery_button);
@@ -178,5 +191,6 @@
         private System.Windows.Forms.Panel TableView_panel;
         private System.Windows.Forms.RichTextBox Query_richTextBox;
         private System.Windows.Forms.Button Clear_button;
+        private System.Windows.Forms.Button AddJoins_button;
     }
 }

@@ -19,6 +19,9 @@
     <Compile Update="Forms\SelectConditionBuilder.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\SelectJoinBuilder.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\SelectQueryBuilder.cs">
       <SubType>Form</SubType>
     </Compile>

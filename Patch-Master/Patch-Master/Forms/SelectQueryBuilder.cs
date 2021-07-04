@@ -15,6 +15,8 @@ namespace Patch_Master.Forms
 {
     public partial class SelectQueryBuilder : Form
     {
+        public static string SelectedDatabase;
+
         bool userLogged = false;
         int loggedUserId = 0;
         string loggedUserName = string.Empty;
@@ -24,9 +26,11 @@ namespace Patch_Master.Forms
         int availablecheckedListBoxCount = 0;
 
         Dictionary<string, string> SelectedColumnList = new Dictionary<string, string>();
+        public static List<String> AddedTableList = new List<string>();
         public SelectQueryBuilder()
         {
-            InitializeComponent();
+            InitializeComponent(); 
+            CheckLogin();
             InitializeScrollBars();
             LoadAvailableDatabases();
 
@@ -70,7 +74,7 @@ namespace Patch_Master.Forms
         private void DatabaseList_comboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             string DbName = (((KeyValuePair<int, string>)DatabaseList_comboBox.SelectedItem).Value).ToString();
-
+            SelectedDatabase = DbName;
             List<string> AvailableTables = LoadAvailableTablesFromDb(DbName);
 
             foreach (var tableName in AvailableTables)
@@ -181,9 +185,14 @@ namespace Patch_Master.Forms
 
                 TableView_panel.Controls.Add(label);
                 TableView_panel.Controls.Add(checkedListBox);
+
+                AddedTableList.Add(tableName);
                 availablecheckedListBoxCount++; 
             }
-
+            if (availablecheckedListBoxCount>1)
+            {
+                AddJoins_button.Enabled = true;
+            }
 
         }
         private void CheckTableColumn(object sender, ItemCheckEventArgs e)
@@ -220,7 +229,7 @@ namespace Patch_Master.Forms
                 //    string AvailableText = Query_richTextBox.Text;
                 //}
         }
-        private List<string> LoadAllColumns(string dbName, string tableName)
+        public List<string> LoadAllColumns(string dbName, string tableName)
         {
             DbConnector dbContext = new DbConnector();
             List<string> columnList = new List<string>();
@@ -302,6 +311,8 @@ namespace Patch_Master.Forms
         private void Clear_button_Click(object sender, EventArgs e)
         {
             availablecheckedListBoxCount = 0;
+            AddJoins_button.Enabled = false;
+            AddedTableList = new List<string>();
             SelectedColumnList = new Dictionary<string, string>();
             foreach (Control item in TableView_panel.Controls.OfType<CheckedListBox>())
             {
@@ -312,6 +323,12 @@ namespace Patch_Master.Forms
                 TableView_panel.Controls.Remove(item);
             }
             Query_richTextBox.Text = string.Empty;
+        }
+
+        private void AddJoins_button_Click(object sender, EventArgs e)
+        {
+            SelectJoinBuilder selectJoinBuilder = new SelectJoinBuilder();
+            selectJoinBuilder.Show();
         }
     }
 }
