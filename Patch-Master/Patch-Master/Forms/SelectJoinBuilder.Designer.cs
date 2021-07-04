@@ -48,6 +48,7 @@ namespace Patch_Master.Forms
             this.Controls.Add(this.JoinBuilder_panel);
             this.Name = "SelectJoinBuilder";
             this.Text = "SelectJoinBuilder";
+            this.Load += new System.EventHandler(this.SelectJoinBuilder_Load);
             this.ResumeLayout(false);
 
         }

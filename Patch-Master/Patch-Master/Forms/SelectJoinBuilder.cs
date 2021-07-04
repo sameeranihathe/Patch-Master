@@ -101,13 +101,32 @@ namespace Patch_Master.Forms
 
         private void TableList__SelectedIndexChanged(object sender, EventArgs e)
         {
+
             string selectedTable = (sender as ComboBox).SelectedItem.ToString();
             string comboboxName = (sender as ComboBox).Name;
             SelectQueryBuilder selectQueryBuilder = new SelectQueryBuilder();
             List<String> columnList =  selectQueryBuilder.LoadAllColumns(SelectQueryBuilder.SelectedDatabase, selectedTable);
 
-            Control[] comboBoxColumn = Controls.Find("Column" + comboboxName, true);
-            
+            ///Control[] comboBoxColumn = Controls["JoinPanel_" + comboboxName.Split("_")[1]];
+            Panel JoinPanelControll = (Panel)JoinBuilder_panel.Controls["JoinPanel_" + comboboxName.Split("_")[1]];
+            if(comboboxName.Split("_")[0].ToString() == "TableList1")
+            {
+                ComboBox GetColumnLoadingCmbBox1 = (ComboBox)JoinPanelControll.Controls["ColumnTableList1_" + comboboxName.Split("_")[1]];
+                foreach (string column in columnList)
+                {
+                    GetColumnLoadingCmbBox1.Items.Add(column);
+                }
+            }
+            else if(comboboxName.Split("_")[0].ToString() == "TableList2")
+            {
+                ComboBox GetColumnLoadingCmbBox1 = (ComboBox)JoinPanelControll.Controls["ColumnTableList2_" + comboboxName.Split("_")[1]];
+                foreach (string column in columnList)
+                {
+                    GetColumnLoadingCmbBox1.Items.Add(column);
+                }
+            }
+
+            //JoinPanel_+ comboboxName.Split("_")[1].contr
             //foreach (var comb in comboBoxColumn)
             //{
             //    comb.Controls.Items.Add(item);
@@ -140,6 +159,11 @@ namespace Patch_Master.Forms
                     return c;
 
             return null;
+        }
+
+        private void SelectJoinBuilder_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
