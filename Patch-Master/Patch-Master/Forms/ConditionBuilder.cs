@@ -107,7 +107,7 @@ namespace Patch_Master.Forms
             {
                 CmbOpenBracket.FormattingEnabled = true;
                 CmbOpenBracket.Location = new System.Drawing.Point(25, 42);
-                CmbOpenBracket.Name = "CmbOpenBracket_2";
+                CmbOpenBracket.Name = "CmbOpenBracket_"+ GroupBoxSuffixValue;
                 CmbOpenBracket.Size = new System.Drawing.Size(75, 23);
                 CmbOpenBracket.TabIndex = 0;
             }
@@ -116,7 +116,7 @@ namespace Patch_Master.Forms
             {
                 CmbTable.FormattingEnabled = true;
                 CmbTable.Location = new System.Drawing.Point(116, 42);
-                CmbTable.Name = "CmbTable_2";
+                CmbTable.Name = "CmbTable_"+ GroupBoxSuffixValue;
                 CmbTable.Size = new System.Drawing.Size(121, 23);
                 CmbTable.TabIndex = 0;
             }
@@ -125,7 +125,7 @@ namespace Patch_Master.Forms
             {
                 CmbColumn.FormattingEnabled = true;
                 CmbColumn.Location = new System.Drawing.Point(239, 42);
-                CmbColumn.Name = "CmbColumn_2";
+                CmbColumn.Name = "CmbColumn_"+ GroupBoxSuffixValue;
                 CmbColumn.Size = new System.Drawing.Size(131, 23);
                 CmbColumn.TabIndex = 0;
             }
@@ -133,7 +133,7 @@ namespace Patch_Master.Forms
             Button BtnTCCondition1 = new Button();
             {
                 BtnTCCondition1.Location = new System.Drawing.Point(371, 42);
-                BtnTCCondition1.Name = "BtnTCCondition1_2";
+                BtnTCCondition1.Name = "BtnTCCondition1_"+ GroupBoxSuffixValue;
                 BtnTCCondition1.Size = new System.Drawing.Size(30, 23);
                 BtnTCCondition1.TabIndex = 2;
                 BtnTCCondition1.Text = "...";
@@ -144,21 +144,21 @@ namespace Patch_Master.Forms
             {
                 CmbComparer.FormattingEnabled = true;
                 CmbComparer.Location = new System.Drawing.Point(413, 42);
-                CmbComparer.Name = "CmbComparer_2";
+                CmbComparer.Name = "CmbComparer_"+ GroupBoxSuffixValue;
                 CmbComparer.Size = new System.Drawing.Size(80, 23);
                 CmbComparer.TabIndex = 0;
             }
             TextBox textValue = new TextBox();
             {
                 textValue.Location = new System.Drawing.Point(509, 42);
-                textValue.Name = "textValue_2";
+                textValue.Name = "textValue_"+ GroupBoxSuffixValue;
                 textValue.Size = new System.Drawing.Size(139, 23);
                 textValue.TabIndex = 1;
             }
             Button BtnTCCondition2 = new Button();
             {
                 BtnTCCondition2.Location = new System.Drawing.Point(649, 41);
-                BtnTCCondition2.Name = "BtnTCCondition2_2";
+                BtnTCCondition2.Name = "BtnTCCondition2_"+ GroupBoxSuffixValue;
                 BtnTCCondition2.Size = new System.Drawing.Size(30, 23);
                 BtnTCCondition2.TabIndex = 2;
                 BtnTCCondition2.Text = "...";
@@ -169,14 +169,14 @@ namespace Patch_Master.Forms
             {
                 CmbCloseBracket.FormattingEnabled = true;
                 CmbCloseBracket.Location = new System.Drawing.Point(698, 42);
-                CmbCloseBracket.Name = "CmbCloseBracket_2";
+                CmbCloseBracket.Name = "CmbCloseBracket_"+ GroupBoxSuffixValue;
                 CmbCloseBracket.Size = new System.Drawing.Size(75, 23);
                 CmbCloseBracket.TabIndex = 0;
             }
             Button butnAddNewRow = new Button();
             {
                 butnAddNewRow.Location = new System.Drawing.Point(795, 40);
-                butnAddNewRow.Name = "butnAddNewRow_2";
+                butnAddNewRow.Name = "butnAddNewRow_"+ GroupBoxSuffixValue;
                 butnAddNewRow.Size = new System.Drawing.Size(75, 23);
                 butnAddNewRow.TabIndex = 4;
                 butnAddNewRow.Text = "+";
@@ -186,7 +186,7 @@ namespace Patch_Master.Forms
             Button Delete = new Button();
             {
                 Delete.Location = new System.Drawing.Point(887, 40);
-                Delete.Name = "Delete_1";
+                Delete.Name = "Delete_"+ GroupBoxSuffixValue;
                 Delete.Size = new System.Drawing.Size(53, 23);
                 Delete.TabIndex = 5;
                 Delete.Text = "Delete";
