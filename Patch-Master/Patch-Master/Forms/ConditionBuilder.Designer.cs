@@ -54,6 +54,9 @@ namespace Patch_Master.Forms
             this.PanelOperator = new Patch_Master.CustomElements.CustomPanel();
             this.btnConAND = new System.Windows.Forms.Button();
             this.BtnConditionOR = new System.Windows.Forms.Button();
+            this.AddCondition = new System.Windows.Forms.Button();
+            this.Close = new System.Windows.Forms.Button();
+            this.Generate = new System.Windows.Forms.Button();
             this.PanelConditionContainer.SuspendLayout();
             this.GroupConditionRow_1.SuspendLayout();
             this.PanelOperator.SuspendLayout();
@@ -73,12 +76,12 @@ namespace Patch_Master.Forms
             this.listBox1.ItemHeight = 15;
             this.listBox1.Location = new System.Drawing.Point(27, 109);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 364);
+            this.listBox1.Size = new System.Drawing.Size(120, 379);
             this.listBox1.TabIndex = 1;
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(160, 389);
+            this.richTextBox1.Location = new System.Drawing.Point(160, 405);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(995, 83);
             this.richTextBox1.TabIndex = 2;
@@ -90,7 +93,7 @@ namespace Patch_Master.Forms
             this.PanelConditionContainer.Controls.Add(this.GroupConditionRow_1);
             this.PanelConditionContainer.Location = new System.Drawing.Point(160, 31);
             this.PanelConditionContainer.Name = "PanelConditionContainer";
-            this.PanelConditionContainer.Size = new System.Drawing.Size(995, 328);
+            this.PanelConditionContainer.Size = new System.Drawing.Size(995, 311);
             this.PanelConditionContainer.TabIndex = 3;
             // 
             // GroupConditionRow_1
@@ -223,6 +226,12 @@ namespace Patch_Master.Forms
             // CmbCloseBracket_1
             // 
             this.CmbCloseBracket_1.FormattingEnabled = true;
+            this.CmbCloseBracket_1.Items.AddRange(new object[] {
+            ")",
+            "))",
+            ")))",
+            "))))",
+            "Add More"});
             this.CmbCloseBracket_1.Location = new System.Drawing.Point(698, 42);
             this.CmbCloseBracket_1.Name = "CmbCloseBracket_1";
             this.CmbCloseBracket_1.Size = new System.Drawing.Size(75, 23);
@@ -231,6 +240,13 @@ namespace Patch_Master.Forms
             // CmbComparer_1
             // 
             this.CmbComparer_1.FormattingEnabled = true;
+            this.CmbComparer_1.Items.AddRange(new object[] {
+            "like",
+            "=",
+            ">",
+            ">=",
+            "<",
+            "<="});
             this.CmbComparer_1.Location = new System.Drawing.Point(413, 42);
             this.CmbComparer_1.Name = "CmbComparer_1";
             this.CmbComparer_1.Size = new System.Drawing.Size(80, 23);
@@ -239,6 +255,12 @@ namespace Patch_Master.Forms
             // CmbColumn_1
             // 
             this.CmbColumn_1.FormattingEnabled = true;
+            this.CmbColumn_1.Items.AddRange(new object[] {
+            "ColumnOne",
+            "ColumnTwo",
+            "ColumnThree",
+            "ColumnFour",
+            "ColumnFive"});
             this.CmbColumn_1.Location = new System.Drawing.Point(239, 42);
             this.CmbColumn_1.Name = "CmbColumn_1";
             this.CmbColumn_1.Size = new System.Drawing.Size(131, 23);
@@ -247,6 +269,11 @@ namespace Patch_Master.Forms
             // CmbTable_1
             // 
             this.CmbTable_1.FormattingEnabled = true;
+            this.CmbTable_1.Items.AddRange(new object[] {
+            "TableOne",
+            "TableTwo",
+            "TableThree",
+            "TableFour"});
             this.CmbTable_1.Location = new System.Drawing.Point(116, 42);
             this.CmbTable_1.Name = "CmbTable_1";
             this.CmbTable_1.Size = new System.Drawing.Size(121, 23);
@@ -255,6 +282,12 @@ namespace Patch_Master.Forms
             // CmbOpenBracket_1
             // 
             this.CmbOpenBracket_1.FormattingEnabled = true;
+            this.CmbOpenBracket_1.Items.AddRange(new object[] {
+            "(",
+            "((",
+            "(((",
+            "((((",
+            "Add More"});
             this.CmbOpenBracket_1.Location = new System.Drawing.Point(25, 42);
             this.CmbOpenBracket_1.Name = "CmbOpenBracket_1";
             this.CmbOpenBracket_1.Size = new System.Drawing.Size(75, 23);
@@ -293,11 +326,41 @@ namespace Patch_Master.Forms
             this.BtnConditionOR.UseVisualStyleBackColor = true;
             this.BtnConditionOR.Click += new System.EventHandler(this.BtnConditionOR_Click);
             // 
+            // AddCondition
+            // 
+            this.AddCondition.Location = new System.Drawing.Point(1019, 494);
+            this.AddCondition.Name = "AddCondition";
+            this.AddCondition.Size = new System.Drawing.Size(136, 34);
+            this.AddCondition.TabIndex = 5;
+            this.AddCondition.Text = "Add Condition";
+            this.AddCondition.UseVisualStyleBackColor = true;
+            // 
+            // Close
+            // 
+            this.Close.Location = new System.Drawing.Point(851, 494);
+            this.Close.Name = "Close";
+            this.Close.Size = new System.Drawing.Size(136, 34);
+            this.Close.TabIndex = 5;
+            this.Close.Text = "Close";
+            this.Close.UseVisualStyleBackColor = true;
+            // 
+            // Generate
+            // 
+            this.Generate.Location = new System.Drawing.Point(1019, 365);
+            this.Generate.Name = "Generate";
+            this.Generate.Size = new System.Drawing.Size(136, 34);
+            this.Generate.TabIndex = 5;
+            this.Generate.Text = "Generate";
+            this.Generate.UseVisualStyleBackColor = true;
+            // 
             // ConditionBuilder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1188, 508);
+            this.ClientSize = new System.Drawing.Size(1188, 540);
+            this.Controls.Add(this.Generate);
+            this.Controls.Add(this.Close);
+            this.Controls.Add(this.AddCondition);
             this.Controls.Add(this.PanelOperator);
             this.Controls.Add(this.PanelConditionContainer);
             this.Controls.Add(this.richTextBox1);
@@ -339,5 +402,8 @@ namespace Patch_Master.Forms
         private CustomPanel PanelOperator;
         private System.Windows.Forms.Button btnConAND;
         private System.Windows.Forms.Button BtnConditionOR;
+        private System.Windows.Forms.Button AddCondition;
+        private System.Windows.Forms.Button Close;
+        private System.Windows.Forms.Button Generate;
     }
 }

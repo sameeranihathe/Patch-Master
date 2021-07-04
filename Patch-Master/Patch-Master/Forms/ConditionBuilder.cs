@@ -19,7 +19,13 @@ namespace Patch_Master.Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
+            Button AddTableColumnBtn = sender as Button;
 
+            if (AddTableColumnBtn == null) // just to be on the safe side
+                return;
+
+            TableColumnConnector tableColumnSelector = new TableColumnConnector(AddTableColumnBtn.Name.ToString());
+            tableColumnSelector.Show();
         }
 
         private void butnAddNewRow_1_Click(object sender, EventArgs e)
@@ -110,6 +116,12 @@ namespace Patch_Master.Forms
                 CmbOpenBracket.Name = "CmbOpenBracket_"+ GroupBoxSuffixValue;
                 CmbOpenBracket.Size = new System.Drawing.Size(75, 23);
                 CmbOpenBracket.TabIndex = 0;
+                CmbOpenBracket.Items.AddRange(new object[] {
+            "(",
+            "((",
+            "(((",
+            "((((",
+            "Add More"});
             }
 
             ComboBox CmbTable = new ComboBox();
@@ -119,6 +131,11 @@ namespace Patch_Master.Forms
                 CmbTable.Name = "CmbTable_"+ GroupBoxSuffixValue;
                 CmbTable.Size = new System.Drawing.Size(121, 23);
                 CmbTable.TabIndex = 0;
+                CmbTable.Items.AddRange(new object[] {
+            "TableOne",
+            "TableTwo",
+            "TableThree",
+            "TableFour"});
             }
 
             ComboBox CmbColumn = new ComboBox();
@@ -128,6 +145,12 @@ namespace Patch_Master.Forms
                 CmbColumn.Name = "CmbColumn_"+ GroupBoxSuffixValue;
                 CmbColumn.Size = new System.Drawing.Size(131, 23);
                 CmbColumn.TabIndex = 0;
+                CmbColumn.Items.AddRange(new object[] {
+            "ColumnOne",
+            "ColumnTwo",
+            "ColumnThree",
+            "ColumnFour",
+            "ColumnFive"});
             }
 
             Button BtnTCCondition1 = new Button();
@@ -147,6 +170,13 @@ namespace Patch_Master.Forms
                 CmbComparer.Name = "CmbComparer_"+ GroupBoxSuffixValue;
                 CmbComparer.Size = new System.Drawing.Size(80, 23);
                 CmbComparer.TabIndex = 0;
+                CmbComparer.Items.AddRange(new object[] {
+            "like",
+            "=",
+            ">",
+            ">=",
+            "<",
+            "<="});
             }
             TextBox textValue = new TextBox();
             {
@@ -172,6 +202,12 @@ namespace Patch_Master.Forms
                 CmbCloseBracket.Name = "CmbCloseBracket_"+ GroupBoxSuffixValue;
                 CmbCloseBracket.Size = new System.Drawing.Size(75, 23);
                 CmbCloseBracket.TabIndex = 0;
+                CmbCloseBracket.Items.AddRange(new object[] {
+            ")",
+            "))",
+            ")))",
+            "))))",
+            "Add More"});
             }
             Button butnAddNewRow = new Button();
             {
@@ -212,7 +248,13 @@ namespace Patch_Master.Forms
 
         private void BtnTCCondition1_1_Click(object sender, EventArgs e)
         {
+            Button AddTableColumnBtn = sender as Button;
 
+            if (AddTableColumnBtn == null) // just to be on the safe side
+                return;
+
+            TableColumnConnector tableColumnSelector = new TableColumnConnector(AddTableColumnBtn.Name.ToString());
+            tableColumnSelector.Show();
         }
 
         private void Delete_1_Click(object sender, EventArgs e)
