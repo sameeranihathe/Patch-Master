@@ -186,6 +186,7 @@ namespace Patch_Master.Forms
                 TCGoupBox.TabStop = false;
                 TCGoupBox.Text = GroupRowName;
                 TCGoupBox.GroupBoxOrderNumber = currentOrderNumber;
+                TCGoupBox.OperatorType = OperatorType;
                 this.Controls.Add(TCGoupBox);
             }
 
@@ -207,13 +208,22 @@ namespace Patch_Master.Forms
             {
                 TableName_1.FormattingEnabled = true;
                 TableName_1.Name = "comTableName_"+ GroupBoxSuffixValue;
+                TableName_1.Items.AddRange(new object[] {
+            "Tab1",
+            "Tab2",
+            "Tab3"});
                 TableName_1.Size = new System.Drawing.Size(161, 23);
                 TableName_1.TabIndex = 0;
             }
             ComboBox TableColumn = new ComboBox();
             {
                 TableColumn.FormattingEnabled = true;
-                TableColumn.Name = "tableColumn_"+ GroupBoxSuffixValue;
+                TableColumn.Name = "cmbColumnName_" + GroupBoxSuffixValue; 
+                TableColumn.Items.AddRange(new object[] {
+            "Col1",
+            "Col2",
+            "Col3",
+            "Col4"});
                 TableColumn.Size = new System.Drawing.Size(161, 23);
                 TableColumn.TabIndex = 0;
             }
@@ -392,6 +402,93 @@ namespace Patch_Master.Forms
                 }
             }
 
+        }
+
+        private void GenerateTCCondition_Click(object sender, EventArgs e)
+        {
+            String generatedTCConditionString =  GenerateTCConditionString();
+            richTextBox1.Text = generatedTCConditionString;
+        }
+        private string GenerateTCConditionString()
+        {
+            string GeneratedString = "";
+            List<customGroupBox> TCGroupBoxElementList = getAllGroupBoxRowConditions();
+            TCGroupBoxElementList.OrderBy(e => e.GroupBoxOrderNumber);
+
+            foreach (customGroupBox GroupBoxRow in TCGroupBoxElementList)
+            {
+                String TableColumnContent = "";
+                string OpenBracket = "";
+                string TableName = "";
+                string ColumnName = "";
+                string closeBracket = "";
+                foreach (Control ctn in GroupBoxRow.Controls)
+                {
+                   
+
+                    if (ctn is ComboBox)
+                    {
+                        string ControllerName = ctn.Name.ToString();
+                        if (ControllerName != null && ControllerName.Split("_").Length > 0)
+                        {
+                            ComboBox TCComboBox = (ComboBox)GroupBoxRow.Controls[ControllerName];
+                            if (ControllerName.Split("_")[0] == "cmbOpenBacket")
+                            {
+
+                                OpenBracket = TCComboBox.SelectedItem != null ? TCComboBox.SelectedItem.ToString() : "";
+
+                            }
+                            if (ControllerName.Split("_")[0] == "comTableName")
+                            {
+                                
+                                TableName = TCComboBox.SelectedItem != null ? TCComboBox.SelectedItem.ToString() : "";
+
+                            }
+                            if (ControllerName.Split("_")[0] == "cmbColumnName")
+                            {
+                               
+                                ColumnName = TCComboBox.SelectedItem != null ? TCComboBox.SelectedItem.ToString() : "";
+
+                            }
+                            if (ControllerName.Split("_")[0] == "cmbClosedBacket")
+                            {
+
+                                closeBracket = TCComboBox.SelectedItem != null ? TCComboBox.SelectedItem.ToString():"" ;
+
+                            }
+                        }
+                    }
+                    
+                }
+                TableColumnContent = OpenBracket + " " + TableName + "." + ColumnName + " " + closeBracket;
+                GeneratedString += " "+ GroupBoxRow.OperatorType +" "+ TableColumnContent ;
+            }
+            return GeneratedString;
+        }
+        private List<customGroupBox> getAllGroupBoxRowConditions()
+        {
+            string groupElementName = "";
+            string ControllerName = "";
+            List<customGroupBox> GroupBoxElementList = new List<customGroupBox>();
+
+            foreach (Control ctn in this.ConditionContainerPanel.Controls)
+            {
+                if (ctn is GroupBox)
+                {
+                    ControllerName = ctn.Name.ToString();
+                    if (ControllerName != null && ControllerName.Split("_").Length > 0)
+                    {
+                        if (ControllerName.Split("_")[0] == "TcGoupBox")
+                        {
+                            customGroupBox customGroupBox = (customGroupBox)this.ConditionContainerPanel.Controls[ControllerName];
+
+                            GroupBoxElementList.Add(customGroupBox);
+                           
+                        }
+                    }
+                }
+            }
+            return GroupBoxElementList;
         }
 
     }

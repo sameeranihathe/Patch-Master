@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Patch_Master.CustomElements;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -65,14 +66,6 @@ namespace Patch_Master.Forms
 
             this.OperatorPanel.Location = new System.Drawing.Point(conditionAddingButtton.Parent.Location.X + conditionAddingButtton.Location.X - 2, conditionAddingButtton.Parent.Location.Y + conditionAddingButtton.Location.Y - 70);
    
-
-
-           /* if (clickedButton.Name == "Button1")
-            {
-            }
-            else if (clickedButton.Name == "Button2")
-            {
-            }*/
         }
 
         private void BtnAND_Click(object sender, EventArgs e)
@@ -131,13 +124,15 @@ namespace Patch_Master.Forms
             int GroupBoxSuffixValue = GroupBoxCountValue.Count > 0 ? GroupBoxCountValue.Max() + 1 : 1;
 
 
-            GroupBox newgroupBox = new GroupBox();
+            customGroupBox newgroupBox = new customGroupBox();
             {
-                newgroupBox.Name = "ConditionGroup_" + GroupBoxSuffixValue;
-                newgroupBox.Text = OperatorType;
-                newgroupBox.Location = new System.Drawing.Point(208, ConditionGroup_1.Location.Y + (91 + 10) * (GroupBoxSuffixValue - 1));
-                newgroupBox.Size = new System.Drawing.Size(897, 84);
-                this.Controls.Add(newgroupBox);
+                this.ConditionGroup_1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+                this.ConditionGroup_1.Location = new System.Drawing.Point(183, 200);
+                this.ConditionGroup_1.Name = "ConditionGroup_"+ GroupBoxSuffixValue;
+                this.ConditionGroup_1.Size = new System.Drawing.Size(1009, 84);
+                this.ConditionGroup_1.TabIndex = 5;
+                this.ConditionGroup_1.TabStop = false;
+                this.ConditionGroup_1.Text = "Condition group";
             }
 
             ComboBox cmbOpenBracket = new ComboBox();
@@ -259,6 +254,7 @@ namespace Patch_Master.Forms
             CloseBracket1.Location = new Point(707, 46);
             btnCondition_1.Location = new Point(805, 46);
             // OperatorPanel_1.Location = new Point(805, -50);
+            ConditionContainerPanel.Controls.Add(newgroupBox);
         }
 
         

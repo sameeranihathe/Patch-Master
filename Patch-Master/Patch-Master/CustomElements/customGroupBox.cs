@@ -8,5 +8,6 @@ namespace Patch_Master.CustomElements
     class customGroupBox: GroupBox
     {
         public int GroupBoxOrderNumber = 1;
+        public string OperatorType = "";
     }
 }

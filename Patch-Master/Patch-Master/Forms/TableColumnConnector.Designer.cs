@@ -301,6 +301,7 @@
             this.GenerateTCCondition.TabIndex = 5;
             this.GenerateTCCondition.Text = "Generate ";
             this.GenerateTCCondition.UseVisualStyleBackColor = true;
+            this.GenerateTCCondition.Click += new System.EventHandler(this.GenerateTCCondition_Click);
             // 
             // TableColumnConnector
             // 

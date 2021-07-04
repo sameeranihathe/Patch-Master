@@ -1,0 +1,343 @@
+﻿using Patch_Master.CustomElements;
+
+namespace Patch_Master.Forms
+{
+    partial class ConditionBuilder
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.PanelConditionContainer = new System.Windows.Forms.Panel();
+            this.GroupConditionRow_1 = new Patch_Master.CustomElements.customGroupBox();
+            this.Delete_1 = new System.Windows.Forms.Button();
+            this.butnAddNewRow_1 = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.BtnTCCondition2_1 = new System.Windows.Forms.Button();
+            this.BtnTCCondition1_1 = new System.Windows.Forms.Button();
+            this.textValue_1 = new System.Windows.Forms.TextBox();
+            this.CmbCloseBracket_1 = new System.Windows.Forms.ComboBox();
+            this.CmbComparer_1 = new System.Windows.Forms.ComboBox();
+            this.CmbColumn_1 = new System.Windows.Forms.ComboBox();
+            this.CmbTable_1 = new System.Windows.Forms.ComboBox();
+            this.CmbOpenBracket_1 = new System.Windows.Forms.ComboBox();
+            this.PanelOperator = new Patch_Master.CustomElements.CustomPanel();
+            this.btnConAND = new System.Windows.Forms.Button();
+            this.BtnConditionOR = new System.Windows.Forms.Button();
+            this.PanelConditionContainer.SuspendLayout();
+            this.GroupConditionRow_1.SuspendLayout();
+            this.PanelOperator.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(27, 54);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 23);
+            this.comboBox1.TabIndex = 0;
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 15;
+            this.listBox1.Location = new System.Drawing.Point(27, 109);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(120, 364);
+            this.listBox1.TabIndex = 1;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(160, 389);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(995, 83);
+            this.richTextBox1.TabIndex = 2;
+            this.richTextBox1.Text = "";
+            // 
+            // PanelConditionContainer
+            // 
+            this.PanelConditionContainer.AutoScroll = true;
+            this.PanelConditionContainer.Controls.Add(this.GroupConditionRow_1);
+            this.PanelConditionContainer.Location = new System.Drawing.Point(160, 31);
+            this.PanelConditionContainer.Name = "PanelConditionContainer";
+            this.PanelConditionContainer.Size = new System.Drawing.Size(995, 328);
+            this.PanelConditionContainer.TabIndex = 3;
+            // 
+            // GroupConditionRow_1
+            // 
+            this.GroupConditionRow_1.Controls.Add(this.Delete_1);
+            this.GroupConditionRow_1.Controls.Add(this.butnAddNewRow_1);
+            this.GroupConditionRow_1.Controls.Add(this.label6);
+            this.GroupConditionRow_1.Controls.Add(this.label5);
+            this.GroupConditionRow_1.Controls.Add(this.label4);
+            this.GroupConditionRow_1.Controls.Add(this.label3);
+            this.GroupConditionRow_1.Controls.Add(this.label2);
+            this.GroupConditionRow_1.Controls.Add(this.label1);
+            this.GroupConditionRow_1.Controls.Add(this.BtnTCCondition2_1);
+            this.GroupConditionRow_1.Controls.Add(this.BtnTCCondition1_1);
+            this.GroupConditionRow_1.Controls.Add(this.textValue_1);
+            this.GroupConditionRow_1.Controls.Add(this.CmbCloseBracket_1);
+            this.GroupConditionRow_1.Controls.Add(this.CmbComparer_1);
+            this.GroupConditionRow_1.Controls.Add(this.CmbColumn_1);
+            this.GroupConditionRow_1.Controls.Add(this.CmbTable_1);
+            this.GroupConditionRow_1.Controls.Add(this.CmbOpenBracket_1);
+            this.GroupConditionRow_1.Location = new System.Drawing.Point(27, 11);
+            this.GroupConditionRow_1.Name = "GroupConditionRow_1";
+            this.GroupConditionRow_1.Size = new System.Drawing.Size(953, 82);
+            this.GroupConditionRow_1.TabIndex = 0;
+            this.GroupConditionRow_1.TabStop = false;
+            this.GroupConditionRow_1.Text = "Condition Row";
+            // 
+            // Delete_1
+            // 
+            this.Delete_1.Enabled = false;
+            this.Delete_1.Location = new System.Drawing.Point(887, 40);
+            this.Delete_1.Name = "Delete_1";
+            this.Delete_1.Size = new System.Drawing.Size(53, 23);
+            this.Delete_1.TabIndex = 5;
+            this.Delete_1.Text = "Delete";
+            this.Delete_1.UseVisualStyleBackColor = true;
+            this.Delete_1.Click += new System.EventHandler(this.Delete_1_Click);
+            // 
+            // butnAddNewRow_1
+            // 
+            this.butnAddNewRow_1.Location = new System.Drawing.Point(795, 40);
+            this.butnAddNewRow_1.Name = "butnAddNewRow_1";
+            this.butnAddNewRow_1.Size = new System.Drawing.Size(75, 23);
+            this.butnAddNewRow_1.TabIndex = 4;
+            this.butnAddNewRow_1.Text = "+";
+            this.butnAddNewRow_1.UseVisualStyleBackColor = true;
+            this.butnAddNewRow_1.Click += new System.EventHandler(this.butnAddNewRow_1_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(698, 22);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(78, 15);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Close Bracket";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(509, 24);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(113, 15);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "Table/Column value";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(413, 24);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(60, 15);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Comparer";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(242, 22);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(50, 15);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Column";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(119, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(34, 15);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Table";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(22, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(78, 15);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Open Bracket";
+            // 
+            // BtnTCCondition2_1
+            // 
+            this.BtnTCCondition2_1.Location = new System.Drawing.Point(649, 41);
+            this.BtnTCCondition2_1.Name = "BtnTCCondition2_1";
+            this.BtnTCCondition2_1.Size = new System.Drawing.Size(30, 23);
+            this.BtnTCCondition2_1.TabIndex = 2;
+            this.BtnTCCondition2_1.Text = "...";
+            this.BtnTCCondition2_1.UseVisualStyleBackColor = true;
+            this.BtnTCCondition2_1.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // BtnTCCondition1_1
+            // 
+            this.BtnTCCondition1_1.Location = new System.Drawing.Point(371, 42);
+            this.BtnTCCondition1_1.Name = "BtnTCCondition1_1";
+            this.BtnTCCondition1_1.Size = new System.Drawing.Size(30, 23);
+            this.BtnTCCondition1_1.TabIndex = 2;
+            this.BtnTCCondition1_1.Text = "...";
+            this.BtnTCCondition1_1.UseVisualStyleBackColor = true;
+            this.BtnTCCondition1_1.Click += new System.EventHandler(this.BtnTCCondition1_1_Click);
+            // 
+            // textValue_1
+            // 
+            this.textValue_1.Location = new System.Drawing.Point(509, 42);
+            this.textValue_1.Name = "textValue_1";
+            this.textValue_1.Size = new System.Drawing.Size(139, 23);
+            this.textValue_1.TabIndex = 1;
+            // 
+            // CmbCloseBracket_1
+            // 
+            this.CmbCloseBracket_1.FormattingEnabled = true;
+            this.CmbCloseBracket_1.Location = new System.Drawing.Point(698, 42);
+            this.CmbCloseBracket_1.Name = "CmbCloseBracket_1";
+            this.CmbCloseBracket_1.Size = new System.Drawing.Size(75, 23);
+            this.CmbCloseBracket_1.TabIndex = 0;
+            // 
+            // CmbComparer_1
+            // 
+            this.CmbComparer_1.FormattingEnabled = true;
+            this.CmbComparer_1.Location = new System.Drawing.Point(413, 42);
+            this.CmbComparer_1.Name = "CmbComparer_1";
+            this.CmbComparer_1.Size = new System.Drawing.Size(80, 23);
+            this.CmbComparer_1.TabIndex = 0;
+            // 
+            // CmbColumn_1
+            // 
+            this.CmbColumn_1.FormattingEnabled = true;
+            this.CmbColumn_1.Location = new System.Drawing.Point(239, 42);
+            this.CmbColumn_1.Name = "CmbColumn_1";
+            this.CmbColumn_1.Size = new System.Drawing.Size(131, 23);
+            this.CmbColumn_1.TabIndex = 0;
+            // 
+            // CmbTable_1
+            // 
+            this.CmbTable_1.FormattingEnabled = true;
+            this.CmbTable_1.Location = new System.Drawing.Point(116, 42);
+            this.CmbTable_1.Name = "CmbTable_1";
+            this.CmbTable_1.Size = new System.Drawing.Size(121, 23);
+            this.CmbTable_1.TabIndex = 0;
+            // 
+            // CmbOpenBracket_1
+            // 
+            this.CmbOpenBracket_1.FormattingEnabled = true;
+            this.CmbOpenBracket_1.Location = new System.Drawing.Point(25, 42);
+            this.CmbOpenBracket_1.Name = "CmbOpenBracket_1";
+            this.CmbOpenBracket_1.Size = new System.Drawing.Size(75, 23);
+            this.CmbOpenBracket_1.TabIndex = 0;
+            // 
+            // PanelOperator
+            // 
+            this.PanelOperator.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PanelOperator.Controls.Add(this.btnConAND);
+            this.PanelOperator.Controls.Add(this.BtnConditionOR);
+            this.PanelOperator.Location = new System.Drawing.Point(969, 2);
+            this.PanelOperator.Name = "PanelOperator";
+            this.PanelOperator.Size = new System.Drawing.Size(99, 74);
+            this.PanelOperator.TabIndex = 4;
+            this.PanelOperator.Visible = false;
+            // 
+            // btnConAND
+            // 
+            this.btnConAND.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConAND.Location = new System.Drawing.Point(13, 10);
+            this.btnConAND.Name = "btnConAND";
+            this.btnConAND.Size = new System.Drawing.Size(75, 23);
+            this.btnConAND.TabIndex = 0;
+            this.btnConAND.Text = "AND";
+            this.btnConAND.UseVisualStyleBackColor = true;
+            this.btnConAND.Click += new System.EventHandler(this.btnConAND_Click);
+            // 
+            // BtnConditionOR
+            // 
+            this.BtnConditionOR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnConditionOR.Location = new System.Drawing.Point(13, 43);
+            this.BtnConditionOR.Name = "BtnConditionOR";
+            this.BtnConditionOR.Size = new System.Drawing.Size(75, 23);
+            this.BtnConditionOR.TabIndex = 0;
+            this.BtnConditionOR.Text = "OR";
+            this.BtnConditionOR.UseVisualStyleBackColor = true;
+            this.BtnConditionOR.Click += new System.EventHandler(this.BtnConditionOR_Click);
+            // 
+            // ConditionBuilder
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1188, 508);
+            this.Controls.Add(this.PanelOperator);
+            this.Controls.Add(this.PanelConditionContainer);
+            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.comboBox1);
+            this.Name = "ConditionBuilder";
+            this.Text = "ConditionBuilder";
+            this.PanelConditionContainer.ResumeLayout(false);
+            this.GroupConditionRow_1.ResumeLayout(false);
+            this.GroupConditionRow_1.PerformLayout();
+            this.PanelOperator.ResumeLayout(false);
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Panel PanelConditionContainer;
+        private customGroupBox GroupConditionRow_1;
+        private System.Windows.Forms.Button BtnTCCondition2_1;
+        private System.Windows.Forms.Button BtnTCCondition1_1;
+        private System.Windows.Forms.TextBox textValue_1;
+        private System.Windows.Forms.ComboBox CmbCloseBracket_1;
+        private System.Windows.Forms.ComboBox CmbComparer_1;
+        private System.Windows.Forms.ComboBox CmbColumn_1;
+        private System.Windows.Forms.ComboBox CmbTable_1;
+        private System.Windows.Forms.ComboBox CmbOpenBracket_1;
+        private System.Windows.Forms.Button Delete_1;
+        private System.Windows.Forms.Button butnAddNewRow_1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private CustomPanel PanelOperator;
+        private System.Windows.Forms.Button btnConAND;
+        private System.Windows.Forms.Button BtnConditionOR;
+    }
+}
