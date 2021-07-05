@@ -273,39 +273,90 @@ namespace Patch_Master.Forms
 
         private void BuildQuery_button_Click(object sender, EventArgs e)
         {
-            if (SelectedColumnList.Count>0)
+            var joinDetails = SelectJoinBuilder.joindetailList;
+            if (joinDetails.Count>0)
             {
-                int i = 0;
-                string SelectString = string.Empty;
-                string FromString = "FROM";
-                string TableString = string.Empty;
-
-                foreach (var item in SelectedColumnList)
+                string joinstring = string.Empty;
+                if (SelectedColumnList.Count > 0)
                 {
-                    var column = item.Value;
-                    var table = (item.Key).Split('&')[0];
-
-                    if (i==0)
+                    int i = 0;
+                    string SelectString = string.Empty;
+                    string FromString = "FROM";
+                    string TableString = string.Empty;
+                    
+                    foreach (var item in SelectedColumnList)
                     {
-                        SelectString = "SELECT " + table + "." + column;
-                        TableString = table;
-                    }
-                    else
-                    {
-                        SelectString += "," + table + "." + column;
-                        string[] tableList = TableString.Split(',');
+                        var column = item.Value;
+                        var table = (item.Key).Split('&')[0];
 
-                        if (!tableList.Contains(table))
+                        if (i == 0)
                         {
-                            TableString += "," + table;
+                            SelectString = "SELECT " + table + "." + column;
+                            TableString = table;
                         }
-                    }
-                    i++;
-                }
-                Query_richTextBox.Text = SelectString;
-                Query_richTextBox.Text += Environment.NewLine + FromString + " "+  TableString;
+                        else
+                        {
+                            SelectString += "," + table + "." + column;
+                            //string[] tableList = TableString.Split(',');
 
+                            //if (!tableList.Contains(table))
+                            //{
+                            //    TableString += "," + table;
+                            //}
+                        }
+                        i++;
+
+                    }
+                    foreach (var join in joinDetails)
+                    {
+
+                        joinstring += $"{join.JoinName} {join.TableTwo} ON {join.TableOne}.{join.TableOneColumn} = {join.TableTwo}.{join.TableTwoColumn}";
+
+                    }
+                    Query_richTextBox.Text = SelectString;
+                    Query_richTextBox.Text += Environment.NewLine + FromString + " " + TableString + Environment.NewLine;
+                    Query_richTextBox.Text += joinstring;
+
+
+                }
             }
+            else
+            {
+                if (SelectedColumnList.Count > 0)
+                {
+                    int i = 0;
+                    string SelectString = string.Empty;
+                    string FromString = "FROM";
+                    string TableString = string.Empty;
+
+                    foreach (var item in SelectedColumnList)
+                    {
+                        var column = item.Value;
+                        var table = (item.Key).Split('&')[0];
+
+                        if (i == 0)
+                        {
+                            SelectString = "SELECT " + table + "." + column;
+                            TableString = table;
+                        }
+                        else
+                        {
+                            SelectString += "," + table + "." + column;
+                            string[] tableList = TableString.Split(',');
+
+                            if (!tableList.Contains(table))
+                            {
+                                TableString += "," + table;
+                            }
+                        }
+                        i++;
+                    }
+                    Query_richTextBox.Text = SelectString;
+                    Query_richTextBox.Text += Environment.NewLine + FromString + " " + TableString;
+
+                }
+            }
+
         }
 
         private void Clear_button_Click(object sender, EventArgs e)
