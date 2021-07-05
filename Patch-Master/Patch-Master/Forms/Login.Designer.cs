@@ -118,9 +118,9 @@ namespace Patch_Master.Forms
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             //this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(29, 44);
+            this.pictureBox1.Location = new System.Drawing.Point(36, 69);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(212, 191);
+            this.pictureBox1.Size = new System.Drawing.Size(175, 151);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
@@ -135,12 +135,13 @@ namespace Patch_Master.Forms
             this.label_errorMessage.Size = new System.Drawing.Size(239, 17);
             this.label_errorMessage.TabIndex = 8;
             this.label_errorMessage.Text = "Username and password do not match.";
+            this.label_errorMessage.Visible = false;
             // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(700, 381);
             this.Controls.Add(this.label_errorMessage);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label3);

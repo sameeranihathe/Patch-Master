@@ -30,11 +30,13 @@ namespace Patch_Master.Forms
             string password = textBox_Password.Text.ToString();
             if (usernme=="")
             {
+                label_errorMessage.Visible = true;
                 label_errorMessage.Text = "Username cannot be empty.";
                 return;
             }
             if (password == "")
             {
+                label_errorMessage.Visible = true;
                 label_errorMessage.Text = "Password cannot be empty.";
                 return;
             }
@@ -60,6 +62,8 @@ namespace Patch_Master.Forms
 
             while (reader.Read())
             {
+
+                Home.loggedUserId = Convert.ToInt32(reader["User_Id"]);
                 Home.Userlogged = Convert.ToBoolean(reader["Authenticated"]);
                 Home.UserName = reader["Username"].ToString();
                 Home.FirstName = reader["First_Name"].ToString();
@@ -80,13 +84,12 @@ namespace Patch_Master.Forms
             }
             else
             {
+                label_errorMessage.Visible = true;
                 label_errorMessage.Text = "Incorrect Username or Password.";
                 return;
 
             }
-            //SqlDataReader dr = dbContext.DataReader(qq);
-            //var obj= dr.ToString();
-            //Object ob = dbContext.ShowDataInGridView(qq);
+
         }
     }
 }

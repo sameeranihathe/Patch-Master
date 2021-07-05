@@ -2,12 +2,52 @@
 <SqlQueryStrings>
 
   <SqlQueryString Id="CheckAuthentication">
-    SELECT X.Username,X.First_Name,X.RoleId,Y.RoleName,X.Status AS Authenticated
+    SELECT X.User_Id,X.Username,X.First_Name,X.RoleId,Y.RoleName,X.Status AS Authenticated
     FROM PM_Users X, PM_User_role Y
     WHERE X.UserName=@UserName AND X.Password=@Password
     AND X.RoleId=Y.RoleId
     AND X.Status=1
   </SqlQueryString>
+  
+  <SqlQueryString Id="LoadAvailableUsers">
+    SELECT X.User_Id As UserId, X.Username,X.First_Name AS 'First name', Y.RoleName
+    FROM PM_Users X, PM_User_role Y
+    WHERE X.Status=@Status
+    AND X.RoleId = Y.RoleId
+  </SqlQueryString>
+  
+  <SqlQueryString Id="LoadsavedRolesList">
+    SELECT RoleId, RoleName
+    FROM PM_User_role
+    WHERE Status=@Status
+  </SqlQueryString> 
+  
+  <SqlQueryString Id="DeleteUsers">
+    UPDATE PM_Users
+    SET status=0
+    WHERE User_Id in (@UserIdList)
+  </SqlQueryString>
 
+  <SqlQueryString Id="AddUser">
+    INSERT INTO [dbo].[PM_Users]
+    ([UserName]
+    ,[Password]
+    ,[First_Name]
+    ,[Last_Name]
+    ,[RoleId]
+    ,[Createddate]
+    ,[Status])
+    OUTPUT Inserted.User_Id
+    VALUES
+    (@userName
+    ,@password
+    ,@firstName
+    ,@lastName
+    ,@roleId
+    ,GETDATE()
+    ,1
+    )
 
+  </SqlQueryString>
+  
 </SqlQueryStrings>
