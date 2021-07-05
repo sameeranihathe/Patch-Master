@@ -33,8 +33,10 @@ namespace Patch_Master.Forms
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            SelectQueryBuilder selectQueryBuilder = new SelectQueryBuilder();
-            selectQueryBuilder.Show();
+            //SelectQueryBuilder selectQueryBuilder = new SelectQueryBuilder();
+            //selectQueryBuilder.Show();
+            ConditionBuilder ConditionBuilder = new ConditionBuilder();
+            ConditionBuilder.Show();
         }
     }
 }
