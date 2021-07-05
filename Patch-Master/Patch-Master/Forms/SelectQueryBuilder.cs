@@ -273,6 +273,7 @@ namespace Patch_Master.Forms
 
         private void BuildQuery_button_Click(object sender, EventArgs e)
         {
+            Query_richTextBox.Text = string.Empty;
             var joinDetails = SelectJoinBuilder.joindetailList;
             if (joinDetails.Count>0)
             {
@@ -297,12 +298,6 @@ namespace Patch_Master.Forms
                         else
                         {
                             SelectString += "," + table + "." + column;
-                            //string[] tableList = TableString.Split(',');
-
-                            //if (!tableList.Contains(table))
-                            //{
-                            //    TableString += "," + table;
-                            //}
                         }
                         i++;
 
@@ -310,7 +305,7 @@ namespace Patch_Master.Forms
                     foreach (var join in joinDetails)
                     {
 
-                        joinstring += $"{join.JoinName} {join.TableTwo} ON {join.TableOne}.{join.TableOneColumn} = {join.TableTwo}.{join.TableTwoColumn}";
+                        joinstring += $"{join.JoinName} {join.TableTwo} ON {join.TableOne}.{join.TableOneColumn} = {join.TableTwo}.{join.TableTwoColumn} {Environment.NewLine}";
 
                     }
                     Query_richTextBox.Text = SelectString;
@@ -365,6 +360,7 @@ namespace Patch_Master.Forms
             AddJoins_button.Enabled = false;
             AddedTableList = new List<string>();
             SelectedColumnList = new Dictionary<string, string>();
+            TableView_panel.Controls.Clear();
             foreach (Control item in TableView_panel.Controls.OfType<CheckedListBox>())
             {
                 TableView_panel.Controls.Remove(item);
