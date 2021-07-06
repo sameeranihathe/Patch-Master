@@ -133,8 +133,8 @@ namespace Patch_Master
 
         private void FormulateQuery_Click(object sender, EventArgs e)
         {
-            QueryTypeSelector QueryTypeSelector = new QueryTypeSelector();
-            QueryTypeSelector.Show();
+            SelectQueryBuilder selectQueryBuilder = new SelectQueryBuilder();
+            selectQueryBuilder.Show();
 
         }
 
