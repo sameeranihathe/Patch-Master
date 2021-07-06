@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Patch_Master.Forms
 {
-    public partial class ConditionBuilder : Form
+    public partial class NameConditionBuilder : Form
     {
-        public ConditionBuilder()
+        public NameConditionBuilder()
         {
             InitializeComponent();
         }
@@ -24,7 +24,7 @@ namespace Patch_Master.Forms
             if (AddTableColumnBtn == null) // just to be on the safe side
                 return;
 
-            TableColumnConnector tableColumnSelector = new TableColumnConnector(AddTableColumnBtn.Name.ToString());
+            TableColumnConnector tableColumnSelector = new TableColumnConnector(AddTableColumnBtn.Name.ToString(), this);
             tableColumnSelector.Show();
         }
 
@@ -253,7 +253,7 @@ namespace Patch_Master.Forms
             if (AddTableColumnBtn == null) // just to be on the safe side
                 return;
 
-            TableColumnConnector tableColumnSelector = new TableColumnConnector(AddTableColumnBtn.Name.ToString());
+            TableColumnConnector tableColumnSelector = new TableColumnConnector(AddTableColumnBtn.Name.ToString(),this);
             tableColumnSelector.Show();
         }
 
@@ -389,6 +389,11 @@ namespace Patch_Master.Forms
 
             ReorderWhenAddingConditionRow(newGroupOrderNumber);
             conditionRowGenerator("OR", newGroupOrderNumber);
+        }
+
+        private void Generate_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

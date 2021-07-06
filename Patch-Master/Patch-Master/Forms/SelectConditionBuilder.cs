@@ -86,8 +86,8 @@ namespace Patch_Master.Forms
             if (AddTableColumnBtn == null) // just to be on the safe side
                 return;
 
-            TableColumnConnector  tableColumnSelector = new TableColumnConnector(AddTableColumnBtn.Name.ToString());
-            tableColumnSelector.Show();
+            //TableColumnConnector  tableColumnSelector = new TableColumnConnector(AddTableColumnBtn.Name.ToString());
+            //tableColumnSelector.Show();
             
         }
 

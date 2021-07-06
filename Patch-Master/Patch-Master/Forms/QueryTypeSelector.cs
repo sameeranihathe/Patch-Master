@@ -35,7 +35,7 @@ namespace Patch_Master.Forms
             this.Hide();
             //SelectQueryBuilder selectQueryBuilder = new SelectQueryBuilder();
             //selectQueryBuilder.Show();
-            ConditionBuilder ConditionBuilder = new ConditionBuilder();
+            NameConditionBuilder ConditionBuilder = new NameConditionBuilder();
             ConditionBuilder.Show();
         }
     }

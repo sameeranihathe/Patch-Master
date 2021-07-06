@@ -2,7 +2,7 @@
 
 namespace Patch_Master.Forms
 {
-    partial class ConditionBuilder
+    partial class NameConditionBuilder
     {
         /// <summary>
         /// Required designer variable.
@@ -352,8 +352,9 @@ namespace Patch_Master.Forms
             this.Generate.TabIndex = 5;
             this.Generate.Text = "Generate";
             this.Generate.UseVisualStyleBackColor = true;
+            this.Generate.Click += new System.EventHandler(this.Generate_Click);
             // 
-            // ConditionBuilder
+            // NameConditionBuilder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -366,7 +367,7 @@ namespace Patch_Master.Forms
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.comboBox1);
-            this.Name = "ConditionBuilder";
+            this.Name = "NameConditionBuilder";
             this.Text = "ConditionBuilder";
             this.PanelConditionContainer.ResumeLayout(false);
             this.GroupConditionRow_1.ResumeLayout(false);

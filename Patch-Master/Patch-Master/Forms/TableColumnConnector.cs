@@ -13,15 +13,18 @@ namespace Patch_Master.Forms
     public partial class TableColumnConnector : Form
     {
         string clickedElementName = "";
+        NameConditionBuilder ConditionGenerationForm;
         public TableColumnConnector()
         {
             InitializeComponent();
         }
 
-        public TableColumnConnector(string elementName)
+        public TableColumnConnector(string elementName, NameConditionBuilder conditionForm)
         {
             InitializeComponent();
-            string clickedElementName = elementName;
+            clickedElementName = elementName;
+            ConditionGenerationForm = conditionForm;
+            //conditionForm.
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -407,7 +410,7 @@ namespace Patch_Master.Forms
         private void GenerateTCCondition_Click(object sender, EventArgs e)
         {
             String generatedTCConditionString =  GenerateTCConditionString();
-            richTextBox1.Text = generatedTCConditionString;
+            GeneratedTCConditionBox.Text = generatedTCConditionString;
         }
         private string GenerateTCConditionString()
         {
@@ -491,5 +494,43 @@ namespace Patch_Master.Forms
             return GroupBoxElementList;
         }
 
+        private void BtnAddCondition_Click(object sender, EventArgs e)
+        {
+            if(clickedElementName != null)
+            {
+                if(clickedElementName.Split("_")[0] == "BtnTCCondition2")
+                {
+
+                    foreach (Control ctn in ConditionGenerationForm.Controls)
+                    {
+                        if(ctn.Name == "PanelConditionContainer")
+                        {
+
+                            foreach (customGroupBox conditionGroupBox in ctn.Controls)
+                            {
+                                if (conditionGroupBox.Controls["textValue_" + clickedElementName.Split("_")[1].ToString()] != null)
+                                {
+
+                                    conditionGroupBox.Controls["textValue_" + clickedElementName.Split("_")[1].ToString()].Text = GeneratedTCConditionBox.Text;
+
+                                }
+                            }    
+                                
+                            
+                        }
+                       
+                    }  
+
+                }
+                else if(clickedElementName.Split("_")[0] == "BtnTCCondition1")
+                {
+
+
+                }
+
+            }
+            this.Hide();
+            ConditionGenerationForm.Show();
+        }
     }
 }
