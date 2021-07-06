@@ -35,6 +35,7 @@ namespace Patch_Master.Forms
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.PanelConditionContainer = new System.Windows.Forms.Panel();
             this.GroupConditionRow_1 = new Patch_Master.CustomElements.customGroupBox();
+            this.textValue1_1 = new System.Windows.Forms.TextBox();
             this.Delete_1 = new System.Windows.Forms.Button();
             this.butnAddNewRow_1 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -98,6 +99,7 @@ namespace Patch_Master.Forms
             // 
             // GroupConditionRow_1
             // 
+            this.GroupConditionRow_1.Controls.Add(this.textValue1_1);
             this.GroupConditionRow_1.Controls.Add(this.Delete_1);
             this.GroupConditionRow_1.Controls.Add(this.butnAddNewRow_1);
             this.GroupConditionRow_1.Controls.Add(this.label6);
@@ -120,6 +122,14 @@ namespace Patch_Master.Forms
             this.GroupConditionRow_1.TabIndex = 0;
             this.GroupConditionRow_1.TabStop = false;
             this.GroupConditionRow_1.Text = "Condition Row";
+            // 
+            // textValue1_1
+            // 
+            this.textValue1_1.Location = new System.Drawing.Point(116, 53);
+            this.textValue1_1.Name = "textValue1_1";
+            this.textValue1_1.Size = new System.Drawing.Size(254, 23);
+            this.textValue1_1.TabIndex = 6;
+            this.textValue1_1.Visible = false;
             // 
             // Delete_1
             // 
@@ -389,7 +399,6 @@ namespace Patch_Master.Forms
         private System.Windows.Forms.TextBox textValue_1;
         private System.Windows.Forms.ComboBox CmbCloseBracket_1;
         private System.Windows.Forms.ComboBox CmbComparer_1;
-        private System.Windows.Forms.ComboBox CmbColumn_1;
         private System.Windows.Forms.ComboBox CmbTable_1;
         private System.Windows.Forms.ComboBox CmbOpenBracket_1;
         private System.Windows.Forms.Button Delete_1;
@@ -406,5 +415,7 @@ namespace Patch_Master.Forms
         private System.Windows.Forms.Button AddCondition;
         private System.Windows.Forms.Button Close;
         private System.Windows.Forms.Button Generate;
+        private System.Windows.Forms.TextBox textValue1_1;
+        private System.Windows.Forms.ComboBox CmbColumn_1;
     }
 }

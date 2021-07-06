@@ -524,7 +524,31 @@ namespace Patch_Master.Forms
                 }
                 else if(clickedElementName.Split("_")[0] == "BtnTCCondition1")
                 {
+                    foreach (Control ctn in ConditionGenerationForm.Controls)
+                    {
+                        if (ctn.Name == "PanelConditionContainer")
+                        {
 
+                            foreach (customGroupBox conditionGroupBox in ctn.Controls)
+                            {
+                                if (conditionGroupBox.Controls["textValue1_" + clickedElementName.Split("_")[1].ToString()] != null)
+                                {
+                                    int TextValue1LocationY = conditionGroupBox.Controls["textValue1_" + clickedElementName.Split("_")[1].ToString()].Location.Y -11;
+                                    int TextValue1LocationX = conditionGroupBox.Controls["textValue1_" + clickedElementName.Split("_")[1].ToString()].Location.X;
+
+                                    conditionGroupBox.Controls["CmbTable_" + clickedElementName.Split("_")[1].ToString()].Visible = false;
+                                    conditionGroupBox.Controls["CmbColumn_" + clickedElementName.Split("_")[1].ToString()].Visible = false;
+                                    conditionGroupBox.Controls["textValue1_" + clickedElementName.Split("_")[1].ToString()].Visible = true;
+                                    conditionGroupBox.Controls["textValue1_" + clickedElementName.Split("_")[1].ToString()].Location = new System.Drawing.Point(TextValue1LocationX, TextValue1LocationY); ;
+                                    conditionGroupBox.Controls["textValue1_" + clickedElementName.Split("_")[1].ToString()].Text = GeneratedTCConditionBox.Text;
+
+                                }
+                            }
+
+
+                        }
+
+                    }
 
                 }
 
