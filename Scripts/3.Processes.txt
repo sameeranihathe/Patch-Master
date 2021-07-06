@@ -19,3 +19,8 @@ PRIMARY KEY (SubProcessId)
  ALTER TABLE PM_Processes
   ADD CreatedBy int default 0,
   CreatedDate [datetime] NULL
+  
+  ALTER TABLE PM_SubProcesses
+  ADD Description varchar(max),
+  CreatedBy int default 0,
+  CreatedDate [datetime] NULL

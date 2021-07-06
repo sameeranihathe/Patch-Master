@@ -2,10 +2,11 @@
 <SqlQueryStrings>
 
   <SqlQueryString Id="LoadAvailableProcesses">
-	  SELECT ProcessId as 'Main Process ID',ProcessName as 'Process Name',ProcessDescription as 'Process Desc'
-	  , CreatedUserName as 'Created User', CreatedDate as 'Created Date'
-	  FROM PM_Processes
-	  WHERE Status=@Status
+    SELECT x.ProcessId as 'Main Process ID',x.ProcessName as 'Process Name',x.ProcessDescription as 'Process Desc'
+    , y.UserName as 'Created User', x.CreatedDate as 'Created Date'
+    FROM PM_Processes x, PM_Users y
+    WHERE x.Status=@Status AND x.CreatedBy = y.User_Id
+    Order by [Created Date]
   </SqlQueryString>
 	
   <SqlQueryString Id="AddProcess">
@@ -23,10 +24,11 @@
     WHERE ProcessId in (@ProcessIdList)
   </SqlQueryString>
   <SqlQueryString Id="LoadAvailableSubProcesses">
-	  SELECT SubProcessId as 'Sub Process ID',SubProcessName as 'Sub Process Name', Description as 'Description',
-	  CreatedUserName as 'Created User', CreatedDate as 'Created Date'
-	  FROM PM_SubProcesses
-	  WHERE ProcessId=@ProcessId AND Status=1
+    SELECT x.SubProcessId as 'Sub Process ID',x.SubProcessName as 'Sub Process Name', x.Description as 'Description',
+    y.UserName as 'Created User', x.CreatedDate as 'Created Date'
+    FROM PM_SubProcesses x, PM_Users y
+    WHERE x.ProcessId=@ProcessId AND x.Status=1
+    AND x.CreatedBy = y.User_Id
   </SqlQueryString>
   <SqlQueryString Id="DeleteSubProcesses">
     UPDATE PM_SubProcesses
