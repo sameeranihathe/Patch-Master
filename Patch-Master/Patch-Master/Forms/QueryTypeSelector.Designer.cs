@@ -36,8 +36,6 @@ namespace Patch_Master.Forms
             this.Insert = new System.Windows.Forms.RadioButton();
             this.Update = new System.Windows.Forms.RadioButton();
             this.Select = new System.Windows.Forms.RadioButton();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.QueryDecription_richTextBox = new System.Windows.Forms.RichTextBox();
@@ -45,7 +43,6 @@ namespace Patch_Master.Forms
             this.QueryName_textBox = new System.Windows.Forms.TextBox();
             this.QueryName_label = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -95,7 +92,6 @@ namespace Patch_Master.Forms
             this.Insert.Text = "Insert Query";
             this.Insert.UseVisualStyleBackColor = true;
             this.Insert.CheckedChanged += new System.EventHandler(this.selectQueryType);
-
             // 
             // Update
             // 
@@ -108,7 +104,6 @@ namespace Patch_Master.Forms
             this.Update.Text = "Update Query";
             this.Update.UseVisualStyleBackColor = true;
             this.Update.CheckedChanged += new System.EventHandler(this.selectQueryType);
-
             // 
             // Select
             // 
@@ -121,32 +116,6 @@ namespace Patch_Master.Forms
             this.Select.Text = "Select Query";
             this.Select.UseVisualStyleBackColor = true;
             this.Select.CheckedChanged += new System.EventHandler(this.selectQueryType);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.comboBox1);
-            this.groupBox2.Location = new System.Drawing.Point(749, 69);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(36, 313);
-            this.groupBox2.TabIndex = 2;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Select a query catogery";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Single table select",
-            "Single table select with agregate",
-            "Single table select with group",
-            "Multi table select",
-            "Multi table select with agregate",
-            "Select with select with group",
-            ""});
-            this.comboBox1.Location = new System.Drawing.Point(21, 34);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(210, 23);
-            this.comboBox1.TabIndex = 0;
             // 
             // button1
             // 
@@ -211,7 +180,6 @@ namespace Patch_Master.Forms
             this.ClientSize = new System.Drawing.Size(797, 450);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Name = "QueryTypeSelector";
@@ -219,7 +187,6 @@ namespace Patch_Master.Forms
             this.Load += new System.EventHandler(this.QueryTypeSelector_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
@@ -237,8 +204,6 @@ namespace Patch_Master.Forms
         private System.Windows.Forms.RadioButton Insert;
         private System.Windows.Forms.RadioButton Update;
         private System.Windows.Forms.RadioButton Select;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.RichTextBox QueryDecription_richTextBox;
