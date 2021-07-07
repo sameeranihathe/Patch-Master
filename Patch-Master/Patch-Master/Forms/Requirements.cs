@@ -20,6 +20,9 @@ namespace Patch_Master.Forms
         string roleName = string.Empty;
         int roleId = 0;
         int RequirmentID;
+
+        public static string REQUIREMENTID = string.Empty; 
+        public static string REQUIREMENTNAME = string.Empty;
         public Requirements()
         {
             InitializeComponent();
@@ -526,11 +529,13 @@ namespace Patch_Master.Forms
             else if (Requirements_dataGridView.SelectedRows.Count == 1)
             {
 
-                string requirementId = Requirements_dataGridView.SelectedRows[0].Cells[0].Value.ToString();
-                string requirementName = Requirements_dataGridView.SelectedRows[0].Cells[1].Value.ToString();
+                REQUIREMENTID = Requirements_dataGridView.SelectedRows[0].Cells[0].Value.ToString();
+                REQUIREMENTNAME = Requirements_dataGridView.SelectedRows[0].Cells[1].Value.ToString();
                 string requirementDescription = Requirements_dataGridView.SelectedRows[0].Cells[2].Value.ToString();
-
-                SetRequirementDetails(requirementName, requirementDescription);
+                
+                AvailableQueries availableQueries = new AvailableQueries();
+                availableQueries.Show();
+                //SetRequirementDetails(requirementName, requirementDescription);
                 //ViewSavedQueries(requirementId);
             }
         }
