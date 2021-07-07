@@ -7,6 +7,18 @@
     WHERE X.RequirementId = @RequirementId AND X.QueryTypeId = Y.QueryTypeId
     AND X.CreatedBy = Z.User_Id
   </SqlQueryString>
+  
+<SqlQueryString Id="SaveQueryDetails">
+  INSERT INTO PM_Queries
+  ([QueryName]
+  ,[QueryDescription]
+  ,[QueryTypeId]
+  ,[RequirementId]
+  ,[CreatedDate]
+  ,[CreatedBy]
+  ,[Status])
+  OUTPUT Inserted.QueryId
+  VALUES(@QueryName,@QueryDescription,@QueryType,@RequirementId,GETDATE(),@CreatedBy,1)
 
-
+</SqlQueryString>
 </SqlQueryStrings>

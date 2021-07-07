@@ -23,6 +23,7 @@ namespace Patch_Master.Forms
 
         public static string REQUIREMENTID = string.Empty; 
         public static string REQUIREMENTNAME = string.Empty;
+        public static string SELECTEDDATABASEID = string.Empty;
         public Requirements()
         {
             InitializeComponent();
@@ -349,7 +350,7 @@ namespace Patch_Master.Forms
             DbConnector dbContext = new DbConnector();
             string selectedSubProcessId = (((KeyValuePair<int, string>)SubProcess_comboBox.SelectedItem).Key).ToString();
             string selectedDatabaseId = (((KeyValuePair<int, string>)comboBoxDatabase.SelectedItem).Key).ToString();
-
+            SELECTEDDATABASEID = selectedDatabaseId;
             try
             {
                 string queryString = SqlQueryStringReader.GetQueryStringById("AddRequirement", "Requirements");
