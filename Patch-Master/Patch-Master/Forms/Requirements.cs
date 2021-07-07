@@ -24,6 +24,8 @@ namespace Patch_Master.Forms
         public static string REQUIREMENTID = string.Empty; 
         public static string REQUIREMENTNAME = string.Empty;
         public static string SELECTEDDATABASEID = string.Empty;
+        public static string SELECTEDDATABSENAME = string.Empty;
+
         public Requirements()
         {
             InitializeComponent();
@@ -350,6 +352,7 @@ namespace Patch_Master.Forms
             DbConnector dbContext = new DbConnector();
             string selectedSubProcessId = (((KeyValuePair<int, string>)SubProcess_comboBox.SelectedItem).Key).ToString();
             string selectedDatabaseId = (((KeyValuePair<int, string>)comboBoxDatabase.SelectedItem).Key).ToString();
+            SELECTEDDATABSENAME = (((KeyValuePair<int, string>)comboBoxDatabase.SelectedItem).Value).ToString();
             SELECTEDDATABASEID = selectedDatabaseId;
             try
             {
@@ -588,5 +591,15 @@ namespace Patch_Master.Forms
         {
             this.Close();
         }
+
+        private void Database_comboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedDatabaseId = (((KeyValuePair<int, string>)comboBoxDatabase.SelectedItem).Key).ToString();
+            SELECTEDDATABSENAME = (((KeyValuePair<int, string>)comboBoxDatabase.SelectedItem).Value).ToString();
+            SELECTEDDATABASEID = selectedDatabaseId;
+
+        }
+
+
     }
 }

@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace Patch_Master.Forms
 {
     partial class Requirements
@@ -103,6 +105,8 @@ namespace Patch_Master.Forms
             this.comboBoxDatabase.Name = "comboBoxDatabase";
             this.comboBoxDatabase.Size = new System.Drawing.Size(231, 28);
             this.comboBoxDatabase.TabIndex = 9;
+            this.comboBoxDatabase.SelectedIndexChanged += new System.EventHandler(this.Database_comboBox_SelectedIndexChanged);
+
             // 
             // labelDatabase
             // 

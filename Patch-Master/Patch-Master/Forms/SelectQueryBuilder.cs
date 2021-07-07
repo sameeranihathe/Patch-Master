@@ -32,7 +32,19 @@ namespace Patch_Master.Forms
             InitializeComponent(); 
             CheckLogin();
             InitializeScrollBars();
-            LoadAvailableDatabases();
+            //LoadAvailableDatabases();
+            LoadAvailableTablesForDb(Requirements.SELECTEDDATABSENAME);
+
+        }
+
+        private void LoadAvailableTablesForDb(string databaseName)
+        {
+            List<string> AvailableTables = LoadAvailableTablesFromDb(databaseName);
+
+            foreach (var tableName in AvailableTables)
+            {
+                TableList_treeView.Nodes.Add(tableName);
+            }
 
         }
 
@@ -54,34 +66,34 @@ namespace Patch_Master.Forms
             roleName = Home.Role;
 
         }
-        private void LoadAvailableDatabases()
-        {
-            Dictionary<int, string> savedDatabases = GetDatabaseList();
-            foreach (var db in savedDatabases)
-            {
-                DatabaseList_comboBox.Items.Add(db);
-            }
-            this.DatabaseList_comboBox.SelectedIndexChanged -= new EventHandler(DatabaseList_comboBox_SelectedIndexChanged);
+        //private void LoadAvailableDatabases()
+        //{
+        //    Dictionary<int, string> savedDatabases = GetDatabaseList();
+        //    foreach (var db in savedDatabases)
+        //    {
+        //        DatabaseList_comboBox.Items.Add(db);
+        //    }
+        //    this.DatabaseList_comboBox.SelectedIndexChanged -= new EventHandler(DatabaseList_comboBox_SelectedIndexChanged);
 
-            DatabaseList_comboBox.DataSource = new BindingSource(savedDatabases, null);
-            DatabaseList_comboBox.DisplayMember = "Value";
-            DatabaseList_comboBox.ValueMember = "Key";
+        //    DatabaseList_comboBox.DataSource = new BindingSource(savedDatabases, null);
+        //    DatabaseList_comboBox.DisplayMember = "Value";
+        //    DatabaseList_comboBox.ValueMember = "Key";
 
-            this.DatabaseList_comboBox.SelectedIndexChanged += new EventHandler(DatabaseList_comboBox_SelectedIndexChanged);
+        //    this.DatabaseList_comboBox.SelectedIndexChanged += new EventHandler(DatabaseList_comboBox_SelectedIndexChanged);
 
-        }
+        //}
 
-        private void DatabaseList_comboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string DbName = (((KeyValuePair<int, string>)DatabaseList_comboBox.SelectedItem).Value).ToString();
-            SelectedDatabase = DbName;
-            List<string> AvailableTables = LoadAvailableTablesFromDb(DbName);
+        //private void DatabaseList_comboBox_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    string DbName = (((KeyValuePair<int, string>)DatabaseList_comboBox.SelectedItem).Value).ToString();
+        //    SelectedDatabase = DbName;
+        //    List<string> AvailableTables = LoadAvailableTablesFromDb(DbName);
 
-            foreach (var tableName in AvailableTables)
-            {
-                TableList_treeView.Nodes.Add(tableName);
-            }
-        }
+        //    foreach (var tableName in AvailableTables)
+        //    {
+        //        TableList_treeView.Nodes.Add(tableName);
+        //    }
+        //}
 
         private List<string> LoadAvailableTablesFromDb(string dbName)
         {
@@ -155,7 +167,7 @@ namespace Patch_Master.Forms
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             bool tableAlreadyAdded = false;
-            string DbName = (((KeyValuePair<int, string>)DatabaseList_comboBox.SelectedItem).Value).ToString();
+            string DbName = Requirements.SELECTEDDATABSENAME;
             string tableName = e.Node.Text;
 
             List<string> columnNameList = LoadAllColumns(DbName, tableName);
