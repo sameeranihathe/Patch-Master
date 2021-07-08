@@ -533,14 +533,34 @@ namespace Patch_Master.Forms
                             {
                                 if (conditionGroupBox.Controls["textValue1_" + clickedElementName.Split("_")[1].ToString()] != null)
                                 {
-                                    int TextValue1LocationY = conditionGroupBox.Controls["textValue1_" + clickedElementName.Split("_")[1].ToString()].Location.Y -11;
+                                    int TextValue1LocationY = conditionGroupBox.Controls["textValue1_" + clickedElementName.Split("_")[1].ToString()].Location.Y;
+                                    if(conditionGroupBox.Controls["textValue1_" + clickedElementName.Split("_")[1].ToString()].Visible == false)
+                                    {
+                                        TextValue1LocationY = TextValue1LocationY - 11;
+                                    }
+                                   
                                     int TextValue1LocationX = conditionGroupBox.Controls["textValue1_" + clickedElementName.Split("_")[1].ToString()].Location.X;
-
+                                    
+                                    
                                     conditionGroupBox.Controls["CmbTable_" + clickedElementName.Split("_")[1].ToString()].Visible = false;
                                     conditionGroupBox.Controls["CmbColumn_" + clickedElementName.Split("_")[1].ToString()].Visible = false;
                                     conditionGroupBox.Controls["textValue1_" + clickedElementName.Split("_")[1].ToString()].Visible = true;
-                                    conditionGroupBox.Controls["textValue1_" + clickedElementName.Split("_")[1].ToString()].Location = new System.Drawing.Point(TextValue1LocationX, TextValue1LocationY); ;
+                                    conditionGroupBox.Controls["textValue1_" + clickedElementName.Split("_")[1].ToString()].Location = new System.Drawing.Point(TextValue1LocationX, TextValue1LocationY); 
                                     conditionGroupBox.Controls["textValue1_" + clickedElementName.Split("_")[1].ToString()].Text = GeneratedTCConditionBox.Text;
+
+                                    if(clickedElementName.Split("_")[1].ToString() == "1")
+                                    {
+                                        int LableValue1LocationY = conditionGroupBox.Controls["LbTablecolumn_" + clickedElementName.Split("_")[1].ToString()].Location.Y - 11;
+                                        int LableValue1LocationX = conditionGroupBox.Controls["LbTablecolumn_" + clickedElementName.Split("_")[1].ToString()].Location.X;
+
+                                        conditionGroupBox.Controls["LblTable_" + clickedElementName.Split("_")[1].ToString()].Visible = false;
+                                        conditionGroupBox.Controls["LblColumn_" + clickedElementName.Split("_")[1].ToString()].Visible = false;
+                                        conditionGroupBox.Controls["LbTablecolumn_" + clickedElementName.Split("_")[1].ToString()].Visible = true;
+                                        conditionGroupBox.Controls["LbTablecolumn_" + clickedElementName.Split("_")[1].ToString()].Location = new System.Drawing.Point(LableValue1LocationX, LableValue1LocationY);
+
+                                    }
+
+
 
                                 }
                             }

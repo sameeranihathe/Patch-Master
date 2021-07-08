@@ -32,17 +32,18 @@ namespace Patch_Master.Forms
         {
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.ConditionBox = new System.Windows.Forms.RichTextBox();
             this.PanelConditionContainer = new System.Windows.Forms.Panel();
             this.GroupConditionRow_1 = new Patch_Master.CustomElements.customGroupBox();
+            this.LbTablecolumn_1 = new System.Windows.Forms.Label();
             this.textValue1_1 = new System.Windows.Forms.TextBox();
             this.Delete_1 = new System.Windows.Forms.Button();
             this.butnAddNewRow_1 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.LblColumn_1 = new System.Windows.Forms.Label();
+            this.LblTable_1 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.BtnTCCondition2_1 = new System.Windows.Forms.Button();
             this.BtnTCCondition1_1 = new System.Windows.Forms.Button();
@@ -80,13 +81,13 @@ namespace Patch_Master.Forms
             this.listBox1.Size = new System.Drawing.Size(120, 379);
             this.listBox1.TabIndex = 1;
             // 
-            // richTextBox1
+            // ConditionBox
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(160, 405);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(995, 83);
-            this.richTextBox1.TabIndex = 2;
-            this.richTextBox1.Text = "";
+            this.ConditionBox.Location = new System.Drawing.Point(160, 405);
+            this.ConditionBox.Name = "ConditionBox";
+            this.ConditionBox.Size = new System.Drawing.Size(995, 83);
+            this.ConditionBox.TabIndex = 2;
+            this.ConditionBox.Text = "";
             // 
             // PanelConditionContainer
             // 
@@ -99,14 +100,15 @@ namespace Patch_Master.Forms
             // 
             // GroupConditionRow_1
             // 
+            this.GroupConditionRow_1.Controls.Add(this.LbTablecolumn_1);
             this.GroupConditionRow_1.Controls.Add(this.textValue1_1);
             this.GroupConditionRow_1.Controls.Add(this.Delete_1);
             this.GroupConditionRow_1.Controls.Add(this.butnAddNewRow_1);
             this.GroupConditionRow_1.Controls.Add(this.label6);
             this.GroupConditionRow_1.Controls.Add(this.label5);
             this.GroupConditionRow_1.Controls.Add(this.label4);
-            this.GroupConditionRow_1.Controls.Add(this.label3);
-            this.GroupConditionRow_1.Controls.Add(this.label2);
+            this.GroupConditionRow_1.Controls.Add(this.LblColumn_1);
+            this.GroupConditionRow_1.Controls.Add(this.LblTable_1);
             this.GroupConditionRow_1.Controls.Add(this.label1);
             this.GroupConditionRow_1.Controls.Add(this.BtnTCCondition2_1);
             this.GroupConditionRow_1.Controls.Add(this.BtnTCCondition1_1);
@@ -122,6 +124,16 @@ namespace Patch_Master.Forms
             this.GroupConditionRow_1.TabIndex = 0;
             this.GroupConditionRow_1.TabStop = false;
             this.GroupConditionRow_1.Text = "Condition Row";
+            // 
+            // LbTablecolumn_1
+            // 
+            this.LbTablecolumn_1.AutoSize = true;
+            this.LbTablecolumn_1.Location = new System.Drawing.Point(196, 34);
+            this.LbTablecolumn_1.Name = "LbTablecolumn_1";
+            this.LbTablecolumn_1.Size = new System.Drawing.Size(82, 15);
+            this.LbTablecolumn_1.TabIndex = 7;
+            this.LbTablecolumn_1.Text = "Table/Column";
+            this.LbTablecolumn_1.Visible = false;
             // 
             // textValue1_1
             // 
@@ -179,23 +191,23 @@ namespace Patch_Master.Forms
             this.label4.TabIndex = 3;
             this.label4.Text = "Comparer";
             // 
-            // label3
+            // LblColumn_1
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(242, 22);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(50, 15);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Column";
+            this.LblColumn_1.AutoSize = true;
+            this.LblColumn_1.Location = new System.Drawing.Point(242, 22);
+            this.LblColumn_1.Name = "LblColumn_1";
+            this.LblColumn_1.Size = new System.Drawing.Size(50, 15);
+            this.LblColumn_1.TabIndex = 3;
+            this.LblColumn_1.Text = "Column";
             // 
-            // label2
+            // LblTable_1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(119, 22);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(34, 15);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Table";
+            this.LblTable_1.AutoSize = true;
+            this.LblTable_1.Location = new System.Drawing.Point(119, 22);
+            this.LblTable_1.Name = "LblTable_1";
+            this.LblTable_1.Size = new System.Drawing.Size(34, 15);
+            this.LblTable_1.TabIndex = 3;
+            this.LblTable_1.Text = "Table";
             // 
             // label1
             // 
@@ -374,7 +386,7 @@ namespace Patch_Master.Forms
             this.Controls.Add(this.AddCondition);
             this.Controls.Add(this.PanelOperator);
             this.Controls.Add(this.PanelConditionContainer);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.ConditionBox);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.comboBox1);
             this.Name = "NameConditionBuilder";
@@ -391,7 +403,7 @@ namespace Patch_Master.Forms
 
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox ConditionBox;
         private System.Windows.Forms.Panel PanelConditionContainer;
         private customGroupBox GroupConditionRow_1;
         private System.Windows.Forms.Button BtnTCCondition2_1;
@@ -406,8 +418,8 @@ namespace Patch_Master.Forms
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label LblColumn_1;
+        private System.Windows.Forms.Label LblTable_1;
         private System.Windows.Forms.Label label1;
         private CustomPanel PanelOperator;
         private System.Windows.Forms.Button btnConAND;
@@ -417,5 +429,6 @@ namespace Patch_Master.Forms
         private System.Windows.Forms.Button Generate;
         private System.Windows.Forms.TextBox textValue1_1;
         private System.Windows.Forms.ComboBox CmbColumn_1;
+        private System.Windows.Forms.Label LbTablecolumn_1;
     }
 }
