@@ -274,9 +274,11 @@ namespace Patch_Master.Forms
 
         private void btnSingleSelectCondition_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            SelectConditionBuilder selectConditionBuilder = new SelectConditionBuilder();
-            selectConditionBuilder.Show();
+            // this.Hide();
+            ConditionBuilder conditionBuilder = new ConditionBuilder();
+            conditionBuilder.Show();
+            //SelectConditionBuilder selectConditionBuilder = new SelectConditionBuilder();
+            //selectConditionBuilder.Show();
         }
 
         private void SaveQuerybutton_Click(object sender, EventArgs e)

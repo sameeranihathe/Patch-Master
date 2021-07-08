@@ -31,7 +31,7 @@ namespace Patch_Master.Forms
         private void InitializeComponent()
         {
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.tableList_listBox = new System.Windows.Forms.ListBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.PanelConditionContainer = new System.Windows.Forms.Panel();
             this.GroupConditionRow_1 = new Patch_Master.CustomElements.customGroupBox();
@@ -70,14 +70,14 @@ namespace Patch_Master.Forms
             this.comboBox1.Size = new System.Drawing.Size(121, 23);
             this.comboBox1.TabIndex = 0;
             // 
-            // listBox1
+            // tableList_listBox
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 15;
-            this.listBox1.Location = new System.Drawing.Point(27, 109);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 379);
-            this.listBox1.TabIndex = 1;
+            this.tableList_listBox.FormattingEnabled = true;
+            this.tableList_listBox.ItemHeight = 15;
+            this.tableList_listBox.Location = new System.Drawing.Point(27, 109);
+            this.tableList_listBox.Name = "tableList_listBox";
+            this.tableList_listBox.Size = new System.Drawing.Size(120, 379);
+            this.tableList_listBox.TabIndex = 1;
             // 
             // richTextBox1
             // 
@@ -364,7 +364,7 @@ namespace Patch_Master.Forms
             this.Controls.Add(this.PanelOperator);
             this.Controls.Add(this.PanelConditionContainer);
             this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.tableList_listBox);
             this.Controls.Add(this.comboBox1);
             this.Name = "ConditionBuilder";
             this.Text = "ConditionBuilder";
@@ -379,7 +379,7 @@ namespace Patch_Master.Forms
         #endregion
 
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox tableList_listBox;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Panel PanelConditionContainer;
         private customGroupBox GroupConditionRow_1;

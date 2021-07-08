@@ -66,7 +66,7 @@ namespace Patch_Master.Forms
         private void SaveQueryDetails()
         {
             DbConnector dbContext = new DbConnector();
-
+            SAVEDQUERYID = 0;
             try
             {
                 string RequirementId = Requirements.REQUIREMENTID;
