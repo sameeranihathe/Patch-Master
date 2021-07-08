@@ -32,6 +32,7 @@ namespace Patch_Master.Forms
             this.SavedQueries_dataGridView = new System.Windows.Forms.DataGridView();
             this.AddQuery_button = new System.Windows.Forms.Button();
             this.DeleteQuery_button = new System.Windows.Forms.Button();
+            this.Query_richTextBox = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.SavedQueries_dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,10 +45,11 @@ namespace Patch_Master.Forms
             this.SavedQueries_dataGridView.RowTemplate.Height = 25;
             this.SavedQueries_dataGridView.Size = new System.Drawing.Size(618, 150);
             this.SavedQueries_dataGridView.TabIndex = 0;
+            this.SavedQueries_dataGridView.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ViewQuery_RowHeaderMouseClick);
             // 
             // AddQuery_button
             // 
-            this.AddQuery_button.Location = new System.Drawing.Point(23, 231);
+            this.AddQuery_button.Location = new System.Drawing.Point(144, 350);
             this.AddQuery_button.Name = "AddQuery_button";
             this.AddQuery_button.Size = new System.Drawing.Size(75, 23);
             this.AddQuery_button.TabIndex = 1;
@@ -57,18 +59,28 @@ namespace Patch_Master.Forms
             // 
             // DeleteQuery_button
             // 
-            this.DeleteQuery_button.Location = new System.Drawing.Point(140, 231);
+            this.DeleteQuery_button.Location = new System.Drawing.Point(23, 350);
             this.DeleteQuery_button.Name = "DeleteQuery_button";
             this.DeleteQuery_button.Size = new System.Drawing.Size(92, 23);
             this.DeleteQuery_button.TabIndex = 2;
             this.DeleteQuery_button.Text = "Delete Query";
             this.DeleteQuery_button.UseVisualStyleBackColor = true;
             // 
+            // Query_richTextBox
+            // 
+            this.Query_richTextBox.Enabled = false;
+            this.Query_richTextBox.Location = new System.Drawing.Point(23, 194);
+            this.Query_richTextBox.Name = "Query_richTextBox";
+            this.Query_richTextBox.Size = new System.Drawing.Size(618, 112);
+            this.Query_richTextBox.TabIndex = 3;
+            this.Query_richTextBox.Text = "";
+            // 
             // AvailableQueries
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.Query_richTextBox);
             this.Controls.Add(this.DeleteQuery_button);
             this.Controls.Add(this.AddQuery_button);
             this.Controls.Add(this.SavedQueries_dataGridView);
@@ -85,5 +97,6 @@ namespace Patch_Master.Forms
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button DeleteQuery_button;
         private System.Windows.Forms.Button AddQuery_button;
+        private System.Windows.Forms.RichTextBox Query_richTextBox;
     }
 }

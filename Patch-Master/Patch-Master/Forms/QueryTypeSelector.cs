@@ -13,6 +13,8 @@ namespace Patch_Master.Forms
 {
     public partial class QueryTypeSelector : Form
     {
+        public static int SAVEDQUERYID = 0;
+
         bool userLogged = false;
         int loggedUserId = 0;
         string loggedUserName = string.Empty;
@@ -20,7 +22,7 @@ namespace Patch_Master.Forms
         int roleId = 0;
 
         string QueryType =string.Empty;
-        int SavedQueryId = 0;
+        //int SavedQueryId = 0;
         public QueryTypeSelector()
         {
             InitializeComponent();
@@ -105,7 +107,7 @@ namespace Patch_Master.Forms
                 //int RequirementId = 0;
                 while (reader.Read())
                 {
-                    SavedQueryId = Convert.ToInt32(reader["QueryId"]);
+                    SAVEDQUERYID = Convert.ToInt32(reader["QueryId"]);
                 }
 
             }
@@ -118,7 +120,7 @@ namespace Patch_Master.Forms
             {
                 dbContext.CloseConnection();
 
-                if (SavedQueryId>0)
+                if (SAVEDQUERYID > 0)
                 {
                     SelectQueryBuilder selectQueryBuilder = new SelectQueryBuilder();
                     selectQueryBuilder.Show(); 

@@ -13,12 +13,27 @@ namespace Patch_Master.Forms
 {
     public partial class AvailableQueries : Form
     {
+        bool userLogged = false;
+        int loggedUserId = 0;
+        string loggedUserName = string.Empty;
+        string roleName = string.Empty;
+        int roleId = 0;
+
         public AvailableQueries()
         {
             InitializeComponent();
+            CheckLogin();
             LoadSavedQueriesGrid();
         }
+        private void CheckLogin()
+        {
+            userLogged = Home.Userlogged;
+            loggedUserId = Home.loggedUserId;
+            loggedUserName = Home.UserName;
+            roleId = Home.RoleId;
+            roleName = Home.Role;
 
+        }
         private void LoadSavedQueriesGrid()
         {
             DataTable dt = LoadQueries(Requirements.REQUIREMENTID);
@@ -56,6 +71,45 @@ namespace Patch_Master.Forms
         {
             QueryTypeSelector queryTypeSelector = new QueryTypeSelector();
             queryTypeSelector.Show();
+        }
+
+        private void ViewQuery_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            int rowindex = e.RowIndex;
+            int QueryID = Convert.ToInt32(SavedQueries_dataGridView.Rows[rowindex].Cells[0].Value.ToString());
+
+            string SavedQueryString = LoadQueryString(QueryID);
+            Query_richTextBox.Text = SavedQueryString;
+        }
+
+        private string LoadQueryString(int queryID)
+        {
+            DbConnector dbContext = new DbConnector();
+            string Query = string.Empty;
+            try
+            {
+                string queryString = SqlQueryStringReader.GetQueryStringById("LoadQuery", "Queries");
+                List<SqlParameter> sqlParams = new List<SqlParameter>();
+                sqlParams.Add(new SqlParameter("QueryId", queryID));
+                var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
+
+                var reader = dataReaders[0];
+
+                while (reader.Read())
+                {
+                    Query = reader["QueryString"].ToString();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                dbContext.CloseConnection();
+            }
+            return Query;
         }
     }
 }

@@ -281,6 +281,42 @@ namespace Patch_Master.Forms
 
         private void SaveQuerybutton_Click(object sender, EventArgs e)
         {
+            string QueryString = Query_richTextBox.Text;
+
+            if (!string.IsNullOrEmpty(QueryString))
+            {
+                SaveQuery(QueryString);
+            }
+            else
+            {
+
+            }
+        }
+
+        private void SaveQuery(string queryString)
+        {
+            DbConnector dbContext = new DbConnector();
+
+            try
+            {
+                int QueryId = QueryTypeSelector.SAVEDQUERYID;
+                string query = SqlQueryStringReader.GetQueryStringById("SaveQueryString", "Queries");
+                List<SqlParameter> sqlParams = new List<SqlParameter>();
+                sqlParams.Add(new SqlParameter("QueryId", QueryId));
+                sqlParams.Add(new SqlParameter("QueryString", queryString));
+                dbContext.ExecuteQueryWithIDataReader(query, sqlParams);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            finally
+            {
+                dbContext.CloseConnection();
+                this.Dispose();
+            }
         }
 
         private void BuildQuery_button_Click(object sender, EventArgs e)
