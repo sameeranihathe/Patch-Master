@@ -289,7 +289,7 @@ namespace Patch_Master.Forms
             }
             else
             {
-
+                MessageBox.Show("Please build a query to save.", "Save Query");
             }
         }
 
@@ -316,6 +316,13 @@ namespace Patch_Master.Forms
             {
                 dbContext.CloseConnection();
                 this.Dispose();
+
+                Application.OpenForms["QueryTypeSelector"].Close();
+                Application.OpenForms["AvailableQueries"].Close();
+
+                AvailableQueries availableQueries = new AvailableQueries();
+                availableQueries.Show();
+                
             }
         }
 

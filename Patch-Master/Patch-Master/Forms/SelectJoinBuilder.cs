@@ -183,7 +183,8 @@ namespace Patch_Master.Forms
             string selectedTable = (sender as ComboBox).SelectedItem.ToString();
             string comboboxName = (sender as ComboBox).Name;
             SelectQueryBuilder selectQueryBuilder = new SelectQueryBuilder();
-            List<String> columnList =  selectQueryBuilder.LoadAllColumns(SelectQueryBuilder.SelectedDatabase, selectedTable);
+            string selectedDatabase = Requirements.SELECTEDDATABSENAME;
+            List<String> columnList =  selectQueryBuilder.LoadAllColumns(selectedDatabase, selectedTable);
 
             ///Control[] comboBoxColumn = Controls["JoinPanel_" + comboboxName.Split("_")[1]];
             Panel JoinPanelControll = (Panel)JoinBuilder_panel.Controls["JoinPanel_" + comboboxName.Split("_")[1]];
