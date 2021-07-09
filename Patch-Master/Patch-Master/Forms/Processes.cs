@@ -109,7 +109,7 @@ namespace Patch_Master.Forms
         private void button_SaveProcess_Click(object sender, EventArgs e)
         {
             string ProcessName = textBoxMPName.Text.ToString();
-            string ProcessDescription = textBoxMPName.Text.ToString();
+            string ProcessDescription = textBoxMPDesc.Text.ToString();
 
             string MessageDisplay = string.Empty;
             if (ProcessName == "")
@@ -419,10 +419,11 @@ namespace Patch_Master.Forms
         private void btn_AddSubProcess_Click_1(object sender, EventArgs e)
         {
             string processId = dataGridView_Processws.SelectedRows[0].Cells[0].Value.ToString();
-            string subProcessDescription = dataGridView_Processws.SelectedRows[0].Cells[2].Value.ToString();
-            this.AddSubProcess(processId, subProcessDescription);
+            string subProcessDescription = textBoxSPDescription.Text;
+            string subProcessName = textBoxSPName.Text;
+            this.AddSubProcess(processId, subProcessName, subProcessDescription);
         }
-        private void AddSubProcess(string processId, string subProcessName)
+        private void AddSubProcess(string processId,string subProcessName, string SubProcessDescription)
         {
             DbConnector dbContext = new DbConnector();
 
@@ -431,6 +432,7 @@ namespace Patch_Master.Forms
                 string queryString = SqlQueryStringReader.GetQueryStringById("AddSubProcess", "Processes");
                 List<SqlParameter> sqlParams = new List<SqlParameter>();
                 sqlParams.Add(new SqlParameter("@SubProcessName", subProcessName));
+                sqlParams.Add(new SqlParameter("@Description", SubProcessDescription));
                 sqlParams.Add(new SqlParameter("@ProcessId", processId));
                 sqlParams.Add(new SqlParameter("@CreatedBy", loggedUserId));
                 sqlParams.Add(new SqlParameter("@CreatedUserName", loggedUserName));

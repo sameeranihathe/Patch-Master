@@ -308,7 +308,7 @@ namespace Patch_Master
             this.RequirementName_textBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.RequirementName_textBox.Name = "RequirementName_textBox";
             this.RequirementName_textBox.ReadOnly = true;
-            this.RequirementName_textBox.Size = new System.Drawing.Size(165, 27);
+            this.RequirementName_textBox.Size = new System.Drawing.Size(366, 27);
             this.RequirementName_textBox.TabIndex = 2;
             // 
             // Requirement_label
@@ -349,7 +349,7 @@ namespace Patch_Master
             this.RequestGroupBox.Controls.Add(this.ReqID);
             this.RequestGroupBox.Location = new System.Drawing.Point(390, 12);
             this.RequestGroupBox.Name = "RequestGroupBox";
-            this.RequestGroupBox.Size = new System.Drawing.Size(671, 290);
+            this.RequestGroupBox.Size = new System.Drawing.Size(671, 278);
             this.RequestGroupBox.TabIndex = 3;
             this.RequestGroupBox.TabStop = false;
             this.RequestGroupBox.Text = "New Request";
@@ -429,7 +429,7 @@ namespace Patch_Master
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1208, 656);
+            this.ClientSize = new System.Drawing.Size(1203, 612);
             this.Controls.Add(this.RequestGroupBox);
             this.Controls.Add(this.DisplayRequirementGroupBox);
             this.Controls.Add(this.Requirements_groupBox);

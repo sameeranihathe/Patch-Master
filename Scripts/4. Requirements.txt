@@ -15,3 +15,8 @@ ApprovedDate datetime,
 Status bit not null,
 PRIMARY KEY (RequirementId)
 );
+******************************************************************************************
+
+ ALTER TABLE PM_Requiremenet
+  ADD FormulationStatus bit,
+  CreatedUserName varchar (50)
