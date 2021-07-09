@@ -126,10 +126,10 @@ namespace Patch_Master
             // requirementsToolStripMenu
             // 
             this.requirementsToolStripMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.QueryToolStripMenu,
+            this.processesToolStripMenu,
             this.requirementToolStripMenu,
-            this.AprovalToolStripMenu,
-            this.processesToolStripMenu});
+            this.QueryToolStripMenu,
+            this.AprovalToolStripMenu});
             this.requirementsToolStripMenu.Name = "requirementsToolStripMenu";
             this.requirementsToolStripMenu.Size = new System.Drawing.Size(114, 24);
             this.requirementsToolStripMenu.Text = "Requirements";
@@ -152,13 +152,13 @@ namespace Patch_Master
             // 
             this.AprovalToolStripMenu.Name = "AprovalToolStripMenu";
             this.AprovalToolStripMenu.Size = new System.Drawing.Size(253, 26);
-            this.AprovalToolStripMenu.Text = "Define Approvals";
+            this.AprovalToolStripMenu.Text = "Define Query Approvals";
             // 
             // processesToolStripMenu
             // 
             this.processesToolStripMenu.Name = "processesToolStripMenu";
             this.processesToolStripMenu.Size = new System.Drawing.Size(253, 26);
-            this.processesToolStripMenu.Text = "Processes";
+            this.processesToolStripMenu.Text = "Processes Definition";
             this.processesToolStripMenu.Click += new System.EventHandler(this.Processes_Click);
             // 
             // requestToolStripMenu

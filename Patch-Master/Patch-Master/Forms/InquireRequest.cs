@@ -84,7 +84,9 @@ namespace Patch_Master.Forms
             dataGridViewRequestDetails.Columns.Clear();
             dataGridViewRequestDetails.DataSource = dt;
             groupBoxRequest.Visible=true;
+            this.ClearRequest();
         }
+        
         #endregion
         #region Request Details
         #region search Request

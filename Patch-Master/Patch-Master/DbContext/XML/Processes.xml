@@ -36,9 +36,9 @@
     WHERE SubProcessId in (@SubProcessIdList)
   </SqlQueryString>
   <SqlQueryString Id="AddSubProcess">
-	  INSERT INTO PM_SubProcesses(SubProcessName,ProcessId,Status,CreatedDate,CreatedUserID,CreatedUserName)
+	  INSERT INTO PM_SubProcesses(SubProcessName,Description,ProcessId,Status,CreatedDate,CreatedUserID,CreatedUserName)
 	  OUTPUT Inserted.SubProcessId
-	  VALUES(@SubProcessName,@ProcessId,1,GETDATE(),@CreatedBy,@CreatedUserName)
+	  VALUES(@SubProcessName,@Description,@ProcessId,1,GETDATE(),@CreatedBy,@CreatedUserName)
   </SqlQueryString>
   <SqlQueryString Id="LoadAvailableProcessNameList">
     SELECT ProcessId,ProcessName

@@ -24,3 +24,10 @@ PRIMARY KEY (SubProcessId)
   ADD Description varchar(max),
   CreatedBy int default 0,
   CreatedDate [datetime] NULL
+
+ ALTER TABLE PM_Processes
+  ADD CreatedUserName varchar(50)
+
+ ALTER TABLE PM_SubProcesses
+  ADD Description varchar(max),CreatedUserName datetime,CreatedUserID int,
+  CreatedUserName varchar (50)
