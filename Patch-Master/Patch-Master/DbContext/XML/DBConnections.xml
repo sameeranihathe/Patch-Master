@@ -11,5 +11,19 @@
   <SqlQueryString Id="removeDatabasefromName">
     update [PM_Databases] set Status = 0  where ServerName = @ServerName and DBName = @DBName
   </SqlQueryString>
-  
+  <SqlQueryString Id="loadDatabases">
+    SELECT DB_Id, DBName
+    FROM PM_Databases
+    WHERE Status=@Status
+  </SqlQueryString>
+  <SqlQueryString Id="LoadAvailableTables">
+    USE [??DbName]
+    SELECT
+    TABLE_NAME
+    AS TableName
+    FROM
+    information_schema.tables;
+  </SqlQueryString>
+
+
 </SqlQueryStrings>

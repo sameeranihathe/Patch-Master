@@ -1,32 +1,82 @@
-﻿using Patch_Master.Forms;
+﻿using Patch_Master.DbContext.Database;
+using Patch_Master.DbContext.QueryReader;
+using Patch_Master.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Patch_Master.Dto;
 
 namespace Patch_Master
 {
     public partial class Home : Form
     {
-        public Home()
-        {
-            InitializeComponent();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
+        public static int loggedUserId = 0;
         public static bool Userlogged = false;
         public static string UserName = string.Empty;
         public static string FirstName = string.Empty;
         public static string Role = string.Empty;
-        public static int RoleId =0;
+        public static int RoleId = 0;
+        public Home()
+        {
+            InitializeComponent();
+
+
+            label_processCount.Text = LoadProcessCount().ToString();
+
+
+            if (Role!="Admin")
+            {
+                this.toolStripMenuIAddUser.Visible = false;
+                //this.ta tabControl.TabPages.Remove(tabPage);
+                this.tabControl_home.TabPages.Remove(hometabPage_all);
+            }
+            else
+            {
+            }
+
+        }
+
+        private int LoadProcessCount()
+        {
+            DbConnector dbContext = new DbConnector();
+            int ProcessCount = 0;
+
+            try
+            {
+                string queryString = SqlQueryStringReader.GetQueryStringById("LoadUserWiseProcessCount", "Processes");
+                List<SqlParameter> sqlParams = new List<SqlParameter>();
+                sqlParams.Add(new SqlParameter("@loggedUserId", loggedUserId));
+                var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
+                var reader = dataReaders[0];
+
+                while (reader.Read())
+                {
+                    ProcessCount = Convert.ToInt32(reader["ProcessCount"]);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                dbContext.CloseConnection();
+            }
+            return ProcessCount;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            UserFirstName_label.Text = FirstName;
+        }
+
 
         //private void Login_Click(object sender, EventArgs e)
         //{
@@ -56,16 +106,22 @@ namespace Patch_Master
         }
         private void menuStripLogin_Click(object sender, EventArgs e)
         {
-            Login login = new Login();
-            login.Show();
+            //Login login = new Login();
+            //login.Show();
+
+            this.Dispose();
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void ConnectDb_Click(object sender, EventArgs e)
         {
-            this.Hide();
             DBAdder DBAdder = new DBAdder();
             DBAdder.Show();
+
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //this.Hide();
           
 
             //this.Hide();
@@ -94,6 +150,88 @@ namespace Patch_Master
             this.Hide();
             QueryTypeSelector QueryTypeSelector = new QueryTypeSelector();
             QueryTypeSelector.Show();
+        }
+        private void FormulateQuery_Click(object sender, EventArgs e)
+        {
+            SelectQueryBuilder selectQueryBuilder = new SelectQueryBuilder();
+            selectQueryBuilder.Show();
+
+        }
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UserList_Click(object sender, EventArgs e)
+        {
+            Users users = new Users();
+            users.Show();
+        }
+
+        private void label4_MouseEnter(object sender, EventArgs e)
+        {
+            label4.Font = new Font(label4.Font.Name, label4.Font.SizeInPoints, FontStyle.Underline);
+
+        }
+
+        private void label4_MouseLeave(object sender, EventArgs e)
+        {
+            label4.Font = new Font(label4.Font.Name, label4.Font.SizeInPoints, FontStyle.Regular);
+        }
+        private void ViewAllProcesses_label_MouseEnter(object sender, EventArgs e)
+        {
+            ViewAllProcesses_label.Font = new Font(ViewAllProcesses_label.Font.Name, ViewAllProcesses_label.Font.SizeInPoints, FontStyle.Underline);
+
+        }
+
+        private void ViewAllProcesses_label_MouseLeave(object sender, EventArgs e)
+        {
+            ViewAllProcesses_label.Font = new Font(ViewAllProcesses_label.Font.Name, ViewAllProcesses_label.Font.SizeInPoints, FontStyle.Regular);
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            List<ProcessDetails> ProcessDetails = LoadAvailableProcessesUserWise(loggedUserId);
+        }
+
+        private List<ProcessDetails> LoadAvailableProcessesUserWise(int loggedUserId)
+        {
+            List<ProcessDetails> ProcessDetailsList = new List<ProcessDetails>();
+            DbConnector dbContext = new DbConnector();
+
+            try
+            {
+                string queryString = SqlQueryStringReader.GetQueryStringById("LoadUserWiseProcessDetails", "Processes");
+                List<SqlParameter> sqlParams = new List<SqlParameter>();
+                sqlParams.Add(new SqlParameter("@CreatedUser", loggedUserId));
+                var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
+                var reader = dataReaders[0];
+
+                while (reader.Read())
+                {
+                    ProcessDetails processDetails = new ProcessDetails
+                    {
+                        ProcessId = Convert.ToInt32(reader["ProcessId"]),
+                        ProcessName = reader["ProcessName"].ToString(),
+                        ProcessDescription = reader["ProcessDescription"].ToString(),
+                        CreatedDate = reader["CreatedDate"].ToString()
+                    };
+                    ProcessDetailsList.Add(processDetails);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            finally
+            {
+                dbContext.CloseConnection();
+
+            }
+
+            return ProcessDetailsList;
         }
     }
 }

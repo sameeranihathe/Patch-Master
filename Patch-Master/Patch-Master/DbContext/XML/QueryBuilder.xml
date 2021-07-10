@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SqlQueryStrings>
+
+  <SqlQueryString Id="LoadColumnList">
+    USE [??DbName]
+    SELECT COLUMN_NAME AS ColumnName
+    FROM INFORMATION_SCHEMA.COLUMNS
+    WHERE TABLE_NAME = N'??Table'
+  </SqlQueryString>
+
+</SqlQueryStrings>

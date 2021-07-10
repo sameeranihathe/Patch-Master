@@ -28,12 +28,22 @@
     <Compile Update="Forms\SelectConditionBuilder.cs">
       <SubType>Form</SubType>
     </Compile>
+
+    <Compile Update="Forms\SelectJoinBuilder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+
     <Compile Update="Forms\SelectQueryBuilder.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\TableColumnConnector.cs">
       <SubType>Form</SubType>
     </Compile>
+
+    <Compile Update="Forms\Users.cs">
+      <SubType>Form</SubType>
+    </Compile>
+
     <Compile Update="Home.cs">
       <SubType>Form</SubType>
     </Compile>

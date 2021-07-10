@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SqlQueryStrings>
+
+  <SqlQueryString Id="LoadAvailableQueries">
+    SELECT X.QueryName AS 'Query Name',X.QueryDescription AS 'Query Description',Y.QueryType,Z.UserName AS 'Created By'
+    FROM PM_Queries X, PM_QueryTypes Y, PM_Users Z
+    WHERE X.RequirementId = @RequirementId AND X.QueryTypeId = Y.QueryTypeId
+    AND X.CreatedBy = Z.User_Id
+  </SqlQueryString>
+
+
+</SqlQueryStrings>
