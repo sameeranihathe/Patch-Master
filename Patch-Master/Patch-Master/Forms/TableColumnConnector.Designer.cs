@@ -31,7 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.BtnAddCondition = new System.Windows.Forms.Button();
             this.BtnClose = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.GeneratedTCConditionBox = new System.Windows.Forms.RichTextBox();
             this.OperatorPanel = new Patch_Master.CustomElements.CustomPanel();
             this.BtnDev = new System.Windows.Forms.Button();
             this.BtnMul = new System.Windows.Forms.Button();
@@ -72,6 +72,7 @@
             this.BtnAddCondition.TabIndex = 2;
             this.BtnAddCondition.Text = "Add";
             this.BtnAddCondition.UseVisualStyleBackColor = true;
+            this.BtnAddCondition.Click += new System.EventHandler(this.BtnAddCondition_Click);
             // 
             // BtnClose
             // 
@@ -82,13 +83,13 @@
             this.BtnClose.Text = "Close";
             this.BtnClose.UseVisualStyleBackColor = true;
             // 
-            // richTextBox1
+            // GeneratedTCConditionBox
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(80, 339);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(777, 74);
-            this.richTextBox1.TabIndex = 3;
-            this.richTextBox1.Text = "";
+            this.GeneratedTCConditionBox.Location = new System.Drawing.Point(80, 339);
+            this.GeneratedTCConditionBox.Name = "GeneratedTCConditionBox";
+            this.GeneratedTCConditionBox.Size = new System.Drawing.Size(777, 74);
+            this.GeneratedTCConditionBox.TabIndex = 3;
+            this.GeneratedTCConditionBox.Text = "";
             // 
             // OperatorPanel
             // 
@@ -309,7 +310,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(930, 466);
             this.Controls.Add(this.GenerateTCCondition);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.GeneratedTCConditionBox);
             this.Controls.Add(this.BtnClose);
             this.Controls.Add(this.BtnAddCondition);
             this.Controls.Add(this.label1);
@@ -339,7 +340,7 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button BtnAddCondition;
         private System.Windows.Forms.Button BtnClose;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox GeneratedTCConditionBox;
         //private System.Windows.Forms.Panel OperatorPanel;
         private CustomElements.CustomPanel OperatorPanel;
         private System.Windows.Forms.Button button7;

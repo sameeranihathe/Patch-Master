@@ -13,15 +13,18 @@ namespace Patch_Master.Forms
     public partial class TableColumnConnector : Form
     {
         string clickedElementName = "";
+        NameConditionBuilder ConditionGenerationForm;
         public TableColumnConnector()
         {
             InitializeComponent();
         }
 
-        public TableColumnConnector(string elementName)
+        public TableColumnConnector(string elementName, NameConditionBuilder conditionForm)
         {
             InitializeComponent();
-            string clickedElementName = elementName;
+            clickedElementName = elementName;
+            ConditionGenerationForm = conditionForm;
+            //conditionForm.
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -407,7 +410,7 @@ namespace Patch_Master.Forms
         private void GenerateTCCondition_Click(object sender, EventArgs e)
         {
             String generatedTCConditionString =  GenerateTCConditionString();
-            richTextBox1.Text = generatedTCConditionString;
+            GeneratedTCConditionBox.Text = generatedTCConditionString;
         }
         private string GenerateTCConditionString()
         {
@@ -491,5 +494,87 @@ namespace Patch_Master.Forms
             return GroupBoxElementList;
         }
 
+        private void BtnAddCondition_Click(object sender, EventArgs e)
+        {
+            if(clickedElementName != null)
+            {
+                if(clickedElementName.Split("_")[0] == "BtnTCCondition2")
+                {
+
+                    foreach (Control ctn in ConditionGenerationForm.Controls)
+                    {
+                        if(ctn.Name == "PanelConditionContainer")
+                        {
+
+                            foreach (customGroupBox conditionGroupBox in ctn.Controls)
+                            {
+                                if (conditionGroupBox.Controls["textValue_" + clickedElementName.Split("_")[1].ToString()] != null)
+                                {
+
+                                    conditionGroupBox.Controls["textValue_" + clickedElementName.Split("_")[1].ToString()].Text = GeneratedTCConditionBox.Text;
+
+                                }
+                            }    
+                                
+                            
+                        }
+                       
+                    }  
+
+                }
+                else if(clickedElementName.Split("_")[0] == "BtnTCCondition1")
+                {
+                    foreach (Control ctn in ConditionGenerationForm.Controls)
+                    {
+                        if (ctn.Name == "PanelConditionContainer")
+                        {
+
+                            foreach (customGroupBox conditionGroupBox in ctn.Controls)
+                            {
+                                if (conditionGroupBox.Controls["textValue1_" + clickedElementName.Split("_")[1].ToString()] != null)
+                                {
+                                    int TextValue1LocationY = conditionGroupBox.Controls["textValue1_" + clickedElementName.Split("_")[1].ToString()].Location.Y;
+                                    if(conditionGroupBox.Controls["textValue1_" + clickedElementName.Split("_")[1].ToString()].Visible == false)
+                                    {
+                                        TextValue1LocationY = TextValue1LocationY - 11;
+                                    }
+                                   
+                                    int TextValue1LocationX = conditionGroupBox.Controls["textValue1_" + clickedElementName.Split("_")[1].ToString()].Location.X;
+                                    
+                                    
+                                    conditionGroupBox.Controls["CmbTable_" + clickedElementName.Split("_")[1].ToString()].Visible = false;
+                                    conditionGroupBox.Controls["CmbColumn_" + clickedElementName.Split("_")[1].ToString()].Visible = false;
+                                    conditionGroupBox.Controls["textValue1_" + clickedElementName.Split("_")[1].ToString()].Visible = true;
+                                    conditionGroupBox.Controls["textValue1_" + clickedElementName.Split("_")[1].ToString()].Location = new System.Drawing.Point(TextValue1LocationX, TextValue1LocationY); 
+                                    conditionGroupBox.Controls["textValue1_" + clickedElementName.Split("_")[1].ToString()].Text = GeneratedTCConditionBox.Text;
+
+                                    if(clickedElementName.Split("_")[1].ToString() == "1")
+                                    {
+                                        int LableValue1LocationY = conditionGroupBox.Controls["LbTablecolumn_" + clickedElementName.Split("_")[1].ToString()].Location.Y - 11;
+                                        int LableValue1LocationX = conditionGroupBox.Controls["LbTablecolumn_" + clickedElementName.Split("_")[1].ToString()].Location.X;
+
+                                        conditionGroupBox.Controls["LblTable_" + clickedElementName.Split("_")[1].ToString()].Visible = false;
+                                        conditionGroupBox.Controls["LblColumn_" + clickedElementName.Split("_")[1].ToString()].Visible = false;
+                                        conditionGroupBox.Controls["LbTablecolumn_" + clickedElementName.Split("_")[1].ToString()].Visible = true;
+                                        conditionGroupBox.Controls["LbTablecolumn_" + clickedElementName.Split("_")[1].ToString()].Location = new System.Drawing.Point(LableValue1LocationX, LableValue1LocationY);
+
+                                    }
+
+
+
+                                }
+                            }
+
+
+                        }
+
+                    }
+
+                }
+
+            }
+            this.Hide();
+            ConditionGenerationForm.Show();
+        }
     }
 }
