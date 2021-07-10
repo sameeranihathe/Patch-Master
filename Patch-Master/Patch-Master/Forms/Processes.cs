@@ -21,7 +21,7 @@ namespace Patch_Master.Forms
         int roleId = 0;
         public Processes()
         {
-            InitializeComponent(); 
+            InitializeComponent();
             CheckLogin();
         }
         private void CheckLogin()
@@ -31,14 +31,11 @@ namespace Patch_Master.Forms
             loggedUserName = Home.UserName;
             roleId = Home.RoleId;
             roleName = Home.Role;
-
         }
         private void Processes_Load(object sender, EventArgs e)
         {
             try
             {
-                AddProcess_panel.Visible = false;
-                SubProcess_panel.Visible = false;
                 ViewDataTable();
             }
             catch (Exception ex)
@@ -46,15 +43,14 @@ namespace Patch_Master.Forms
                 throw ex;
             }
         }
-
+        #region Main Process
+        #region Data Grid
         private void ViewDataTable()
         {
             DataTable dt = LoadProcesses();
             dataGridView_Processws.Columns.Clear();
             dataGridView_Processws.DataSource = dt;
         }
-
-
         private static DataTable LoadProcesses()
         {
             DbConnector dbContext = new DbConnector();
@@ -72,22 +68,48 @@ namespace Patch_Master.Forms
             {
                 throw ex;
             }
+            finally
+            {
+                dbContext.CloseConnection();
+            }
 
             return dt;
         }
-
-        private void AddProcess_btn_Click(object sender, EventArgs e)
+        private void button_clear_Click(object sender, EventArgs e)
         {
-            DeleteProcess_btn.Enabled = false;
-            SubProcesses_btn.Enabled = false;
-            AddProcess_panel.Visible = true;
-
+            textBoxMPName.Text = string.Empty;
+            textBoxMPDesc.Text = string.Empty;
         }
+        private void dataGridView_Processws_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            int rowindex = e.RowIndex;
 
+            textBoxMPName.Text = dataGridView_Processws.Rows[rowindex].Cells[1].Value.ToString();
+            textBoxMPDesc.Text = dataGridView_Processws.Rows[rowindex].Cells[2].Value.ToString();
+            textBoxMPCreatedUser.Text = dataGridView_Processws.Rows[rowindex].Cells[3].Value.ToString();
+            textBoxMPCreatedDate.Text = dataGridView_Processws.Rows[rowindex].Cells[4].Value.ToString();
+            if (textBoxMPName.Text == "")
+            {
+                button_SaveProcess.Visible = true;
+                buttonModifyMP.Visible = false;
+                DeleteProcess_btn.Visible = false;
+                SubProcesses_btn.Visible = false;
+                textBoxMPName.Enabled = true;
+            }
+            else
+            {
+                buttonModifyMP.Visible = true;
+                DeleteProcess_btn.Visible = true;
+                SubProcesses_btn.Visible = true;
+                textBoxMPName.Enabled = false;
+            }
+        }
+        #endregion
+        #region Add  Process
         private void button_SaveProcess_Click(object sender, EventArgs e)
         {
-            string ProcessName = textBox_ProcessName.Text.ToString();
-            string ProcessDescription = richTextBox_ProcessDescription.Text.ToString();
+            string ProcessName = textBoxMPName.Text.ToString();
+            string ProcessDescription = textBoxMPName.Text.ToString();
 
             string MessageDisplay = string.Empty;
             if (ProcessName == "")
@@ -106,15 +128,14 @@ namespace Patch_Master.Forms
                 sqlParams.Add(new SqlParameter("ProcessName", ProcessName));
                 sqlParams.Add(new SqlParameter("ProcessDescription", ProcessDescription));
                 sqlParams.Add(new SqlParameter("CreatedBy", loggedUserId));
+                sqlParams.Add(new SqlParameter("CreatedUserName", loggedUserName));
                 var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
-
                 var reader = dataReaders[0];
                 int ProcessId = 0;
                 while (reader.Read())
                 {
                     ProcessId = Convert.ToInt32(reader["ProcessId"]);
                 }
-
                 dbContext.CloseConnection();
 
                 if (ProcessId > 0)
@@ -127,13 +148,14 @@ namespace Patch_Master.Forms
                 }
                 MessageBox.Show(MessageDisplay, "Add Process");
 
-                textBox_ProcessName.Text = string.Empty;
-                richTextBox_ProcessDescription.Text = string.Empty;
+                textBoxMPName.Text = string.Empty;
+                textBoxMPDesc.Text = string.Empty;
 
                 ViewDataTable();
             }
         }
-
+        #endregion
+        #region Delete Process
         private void DeleteProcess_btn_Click(object sender, EventArgs e)
         {
             if (dataGridView_Processws.SelectedRows.Count > 0)
@@ -173,16 +195,13 @@ namespace Patch_Master.Forms
 
             }
         }
-
         private void DeleteSelectedProcesses(List<string> processIdList)
         {
             DbConnector dbContext = new DbConnector();
 
             try
             {
-
                 string joinedprocessIdList = string.Join(",", processIdList);
-
                 string queryString = SqlQueryStringReader.GetQueryStringById("DeleteProcesses", "Processes");
                 List<SqlParameter> sqlParams = new List<SqlParameter>();
                 sqlParams.Add(new SqlParameter("@ProcessIdList", joinedprocessIdList));
@@ -199,20 +218,42 @@ namespace Patch_Master.Forms
             }
 
         }
-
-        private void button_clear_Click(object sender, EventArgs e)
+        #endregion
+        #region Modify main Process
+        private void buttonModifyMP_Click(object sender, EventArgs e)
         {
-            textBox_ProcessName.Text = string.Empty;
-            richTextBox_ProcessDescription.Text = string.Empty;
+            string MPDescription = textBoxMPDesc.Text;
+            string processId = dataGridView_Processws.SelectedRows[0].Cells[0].Value.ToString();
+            this.ModifyMainProcess(processId,MPDescription);
         }
-
-        private void button_Done_Click(object sender, EventArgs e)
+        private void ModifyMainProcess(string ProcessId, string MPDescription)
         {
-            DeleteProcess_btn.Enabled = true;
-            SubProcesses_btn.Enabled = true;
-            AddProcess_panel.Visible = false;
-        }
+            DbConnector dbContext = new DbConnector();
+            
+            try
+            {
+                string queryString = SqlQueryStringReader.GetQueryStringById("ModifyProcess", "Processes");
+                List<SqlParameter> sqlParams = new List<SqlParameter>();
+                sqlParams.Add(new SqlParameter("Description", MPDescription));
+                sqlParams.Add(new SqlParameter("ProcessID", ProcessId));
+                var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
+                
+            }
+            catch (Exception ex)
+            {
 
+                throw;
+            }
+            finally
+            {
+                this.ViewDataTable();
+                dbContext.CloseConnection();
+            }
+
+        }
+    
+        #endregion
+        #region  Sub Process
         private void SubProcesses_btn_Click(object sender, EventArgs e)
         {
             if (dataGridView_Processws.SelectedRows.Count > 1)
@@ -225,25 +266,36 @@ namespace Patch_Master.Forms
             }
             else if (dataGridView_Processws.SelectedRows.Count == 1)
             {
+                //buttonModifyMP.Visible = false;
+                //DeleteProcess_btn.Visible = false;
+                //button_SaveProcess.Visible = false;
+                groupBoxMainProcess.Enabled = false;
                 SubProcess_panel.Visible = true;
-                DeleteProcess_btn.Enabled = false;
-                AddProcess_btn.Enabled = false;
 
                 string processId = dataGridView_Processws.SelectedRows[0].Cells[0].Value.ToString();
                 string processName = dataGridView_Processws.SelectedRows[0].Cells[1].Value.ToString();
 
                 lbl_processName.Text = processName;
-                ViewSubProcesses(processId);
+                ViewSubProcessDataTable(processId);
             }
         }
+        #endregion
+        #region Return
+        private void buttonReturn_Click(object sender, EventArgs e)
+        {
+            this.Close();
 
-        private void ViewSubProcesses(string processId)
+        }
+        #endregion
+        #endregion
+        #region Sub Process
+        #region Data grid 
+        private void ViewSubProcessDataTable(string processId)
         {
             DataTable dt = LoadSubProcesses(processId);
             dataGridView_SubProcesses.Columns.Clear();
             dataGridView_SubProcesses.DataSource = dt;
         }
-
         private static DataTable LoadSubProcesses(string processId)
         {
             DbConnector dbContext = new DbConnector();
@@ -268,14 +320,36 @@ namespace Patch_Master.Forms
 
             return dt;
         }
-
-        private void btn_subProcessDone_Click(object sender, EventArgs e)
+        private void btn_subProcessDone_Click_1(object sender, EventArgs e)
         {
+            groupBoxMainProcess.Enabled = true;
             SubProcess_panel.Visible = false;
-            DeleteProcess_btn.Enabled = true;
-            AddProcess_btn.Enabled = true;
         }
+        private void dataGridView_SubProcesses_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            int rowindex = e.RowIndex;
 
+            textBoxSPName.Text = dataGridView_SubProcesses.Rows[rowindex].Cells[1].Value.ToString();
+            textBoxSPDescription.Text = dataGridView_SubProcesses.Rows[rowindex].Cells[2].Value.ToString();
+            textBoxSPCreatedUser.Text = dataGridView_SubProcesses.Rows[rowindex].Cells[3].Value.ToString();
+            textBoxSPCreatedDate.Text = dataGridView_SubProcesses.Rows[rowindex].Cells[4].Value.ToString();
+            if (textBoxSPName.Text == "")
+            {
+                btn_AddSubProcess.Visible = true;
+                buttonModifySP.Visible = false;
+                btn_DeleteSubProcess.Visible = false;
+                textBoxSPName.Enabled = true;
+            }
+            else
+            {
+                buttonModifySP.Visible = true;
+                btn_DeleteSubProcess.Visible = true;
+                textBoxSPName.Enabled = false;
+                btn_AddSubProcess.Visible = false;
+            }
+        }
+        #endregion
+        #region Delete Sub Process
         private void btn_DeleteSubProcess_Click(object sender, EventArgs e)
         {
             if (dataGridView_SubProcesses.SelectedRows.Count > 0)
@@ -317,7 +391,6 @@ namespace Patch_Master.Forms
 
             }
         }
-
         private void DeleteSelectedSubProcesses(List<string> subProcessIdList)
         {
             DbConnector dbContext = new DbConnector();
@@ -341,30 +414,14 @@ namespace Patch_Master.Forms
                 dbContext.CloseConnection();
             }
         }
-        private void ViewSubProcessDataTable(string processId)
+        #endregion
+        #region Add Sub Process
+        private void btn_AddSubProcess_Click_1(object sender, EventArgs e)
         {
-            DataTable dt = LoadSubProcesses(processId);
-            dataGridView_SubProcesses.Columns.Clear();
-            dataGridView_SubProcesses.DataSource = dt;
-        }
-
-        private void btn_AddSubProcess_Click(object sender, EventArgs e)
-        {
-            string subProcessName = string.Empty;
-            string value = "Sub process";
-            if (CustomInput.InputDialogBox("Add SubProcess", "Sub Process:", ref value) == DialogResult.OK)
-            {
-                subProcessName = value;
-            }
             string processId = dataGridView_Processws.SelectedRows[0].Cells[0].Value.ToString();
-            
-            if (subProcessName!=string.Empty)
-            {
-                AddSubProcess(processId, subProcessName);
-            }
-
+            string subProcessDescription = dataGridView_Processws.SelectedRows[0].Cells[2].Value.ToString();
+            this.AddSubProcess(processId, subProcessDescription);
         }
-
         private void AddSubProcess(string processId, string subProcessName)
         {
             DbConnector dbContext = new DbConnector();
@@ -375,7 +432,9 @@ namespace Patch_Master.Forms
                 List<SqlParameter> sqlParams = new List<SqlParameter>();
                 sqlParams.Add(new SqlParameter("@SubProcessName", subProcessName));
                 sqlParams.Add(new SqlParameter("@ProcessId", processId));
-                var dataReaders= dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
+                sqlParams.Add(new SqlParameter("@CreatedBy", loggedUserId));
+                sqlParams.Add(new SqlParameter("@CreatedUserName", loggedUserName));
+                var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
                 var reader = dataReaders[0];
 
                 int SubProcessId = 0;
@@ -390,14 +449,49 @@ namespace Patch_Master.Forms
                 throw ex;
             }
             finally
-            { 
+            {
                 dbContext.CloseConnection();
             }
         }
 
-        private void SubProcess_panel_Paint(object sender, PaintEventArgs e)
-        {
 
+
+        #endregion
+        #region Modify Sub Process
+        private void buttonModifySP_Click(object sender, EventArgs e)
+        {
+            string SPDescription = textBoxSPDescription.Text;
+            string processId = dataGridView_SubProcesses.SelectedRows[0].Cells[0].Value.ToString();
+            this.ModifySubProcess(processId, SPDescription);
         }
+
+        private void ModifySubProcess (string processID, string SPDescription)
+        {
+            DbConnector dbContext = new DbConnector();
+
+            try
+            {
+                string queryString = SqlQueryStringReader.GetQueryStringById("ModifySubProcess", "Processes");
+                List<SqlParameter> sqlParams = new List<SqlParameter>();
+                sqlParams.Add(new SqlParameter("Description", SPDescription));
+                sqlParams.Add(new SqlParameter("ProcessID", processID));
+                var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            finally
+            {
+                string MPprocessId = dataGridView_Processws.SelectedRows[0].Cells[0].Value.ToString();
+                this.ViewSubProcessDataTable(MPprocessId);
+                dbContext.CloseConnection();
+            }
+        }
+        #endregion
+
+        #endregion
     }
 }

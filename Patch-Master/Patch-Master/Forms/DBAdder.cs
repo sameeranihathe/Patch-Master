@@ -18,7 +18,15 @@ namespace Patch_Master.Forms
         {
             InitializeComponent();
         }
-
+        private void DBAdder_Load(object sender, EventArgs e)
+        {
+            ServerName.Text = string.Format(@"{0}\SQLEXPRESS", Environment.MachineName);
+            //cboServer.Items.Add(".");
+            //cboServer.Items.Add("(local)");
+            //cboServer.Items.Add(@".\SQLEXPRESS");
+            //cboServer.Items.Add(string.Format(@"{0}\SQLEXPRESS", Environment.MachineName));
+            //cboServer.SelectedIndex = 3;
+        }
         private void connectToDB_Click(object sender, EventArgs e)
         {
             string connectionString = string.Format("Data Source={0};Initial Catalog={1};Integrated Security = true;", ServerName.Text.Trim(), "master");
@@ -31,7 +39,7 @@ namespace Patch_Master.Forms
                     return;
                 }
                 connectionString = string.Format("Data Source={0};Initial Catalog={1};User ID={2};Password={3};", ServerName.Text.Trim(), "master", userName.Text.Trim(), passWord.Text.Trim());
-            }       
+            }
             try
             {
                 sqlHelper helper = new sqlHelper(connectionString);
@@ -48,17 +56,17 @@ namespace Patch_Master.Forms
                     SavedDBChecklist.Items.Clear();
                     foreach (string savedDB in SavedDatabasesNameList)
                     {
-                        SavedDBChecklist.Items.Add(savedDB,CheckState.Indeterminate);
-                        for(int i =0;i< DatabaseCheckList.Items.Count; i++)
+                        SavedDBChecklist.Items.Add(savedDB, CheckState.Indeterminate);
+                        for (int i = 0; i < DatabaseCheckList.Items.Count; i++)
                         {
                             if (DatabaseCheckList.Items[i].ToString() == savedDB)
                             {
-                                DatabaseCheckList.SetItemChecked(i,true);
+                                DatabaseCheckList.SetItemChecked(i, true);
                             }
                         }
-                       
+
                     }
-                    
+
 
                     // MessageBox.Show("Test connection succeeded.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -69,18 +77,8 @@ namespace Patch_Master.Forms
                 MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void DBAdder_Load(object sender, EventArgs e)
-        {
-            ServerName.Text = string.Format(@"{0}\SQLEXPRESS", Environment.MachineName);
-            //cboServer.Items.Add(".");
-            //cboServer.Items.Add("(local)");
-            //cboServer.Items.Add(@".\SQLEXPRESS");
-            //cboServer.Items.Add(string.Format(@"{0}\SQLEXPRESS", Environment.MachineName));
-            //cboServer.SelectedIndex = 3;
-        }
-
         public void AddDatabaselist(IList<string> databaseNameList)
+        
         {
             DatabaseCheckList.Items.Clear();
             for (int i = 0; i < databaseNameList.Count; i++)
@@ -89,20 +87,19 @@ namespace Patch_Master.Forms
             }
 
         }
-        public void AddDatabasesCheckboxButton(IList<string> databaseNameList)
-        {
-            for (int i = 0; i < databaseNameList.Count; i++)
-            {
-                CheckBox rdo = new CheckBox();
-                rdo.Name = "DBCheckboxButton" + i;
-                rdo.Text = databaseNameList[i];
-                rdo.Location = new Point(15, 30 + 30 * i);
-                this.Controls.Add(rdo);
-                groupBox2.Controls.Add(rdo);
-            }
+        //public void AddDatabasesCheckboxButton(IList<string> databaseNameList)
+        //{
+        //    for (int i = 0; i < databaseNameList.Count; i++)
+        //    {
+        //        CheckBox rdo = new CheckBox();
+        //        rdo.Name = "DBCheckboxButton" + i;
+        //        rdo.Text = databaseNameList[i];
+        //        rdo.Location = new Point(15, 30 + 30 * i);
+        //        this.Controls.Add(rdo);
+        //        groupBox2.Controls.Add(rdo);
+        //    }
 
-        }
-
+        //}
         public void AddDatabaseToSelectedGroup(IList<string> databaseNameList)
         {
 
@@ -114,7 +111,6 @@ namespace Patch_Master.Forms
              groupBox3.Controls.Add(tbox);*/
 
         }
-
         private void button2_Click(object sender, EventArgs e) //save btn
         {
             List<string> DatabaseList = new List<string>();
@@ -189,7 +185,6 @@ namespace Patch_Master.Forms
 
 
         }
-
         public void removeDatabase(string DatabaseServerName, string removeDBname)
         {
             DbConnector dbContext = new DbConnector();
@@ -256,7 +251,6 @@ namespace Patch_Master.Forms
             dbContext.CloseConnection();
             return DatabaseId;
         }
-
         private void DatabaseCheckList_SelectedIndexChanged(object sender, EventArgs e)
         {
             
@@ -268,7 +262,6 @@ namespace Patch_Master.Forms
 
             //}
         }
-
         private List<string> getAvailableDatabses(string DBserverName)
         {
             List<string> AvailableDatabases = new List<string>();
@@ -279,7 +272,7 @@ namespace Patch_Master.Forms
 
            DbConnector dbContext = new DbConnector();
 
-            // DbContext dbContext = new DbContext();
+            
             string queryString = SqlQueryStringReader.GetQueryStringById("getAvailableDatabses", "DBConnections");
             List<SqlParameter> sqlParams = new List<SqlParameter>();
             sqlParams.Add(new SqlParameter("ServerName", DBserverName));

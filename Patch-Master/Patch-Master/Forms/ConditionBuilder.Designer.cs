@@ -72,14 +72,14 @@ namespace Patch_Master.Forms
             this.comboBox1.Size = new System.Drawing.Size(121, 23);
             this.comboBox1.TabIndex = 0;
             // 
-            // listBox1
+            // tableList_listBox
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 15;
-            this.listBox1.Location = new System.Drawing.Point(27, 109);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 379);
-            this.listBox1.TabIndex = 1;
+            this.tableList_listBox.FormattingEnabled = true;
+            this.tableList_listBox.ItemHeight = 15;
+            this.tableList_listBox.Location = new System.Drawing.Point(27, 109);
+            this.tableList_listBox.Name = "tableList_listBox";
+            this.tableList_listBox.Size = new System.Drawing.Size(120, 379);
+            this.tableList_listBox.TabIndex = 1;
             // 
             // ConditionBox
             // 

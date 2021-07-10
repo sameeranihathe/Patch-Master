@@ -15,6 +15,16 @@ namespace Patch_Master.Forms
         public NameConditionBuilder()
         {
             InitializeComponent();
+            LoadTableList();
+        }
+
+        private void LoadTableList()
+        {
+            List<string> tableList = SelectQueryBuilder.AddedTableList;
+            foreach (var table in tableList)
+            {
+                tableList_listBox.Items.Add(table);
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)

@@ -1,0 +1,33 @@
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[PM_Request](
+	[Requirement_Id] [int] NOT NULL,
+	[Request_Id] [int] IDENTITY(1,1) NOT NULL,
+	[Description] [varchar](max) NOT NULL,
+	[Request_Date] [datetime] NULL,
+	[Request_User] [varchar](50) NULL,
+	[Approval_Status] [bit] NULL,
+	[Execution_Status] [bit] NULL,
+	[ApprovedUser] [varchar](50) NULL,
+	[ExecutedUser] [varchar](50) NULL,
+	[RequestBy] [int] NULL,
+	[ApprovedBy] [int] NULL,
+	[ExecutedBy] [int] NULL,
+	[ApprovedDate] [datetime] NULL,
+ CONSTRAINT [PK_Request] PRIMARY KEY CLUSTERED 
+(
+	[Request_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[PM_Request]  WITH CHECK ADD  CONSTRAINT [FK_Request_Request] FOREIGN KEY([Request_Id])
+REFERENCES [dbo].[PM_Request] ([Request_Id])
+GO
+
+ALTER TABLE [dbo].[PM_Request] CHECK CONSTRAINT [FK_Request_Request]
+GO

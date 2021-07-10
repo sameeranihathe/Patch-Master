@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
+
 namespace Patch_Master.Forms
 {
     public partial class Requirements : Form
@@ -18,12 +19,18 @@ namespace Patch_Master.Forms
         string loggedUserName = string.Empty;
         string roleName = string.Empty;
         int roleId = 0;
+        int RequirmentID;
+
+        public static string REQUIREMENTID = string.Empty; 
+        public static string REQUIREMENTNAME = string.Empty;
+        public static string SELECTEDDATABASEID = string.Empty;
+        public static string SELECTEDDATABSENAME = string.Empty;
+
         public Requirements()
         {
             InitializeComponent();
             CheckLogin();
         }
-
         private void CheckLogin()
         {
             userLogged = Home.Userlogged;
@@ -35,27 +42,34 @@ namespace Patch_Master.Forms
         }
         private void Requirements_Load(object sender, EventArgs e)
         {
-            ViewRequirement_button.Enabled = false;
+            #region  Load Main Process
+            //ViewRequirement_button.Enabled = false;
             Dictionary<int, string> AvailableProcesses = LoadAvailableProcesses();
             this.Process_comboBox.SelectedIndexChanged -= new EventHandler(Process_comboBox_SelectedIndexChanged);
-
             Process_comboBox.DataSource = new BindingSource(AvailableProcesses, null);
             Process_comboBox.DisplayMember = "Value";
             Process_comboBox.ValueMember = "Key";
-
-            //S string valuex = ((KeyValuePair<int, string>)Process_comboBox.SelectedItem).Value;
-            //foreach (var process in AvailableProcesses)
-            //{
-            //    Process_comboBox.Items.Add(new { process.Key, process.Value });
-            //    Process_comboBox.DisplayMember = "Value";
-            //    Process_comboBox.ValueMember = "Key";
-
-            //}
             this.Process_comboBox.SelectedIndexChanged += new EventHandler(Process_comboBox_SelectedIndexChanged);
+            #endregion
+            #region Load Database
+            Dictionary<int, string> AvailableDatabases = LoadAvailableDatabases();
+            int count = AvailableDatabases.Count;
+            if (count > 0)
+            {
+                comboBoxDatabase.DataSource = new BindingSource(AvailableDatabases, null);
+                comboBoxDatabase.DisplayMember = "Value";
+                comboBoxDatabase.ValueMember = "Key";
+            }
+            else
+            {
+                comboBoxDatabase.DataSource = new BindingSource(null, null);
+            }
+
+            #endregion
 
         }
-
-        private Dictionary<int, string> LoadAvailableProcesses()
+        #region  Main Process 
+        public Dictionary<int, string> LoadAvailableProcesses()
         {
             DbConnector dbContext = new DbConnector();
 
@@ -96,81 +110,45 @@ namespace Patch_Master.Forms
             }
             return AvailableProcesses;
         }
-
         private void Process_comboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedProcessId = (((KeyValuePair<int, string>)Process_comboBox.SelectedItem).Key).ToString();
             LoadSubProcesses(selectedProcessId);
         }
+        #endregion
+        #region Sub Process
         private void SubProcess_comboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ViewRequirement_button.Enabled = true;
-            string selectedSubProcessId = (((KeyValuePair<int, string>)SubProcess_comboBox.SelectedItem).Key).ToString();
+            //ViewRequirement_button.Enabled = true;
+            //string selectedSubProcessId = (((KeyValuePair<int, string>)SubProcess_comboBox.SelectedItem).Key).ToString();
 
-            Dictionary<int, string> AvailableDatabases = LoadAvailableDatabases();
-            
-            Databases_comboBox.DataSource = new BindingSource(AvailableDatabases, null);
-            Databases_comboBox.DisplayMember = "Value";
-            Databases_comboBox.ValueMember = "Key";
+            //Dictionary<int, string> AvailableDatabases = LoadAvailableDatabases();
+            //Databases_comboBox.DataSource = new BindingSource(AvailableDatabases, null);
+            //Databases_comboBox.DisplayMember = "Value";
+            //Databases_comboBox.ValueMember = "Key";
         }
-
-        private Dictionary<int, string> LoadAvailableDatabases()
-        {
-            DbConnector dbContext = new DbConnector();
-
-            Dictionary<int, string> AvailableDatabases = new Dictionary<int, string>();
-            bool Status = true;
-            try
-            {
-
-                string queryString = SqlQueryStringReader.GetQueryStringById("loadDatabases", "DBConnections");
-                List<SqlParameter> sqlParams = new List<SqlParameter>();
-                sqlParams.Add(new SqlParameter("Status", Convert.ToBoolean(Status)));
-
-                var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
-
-                if (dataReaders.Length == 0)
-                {
-
-                }
-                var reader = dataReaders[0];
-
-                while (reader.Read())
-                {
-                    var databaseID = Convert.ToInt32(reader["DB_Id"]);
-                    var databaseName = reader["DBName"].ToString();
-
-                    AvailableDatabases.Add(databaseID, databaseName);
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-
-                //throw ex;
-            }
-            finally
-            {
-                dbContext.CloseConnection();
-            }
-            return AvailableDatabases;
-        }
-
-        private void LoadSubProcesses(string selectedProcessId)
+        public void LoadSubProcesses(string selectedProcessId)
         {
             Dictionary<int, string> AvailableSubProcesses = LoadAvailableSubProcesses(selectedProcessId);
-            this.SubProcess_comboBox.SelectedIndexChanged -= new EventHandler(SubProcess_comboBox_SelectedIndexChanged);
+            //this.SubProcess_comboBox.SelectedIndexChanged -= new EventHandler(SubProcess_comboBox_SelectedIndexChanged);
+            int count = AvailableSubProcesses.Count;
+            if (count > 0)
+            {
+                SubProcess_comboBox.DataSource = new BindingSource(AvailableSubProcesses, null);
+                SubProcess_comboBox.DisplayMember = "Value";
+                SubProcess_comboBox.ValueMember = "Key";
+            }
+            else
+            {
+                SubProcess_comboBox.DataSource = new BindingSource(null, null);
 
-            SubProcess_comboBox.DataSource = new BindingSource(AvailableSubProcesses, null);
-            SubProcess_comboBox.DisplayMember = "Value";
-            SubProcess_comboBox.ValueMember = "Key";
+            }
+                
 
-            this.SubProcess_comboBox.SelectedIndexChanged += new EventHandler(SubProcess_comboBox_SelectedIndexChanged);
+            //this.SubProcess_comboBox.SelectedIndexChanged += new EventHandler(SubProcess_comboBox_SelectedIndexChanged);
 
         }
-
-        private Dictionary<int, string> LoadAvailableSubProcesses(string selectedProcessId)
+        public Dictionary<int, string> LoadAvailableSubProcesses(string selectedProcessId)
         {
             DbConnector dbContext = new DbConnector();
 
@@ -193,13 +171,53 @@ namespace Patch_Master.Forms
 
                 while (reader.Read())
                 {
-                    var subprocessId = Convert.ToInt32(reader["SubProcessId"]);
-                    var subprocessName = reader["SubProcessName"].ToString();
+                    var subprocessId = Convert.ToInt32(reader["Sub Process ID"]);
+                    var subprocessName = reader["Sub Process Name"].ToString();
 
                     AvailableSubProcesses.Add(subprocessId, subprocessName);
                 }
 
 
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                dbContext.CloseConnection();
+            }
+            return AvailableSubProcesses;
+        }
+        #endregion
+        #region Database 
+        public Dictionary<int, string> LoadAvailableDatabases()
+        {
+            DbConnector dbContext = new DbConnector();
+
+            Dictionary<int, string> AvailableDatabases = new Dictionary<int, string>();
+            bool Status = true;
+            try
+            {
+
+                string queryString = SqlQueryStringReader.GetQueryStringById("loadDatabases", "DBConnections");
+                List<SqlParameter> sqlParams = new List<SqlParameter>();
+                sqlParams.Add(new SqlParameter("Status", Convert.ToBoolean(Status)));
+                var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
+
+                if (dataReaders.Length == 0)
+                {
+
+                }
+                var reader = dataReaders[0];
+
+                while (reader.Read())
+                {
+                    var databaseID = Convert.ToInt32(reader["DB_Id"]);
+                    var databaseName = reader["DBName"].ToString();
+                    AvailableDatabases.Add(databaseID, databaseName);
+                }
             }
             catch (Exception ex)
             {
@@ -210,26 +228,103 @@ namespace Patch_Master.Forms
             {
                 dbContext.CloseConnection();
             }
-            return AvailableSubProcesses;
+            return AvailableDatabases;
         }
-
+        #endregion
+        #region Requirment 
+        #region View Requirment 
         private void ViewRequirement_button_Click(object sender, EventArgs e)
         {
             string selectedSubProcessId = (((KeyValuePair<int, string>)SubProcess_comboBox.SelectedItem).Key).ToString();
-
-            ViewRequirements(selectedSubProcessId);
-
+            string selectedDatabaseID = (((KeyValuePair<int, string>)comboBoxDatabase.SelectedItem).Key).ToString();
+            ViewRequirements(selectedSubProcessId, selectedDatabaseID);
             DisplayRequirement_comboBox.Visible = true;
+            #region Load Database
+            Dictionary<int, string> AvailableDatabases = LoadAvailableDatabases();
+            int count = AvailableDatabases.Count;
+            if (count > 0)
+            {
+                Databases_comboBox.DataSource = new BindingSource(AvailableDatabases, null);
+                Databases_comboBox.DisplayMember = "Value";
+                Databases_comboBox.ValueMember = "Key";
+            }
+            else
+            {
+                Databases_comboBox.DataSource = new BindingSource(null, null);
+            }
 
-            Process_comboBox.Enabled = false;
-            SubProcess_comboBox.Enabled = false;
+            #endregion
         }
+        private void ViewRequirements(string SubprocessId, string DatabaseID)
+        {
+            
+            DataTable dt = LoadRequirements(SubprocessId, DatabaseID);
+            Requirements_dataGridView.Columns.Clear();
+            Requirements_dataGridView.DataSource = dt;
+        }
+        public DataTable LoadRequirements(string SubprocessId, string DatabaseID)
+        {
+            DbConnector dbContext = new DbConnector();
+            DataTable dt = new DataTable();
+            bool Status = true;
+            try
+            {
+                string queryString = SqlQueryStringReader.GetQueryStringById("LoadAvailableRequirements", "Requirements");
+                List<SqlParameter> sqlParams = new List<SqlParameter>();
+                sqlParams.Add(new SqlParameter("SubProcessId", SubprocessId));
+                sqlParams.Add(new SqlParameter("DB_Id", DatabaseID));
+                sqlParams.Add(new SqlParameter("Status", Convert.ToBoolean(Status)));
+                DataSet ds = dbContext.ExecuteQueryWithDataSet(queryString, sqlParams);
+                dt = ds.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                dbContext.CloseConnection();
 
+            }
+
+            return dt;
+        }
+        private void Requirements_dataGridView_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            int rowindex = e.RowIndex;
+            RequirmentID = Convert.ToInt32(Requirements_dataGridView.Rows[rowindex].Cells[0].Value.ToString());
+            RequirementName_textBox.Text = Requirements_dataGridView.Rows[rowindex].Cells[1].Value.ToString();
+            RequirementObjective_richTextBox.Text = Requirements_dataGridView.Rows[rowindex].Cells[3].Value.ToString();
+            RequirementDescription_richTextBox.Text = Requirements_dataGridView.Rows[rowindex].Cells[2].Value.ToString();
+            Databases_comboBox.Text = Requirements_dataGridView.Rows[rowindex].Cells[4].Value.ToString();
+            textBoxCreatedUser.Text = Requirements_dataGridView.Rows[rowindex].Cells[5].Value.ToString();
+            textBoxCreatedDate.Text = Requirements_dataGridView.Rows[rowindex].Cells[6].Value.ToString();
+            checkBoxQueryformulated.Checked = Convert.ToBoolean(Requirements_dataGridView.Rows[rowindex].Cells[7].Value.ToString());
+            buttonModifyReq.Visible = true;
+            DeleteRequiremet_button.Visible = true;
+            if (checkBoxQueryformulated.Checked)
+            {
+                buttonViewQueries.Visible = true;
+            }
+            else
+            {
+                buttonViewQueries.Visible = false;
+            }
+
+        }
+        #endregion
+        #region Add Requirment 
+        private void ButtonNewReq_Click(object sender, EventArgs e)
+        {
+            AddReqGroupBox.Visible = true;
+            DisplayRequirement_comboBox.Visible = false;
+        }
         private void AddRequirement_button_Click(object sender, EventArgs e)
         {
-            string RequirementName = RequirementName_textBox.Text;
-            string RequirementDescription = RequirementDescription_richTextBox.Text;
-            string RequirementObjective = RequirementObjective_richTextBox.Text;
+            
+            string RequirementName = textBoxReqName.Text;
+            string RequirementDescription = richTextBoxDescription.Text;
+            string RequirementObjective = richTextBoxObjective.Text;
 
             if (RequirementName == string.Empty || RequirementName == "")
             {
@@ -248,15 +343,17 @@ namespace Patch_Master.Forms
             }
 
             AddRequirements(RequirementName, RequirementDescription, RequirementObjective);
+            AddReqGroupBox.Visible = false;
+            DisplayRequirement_comboBox.Visible = true;
         }
-
         private void AddRequirements(string requirementName, string requirementDescription, string requirementObjective)
         {
             string MessageDisplay = string.Empty;
             DbConnector dbContext = new DbConnector();
             string selectedSubProcessId = (((KeyValuePair<int, string>)SubProcess_comboBox.SelectedItem).Key).ToString();
-            string selectedDatabaseId = (((KeyValuePair<int, string>)Databases_comboBox.SelectedItem).Key).ToString();
-
+            string selectedDatabaseId = (((KeyValuePair<int, string>)comboBoxDatabase.SelectedItem).Key).ToString();
+            SELECTEDDATABSENAME = (((KeyValuePair<int, string>)comboBoxDatabase.SelectedItem).Value).ToString();
+            SELECTEDDATABASEID = selectedDatabaseId;
             try
             {
                 string queryString = SqlQueryStringReader.GetQueryStringById("AddRequirement", "Requirements");
@@ -266,7 +363,8 @@ namespace Patch_Master.Forms
                 sqlParams.Add(new SqlParameter("RequirementObjective", requirementObjective));
                 sqlParams.Add(new SqlParameter("SubProcessId", selectedSubProcessId));
                 sqlParams.Add(new SqlParameter("DatabaseId", selectedDatabaseId));
-
+                sqlParams.Add(new SqlParameter("UserID", loggedUserId));
+                sqlParams.Add(new SqlParameter("UserName", loggedUserName));
                 var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
 
                 var reader = dataReaders[0];
@@ -278,17 +376,15 @@ namespace Patch_Master.Forms
 
                 if (RequirementId > 0)
                 {
-                    MessageDisplay = "Process added successfully";
+                    MessageBox.Show("Requirment added successfully");
                 }
                 else
                 {
-                    MessageDisplay = "Process saving failed";
+                    MessageBox.Show("fail adiing Requirment");
                 }
-                MessageBox.Show(MessageDisplay, "Add Process");
+                
 
-                RequirementName_textBox.Text = string.Empty;
-                RequirementDescription_richTextBox.Text = string.Empty;
-                RequirementObjective_richTextBox.Text = string.Empty;
+                this.clearRequirment();
             }
             catch (Exception ex)
             {
@@ -297,46 +393,16 @@ namespace Patch_Master.Forms
             }
             finally
             {
-                ViewRequirements(selectedSubProcessId);
+                ViewRequirements(selectedSubProcessId, selectedDatabaseId);
                 dbContext.CloseConnection();
             }
         }
-
-        private void ViewRequirements(string SubprocessId)
-        {
-            DataTable dt = LoadRequirements(SubprocessId);
-            Requirements_dataGridView.Columns.Clear();
-            Requirements_dataGridView.DataSource = dt;
-        }
-
-        private DataTable LoadRequirements(string SubprocessId)
-        {
-            DbConnector dbContext = new DbConnector();
-            DataTable dt = new DataTable();
-            try
-            {
-                string queryString = SqlQueryStringReader.GetQueryStringById("LoadAvailableRequirements", "Requirements");
-                List<SqlParameter> sqlParams = new List<SqlParameter>();
-                sqlParams.Add(new SqlParameter("SubProcessId", SubprocessId));
-                DataSet ds = dbContext.ExecuteQueryWithDataSet(queryString, sqlParams);
-                dt = ds.Tables[0];
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                dbContext.CloseConnection();
-
-            }
-
-            return dt;
-        }
-
+        #endregion
+        #region Delete/ Clear Requirment 
         private void DeleteRequiremet_button_Click(object sender, EventArgs e)
         {
             string selectedSubProcessId = (((KeyValuePair<int, string>)SubProcess_comboBox.SelectedItem).Key).ToString();
+            string selectedDatabaseID = (((KeyValuePair<int, string>)Databases_comboBox.SelectedItem).Key).ToString();
 
             if (Requirements_dataGridView.SelectedRows.Count > 0)
             {
@@ -356,7 +422,7 @@ namespace Patch_Master.Forms
                 if (result == DialogResult.Yes)
                 {
                     DeleteSelectedRequirements(RequirementIdList);
-                    ViewRequirements(selectedSubProcessId);
+                    ViewRequirements(selectedSubProcessId, selectedDatabaseID);
 
                 }
                 else if (result == DialogResult.No)
@@ -375,7 +441,6 @@ namespace Patch_Master.Forms
 
             }
         }
-
         private void DeleteSelectedRequirements(List<string> requirementIdList)
         {
             DbConnector dbContext = new DbConnector();
@@ -399,15 +464,62 @@ namespace Patch_Master.Forms
             }
 
         }
-
         private void ClearRequirement_button_Click(object sender, EventArgs e)
+        {
+
+            this.clearRequirment();
+        }
+        private void clearRequirment()
         {
             RequirementName_textBox.Text = string.Empty;
             RequirementDescription_richTextBox.Text = string.Empty;
             RequirementObjective_richTextBox.Text = string.Empty;
+            Databases_comboBox.Text = string.Empty;
+        }
+        #endregion
+        #region Modify Requirment
+        private void buttonModifyReq_Click(object sender, EventArgs e)
+        {
+            string RequirmentObjective = RequirementObjective_richTextBox.Text;
+            string RequirmentDescription = RequirementDescription_richTextBox.Text;
+            this.ModifyRequirment(RequirmentObjective, RequirmentDescription);
 
         }
+        private void ModifyRequirment(string Objective, string Description)
+        {
+            DbConnector dbContext = new DbConnector();
+            string selectedSubProcessId = (((KeyValuePair<int, string>)SubProcess_comboBox.SelectedItem).Key).ToString();
+            string selectedDatabaseId = (((KeyValuePair<int, string>)comboBoxDatabase.SelectedItem).Key).ToString();
+            try
+            {
+                string queryString = SqlQueryStringReader.GetQueryStringById("UpdateRequirement", "Requirements");
+                List<SqlParameter> sqlParams = new List<SqlParameter>();
+                sqlParams.Add(new SqlParameter("Description", Description));
+                sqlParams.Add(new SqlParameter("Objective", Objective));
+                sqlParams.Add(new SqlParameter("RequirmentId", RequirmentID));
+                var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
+                this.clearRequirment();
+            }
+            catch (Exception ex)
+            {
 
+                throw;
+            }
+            finally
+            {
+                ViewRequirements(selectedSubProcessId, selectedDatabaseId);
+                dbContext.CloseConnection();
+            }
+
+        }
+        #endregion
+        private void SetRequirementDetails(string requirementName, string requirementDescription)
+        {
+            RequirementNameView_textBox.Text = requirementName;
+            RequirementDescriptionView_richTextBox.Text = requirementDescription;
+        }
+        #endregion
+        #region Query 
         private void ViewQueries_button_Click(object sender, EventArgs e)
         {
             if (Requirements_dataGridView.SelectedRows.Count > 1)
@@ -421,34 +533,34 @@ namespace Patch_Master.Forms
             else if (Requirements_dataGridView.SelectedRows.Count == 1)
             {
 
-                string requirementId = Requirements_dataGridView.SelectedRows[0].Cells[0].Value.ToString();
-                string requirementName = Requirements_dataGridView.SelectedRows[0].Cells[1].Value.ToString();
+                REQUIREMENTID = Requirements_dataGridView.SelectedRows[0].Cells[0].Value.ToString();
+                REQUIREMENTNAME = Requirements_dataGridView.SelectedRows[0].Cells[1].Value.ToString();
                 string requirementDescription = Requirements_dataGridView.SelectedRows[0].Cells[2].Value.ToString();
-
-                SetRequirementDetails(requirementName, requirementDescription);
-                ViewSavedQueries(requirementId);
+                
+                AvailableQueries availableQueries = new AvailableQueries();
+                availableQueries.Show();
+                //SetRequirementDetails(requirementName, requirementDescription);
+                //ViewSavedQueries(requirementId);
             }
         }
+        //private void ViewSavedQueries(string requirementId)
+        //{
+        //    DataTable dt = LoadQueries(requirementId);
+        //    if (dt.Rows.Count>0)
+        //    {
+        //        ViewRequirement_button.Enabled = false;
+        //        DisplayQueries_groupBox.Visible = true;
+        //        RequirementDetails_groupBox.Visible = true;
 
-        private void ViewSavedQueries(string requirementId)
-        {
-            DataTable dt = LoadQueries(requirementId);
-            if (dt.Rows.Count>0)
-            {
-                ViewRequirement_button.Enabled = false;
-                DisplayQueries_groupBox.Visible = true;
-                RequirementDetails_groupBox.Visible = true;
-
-                Queries_dataGridView.Columns.Clear();
-                Queries_dataGridView.DataSource = dt;
-            }
-            else
-            {
-                MessageBox.Show("No available queries to display!", "Requirements");
-                return;
-            }
-        }
-
+        //        Queries_dataGridView.Columns.Clear();
+        //        Queries_dataGridView.DataSource = dt;
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("No available queries to display!", "Requirements");
+        //        return;
+        //    }
+        //}
         private DataTable LoadQueries(string requirementId)
         {
             DbConnector dbContext = new DbConnector();
@@ -474,16 +586,20 @@ namespace Patch_Master.Forms
             return dt;
         }
 
-        private void SetRequirementDetails(string requirementName, string requirementDescription)
+        #endregion
+        private void buttonReturn_Click(object sender, EventArgs e)
         {
-            RequirementNameView_textBox.Text = requirementName;
-            RequirementDescriptionView_richTextBox.Text = requirementDescription;
+            this.Close();
         }
 
-        private void Returm_button_Click(object sender, EventArgs e)
+        private void Database_comboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DisplayQueries_groupBox.Visible = false;
-            RequirementDetails_groupBox.Visible = false;
+            string selectedDatabaseId = (((KeyValuePair<int, string>)comboBoxDatabase.SelectedItem).Key).ToString();
+            SELECTEDDATABSENAME = (((KeyValuePair<int, string>)comboBoxDatabase.SelectedItem).Value).ToString();
+            SELECTEDDATABASEID = selectedDatabaseId;
+
         }
+
+
     }
 }

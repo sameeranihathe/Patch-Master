@@ -8,12 +8,10 @@ namespace Patch_Master.DBHelper
     public class sqlHelper
     {
         SqlConnection cn;
-
         public sqlHelper(String connectionString)
         {
             cn = new SqlConnection(connectionString);
         }
-
         public bool IsConnection
         {
             get
@@ -23,7 +21,6 @@ namespace Patch_Master.DBHelper
                     cn.Open();
                 }
                 return true;
-
             }
         }
         public IList<string> databaseNameList()
@@ -44,7 +41,6 @@ namespace Patch_Master.DBHelper
                 databaselist.Add(rdr["name"].ToString());
                 //Console.WriteLine($"{rdr.GetInt32(0),-4} {rdr.GetString(1),-10} {rdr.GetInt32(2),10}");
             }
-
 
             return databaselist;
         }

@@ -31,9 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.Query_richTextBox = new System.Windows.Forms.RichTextBox();
             this.TableList_treeView = new System.Windows.Forms.TreeView();
-            this.DatabaseList_comboBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.SaveQuery_button = new System.Windows.Forms.Button();
             this.btnSingleSelectCondition = new System.Windows.Forms.Button();
             this.BuildQuery_button = new System.Windows.Forms.Button();
@@ -61,39 +59,20 @@
             // 
             // TableList_treeView
             // 
-            this.TableList_treeView.Location = new System.Drawing.Point(23, 150);
+            this.TableList_treeView.Location = new System.Drawing.Point(23, 114);
             this.TableList_treeView.Name = "TableList_treeView";
-            this.TableList_treeView.Size = new System.Drawing.Size(197, 322);
+            this.TableList_treeView.Size = new System.Drawing.Size(197, 358);
             this.TableList_treeView.TabIndex = 2;
             this.TableList_treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
-            // 
-            // DatabaseList_comboBox
-            // 
-            this.DatabaseList_comboBox.FormattingEnabled = true;
-            this.DatabaseList_comboBox.Items.AddRange(new object[] {
-            "Database01"});
-            this.DatabaseList_comboBox.Location = new System.Drawing.Point(23, 65);
-            this.DatabaseList_comboBox.Name = "DatabaseList_comboBox";
-            this.DatabaseList_comboBox.Size = new System.Drawing.Size(197, 23);
-            this.DatabaseList_comboBox.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 125);
+            this.label2.Location = new System.Drawing.Point(23, 73);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(82, 15);
             this.label2.TabIndex = 5;
             this.label2.Text = "Database view";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(23, 41);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(93, 15);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "select  database ";
             // 
             // SaveQuery_button
             // 
@@ -144,13 +123,13 @@
             // 
             // AddJoins_button
             // 
+            this.AddJoins_button.Enabled = false;
             this.AddJoins_button.Location = new System.Drawing.Point(541, 61);
             this.AddJoins_button.Name = "AddJoins_button";
             this.AddJoins_button.Size = new System.Drawing.Size(75, 23);
             this.AddJoins_button.TabIndex = 15;
             this.AddJoins_button.Text = "Add Joins";
             this.AddJoins_button.UseVisualStyleBackColor = true;
-            this.AddJoins_button.Enabled = false;
             this.AddJoins_button.Click += new System.EventHandler(this.AddJoins_button_Click);
             // 
             // SelectQueryBuilder
@@ -164,9 +143,7 @@
             this.Controls.Add(this.BuildQuery_button);
             this.Controls.Add(this.btnSingleSelectCondition);
             this.Controls.Add(this.SaveQuery_button);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.DatabaseList_comboBox);
             this.Controls.Add(this.TableList_treeView);
             this.Controls.Add(this.Query_richTextBox);
             this.Controls.Add(this.label1);
@@ -182,9 +159,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.TreeView TableList_treeView;
-        private System.Windows.Forms.ComboBox DatabaseList_comboBox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button SaveQuery_button;
         private System.Windows.Forms.Button btnSingleSelectCondition;
         private System.Windows.Forms.Button BuildQuery_button;
