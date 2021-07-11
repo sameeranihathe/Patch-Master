@@ -1,7 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Compile Update="CustomElements\customGroupBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="CustomElements\CustomPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Forms\AvailableQueries.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\ConditionBuilder.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\DBAdder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\InquireRequest.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\Login.cs">
@@ -13,10 +28,16 @@
     <Compile Update="Forms\QueryTypeSelector.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\Register.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\Requirements.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\SelectConditionBuilder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\SelectJoinBuilder.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\SelectQueryBuilder.cs">
@@ -29,6 +50,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Home.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Request.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

@@ -19,7 +19,6 @@ namespace Patch_Master.Forms
         string loggedUserName = string.Empty;
         string roleName = string.Empty;
         int roleId = 0;
-
         public Users()
         {
             InitializeComponent();
@@ -29,7 +28,6 @@ namespace Patch_Master.Forms
             LoadUserList();
 
         }
-
         private void LoadRoleList()
         {
             Dictionary<int, string> savedRolesList = LoadsavedRolesList();
@@ -38,14 +36,12 @@ namespace Patch_Master.Forms
             comboBox_roles.DisplayMember = "Value";
             comboBox_roles.ValueMember = "Key";
         }
-
         private void LoadUserList()
         {
             DataTable userList = LoadAvailableUsers();
             Users_dataGridView.Columns.Clear();
             Users_dataGridView.DataSource = userList;
         }
-
         private Dictionary<int, string> LoadsavedRolesList()
         {
             DbConnector dbContext = new DbConnector();
@@ -87,7 +83,6 @@ namespace Patch_Master.Forms
             }
             return savedRolesList;
         }
-
         private void CheckLogin()
         {
             userLogged = Home.Userlogged;
@@ -122,7 +117,6 @@ namespace Patch_Master.Forms
 
             return dt;
         }
-
         private void Delete_button_Click(object sender, EventArgs e)
         {
 
@@ -163,7 +157,6 @@ namespace Patch_Master.Forms
 
             }
         }
-
         private void DeleteSelectedUsers(List<string> usertIdList)
         {
             DbConnector dbContext = new DbConnector();
@@ -186,7 +179,6 @@ namespace Patch_Master.Forms
                 dbContext.CloseConnection();
             }
         }
-
         private void AddUser_button_Click(object sender, EventArgs e)
         {
             if (textBox_firstname.Text=="")
@@ -230,7 +222,6 @@ namespace Patch_Master.Forms
 
             AddUser();
         }
-
         private void AddUser()
         {
             string MessageDisplay = string.Empty;
@@ -246,6 +237,7 @@ namespace Patch_Master.Forms
                 sqlParams.Add(new SqlParameter("password", EncryptProvider.Base64Encrypt(textBox_password.Text.ToString())));
                 sqlParams.Add(new SqlParameter("userName", textBox_username.Text.ToString()));
                 sqlParams.Add(new SqlParameter("roleId", selectedRoleId));
+                sqlParams.Add(new SqlParameter("Designation", textBoxDesignation.Text.ToString()));
 
                 var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
 
@@ -278,7 +270,6 @@ namespace Patch_Master.Forms
                 dbContext.CloseConnection();
             }
         }
-
         private void ClearTextBoxes()
         {
             textBox_firstname.Text = string.Empty;
@@ -286,11 +277,93 @@ namespace Patch_Master.Forms
             textBox_username.Text = string.Empty;
             textBox_password.Text = string.Empty;
             textBox_confirmPassword.Text = string.Empty;
+            checkBoxAccepted.Checked = false;
+            textBoxDesignation.Text = string.Empty;
         }
-
         private void ClearUserFields_button_Click(object sender, EventArgs e)
         {
             ClearTextBoxes();
+        }
+        private void buttonReturn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        private void Users_dataGridView_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            int rowindex = e.RowIndex;
+            textBox_firstname.Text = Users_dataGridView.Rows[rowindex].Cells[2].Value.ToString();
+            textBox_username.Text = Users_dataGridView.Rows[rowindex].Cells[1].Value.ToString();
+            textBox_lastname.Text = Users_dataGridView.Rows[rowindex].Cells[3].Value.ToString();
+            textBoxDesignation.Text = Users_dataGridView.Rows[rowindex].Cells[4].Value.ToString();
+            comboBox_roles.Text = Users_dataGridView.Rows[rowindex].Cells[5].Value.ToString();
+            if (textBox_username.Text == "")
+            {
+                AddUser_button.Visible=true;
+                labelPW.Visible = true;
+                labelCPW.Visible = true;
+                textBox_password.Visible = true;
+                textBox_confirmPassword.Visible = true;
+                buttonAccept.Visible = false;
+                Delete_button.Visible = false;
+                ClearUserFields_button.Visible = false;
+
+            }
+            else
+            {
+                checkBoxAccepted.Checked = Convert.ToBoolean(Users_dataGridView.Rows[rowindex].Cells[6].Value.ToString());
+                AddUser_button.Visible = false;
+                labelPW.Visible = false;
+                labelCPW.Visible = false;
+                textBox_password.Visible = false;
+                textBox_confirmPassword.Visible = false;
+                Delete_button.Visible = true;
+                ClearUserFields_button.Visible = true;
+                if (!checkBoxAccepted.Checked)
+                {
+                    buttonAccept.Visible = true;
+                }
+                else
+                {
+                    buttonAccept.Visible = false;
+                }
+
+            }
+
+        }
+
+        private void buttonAccept_Click(object sender, EventArgs e)
+        {
+            int UserId = Convert.ToInt32(Users_dataGridView.SelectedRows[0].Cells[0].Value.ToString());
+            string selectedRoleId = (((KeyValuePair<int, string>)comboBox_roles.SelectedItem).Key).ToString();
+            AcceptUser(UserId, selectedRoleId);
+            LoadUserList();
+            ClearTextBoxes();
+        }
+        private void AcceptUser(int UserId, string RoleID)
+        {
+            DbConnector dbContext = new DbConnector();
+
+            try
+            {
+                string queryString = SqlQueryStringReader.GetQueryStringById("AcceptUser", "User");
+                List<SqlParameter> sqlParams = new List<SqlParameter>();
+                sqlParams.Add(new SqlParameter("UserId", UserId));
+                sqlParams.Add(new SqlParameter("RoleId", RoleID));
+                var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
+                
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            finally
+            {
+                
+                dbContext.CloseConnection();
+            }
+
         }
     }
 }

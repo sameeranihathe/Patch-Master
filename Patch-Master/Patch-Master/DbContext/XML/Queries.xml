@@ -2,11 +2,34 @@
 <SqlQueryStrings>
 
   <SqlQueryString Id="LoadAvailableQueries">
-    SELECT X.QueryName AS 'Query Name',X.QueryDescription AS 'Query Description',Y.QueryType,Z.UserName AS 'Created By'
+    SELECT X.QueryId AS 'Query Id', X.QueryName AS 'Query Name',X.QueryDescription AS 'Query Description',Y.QueryType,Z.UserName AS 'Created By',X.CreatedDate AS 'Created Date'
     FROM PM_Queries X, PM_QueryTypes Y, PM_Users Z
     WHERE X.RequirementId = @RequirementId AND X.QueryTypeId = Y.QueryTypeId
     AND X.CreatedBy = Z.User_Id
   </SqlQueryString>
-
-
+  
+<SqlQueryString Id="SaveQueryDetails">
+  INSERT INTO PM_Queries
+  ([QueryName]
+  ,[QueryDescription]
+  ,[QueryTypeId]
+  ,[RequirementId]
+  ,[CreatedDate]
+  ,[CreatedBy]
+  ,[Status])
+  OUTPUT Inserted.QueryId
+  VALUES(@QueryName,@QueryDescription,@QueryType,@RequirementId,GETDATE(),@CreatedBy,1)
+</SqlQueryString>
+  LoadQuery
+  <SqlQueryString Id="LoadQuery">
+    SELECT QueryString
+    FROM PM_Queries
+    WHERE QueryId= @QueryId AND Status=1
+  </SqlQueryString>
+  
+  <SqlQueryString Id="SaveQueryString">
+    UPDATE PM_Queries
+    SET QueryString=@QueryString
+    WHERE QueryId= @QueryId AND Status=1
+  </SqlQueryString>
 </SqlQueryStrings>

@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -14,6 +15,8 @@ namespace Patch_Master.Forms
 {
     public partial class SelectQueryBuilder : Form
     {
+        public static string SelectedDatabase;
+
         bool userLogged = false;
         int loggedUserId = 0;
         string loggedUserName = string.Empty;
@@ -21,11 +24,27 @@ namespace Patch_Master.Forms
         int roleId = 0;
 
         int availablecheckedListBoxCount = 0;
+
+        Dictionary<string, string> SelectedColumnList = new Dictionary<string, string>();
+        public static List<String> AddedTableList = new List<string>();
         public SelectQueryBuilder()
         {
-            InitializeComponent();
+            InitializeComponent(); 
+            CheckLogin();
             InitializeScrollBars();
-            LoadAvailableDatabases();
+            //LoadAvailableDatabases();
+            LoadAvailableTablesForDb(Requirements.SELECTEDDATABSENAME);
+
+        }
+
+        private void LoadAvailableTablesForDb(string databaseName)
+        {
+            List<string> AvailableTables = LoadAvailableTablesFromDb(databaseName);
+
+            foreach (var tableName in AvailableTables)
+            {
+                TableList_treeView.Nodes.Add(tableName);
+            }
 
         }
 
@@ -47,34 +66,34 @@ namespace Patch_Master.Forms
             roleName = Home.Role;
 
         }
-        private void LoadAvailableDatabases()
-        {
-            Dictionary<int, string> savedDatabases = GetDatabaseList();
-            foreach (var db in savedDatabases)
-            {
-                DatabaseList_comboBox.Items.Add(db);
-            }
-            this.DatabaseList_comboBox.SelectedIndexChanged -= new EventHandler(DatabaseList_comboBox_SelectedIndexChanged);
+        //private void LoadAvailableDatabases()
+        //{
+        //    Dictionary<int, string> savedDatabases = GetDatabaseList();
+        //    foreach (var db in savedDatabases)
+        //    {
+        //        DatabaseList_comboBox.Items.Add(db);
+        //    }
+        //    this.DatabaseList_comboBox.SelectedIndexChanged -= new EventHandler(DatabaseList_comboBox_SelectedIndexChanged);
 
-            DatabaseList_comboBox.DataSource = new BindingSource(savedDatabases, null);
-            DatabaseList_comboBox.DisplayMember = "Value";
-            DatabaseList_comboBox.ValueMember = "Key";
+        //    DatabaseList_comboBox.DataSource = new BindingSource(savedDatabases, null);
+        //    DatabaseList_comboBox.DisplayMember = "Value";
+        //    DatabaseList_comboBox.ValueMember = "Key";
 
-            this.DatabaseList_comboBox.SelectedIndexChanged += new EventHandler(DatabaseList_comboBox_SelectedIndexChanged);
+        //    this.DatabaseList_comboBox.SelectedIndexChanged += new EventHandler(DatabaseList_comboBox_SelectedIndexChanged);
 
-        }
+        //}
 
-        private void DatabaseList_comboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string DbName = (((KeyValuePair<int, string>)DatabaseList_comboBox.SelectedItem).Value).ToString();
+        //private void DatabaseList_comboBox_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    string DbName = (((KeyValuePair<int, string>)DatabaseList_comboBox.SelectedItem).Value).ToString();
+        //    SelectedDatabase = DbName;
+        //    List<string> AvailableTables = LoadAvailableTablesFromDb(DbName);
 
-            List<string> AvailableTables = LoadAvailableTablesFromDb(DbName);
-
-            foreach (var tableName in AvailableTables)
-            {
-                TableList_treeView.Nodes.Add(tableName);
-            }
-        }
+        //    foreach (var tableName in AvailableTables)
+        //    {
+        //        TableList_treeView.Nodes.Add(tableName);
+        //    }
+        //}
 
         private List<string> LoadAvailableTablesFromDb(string dbName)
         {
@@ -148,7 +167,7 @@ namespace Patch_Master.Forms
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             bool tableAlreadyAdded = false;
-            string DbName = (((KeyValuePair<int, string>)DatabaseList_comboBox.SelectedItem).Value).ToString();
+            string DbName = Requirements.SELECTEDDATABSENAME;
             string tableName = e.Node.Text;
 
             List<string> columnNameList = LoadAllColumns(DbName, tableName);
@@ -167,23 +186,62 @@ namespace Patch_Master.Forms
                 label.Location = new Point(availablecheckedListBoxCount * (10 + 100), 0);
 
                 CheckedListBox checkedListBox = new CheckedListBox();
-                checkedListBox.Name = tableName + "_checkedListBox";
+                checkedListBox.Name = tableName;
                 foreach (var column in columnNameList)
                 {
                     checkedListBox.Items.Add(column);
                 }
+                checkedListBox.ItemCheck += (s, e) => BeginInvoke((MethodInvoker)(() => CheckTableColumn(s, e)));
                 checkedListBox.Location = new Point(availablecheckedListBoxCount * (10 + 100), 30);
                 checkedListBox.Size = new Size(100, 150);
 
                 TableView_panel.Controls.Add(label);
                 TableView_panel.Controls.Add(checkedListBox);
+
+                AddedTableList.Add(tableName);
                 availablecheckedListBoxCount++; 
             }
-
+            if (availablecheckedListBoxCount>1)
+            {
+                AddJoins_button.Enabled = true;
+            }
 
         }
+        private void CheckTableColumn(object sender, ItemCheckEventArgs e)
+        {
 
-        private List<string> LoadAllColumns(string dbName, string tableName)
+            CheckedListBox btn = (CheckedListBox)sender;
+            string selectedTable = btn.AccessibilityObject.Name;
+
+            string selectedColumn = btn.SelectedItem.ToString();
+
+            string key = selectedTable + "&" + selectedColumn;
+
+            if (e.NewValue == CheckState.Checked)
+            {
+                SelectedColumnList.Add(key, selectedColumn);
+            }
+            else
+            {
+                SelectedColumnList.Remove(key);
+            }
+            //string AvailableQuery = Query_richTextBox.Text;
+
+                //if (AvailableQuery == null || AvailableQuery=="")
+                //{
+                //    string QuerySelect = "SELECT " + selectedTable + "." + selectedColumn;
+                //    Query_richTextBox.Text = QuerySelect;
+
+                //    string QueryFrom = "FROM " + selectedTable;
+                //    Query_richTextBox.Text += Environment.NewLine + QueryFrom;
+
+                //}
+                //else
+                //{
+                //    string AvailableText = Query_richTextBox.Text;
+                //}
+        }
+        public List<string> LoadAllColumns(string dbName, string tableName)
         {
             DbConnector dbContext = new DbConnector();
             List<string> columnList = new List<string>();
@@ -216,13 +274,165 @@ namespace Patch_Master.Forms
 
         private void btnSingleSelectCondition_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            SelectConditionBuilder selectConditionBuilder = new SelectConditionBuilder();
-            selectConditionBuilder.Show();
+            // this.Hide();
+            NameConditionBuilder conditionBuilder = new NameConditionBuilder();            
+            conditionBuilder.Show();
+            //SelectConditionBuilder selectConditionBuilder = new SelectConditionBuilder();
+            //selectConditionBuilder.Show();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void SaveQuerybutton_Click(object sender, EventArgs e)
         {
+            string QueryString = Query_richTextBox.Text;
+
+            if (!string.IsNullOrEmpty(QueryString))
+            {
+                SaveQuery(QueryString);
+            }
+            else
+            {
+                MessageBox.Show("Please build a query to save.", "Save Query");
+            }
+        }
+
+        private void SaveQuery(string queryString)
+        {
+            DbConnector dbContext = new DbConnector();
+
+            try
+            {
+                int QueryId = QueryTypeSelector.SAVEDQUERYID;
+                string query = SqlQueryStringReader.GetQueryStringById("SaveQueryString", "Queries");
+                List<SqlParameter> sqlParams = new List<SqlParameter>();
+                sqlParams.Add(new SqlParameter("QueryId", QueryId));
+                sqlParams.Add(new SqlParameter("QueryString", queryString));
+                dbContext.ExecuteQueryWithIDataReader(query, sqlParams);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            finally
+            {
+                dbContext.CloseConnection();
+                this.Dispose();
+
+                Application.OpenForms["QueryTypeSelector"].Close();
+                Application.OpenForms["AvailableQueries"].Close();
+
+                AvailableQueries availableQueries = new AvailableQueries();
+                availableQueries.Show();
+                
+            }
+        }
+
+        private void BuildQuery_button_Click(object sender, EventArgs e)
+        {
+            Query_richTextBox.Text = string.Empty;
+            var joinDetails = SelectJoinBuilder.joindetailList;
+            if (joinDetails.Count>0)
+            {
+                string joinstring = string.Empty;
+                if (SelectedColumnList.Count > 0)
+                {
+                    int i = 0;
+                    string SelectString = string.Empty;
+                    string FromString = "FROM";
+                    string TableString = string.Empty;
+                    
+                    foreach (var item in SelectedColumnList)
+                    {
+                        var column = item.Value;
+                        var table = (item.Key).Split('&')[0];
+
+                        if (i == 0)
+                        {
+                            SelectString = "SELECT " + table + "." + column;
+                            TableString = table;
+                        }
+                        else
+                        {
+                            SelectString += "," + table + "." + column;
+                        }
+                        i++;
+
+                    }
+                    foreach (var join in joinDetails)
+                    {
+
+                        joinstring += $"{join.JoinName} {join.TableTwo} ON {join.TableOne}.{join.TableOneColumn} = {join.TableTwo}.{join.TableTwoColumn} {Environment.NewLine}";
+
+                    }
+                    Query_richTextBox.Text = SelectString;
+                    Query_richTextBox.Text += Environment.NewLine + FromString + " " + TableString + Environment.NewLine;
+                    Query_richTextBox.Text += joinstring;
+
+
+                }
+            }
+            else
+            {
+                if (SelectedColumnList.Count > 0)
+                {
+                    int i = 0;
+                    string SelectString = string.Empty;
+                    string FromString = "FROM";
+                    string TableString = string.Empty;
+
+                    foreach (var item in SelectedColumnList)
+                    {
+                        var column = item.Value;
+                        var table = (item.Key).Split('&')[0];
+
+                        if (i == 0)
+                        {
+                            SelectString = "SELECT " + table + "." + column;
+                            TableString = table;
+                        }
+                        else
+                        {
+                            SelectString += "," + table + "." + column;
+                            string[] tableList = TableString.Split(',');
+
+                            if (!tableList.Contains(table))
+                            {
+                                TableString += "," + table;
+                            }
+                        }
+                        i++;
+                    }
+                    Query_richTextBox.Text = SelectString;
+                    Query_richTextBox.Text += Environment.NewLine + FromString + " " + TableString;
+
+                }
+            }
+
+        }
+
+        private void Clear_button_Click(object sender, EventArgs e)
+        {
+            availablecheckedListBoxCount = 0;
+            AddJoins_button.Enabled = false;
+            AddedTableList = new List<string>();
+            SelectedColumnList = new Dictionary<string, string>();
+            TableView_panel.Controls.Clear();
+            foreach (Control item in TableView_panel.Controls.OfType<CheckedListBox>())
+            {
+                TableView_panel.Controls.Remove(item);
+            }
+            foreach (Control item in TableView_panel.Controls.OfType<Label>())
+            {
+                TableView_panel.Controls.Remove(item);
+            }
+            Query_richTextBox.Text = string.Empty;
+        }
+
+        private void AddJoins_button_Click(object sender, EventArgs e)
+        {
+            SelectJoinBuilder selectJoinBuilder = new SelectJoinBuilder();
+            selectJoinBuilder.Show();
         }
     }
 }
