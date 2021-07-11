@@ -257,6 +257,7 @@
             this.cmbColumnName_1.Name = "cmbColumnName_1";
             this.cmbColumnName_1.Size = new System.Drawing.Size(159, 23);
             this.cmbColumnName_1.TabIndex = 0;
+            this.cmbColumnName_1.SelectedIndexChanged += new System.EventHandler(this.cmbColumnName_1_SelectedIndexChanged);
             // 
             // comTableName_1
             // 
@@ -270,6 +271,7 @@
             this.comTableName_1.Name = "comTableName_1";
             this.comTableName_1.Size = new System.Drawing.Size(161, 23);
             this.comTableName_1.TabIndex = 0;
+            this.comTableName_1.SelectedIndexChanged += new System.EventHandler(this.comTableName_1_SelectedIndexChanged);
             // 
             // cmbOpenBacket_1
             // 

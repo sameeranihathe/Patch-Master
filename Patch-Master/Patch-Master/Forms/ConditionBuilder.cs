@@ -1,8 +1,11 @@
 ﻿using Patch_Master.CustomElements;
+using Patch_Master.DbContext.Database;
+using Patch_Master.DbContext.QueryReader;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -21,11 +24,15 @@ namespace Patch_Master.Forms
         private void LoadTableList()
         {
             List<string> tableList = SelectQueryBuilder.AddedTableList;
+            CmbTable_1.Items.Clear();
             foreach (var table in tableList)
             {
-                tableList_listBox.Items.Add(table);
+                tableList_listBox.Items.Add(table);               
+                CmbTable_1.Items.Add(table);
+
             }
         }
+
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -77,6 +84,7 @@ namespace Patch_Master.Forms
             ReorderWhenAddingConditionRow(newGroupOrderNumber);
             conditionRowGenerator("AND", newGroupOrderNumber);
             
+            
         }
 
         private void conditionRowGenerator(String OperatorType,int newGroupOrderNumber)
@@ -100,7 +108,7 @@ namespace Patch_Master.Forms
                 }
             }
 
-            int GroupBoxSuffixValue = GroupBoxCountValue.Count > 0 ? GroupBoxCountValue.Max() + 1 : 1;
+            int GroupBoxSuffixValue = GroupBoxCountValue.Count > 0 ? GroupBoxCountValue.Max() + 1 : 1;// Ternary operator
             string PreviousControllerName = getGroupRowElementfromOrderNumber(newGroupOrderNumber - 1);
             int PreviousControllerLocationY = this.PanelConditionContainer.Controls[PreviousControllerName].Location.Y;
 
@@ -142,11 +150,17 @@ namespace Patch_Master.Forms
                 CmbTable.Name = "CmbTable_"+ GroupBoxSuffixValue;
                 CmbTable.Size = new System.Drawing.Size(121, 23);
                 CmbTable.TabIndex = 0;
-                CmbTable.Items.AddRange(new object[] {
-            "TableOne",
-            "TableTwo",
-            "TableThree",
-            "TableFour"});
+                CmbTable.SelectedIndexChanged += new System.EventHandler(this.CmbTable_1_SelectedIndexChanged);
+                List<string> tableList = SelectQueryBuilder.AddedTableList;
+                foreach (string TableName in tableList)
+                {
+                    CmbTable.Items.Add(TableName);
+                }
+            //    CmbTable.Items.AddRange(new object[] {
+            //"TableOne",
+            //"TableTwo",
+            //"TableThree",
+            //"TableFour"});
             }
 
             ComboBox CmbColumn = new ComboBox();
@@ -162,6 +176,7 @@ namespace Patch_Master.Forms
             "ColumnThree",
             "ColumnFour",
             "ColumnFive"});
+
             }
 
             Button BtnTCCondition1 = new Button();
@@ -542,6 +557,78 @@ namespace Patch_Master.Forms
                 }
             }
             return GroupBoxElementList;
+        }
+
+        private void tableList_listBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CmbTable_1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedDatbase = Requirements.SELECTEDDATABSENAME;
+            ComboBox TableSelectComboBox = sender as ComboBox;
+
+            if (TableSelectComboBox == null) // just to be on the safe side
+                return;
+
+            string GroupControllerName = "GroupConditionRow_" + TableSelectComboBox.Name.Split("_")[1].ToString();
+            string ControllerName = "CmbColumn_" + TableSelectComboBox.Name.Split("_")[1].ToString();
+            List<string> ColumnList = LoadAllColumns(selectedDatbase, TableSelectComboBox.SelectedItem.ToString());
+
+            customGroupBox customGroupBox = (customGroupBox)this.PanelConditionContainer.Controls[GroupControllerName];
+            ComboBox ColumnBox = (ComboBox)customGroupBox.Controls[ControllerName];
+            if (ColumnList != null && ColumnList.Count() > 0 && ColumnBox != null)
+            {
+                ColumnBox.Items.Clear();
+                foreach (string item in ColumnList)
+                {
+                    ColumnBox.Items.Add(item);
+                }
+            }
+           
+
+            // LoadAllColumns();
+        }
+        public List<string> LoadAllColumns(string dbName, string tableName)
+        {
+            DbConnector dbContext = new DbConnector();
+            List<string> columnList = new List<string>();
+            try
+            {
+                string queryString = SqlQueryStringReader.GetQueryStringById("LoadColumnList", "QueryBuilder");
+                List<SqlParameter> sqlParams = new List<SqlParameter>();
+                sqlParams.Add(new SqlParameter("DbName", dbName));
+                sqlParams.Add(new SqlParameter("Table", tableName));
+                var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
+                var reader = dataReaders[0];
+
+                while (reader.Read())
+                {
+                    var column = reader["ColumnName"].ToString();
+                    columnList.Add(column);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                dbContext.CloseConnection();
+            }
+            return columnList;
+        }
+
+        private void CmbColumn_1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textValue1_1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

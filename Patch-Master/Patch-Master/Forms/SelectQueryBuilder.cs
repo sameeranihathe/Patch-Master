@@ -275,7 +275,7 @@ namespace Patch_Master.Forms
         private void btnSingleSelectCondition_Click(object sender, EventArgs e)
         {
             // this.Hide();
-            ConditionBuilder conditionBuilder = new ConditionBuilder();
+            NameConditionBuilder conditionBuilder = new NameConditionBuilder();            
             conditionBuilder.Show();
             //SelectConditionBuilder selectConditionBuilder = new SelectConditionBuilder();
             //selectConditionBuilder.Show();

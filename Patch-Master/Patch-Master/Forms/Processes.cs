@@ -128,7 +128,7 @@ namespace Patch_Master.Forms
                 sqlParams.Add(new SqlParameter("ProcessName", ProcessName));
                 sqlParams.Add(new SqlParameter("ProcessDescription", ProcessDescription));
                 sqlParams.Add(new SqlParameter("CreatedBy", loggedUserId));
-                sqlParams.Add(new SqlParameter("CreatedUserName", loggedUserName));
+                //sqlParams.Add(new SqlParameter("CreatedUserName", loggedUserName));
                 var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
                 var reader = dataReaders[0];
                 int ProcessId = 0;
@@ -419,10 +419,12 @@ namespace Patch_Master.Forms
         private void btn_AddSubProcess_Click_1(object sender, EventArgs e)
         {
             string processId = dataGridView_Processws.SelectedRows[0].Cells[0].Value.ToString();
-            string subProcessDescription = dataGridView_Processws.SelectedRows[0].Cells[2].Value.ToString();
-            this.AddSubProcess(processId, subProcessDescription);
+            string subProcessName = textBoxSPName.Text.ToString();//dataGridView_Processws.SelectedRows[0].Cells[1].Value.ToString();
+            string subProcessDescription = textBoxSPDescription.Text.ToString(); //dataGridView_Processws.SelectedRows[0].Cells[2].Value.ToString();
+
+            this.AddSubProcess(processId, subProcessName, subProcessDescription);
         }
-        private void AddSubProcess(string processId, string subProcessName)
+        private void AddSubProcess(string processId, string subProcessName, string subProcessDescription)
         {
             DbConnector dbContext = new DbConnector();
 
@@ -433,7 +435,7 @@ namespace Patch_Master.Forms
                 sqlParams.Add(new SqlParameter("@SubProcessName", subProcessName));
                 sqlParams.Add(new SqlParameter("@ProcessId", processId));
                 sqlParams.Add(new SqlParameter("@CreatedBy", loggedUserId));
-                sqlParams.Add(new SqlParameter("@CreatedUserName", loggedUserName));
+                sqlParams.Add(new SqlParameter("@Description", subProcessDescription));
                 var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
                 var reader = dataReaders[0];
 

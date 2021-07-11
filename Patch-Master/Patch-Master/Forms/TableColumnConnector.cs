@@ -1,8 +1,11 @@
 ﻿using Patch_Master.CustomElements;
+using Patch_Master.DbContext.Database;
+using Patch_Master.DbContext.QueryReader;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,13 +20,23 @@ namespace Patch_Master.Forms
         public TableColumnConnector()
         {
             InitializeComponent();
+            LoadTableList();
         }
-
+        private void LoadTableList()
+        {
+            List<string> tableList = SelectQueryBuilder.AddedTableList;
+            comTableName_1.Items.Clear();
+            foreach (var table in tableList)
+            {
+                comTableName_1.Items.Add(table);
+            }
+        }
         public TableColumnConnector(string elementName, NameConditionBuilder conditionForm)
         {
             InitializeComponent();
             clickedElementName = elementName;
             ConditionGenerationForm = conditionForm;
+            LoadTableList();
             //conditionForm.
         }
 
@@ -211,12 +224,18 @@ namespace Patch_Master.Forms
             {
                 TableName_1.FormattingEnabled = true;
                 TableName_1.Name = "comTableName_"+ GroupBoxSuffixValue;
-                TableName_1.Items.AddRange(new object[] {
-            "Tab1",
-            "Tab2",
-            "Tab3"});
+                List<string> tableList = SelectQueryBuilder.AddedTableList;
+                foreach (string TableName in tableList)
+                {
+                    TableName_1.Items.Add(TableName);
+                }
+            //    TableName_1.Items.AddRange(new object[] {
+            //"Tab1",
+            //"Tab2",
+            //"Tab3"});
                 TableName_1.Size = new System.Drawing.Size(161, 23);
                 TableName_1.TabIndex = 0;
+                TableName_1.SelectedIndexChanged += new System.EventHandler(this.comTableName_1_SelectedIndexChanged);
             }
             ComboBox TableColumn = new ComboBox();
             {
@@ -576,5 +595,67 @@ namespace Patch_Master.Forms
             this.Hide();
             ConditionGenerationForm.Show();
         }
+
+        private void cmbColumnName_1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comTableName_1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedDatbase = Requirements.SELECTEDDATABSENAME;
+            ComboBox TableSelectComboBox = sender as ComboBox;
+
+            if (TableSelectComboBox == null) // just to be on the safe side
+                return;
+
+            string GroupControllerName = "TcGoupBox_" + TableSelectComboBox.Name.Split("_")[1].ToString();
+            string ControllerName = "cmbColumnName_" + TableSelectComboBox.Name.Split("_")[1].ToString();
+            List<string> ColumnList = LoadAllColumns(selectedDatbase, TableSelectComboBox.SelectedItem.ToString());
+
+            customGroupBox customGroupBox = (customGroupBox)this.ConditionContainerPanel.Controls[GroupControllerName];
+            ComboBox ColumnBox = (ComboBox)customGroupBox.Controls[ControllerName];
+            if (ColumnList != null && ColumnList.Count() > 0 && ColumnBox != null)
+            {
+                ColumnBox.Items.Clear();
+                foreach (string item in ColumnList)
+                {
+                    ColumnBox.Items.Add(item);
+                }
+            }
+
+        }
+
+        public List<string> LoadAllColumns(string dbName, string tableName)
+        {
+            DbConnector dbContext = new DbConnector();
+            List<string> columnList = new List<string>();
+            try
+            {
+                string queryString = SqlQueryStringReader.GetQueryStringById("LoadColumnList", "QueryBuilder");
+                List<SqlParameter> sqlParams = new List<SqlParameter>();
+                sqlParams.Add(new SqlParameter("DbName", dbName));
+                sqlParams.Add(new SqlParameter("Table", tableName));
+                var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
+                var reader = dataReaders[0];
+
+                while (reader.Read())
+                {
+                    var column = reader["ColumnName"].ToString();
+                    columnList.Add(column);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                dbContext.CloseConnection();
+            }
+            return columnList;
+        }
+
     }
 }
