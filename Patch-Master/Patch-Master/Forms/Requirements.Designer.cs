@@ -40,6 +40,8 @@ namespace Patch_Master.Forms
             this.Process_comboBox = new System.Windows.Forms.ComboBox();
             this.Process_label = new System.Windows.Forms.Label();
             this.DisplayRequirement_comboBox = new System.Windows.Forms.GroupBox();
+            this.buttonReturn = new System.Windows.Forms.Button();
+            this.checkBoxQueryformulated = new System.Windows.Forms.CheckBox();
             this.textBoxCreatedDate = new System.Windows.Forms.TextBox();
             this.textBoxCreatedUser = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -71,8 +73,6 @@ namespace Patch_Master.Forms
             this.RequiremetDescriptionView_label = new System.Windows.Forms.Label();
             this.RequirementName_label = new System.Windows.Forms.Label();
             this.AddReqGroupBox = new System.Windows.Forms.GroupBox();
-            this.checkBoxQueryformulated = new System.Windows.Forms.CheckBox();
-            this.buttonReturn = new System.Windows.Forms.Button();
             this.Requirements_groupBox.SuspendLayout();
             this.DisplayRequirement_comboBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Requirements_dataGridView)).BeginInit();
@@ -106,7 +106,6 @@ namespace Patch_Master.Forms
             this.comboBoxDatabase.Size = new System.Drawing.Size(231, 28);
             this.comboBoxDatabase.TabIndex = 9;
             this.comboBoxDatabase.SelectedIndexChanged += new System.EventHandler(this.Database_comboBox_SelectedIndexChanged);
-
             // 
             // labelDatabase
             // 
@@ -197,6 +196,26 @@ namespace Patch_Master.Forms
             this.DisplayRequirement_comboBox.Text = "Display Requirements";
             this.DisplayRequirement_comboBox.Visible = false;
             // 
+            // buttonReturn
+            // 
+            this.buttonReturn.Location = new System.Drawing.Point(754, 649);
+            this.buttonReturn.Name = "buttonReturn";
+            this.buttonReturn.Size = new System.Drawing.Size(102, 28);
+            this.buttonReturn.TabIndex = 21;
+            this.buttonReturn.Text = "Return";
+            this.buttonReturn.UseVisualStyleBackColor = true;
+            this.buttonReturn.Click += new System.EventHandler(this.buttonReturn_Click);
+            // 
+            // checkBoxQueryformulated
+            // 
+            this.checkBoxQueryformulated.AutoSize = true;
+            this.checkBoxQueryformulated.Location = new System.Drawing.Point(683, 395);
+            this.checkBoxQueryformulated.Name = "checkBoxQueryformulated";
+            this.checkBoxQueryformulated.Size = new System.Drawing.Size(150, 24);
+            this.checkBoxQueryformulated.TabIndex = 20;
+            this.checkBoxQueryformulated.Text = "Query Formulated";
+            this.checkBoxQueryformulated.UseVisualStyleBackColor = true;
+            // 
             // textBoxCreatedDate
             // 
             this.textBoxCreatedDate.Location = new System.Drawing.Point(683, 354);
@@ -250,6 +269,7 @@ namespace Patch_Master.Forms
             this.ButtonNewReq.TabIndex = 14;
             this.ButtonNewReq.Text = "New Req";
             this.ButtonNewReq.UseVisualStyleBackColor = true;
+            this.ButtonNewReq.Visible = false;
             this.ButtonNewReq.Click += new System.EventHandler(this.ButtonNewReq_Click);
             // 
             // buttonViewQueries
@@ -515,26 +535,6 @@ namespace Patch_Master.Forms
             this.AddReqGroupBox.TabStop = false;
             this.AddReqGroupBox.Text = "Add Requirments";
             this.AddReqGroupBox.Visible = false;
-            // 
-            // checkBoxQueryformulated
-            // 
-            this.checkBoxQueryformulated.AutoSize = true;
-            this.checkBoxQueryformulated.Location = new System.Drawing.Point(683, 395);
-            this.checkBoxQueryformulated.Name = "checkBoxQueryformulated";
-            this.checkBoxQueryformulated.Size = new System.Drawing.Size(150, 24);
-            this.checkBoxQueryformulated.TabIndex = 20;
-            this.checkBoxQueryformulated.Text = "Query Formulated";
-            this.checkBoxQueryformulated.UseVisualStyleBackColor = true;
-            // 
-            // buttonReturn
-            // 
-            this.buttonReturn.Location = new System.Drawing.Point(754, 649);
-            this.buttonReturn.Name = "buttonReturn";
-            this.buttonReturn.Size = new System.Drawing.Size(102, 28);
-            this.buttonReturn.TabIndex = 21;
-            this.buttonReturn.Text = "Return";
-            this.buttonReturn.UseVisualStyleBackColor = true;
-            this.buttonReturn.Click += new System.EventHandler(this.buttonReturn_Click);
             // 
             // Requirements
             // 

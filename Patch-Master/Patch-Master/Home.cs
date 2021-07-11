@@ -133,8 +133,9 @@ namespace Patch_Master
 
         private void FormulateQuery_Click(object sender, EventArgs e)
         {
-            SelectQueryBuilder selectQueryBuilder = new SelectQueryBuilder();
-            selectQueryBuilder.Show();
+            Requirements requirements = new Requirements();
+            Requirements.NavigatedFrom = "Formulate";
+            requirements.Show();
 
         }
 
