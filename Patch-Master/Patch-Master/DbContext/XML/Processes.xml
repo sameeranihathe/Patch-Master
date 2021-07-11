@@ -10,9 +10,9 @@
   </SqlQueryString>
 	
   <SqlQueryString Id="AddProcess">
-	  INSERT INTO PM_Processes(ProcessName,ProcessDescription,Status,CreatedBy,CreatedDate,CreatedUserName)
+	  INSERT INTO PM_Processes(ProcessName,ProcessDescription,Status,CreatedBy,CreatedDate)
 	  OUTPUT Inserted.ProcessId
-	  VALUES(@ProcessName,@ProcessDescription,1,@CreatedBy,GETDATE(),@CreatedUserName)
+	  VALUES(@ProcessName,@ProcessDescription,1,@CreatedBy,GETDATE())
   </SqlQueryString>
   <SqlQueryString Id="DeleteProcesses">
     UPDATE PM_SubProcesses
@@ -36,9 +36,9 @@
     WHERE SubProcessId in (@SubProcessIdList)
   </SqlQueryString>
   <SqlQueryString Id="AddSubProcess">
-	  INSERT INTO PM_SubProcesses(SubProcessName,Description,ProcessId,Status,CreatedDate,CreatedUserID,CreatedUserName)
-	  OUTPUT Inserted.SubProcessId
-	  VALUES(@SubProcessName,@Description,@ProcessId,1,GETDATE(),@CreatedBy,@CreatedUserName)
+    INSERT INTO PM_SubProcesses(SubProcessName,ProcessId,Status,CreatedDate,CreatedBy,Description)
+    OUTPUT Inserted.SubProcessId
+    VALUES(@SubProcessName,@ProcessId,1,GETDATE(),@CreatedBy,@Description)
   </SqlQueryString>
   <SqlQueryString Id="LoadAvailableProcessNameList">
     SELECT ProcessId,ProcessName

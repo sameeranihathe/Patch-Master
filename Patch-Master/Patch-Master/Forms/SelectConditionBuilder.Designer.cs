@@ -164,6 +164,7 @@ namespace Patch_Master.Forms
             this.cmbTable_1.Name = "cmbTable_1";
             this.cmbTable_1.Size = new System.Drawing.Size(127, 23);
             this.cmbTable_1.TabIndex = 0;
+            this.cmbTable_1.SelectedIndexChanged += new System.EventHandler(this.cmbTable_1_SelectedIndexChanged);
             // 
             // DeleteCondition_1
             // 
@@ -375,9 +376,9 @@ namespace Patch_Master.Forms
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(183, 422);
+            this.richTextBox1.Location = new System.Drawing.Point(171, 422);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(1020, 96);
+            this.richTextBox1.Size = new System.Drawing.Size(1043, 96);
             this.richTextBox1.TabIndex = 8;
             this.richTextBox1.Text = "";
             // 

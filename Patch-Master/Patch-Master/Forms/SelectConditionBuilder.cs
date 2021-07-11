@@ -86,8 +86,8 @@ namespace Patch_Master.Forms
             if (AddTableColumnBtn == null) // just to be on the safe side
                 return;
 
-            TableColumnConnector  tableColumnSelector = new TableColumnConnector(AddTableColumnBtn.Name.ToString());
-            tableColumnSelector.Show();
+            //TableColumnConnector  tableColumnSelector = new TableColumnConnector(AddTableColumnBtn.Name.ToString());
+            //tableColumnSelector.Show();
             
         }
 
@@ -257,7 +257,13 @@ namespace Patch_Master.Forms
             ConditionContainerPanel.Controls.Add(newgroupBox);
         }
 
-        
+        private void cmbTable_1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox TableSelectComboBox = sender as ComboBox;
+
+            if (TableSelectComboBox == null) // just to be on the safe side
+                return;
+        }
     }
 
 }
