@@ -433,7 +433,6 @@ namespace Patch_Master.Forms
                 string queryString = SqlQueryStringReader.GetQueryStringById("AddSubProcess", "Processes");
                 List<SqlParameter> sqlParams = new List<SqlParameter>();
                 sqlParams.Add(new SqlParameter("@SubProcessName", subProcessName));
-                sqlParams.Add(new SqlParameter("@Description", SubProcessDescription));
                 sqlParams.Add(new SqlParameter("@ProcessId", processId));
                 sqlParams.Add(new SqlParameter("@CreatedBy", loggedUserId));
                 sqlParams.Add(new SqlParameter("@Description", subProcessDescription));
