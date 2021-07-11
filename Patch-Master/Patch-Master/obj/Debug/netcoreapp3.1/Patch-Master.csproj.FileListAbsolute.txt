@@ -150,3 +150,6 @@ C:\Users\Dell Admin\Documents\Project Apps\GitHub\Patch-Master\Patch-Master\Patc
 C:\Users\Dell Admin\Documents\Project Apps\GitHub\Patch-Master\Patch-Master\Patch-Master\bin\Debug\netcoreapp3.1\zh-CHT\Microsoft.ReportViewer.WebForms.resources.dll
 C:\Users\Dell Admin\Documents\Project Apps\GitHub\Patch-Master\Patch-Master\Patch-Master\bin\Debug\netcoreapp3.1\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
 C:\Users\Dell Admin\Documents\Project Apps\GitHub\Patch-Master\Patch-Master\Patch-Master\obj\Debug\netcoreapp3.1\Patch-Master.csproj.AssemblyReference.cache
+C:\Users\Dell Admin\Documents\Project Apps\GitHub\Patch-Master\Patch-Master\Patch-Master\obj\Debug\netcoreapp3.1\Patch_Master.Forms.AvailableQueries.resources
+C:\Users\Dell Admin\Documents\Project Apps\GitHub\Patch-Master\Patch-Master\Patch-Master\obj\Debug\netcoreapp3.1\Patch_Master.Forms.ConditionBuilder.resources
+C:\Users\Dell Admin\Documents\Project Apps\GitHub\Patch-Master\Patch-Master\Patch-Master\obj\Debug\netcoreapp3.1\Patch_Master.Forms.SelectJoinBuilder.resources

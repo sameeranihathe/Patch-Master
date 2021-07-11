@@ -295,5 +295,9 @@ namespace Patch_Master.Forms
             return AvailableDatabases;
 
         }
+        private void buttonReturn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

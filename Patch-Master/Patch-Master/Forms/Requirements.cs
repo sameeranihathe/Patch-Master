@@ -20,6 +20,7 @@ namespace Patch_Master.Forms
         string roleName = string.Empty;
         int roleId = 0;
         int RequirmentID;
+        public static string NavigatedFrom="";
 
         public static string REQUIREMENTID = string.Empty; 
         public static string REQUIREMENTNAME = string.Empty;
@@ -66,7 +67,14 @@ namespace Patch_Master.Forms
             }
 
             #endregion
-
+            if (NavigatedFrom == "Formulate")
+            {
+                ButtonNewReq.Visible = false;
+            }
+            else
+            {
+                ButtonNewReq.Visible = true;
+            }
         }
         #region  Main Process 
         public Dictionary<int, string> LoadAvailableProcesses()
@@ -143,10 +151,7 @@ namespace Patch_Master.Forms
                 SubProcess_comboBox.DataSource = new BindingSource(null, null);
 
             }
-                
-
             //this.SubProcess_comboBox.SelectedIndexChanged += new EventHandler(SubProcess_comboBox_SelectedIndexChanged);
-
         }
         public Dictionary<int, string> LoadAvailableSubProcesses(string selectedProcessId)
         {
@@ -155,6 +160,7 @@ namespace Patch_Master.Forms
             Dictionary<int, string> AvailableSubProcesses = new Dictionary<int, string>();
             bool Status = true;
             try
+            
             {
 
                 string queryString = SqlQueryStringReader.GetQueryStringById("LoadAvailableSubProcesses", "Processes");
@@ -230,6 +236,13 @@ namespace Patch_Master.Forms
             }
             return AvailableDatabases;
         }
+        private void Database_comboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedDatabaseId = (((KeyValuePair<int, string>)comboBoxDatabase.SelectedItem).Key).ToString();
+            SELECTEDDATABSENAME = (((KeyValuePair<int, string>)comboBoxDatabase.SelectedItem).Value).ToString();
+            SELECTEDDATABASEID = selectedDatabaseId;
+
+        }
         #endregion
         #region Requirment 
         #region View Requirment 
@@ -274,6 +287,7 @@ namespace Patch_Master.Forms
                 sqlParams.Add(new SqlParameter("SubProcessId", SubprocessId));
                 sqlParams.Add(new SqlParameter("DB_Id", DatabaseID));
                 sqlParams.Add(new SqlParameter("Status", Convert.ToBoolean(Status)));
+                sqlParams.Add(new SqlParameter("NavigatedFrom", NavigatedFrom));
                 DataSet ds = dbContext.ExecuteQueryWithDataSet(queryString, sqlParams);
                 dt = ds.Tables[0];
             }
@@ -300,16 +314,30 @@ namespace Patch_Master.Forms
             textBoxCreatedUser.Text = Requirements_dataGridView.Rows[rowindex].Cells[5].Value.ToString();
             textBoxCreatedDate.Text = Requirements_dataGridView.Rows[rowindex].Cells[6].Value.ToString();
             checkBoxQueryformulated.Checked = Convert.ToBoolean(Requirements_dataGridView.Rows[rowindex].Cells[7].Value.ToString());
-            buttonModifyReq.Visible = true;
-            DeleteRequiremet_button.Visible = true;
-            if (checkBoxQueryformulated.Checked)
+            if (NavigatedFrom == "Formulate")
             {
+                buttonModifyReq.Visible = false;
+                DeleteRequiremet_button.Visible = false;
                 buttonViewQueries.Visible = true;
             }
             else
             {
-                buttonViewQueries.Visible = false;
+                
+                if (checkBoxQueryformulated.Checked)
+                {
+                    buttonViewQueries.Visible = true;
+                    buttonModifyReq.Visible = false;
+                    DeleteRequiremet_button.Visible = false;
+                }
+                else
+                {
+                    buttonViewQueries.Visible = false;
+                    buttonModifyReq.Visible = true;
+                    DeleteRequiremet_button.Visible = true;
+                }
             }
+           
+            
 
         }
         #endregion
@@ -539,66 +567,14 @@ namespace Patch_Master.Forms
                 
                 AvailableQueries availableQueries = new AvailableQueries();
                 availableQueries.Show();
-                //SetRequirementDetails(requirementName, requirementDescription);
-                //ViewSavedQueries(requirementId);
             }
         }
-        //private void ViewSavedQueries(string requirementId)
-        //{
-        //    DataTable dt = LoadQueries(requirementId);
-        //    if (dt.Rows.Count>0)
-        //    {
-        //        ViewRequirement_button.Enabled = false;
-        //        DisplayQueries_groupBox.Visible = true;
-        //        RequirementDetails_groupBox.Visible = true;
-
-        //        Queries_dataGridView.Columns.Clear();
-        //        Queries_dataGridView.DataSource = dt;
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("No available queries to display!", "Requirements");
-        //        return;
-        //    }
-        //}
-        private DataTable LoadQueries(string requirementId)
-        {
-            DbConnector dbContext = new DbConnector();
-            DataTable dt = new DataTable();
-            try
-            {
-                string queryString = SqlQueryStringReader.GetQueryStringById("LoadAvailableQueries", "Queries");
-                List<SqlParameter> sqlParams = new List<SqlParameter>();
-                sqlParams.Add(new SqlParameter("RequirementId", requirementId));
-                DataSet ds = dbContext.ExecuteQueryWithDataSet(queryString, sqlParams);
-                dt = ds.Tables[0];
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                dbContext.CloseConnection();
-
-            }
-
-            return dt;
-        }
-
         #endregion
         private void buttonReturn_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
-        private void Database_comboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string selectedDatabaseId = (((KeyValuePair<int, string>)comboBoxDatabase.SelectedItem).Key).ToString();
-            SELECTEDDATABSENAME = (((KeyValuePair<int, string>)comboBoxDatabase.SelectedItem).Value).ToString();
-            SELECTEDDATABASEID = selectedDatabaseId;
-
-        }
+       
 
 
     }

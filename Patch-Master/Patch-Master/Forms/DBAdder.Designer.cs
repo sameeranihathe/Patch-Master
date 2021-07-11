@@ -44,6 +44,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.SavedDBChecklist = new System.Windows.Forms.CheckedListBox();
             this.btnSaveDB = new System.Windows.Forms.Button();
+            this.buttonReturn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -207,7 +208,7 @@
             // 
             // btnSaveDB
             // 
-            this.btnSaveDB.Location = new System.Drawing.Point(824, 572);
+            this.btnSaveDB.Location = new System.Drawing.Point(657, 568);
             this.btnSaveDB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSaveDB.Name = "btnSaveDB";
             this.btnSaveDB.Size = new System.Drawing.Size(113, 43);
@@ -216,11 +217,22 @@
             this.btnSaveDB.UseVisualStyleBackColor = true;
             this.btnSaveDB.Click += new System.EventHandler(this.button2_Click);
             // 
+            // buttonReturn
+            // 
+            this.buttonReturn.Location = new System.Drawing.Point(826, 568);
+            this.buttonReturn.Name = "buttonReturn";
+            this.buttonReturn.Size = new System.Drawing.Size(94, 43);
+            this.buttonReturn.TabIndex = 5;
+            this.buttonReturn.Text = "Return";
+            this.buttonReturn.UseVisualStyleBackColor = true;
+            this.buttonReturn.Click += new System.EventHandler(this.buttonReturn_Click);
+            // 
             // DBAdder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(968, 631);
+            this.Controls.Add(this.buttonReturn);
             this.Controls.Add(this.btnSaveDB);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -257,6 +269,7 @@
         private System.Windows.Forms.CheckedListBox DatabaseCheckList;
         private System.Windows.Forms.CheckedListBox SavedDBChecklist;
         private System.Windows.Forms.CheckBox ConnectionIntregatedSecurity;
+        private System.Windows.Forms.Button buttonReturn;
         //private System.Windows.Forms.CheckedListBox dataBaseListCheckBox;
     }
 }

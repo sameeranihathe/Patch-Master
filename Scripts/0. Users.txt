@@ -1,0 +1,3 @@
+ALTER TABLE [dbo].[PM_Users]
+  ADD [AcceptanceStatus] bit ,
+ [Designation] varchar (50);

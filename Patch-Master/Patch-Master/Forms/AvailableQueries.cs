@@ -36,6 +36,17 @@ namespace Patch_Master.Forms
         }
         private void LoadSavedQueriesGrid()
         {
+            
+            if (Requirements.NavigatedFrom == "Formulate") 
+            {
+                AddQuery_button.Visible = true;
+                DeleteQuery_button.Visible = true;
+            }
+            else
+            {
+                AddQuery_button.Visible = false;
+                DeleteQuery_button.Visible = false;
+            }
             DataTable dt = LoadQueries(Requirements.REQUIREMENTID);
 
             SavedQueries_dataGridView.Columns.Clear();
@@ -110,6 +121,16 @@ namespace Patch_Master.Forms
                 dbContext.CloseConnection();
             }
             return Query;
+        }
+
+        private void DeleteQuery_button_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonReturn_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

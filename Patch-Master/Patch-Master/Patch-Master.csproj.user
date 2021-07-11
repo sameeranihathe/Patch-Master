@@ -28,6 +28,9 @@
     <Compile Update="Forms\QueryTypeSelector.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\Register.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\Requirements.cs">
       <SubType>Form</SubType>
     </Compile>

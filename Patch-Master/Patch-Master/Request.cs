@@ -136,6 +136,7 @@ namespace Patch_Master
         {
             DisplayRequirementGroupBox.Visible = true;
             this.ViewRequirements();
+            this.clear();
         }
         private void ViewRequirements()
         {
@@ -195,6 +196,15 @@ namespace Patch_Master
             this.CreateNewRequest(RequirmentDescription);
             RequestGroupBox.Visible = true;
         }
+        private void clear()
+        {
+            RequirementName_textBox.Text = string.Empty;
+            DatabaseTextBox.Text = string.Empty;
+            RequirementObjective_richTextBox.Text = string.Empty;
+            RequirementDescription_richTextBox.Text = string.Empty;
+            textBoxCreatedUser.Text = string.Empty;
+            textBoxCreatedDate.Text = string.Empty;
+        }
         #endregion
         #region Request 
         private void CreateNewRequest(String RequirmentDescription)
@@ -209,7 +219,7 @@ namespace Patch_Master
                 sqlParams.Add(new SqlParameter("RequirmentId", RequirmentID));
                 sqlParams.Add(new SqlParameter("RequirmentDescription", RequirmentDescription));
                 sqlParams.Add(new SqlParameter("LoginUser", loggedUserName));
-                sqlParams.Add(new SqlParameter("@LoginUserID", loggedUserId));
+                sqlParams.Add(new SqlParameter("LoginUserID", loggedUserId));
                 var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
 
                 var reader = dataReaders[0];

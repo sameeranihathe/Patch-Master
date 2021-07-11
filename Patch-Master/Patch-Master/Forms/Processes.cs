@@ -109,7 +109,7 @@ namespace Patch_Master.Forms
         private void button_SaveProcess_Click(object sender, EventArgs e)
         {
             string ProcessName = textBoxMPName.Text.ToString();
-            string ProcessDescription = textBoxMPName.Text.ToString();
+            string ProcessDescription = textBoxMPDesc.Text.ToString();
 
             string MessageDisplay = string.Empty;
             if (ProcessName == "")
@@ -433,6 +433,7 @@ namespace Patch_Master.Forms
                 string queryString = SqlQueryStringReader.GetQueryStringById("AddSubProcess", "Processes");
                 List<SqlParameter> sqlParams = new List<SqlParameter>();
                 sqlParams.Add(new SqlParameter("@SubProcessName", subProcessName));
+                sqlParams.Add(new SqlParameter("@Description", SubProcessDescription));
                 sqlParams.Add(new SqlParameter("@ProcessId", processId));
                 sqlParams.Add(new SqlParameter("@CreatedBy", loggedUserId));
                 sqlParams.Add(new SqlParameter("@Description", subProcessDescription));

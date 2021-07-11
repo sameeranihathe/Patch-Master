@@ -22,6 +22,7 @@ namespace Patch_Master.Forms
         {
             string usernme = textBox_UserName.Text.ToString();
             string password = textBox_Password.Text.ToString();
+            bool Accepted=false;
             if (usernme=="")
             {
                 label_errorMessage.Visible = true;
@@ -58,16 +59,17 @@ namespace Patch_Master.Forms
             {
 
                 Home.loggedUserId = Convert.ToInt32(reader["User_Id"]);
-                Home.Userlogged = Convert.ToBoolean(reader["Authenticated"]);
+                Home.Userlogged = Convert.ToBoolean(reader["Authenticated"]); 
                 Home.UserName = reader["Username"].ToString();
                 Home.FirstName = reader["First_Name"].ToString();
                 Home.Role = reader["RoleName"].ToString();
                 Home.RoleId = Convert.ToInt32(reader["RoleId"]);
+                Accepted = Convert.ToBoolean(reader["Accepted"]);
             }
 
             dbContext.CloseConnection();
 
-            if (Home.Userlogged)
+            if (Home.Userlogged && Accepted)
             {
                 label_errorMessage.Text = "Login Successfull.";
                 Home newHome = new Home();
@@ -79,7 +81,7 @@ namespace Patch_Master.Forms
             else
             {
                 label_errorMessage.Visible = true;
-                label_errorMessage.Text = "Incorrect Username or Password.";
+                label_errorMessage.Text = "You are Not Beign Accepted or You have Input an Incorrect Username or Password.";
                 return;
 
             }
@@ -88,6 +90,12 @@ namespace Patch_Master.Forms
         private void button_Cancel_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.Application.ExitThread();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Register register = new Register();
+            register.Show();
         }
     }
 }
