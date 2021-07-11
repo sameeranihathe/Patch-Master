@@ -350,6 +350,7 @@ namespace Patch_Master.Forms
             this.AddCondition.TabIndex = 5;
             this.AddCondition.Text = "Add Condition";
             this.AddCondition.UseVisualStyleBackColor = true;
+            this.AddCondition.Click += new System.EventHandler(this.AddCondition_Click);
             // 
             // Close
             // 

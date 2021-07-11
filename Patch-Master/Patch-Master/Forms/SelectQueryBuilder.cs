@@ -408,6 +408,13 @@ namespace Patch_Master.Forms
 
                 }
             }
+            string conditionstring = NameConditionBuilder.CONDITIONSTRING;
+            if (!string.IsNullOrEmpty(conditionstring))
+            {
+                conditionstring = $"WHERE {conditionstring}";
+
+                Query_richTextBox.Text += Environment.NewLine + conditionstring;
+            }
 
         }
 
