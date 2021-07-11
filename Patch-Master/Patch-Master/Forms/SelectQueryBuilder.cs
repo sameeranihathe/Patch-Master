@@ -441,5 +441,10 @@ namespace Patch_Master.Forms
             SelectJoinBuilder selectJoinBuilder = new SelectJoinBuilder();
             selectJoinBuilder.Show();
         }
+
+        private void Validate_button_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

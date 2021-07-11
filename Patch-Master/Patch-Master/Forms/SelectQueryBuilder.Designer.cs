@@ -38,6 +38,7 @@
             this.TableView_panel = new System.Windows.Forms.Panel();
             this.Clear_button = new System.Windows.Forms.Button();
             this.AddJoins_button = new System.Windows.Forms.Button();
+            this.Validate_button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -53,7 +54,7 @@
             // 
             this.Query_richTextBox.Location = new System.Drawing.Point(282, 324);
             this.Query_richTextBox.Name = "Query_richTextBox";
-            this.Query_richTextBox.Size = new System.Drawing.Size(532, 143);
+            this.Query_richTextBox.Size = new System.Drawing.Size(549, 143);
             this.Query_richTextBox.TabIndex = 1;
             this.Query_richTextBox.Text = "";
             // 
@@ -113,7 +114,7 @@
             // 
             // Clear_button
             // 
-            this.Clear_button.Location = new System.Drawing.Point(667, 476);
+            this.Clear_button.Location = new System.Drawing.Point(586, 476);
             this.Clear_button.Name = "Clear_button";
             this.Clear_button.Size = new System.Drawing.Size(75, 23);
             this.Clear_button.TabIndex = 14;
@@ -132,11 +133,22 @@
             this.AddJoins_button.UseVisualStyleBackColor = true;
             this.AddJoins_button.Click += new System.EventHandler(this.AddJoins_button_Click);
             // 
+            // Validate_button
+            // 
+            this.Validate_button.Location = new System.Drawing.Point(667, 476);
+            this.Validate_button.Name = "Validate_button";
+            this.Validate_button.Size = new System.Drawing.Size(75, 23);
+            this.Validate_button.TabIndex = 16;
+            this.Validate_button.Text = "Validate";
+            this.Validate_button.UseVisualStyleBackColor = true;
+            this.Validate_button.Click += new System.EventHandler(this.Validate_button_Click);
+            // 
             // SelectQueryBuilder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(866, 511);
+            this.Controls.Add(this.Validate_button);
             this.Controls.Add(this.AddJoins_button);
             this.Controls.Add(this.Clear_button);
             this.Controls.Add(this.TableView_panel);
@@ -167,5 +179,6 @@
         private System.Windows.Forms.RichTextBox Query_richTextBox;
         private System.Windows.Forms.Button Clear_button;
         private System.Windows.Forms.Button AddJoins_button;
+        private System.Windows.Forms.Button Validate_button;
     }
 }
