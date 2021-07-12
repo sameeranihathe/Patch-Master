@@ -32,4 +32,11 @@
     SET QueryString=@QueryString
     WHERE QueryId= @QueryId AND Status=1
   </SqlQueryString>
+  
+  <SqlQueryString Id="CheckQueryValidation">
+    USE [??Database]
+    SET NOEXEC ON;
+    ??Query
+    SET NOEXEC OFF;
+  </SqlQueryString>
 </SqlQueryStrings>

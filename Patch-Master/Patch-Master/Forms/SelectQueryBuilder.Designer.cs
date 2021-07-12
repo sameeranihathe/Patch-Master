@@ -44,7 +44,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(282, 73);
+            this.label1.Location = new System.Drawing.Point(273, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(127, 15);
             this.label1.TabIndex = 0;
@@ -52,7 +52,7 @@
             // 
             // Query_richTextBox
             // 
-            this.Query_richTextBox.Location = new System.Drawing.Point(282, 324);
+            this.Query_richTextBox.Location = new System.Drawing.Point(273, 265);
             this.Query_richTextBox.Name = "Query_richTextBox";
             this.Query_richTextBox.Size = new System.Drawing.Size(549, 143);
             this.Query_richTextBox.TabIndex = 1;
@@ -60,16 +60,16 @@
             // 
             // TableList_treeView
             // 
-            this.TableList_treeView.Location = new System.Drawing.Point(23, 114);
+            this.TableList_treeView.Location = new System.Drawing.Point(23, 50);
             this.TableList_treeView.Name = "TableList_treeView";
-            this.TableList_treeView.Size = new System.Drawing.Size(197, 358);
+            this.TableList_treeView.Size = new System.Drawing.Size(180, 358);
             this.TableList_treeView.TabIndex = 2;
             this.TableList_treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 73);
+            this.label2.Location = new System.Drawing.Point(23, 18);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(82, 15);
             this.label2.TabIndex = 5;
@@ -87,7 +87,8 @@
             // 
             // btnSingleSelectCondition
             // 
-            this.btnSingleSelectCondition.Location = new System.Drawing.Point(622, 61);
+            this.btnSingleSelectCondition.Enabled = false;
+            this.btnSingleSelectCondition.Location = new System.Drawing.Point(619, 18);
             this.btnSingleSelectCondition.Name = "btnSingleSelectCondition";
             this.btnSingleSelectCondition.Size = new System.Drawing.Size(100, 23);
             this.btnSingleSelectCondition.TabIndex = 11;
@@ -97,7 +98,7 @@
             // 
             // BuildQuery_button
             // 
-            this.BuildQuery_button.Location = new System.Drawing.Point(728, 61);
+            this.BuildQuery_button.Location = new System.Drawing.Point(725, 18);
             this.BuildQuery_button.Name = "BuildQuery_button";
             this.BuildQuery_button.Size = new System.Drawing.Size(86, 23);
             this.BuildQuery_button.TabIndex = 12;
@@ -107,7 +108,7 @@
             // 
             // TableView_panel
             // 
-            this.TableView_panel.Location = new System.Drawing.Point(282, 114);
+            this.TableView_panel.Location = new System.Drawing.Point(273, 50);
             this.TableView_panel.Name = "TableView_panel";
             this.TableView_panel.Size = new System.Drawing.Size(549, 192);
             this.TableView_panel.TabIndex = 13;
@@ -125,7 +126,7 @@
             // AddJoins_button
             // 
             this.AddJoins_button.Enabled = false;
-            this.AddJoins_button.Location = new System.Drawing.Point(541, 61);
+            this.AddJoins_button.Location = new System.Drawing.Point(538, 18);
             this.AddJoins_button.Name = "AddJoins_button";
             this.AddJoins_button.Size = new System.Drawing.Size(75, 23);
             this.AddJoins_button.TabIndex = 15;
