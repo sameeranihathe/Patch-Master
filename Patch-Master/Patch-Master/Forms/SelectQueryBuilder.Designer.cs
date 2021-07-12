@@ -39,12 +39,13 @@
             this.Clear_button = new System.Windows.Forms.Button();
             this.AddJoins_button = new System.Windows.Forms.Button();
             this.Validate_button = new System.Windows.Forms.Button();
+            this.ValidateQuery_button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(273, 18);
+            this.label1.Location = new System.Drawing.Point(282, 73);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(127, 15);
             this.label1.TabIndex = 0;
@@ -52,24 +53,24 @@
             // 
             // Query_richTextBox
             // 
-            this.Query_richTextBox.Location = new System.Drawing.Point(273, 265);
+            this.Query_richTextBox.Location = new System.Drawing.Point(374, 345);
             this.Query_richTextBox.Name = "Query_richTextBox";
-            this.Query_richTextBox.Size = new System.Drawing.Size(549, 143);
+            this.Query_richTextBox.Size = new System.Drawing.Size(769, 115);
             this.Query_richTextBox.TabIndex = 1;
             this.Query_richTextBox.Text = "";
             // 
             // TableList_treeView
             // 
-            this.TableList_treeView.Location = new System.Drawing.Point(23, 50);
+            this.TableList_treeView.Location = new System.Drawing.Point(23, 114);
             this.TableList_treeView.Name = "TableList_treeView";
-            this.TableList_treeView.Size = new System.Drawing.Size(180, 358);
+            this.TableList_treeView.Size = new System.Drawing.Size(280, 358);
             this.TableList_treeView.TabIndex = 2;
             this.TableList_treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 18);
+            this.label2.Location = new System.Drawing.Point(23, 73);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(82, 15);
             this.label2.TabIndex = 5;
@@ -77,7 +78,7 @@
             // 
             // SaveQuery_button
             // 
-            this.SaveQuery_button.Location = new System.Drawing.Point(748, 476);
+            this.SaveQuery_button.Location = new System.Drawing.Point(834, 476);
             this.SaveQuery_button.Name = "SaveQuery_button";
             this.SaveQuery_button.Size = new System.Drawing.Size(83, 23);
             this.SaveQuery_button.TabIndex = 7;
@@ -87,10 +88,9 @@
             // 
             // btnSingleSelectCondition
             // 
-            this.btnSingleSelectCondition.Enabled = false;
-            this.btnSingleSelectCondition.Location = new System.Drawing.Point(619, 18);
+            this.btnSingleSelectCondition.Location = new System.Drawing.Point(622, 61);
             this.btnSingleSelectCondition.Name = "btnSingleSelectCondition";
-            this.btnSingleSelectCondition.Size = new System.Drawing.Size(100, 23);
+            this.btnSingleSelectCondition.Size = new System.Drawing.Size(136, 23);
             this.btnSingleSelectCondition.TabIndex = 11;
             this.btnSingleSelectCondition.Text = "Add Conditions";
             this.btnSingleSelectCondition.UseVisualStyleBackColor = true;
@@ -98,7 +98,7 @@
             // 
             // BuildQuery_button
             // 
-            this.BuildQuery_button.Location = new System.Drawing.Point(725, 18);
+            this.BuildQuery_button.Location = new System.Drawing.Point(772, 61);
             this.BuildQuery_button.Name = "BuildQuery_button";
             this.BuildQuery_button.Size = new System.Drawing.Size(86, 23);
             this.BuildQuery_button.TabIndex = 12;
@@ -108,14 +108,14 @@
             // 
             // TableView_panel
             // 
-            this.TableView_panel.Location = new System.Drawing.Point(273, 50);
+            this.TableView_panel.Location = new System.Drawing.Point(374, 114);
             this.TableView_panel.Name = "TableView_panel";
-            this.TableView_panel.Size = new System.Drawing.Size(549, 192);
+            this.TableView_panel.Size = new System.Drawing.Size(762, 225);
             this.TableView_panel.TabIndex = 13;
             // 
             // Clear_button
             // 
-            this.Clear_button.Location = new System.Drawing.Point(586, 476);
+            this.Clear_button.Location = new System.Drawing.Point(667, 476);
             this.Clear_button.Name = "Clear_button";
             this.Clear_button.Size = new System.Drawing.Size(75, 23);
             this.Clear_button.TabIndex = 14;
@@ -126,7 +126,7 @@
             // AddJoins_button
             // 
             this.AddJoins_button.Enabled = false;
-            this.AddJoins_button.Location = new System.Drawing.Point(538, 18);
+            this.AddJoins_button.Location = new System.Drawing.Point(541, 61);
             this.AddJoins_button.Name = "AddJoins_button";
             this.AddJoins_button.Size = new System.Drawing.Size(75, 23);
             this.AddJoins_button.TabIndex = 15;
@@ -136,20 +136,27 @@
             // 
             // Validate_button
             // 
-            this.Validate_button.Location = new System.Drawing.Point(667, 476);
+            this.Validate_button.Location = new System.Drawing.Point(0, 0);
             this.Validate_button.Name = "Validate_button";
             this.Validate_button.Size = new System.Drawing.Size(75, 23);
-            this.Validate_button.TabIndex = 16;
-            this.Validate_button.Text = "Validate";
-            this.Validate_button.UseVisualStyleBackColor = true;
-            this.Validate_button.Click += new System.EventHandler(this.Validate_button_Click);
+            this.Validate_button.TabIndex = 0;
+            // 
+            // ValidateQuery_button1
+            // 
+            this.ValidateQuery_button1.Location = new System.Drawing.Point(748, 476);
+            this.ValidateQuery_button1.Name = "ValidateQuery_button1";
+            this.ValidateQuery_button1.Size = new System.Drawing.Size(75, 23);
+            this.ValidateQuery_button1.TabIndex = 16;
+            this.ValidateQuery_button1.Text = "Validate Query";
+            this.ValidateQuery_button1.UseVisualStyleBackColor = true;
+            this.ValidateQuery_button1.Click += new System.EventHandler(this.ValidateQuery_button1_Click);
             // 
             // SelectQueryBuilder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(866, 511);
-            this.Controls.Add(this.Validate_button);
+            this.ClientSize = new System.Drawing.Size(1181, 511);
+            this.Controls.Add(this.ValidateQuery_button1);
             this.Controls.Add(this.AddJoins_button);
             this.Controls.Add(this.Clear_button);
             this.Controls.Add(this.TableView_panel);
@@ -181,5 +188,6 @@
         private System.Windows.Forms.Button Clear_button;
         private System.Windows.Forms.Button AddJoins_button;
         private System.Windows.Forms.Button Validate_button;
+        private System.Windows.Forms.Button ValidateQuery_button1;
     }
 }

@@ -113,7 +113,6 @@ namespace Patch_Master.Forms
                 while (reader.Read())
                 {
                     var TableName = reader["TableName"].ToString();
-
                     AvailableTableList.Add(TableName);
                 }
 
@@ -185,7 +184,9 @@ namespace Patch_Master.Forms
                 Label label = new Label();
                 label.Name = tableName + "_label";
                 label.Text = tableName;
-                label.Location = new Point(availablecheckedListBoxCount * (10 + 100), 0);
+                label.Location = new Point(availablecheckedListBoxCount * (10 + 250), 0);
+                label.Size = new Size(100, 20);
+                label.AutoSize = true;
 
                 CheckedListBox checkedListBox = new CheckedListBox();
                 checkedListBox.Name = tableName;
@@ -194,8 +195,8 @@ namespace Patch_Master.Forms
                     checkedListBox.Items.Add(column);
                 }
                 checkedListBox.ItemCheck += (s, e) => BeginInvoke((MethodInvoker)(() => CheckTableColumn(s, e)));
-                checkedListBox.Location = new Point(availablecheckedListBoxCount * (10 + 100), 30);
-                checkedListBox.Size = new Size(100, 150);
+                checkedListBox.Location = new Point(availablecheckedListBoxCount * (10 + 250), 30);
+                checkedListBox.Size = new Size(250, 250);
 
                 TableView_panel.Controls.Add(label);
                 TableView_panel.Controls.Add(checkedListBox);
@@ -448,7 +449,7 @@ namespace Patch_Master.Forms
             selectJoinBuilder.Show();
         }
 
-        private void Validate_button_Click(object sender, EventArgs e)
+        private void ValidateQuery_button1_Click(object sender, EventArgs e)
         {
             DbConnector dbContext = new DbConnector();
             queryValidated = true;
