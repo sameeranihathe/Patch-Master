@@ -15,10 +15,13 @@ namespace Patch_Master.Forms
 {
     public partial class NameConditionBuilder : Form
     {
+        public static string CONDITIONSTRING = string.Empty;
         public NameConditionBuilder()
         {
             InitializeComponent();
             LoadTableList();
+
+            CONDITIONSTRING = string.Empty;
         }
 
         private void LoadTableList()
@@ -629,6 +632,20 @@ namespace Patch_Master.Forms
         private void textValue1_1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void AddCondition_Click(object sender, EventArgs e)
+        {
+            string condition = ConditionBox.Text.ToString();
+
+            if (!string.IsNullOrEmpty(condition))
+            {
+                CONDITIONSTRING = condition;
+            }
+            else
+            {
+                MessageBox.Show("No condition created", "Conditions");
+            }
         }
     }
 }

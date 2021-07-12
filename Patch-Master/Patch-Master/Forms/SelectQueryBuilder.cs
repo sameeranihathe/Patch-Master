@@ -25,6 +25,8 @@ namespace Patch_Master.Forms
 
         int availablecheckedListBoxCount = 0;
 
+        bool queryValidated = true;
+
         Dictionary<string, string> SelectedColumnList = new Dictionary<string, string>();
         public static List<String> AddedTableList = new List<string>();
         public SelectQueryBuilder()
@@ -200,6 +202,10 @@ namespace Patch_Master.Forms
 
                 AddedTableList.Add(tableName);
                 availablecheckedListBoxCount++; 
+            }
+            if (availablecheckedListBoxCount>0)
+            {
+                btnSingleSelectCondition.Enabled = true;
             }
             if (availablecheckedListBoxCount>1)
             {
@@ -408,6 +414,13 @@ namespace Patch_Master.Forms
 
                 }
             }
+            string conditionstring = NameConditionBuilder.CONDITIONSTRING;
+            if (!string.IsNullOrEmpty(conditionstring))
+            {
+                conditionstring = $"WHERE {conditionstring}";
+
+                Query_richTextBox.Text += conditionstring;
+            }
 
         }
 
@@ -433,6 +446,45 @@ namespace Patch_Master.Forms
         {
             SelectJoinBuilder selectJoinBuilder = new SelectJoinBuilder();
             selectJoinBuilder.Show();
+        }
+
+        private void Validate_button_Click(object sender, EventArgs e)
+        {
+            DbConnector dbContext = new DbConnector();
+            queryValidated = true;
+            try
+            {
+                string Query = Query_richTextBox.Text;
+                if (!string.IsNullOrEmpty(Query))
+                {
+                    string query = SqlQueryStringReader.GetQueryStringById("CheckQueryValidation", "Queries");
+                    List<SqlParameter> sqlParams = new List<SqlParameter>();
+                    sqlParams.Add(new SqlParameter("Query", Query));
+                    sqlParams.Add(new SqlParameter("Database", Requirements.SELECTEDDATABSENAME.ToString()));
+                    dbContext.ExecuteQueryWithIDataReader(query, sqlParams);
+
+                }
+                else
+                {
+                    MessageBox.Show("No built query available!", "Validate Query");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                queryValidated = false;
+                MessageBox.Show(ex.Message.ToString(), "Validate Query");
+            }
+            //finally
+            //{
+            //    dbContext.CloseConnection();
+            //}
+
+            if (queryValidated)
+            {
+                MessageBox.Show("Query successfully validated!", "Validate Query");
+            }
+            dbContext.CloseConnection();
         }
     }
 }
