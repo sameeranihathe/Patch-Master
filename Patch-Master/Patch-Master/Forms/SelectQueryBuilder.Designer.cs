@@ -38,11 +38,13 @@
             this.TableView_panel = new System.Windows.Forms.Panel();
             this.Clear_button = new System.Windows.Forms.Button();
             this.AddJoins_button = new System.Windows.Forms.Button();
+            this.Validate_button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+
             this.label1.Location = new System.Drawing.Point(322, 97);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(159, 20);
@@ -51,6 +53,7 @@
             // 
             // Query_richTextBox
             // 
+
             this.Query_richTextBox.Location = new System.Drawing.Point(427, 460);
             this.Query_richTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Query_richTextBox.Name = "Query_richTextBox";
@@ -60,6 +63,7 @@
             // 
             // TableList_treeView
             // 
+
             this.TableList_treeView.Location = new System.Drawing.Point(26, 152);
             this.TableList_treeView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TableList_treeView.Name = "TableList_treeView";
@@ -70,6 +74,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
+
             this.label2.Location = new System.Drawing.Point(26, 97);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(106, 20);
@@ -89,6 +94,7 @@
             // 
             // btnSingleSelectCondition
             // 
+
             this.btnSingleSelectCondition.Location = new System.Drawing.Point(711, 81);
             this.btnSingleSelectCondition.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSingleSelectCondition.Name = "btnSingleSelectCondition";
@@ -100,8 +106,10 @@
             // 
             // BuildQuery_button
             // 
+
             this.BuildQuery_button.Location = new System.Drawing.Point(882, 81);
             this.BuildQuery_button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+
             this.BuildQuery_button.Name = "BuildQuery_button";
             this.BuildQuery_button.Size = new System.Drawing.Size(98, 31);
             this.BuildQuery_button.TabIndex = 12;
@@ -111,6 +119,7 @@
             // 
             // TableView_panel
             // 
+
             this.TableView_panel.Location = new System.Drawing.Point(427, 152);
             this.TableView_panel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TableView_panel.Name = "TableView_panel";
@@ -119,6 +128,7 @@
             // 
             // Clear_button
             // 
+
             this.Clear_button.Location = new System.Drawing.Point(762, 635);
             this.Clear_button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Clear_button.Name = "Clear_button";
@@ -131,6 +141,7 @@
             // AddJoins_button
             // 
             this.AddJoins_button.Enabled = false;
+
             this.AddJoins_button.Location = new System.Drawing.Point(618, 81);
             this.AddJoins_button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.AddJoins_button.Name = "AddJoins_button";
@@ -139,6 +150,16 @@
             this.AddJoins_button.Text = "Add Joins";
             this.AddJoins_button.UseVisualStyleBackColor = true;
             this.AddJoins_button.Click += new System.EventHandler(this.AddJoins_button_Click);
+            // 
+            // Validate_button
+            // 
+            this.Validate_button.Location = new System.Drawing.Point(667, 476);
+            this.Validate_button.Name = "Validate_button";
+            this.Validate_button.Size = new System.Drawing.Size(75, 23);
+            this.Validate_button.TabIndex = 16;
+            this.Validate_button.Text = "Validate";
+            this.Validate_button.UseVisualStyleBackColor = true;
+            this.Validate_button.Click += new System.EventHandler(this.Validate_button_Click);
             // 
             // SelectQueryBuilder
             // 
@@ -176,5 +197,6 @@
         private System.Windows.Forms.RichTextBox Query_richTextBox;
         private System.Windows.Forms.Button Clear_button;
         private System.Windows.Forms.Button AddJoins_button;
+        private System.Windows.Forms.Button Validate_button;
     }
 }
