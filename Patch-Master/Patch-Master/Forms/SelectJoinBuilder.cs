@@ -31,7 +31,7 @@ namespace Patch_Master.Forms
         {
             Panel panel = new Panel();
             panel.Name = "JoinPanel_" + i;
-            panel.Size = new Size(750, 75);
+            panel.Size = new Size(900, 75);
             panel.Location = new Point(10, i*(75 + 10));
 
             Label label1 = new Label();
@@ -42,6 +42,7 @@ namespace Patch_Master.Forms
             ComboBox comboBox1 = new ComboBox();
             comboBox1.Name = "TableList1_" + i;
             comboBox1.Location = new Point(10, 25);
+            comboBox1.Size = new Size(180, 28);
             foreach (var item in addedTableList)
             {
                 comboBox1.Items.Add(item);
@@ -51,24 +52,26 @@ namespace Patch_Master.Forms
 
             Label label2 = new Label();
             label2.Text = "Column";
-            label2.Location = new Point(130);
+            label2.Location = new Point(190);
             panel.Controls.Add(label2);
 
             ComboBox comboBox2 = new ComboBox();
             comboBox2.Name = "ColumnTableList1_" + i;
-            comboBox2.Location = new Point(130, 25);
+            comboBox2.Location = new Point(190, 25);
+            comboBox2.Size = new Size(180, 28);
             comboBox2.SelectedIndexChanged += new EventHandler(ColumnList_SelectdIndexChanged);
            
             panel.Controls.Add(comboBox2);
 
             Label label5 = new Label();
             label5.Text = "Join Type";
-            label5.Location = new Point(300);
+            label5.Location = new Point(370);
             panel.Controls.Add(label5);
 
             ComboBox comboBox5 = new ComboBox();
             comboBox5.Name = "JoinType_" + i;
-            comboBox5.Location = new Point(300, 25);
+            comboBox5.Location = new Point(370, 25);
+            comboBox5.Size = new Size(150, 28);
             comboBox5.SelectedIndexChanged += new EventHandler(JoinList__SelectedIndexChanged);
 
             comboBox5.Items.Add("Full Join");
@@ -79,12 +82,13 @@ namespace Patch_Master.Forms
 
             Label label3 = new Label();
             label3.Text = "Table";
-            label3.Location = new Point(450);
+            label3.Location = new Point(520);
             panel.Controls.Add(label3);
 
             ComboBox comboBox3 = new ComboBox();
             comboBox3.Name = "TableList2_" + i;
-            comboBox3.Location = new Point(450, 25);
+            comboBox3.Location = new Point(520, 25);
+            comboBox3.Size = new Size(180, 28);
             foreach (var item in addedTableList)
             {
                 comboBox3.Items.Add(item);
@@ -94,12 +98,13 @@ namespace Patch_Master.Forms
 
             Label label4 = new Label();
             label4.Text = "Column";
-            label4.Location = new Point(570);
+            label4.Location = new Point(700);
             panel.Controls.Add(label4);
 
             ComboBox comboBox4 = new ComboBox();
             comboBox4.Name = "ColumnTableList2_" + i;
-            comboBox4.Location = new Point(570, 25); 
+            comboBox4.Location = new Point(700, 25);
+            comboBox4.Size = new Size(180, 28);
             comboBox4.SelectedIndexChanged += new EventHandler(ColumnList_SelectdIndexChanged);
 
             panel.Controls.Add(comboBox4);

@@ -17,12 +17,13 @@
     WHERE Status=@Status
   </SqlQueryString>
   <SqlQueryString Id="LoadAvailableTables">
-    USE [??DbName]
-    SELECT
-    TABLE_NAME
-    AS TableName
-    FROM
-    information_schema.tables;
+	  USE [??DbName]
+	  SELECT
+	  TABLE_NAME
+	  AS TableName
+	  FROM
+	  information_schema.tables
+	  order by TABLE_NAME ;
   </SqlQueryString>
 
 

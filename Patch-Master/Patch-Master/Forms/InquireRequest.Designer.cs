@@ -42,12 +42,14 @@ namespace Patch_Master.Forms
             this.Approved = new System.Windows.Forms.Label();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.groupBoxRequest = new System.Windows.Forms.GroupBox();
+            this.buttonRejectRequest = new System.Windows.Forms.Button();
+            this.labelApproval = new System.Windows.Forms.Label();
+            this.checkBoxApproved = new System.Windows.Forms.TextBox();
             this.textBoxApprovedDate = new System.Windows.Forms.TextBox();
             this.textBoxApproveUser = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.checkBoxExecuted = new System.Windows.Forms.CheckBox();
-            this.checkBoxApproved = new System.Windows.Forms.CheckBox();
             this.buttonReturn = new System.Windows.Forms.Button();
             this.buttonRequestedQueries = new System.Windows.Forms.Button();
             this.ButtonApprove = new System.Windows.Forms.Button();
@@ -73,11 +75,6 @@ namespace Patch_Master.Forms
             this.groupBoxSearchByStatus.SuspendLayout();
             this.SuspendLayout();
             // 
-            // backgroundWorker1
-            // 
-            this.backgroundWorker1.WorkerReportsProgress = false;
-            this.backgroundWorker1.WorkerSupportsCancellation = false;
-            // 
             // groupBoxSearchRequest
             // 
             this.groupBoxSearchRequest.Controls.Add(this.buttonViewRequests);
@@ -85,11 +82,9 @@ namespace Patch_Master.Forms
             this.groupBoxSearchRequest.Controls.Add(this.comboBoxProcess);
             this.groupBoxSearchRequest.Controls.Add(this.SubProcess);
             this.groupBoxSearchRequest.Controls.Add(this.Process);
-            this.groupBoxSearchRequest.Location = new System.Drawing.Point(10, 9);
-            this.groupBoxSearchRequest.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBoxSearchRequest.Location = new System.Drawing.Point(11, 12);
             this.groupBoxSearchRequest.Name = "groupBoxSearchRequest";
-            this.groupBoxSearchRequest.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBoxSearchRequest.Size = new System.Drawing.Size(302, 124);
+            this.groupBoxSearchRequest.Size = new System.Drawing.Size(345, 165);
             this.groupBoxSearchRequest.TabIndex = 0;
             this.groupBoxSearchRequest.TabStop = false;
             this.groupBoxSearchRequest.Text = "Search Request";
@@ -97,10 +92,9 @@ namespace Patch_Master.Forms
             // 
             // buttonViewRequests
             // 
-            this.buttonViewRequests.Location = new System.Drawing.Point(210, 82);
-            this.buttonViewRequests.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonViewRequests.Location = new System.Drawing.Point(240, 109);
             this.buttonViewRequests.Name = "buttonViewRequests";
-            this.buttonViewRequests.Size = new System.Drawing.Size(72, 23);
+            this.buttonViewRequests.Size = new System.Drawing.Size(82, 31);
             this.buttonViewRequests.TabIndex = 1;
             this.buttonViewRequests.Text = "View";
             this.buttonViewRequests.UseVisualStyleBackColor = true;
@@ -109,37 +103,35 @@ namespace Patch_Master.Forms
             // comboBoxSubProcess
             // 
             this.comboBoxSubProcess.FormattingEnabled = true;
-            this.comboBoxSubProcess.Location = new System.Drawing.Point(116, 47);
-            this.comboBoxSubProcess.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBoxSubProcess.Location = new System.Drawing.Point(133, 63);
             this.comboBoxSubProcess.Name = "comboBoxSubProcess";
-            this.comboBoxSubProcess.Size = new System.Drawing.Size(166, 23);
+            this.comboBoxSubProcess.Size = new System.Drawing.Size(189, 28);
             this.comboBoxSubProcess.TabIndex = 1;
             // 
             // comboBoxProcess
             // 
             this.comboBoxProcess.FormattingEnabled = true;
-            this.comboBoxProcess.Location = new System.Drawing.Point(116, 22);
-            this.comboBoxProcess.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBoxProcess.Location = new System.Drawing.Point(133, 29);
             this.comboBoxProcess.Name = "comboBoxProcess";
-            this.comboBoxProcess.Size = new System.Drawing.Size(166, 23);
+            this.comboBoxProcess.Size = new System.Drawing.Size(189, 28);
             this.comboBoxProcess.TabIndex = 1;
             this.comboBoxProcess.SelectedIndexChanged += new System.EventHandler(this.comboBoxProcess_SelectedIndexChanged);
             // 
             // SubProcess
             // 
             this.SubProcess.AutoSize = true;
-            this.SubProcess.Location = new System.Drawing.Point(17, 47);
+            this.SubProcess.Location = new System.Drawing.Point(19, 63);
             this.SubProcess.Name = "SubProcess";
-            this.SubProcess.Size = new System.Drawing.Size(67, 15);
+            this.SubProcess.Size = new System.Drawing.Size(83, 20);
             this.SubProcess.TabIndex = 1;
             this.SubProcess.Text = "SubProcess";
             // 
             // Process
             // 
             this.Process.AutoSize = true;
-            this.Process.Location = new System.Drawing.Point(17, 25);
+            this.Process.Location = new System.Drawing.Point(19, 33);
             this.Process.Name = "Process";
-            this.Process.Size = new System.Drawing.Size(47, 15);
+            this.Process.Size = new System.Drawing.Size(58, 20);
             this.Process.TabIndex = 1;
             this.Process.Text = "Process";
             // 
@@ -150,10 +142,9 @@ namespace Patch_Master.Forms
             "Any",
             "Yes",
             "No"});
-            this.comboBoxExecuted.Location = new System.Drawing.Point(317, 34);
-            this.comboBoxExecuted.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBoxExecuted.Location = new System.Drawing.Point(362, 45);
             this.comboBoxExecuted.Name = "comboBoxExecuted";
-            this.comboBoxExecuted.Size = new System.Drawing.Size(89, 23);
+            this.comboBoxExecuted.Size = new System.Drawing.Size(101, 28);
             this.comboBoxExecuted.TabIndex = 1;
             this.comboBoxExecuted.Text = "Any";
             // 
@@ -162,46 +153,43 @@ namespace Patch_Master.Forms
             this.comboBoxApproved.FormattingEnabled = true;
             this.comboBoxApproved.Items.AddRange(new object[] {
             "Any",
-            "Yes",
-            "No"});
-            this.comboBoxApproved.Location = new System.Drawing.Point(116, 32);
-            this.comboBoxApproved.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            "Pending",
+            "Approved",
+            "Rejected"});
+            this.comboBoxApproved.Location = new System.Drawing.Point(133, 43);
             this.comboBoxApproved.Name = "comboBoxApproved";
-            this.comboBoxApproved.Size = new System.Drawing.Size(89, 23);
+            this.comboBoxApproved.Size = new System.Drawing.Size(101, 28);
             this.comboBoxApproved.TabIndex = 1;
             this.comboBoxApproved.Text = "Any";
             // 
             // Executed
             // 
             this.Executed.AutoSize = true;
-            this.Executed.Location = new System.Drawing.Point(217, 34);
+            this.Executed.Location = new System.Drawing.Point(248, 45);
             this.Executed.Name = "Executed";
-            this.Executed.Size = new System.Drawing.Size(55, 15);
+            this.Executed.Size = new System.Drawing.Size(69, 20);
             this.Executed.TabIndex = 1;
             this.Executed.Text = "Executed";
             // 
             // Approved
             // 
             this.Approved.AutoSize = true;
-            this.Approved.Location = new System.Drawing.Point(17, 32);
+            this.Approved.Location = new System.Drawing.Point(19, 43);
             this.Approved.Name = "Approved";
-            this.Approved.Size = new System.Drawing.Size(59, 15);
+            this.Approved.Size = new System.Drawing.Size(75, 20);
             this.Approved.TabIndex = 1;
             this.Approved.Text = "Approved";
             // 
-            // backgroundWorker2
-            // 
-            this.backgroundWorker2.WorkerReportsProgress = false;
-            this.backgroundWorker2.WorkerSupportsCancellation = false;
-            // 
             // groupBoxRequest
             // 
+            this.groupBoxRequest.Controls.Add(this.buttonRejectRequest);
+            this.groupBoxRequest.Controls.Add(this.labelApproval);
+            this.groupBoxRequest.Controls.Add(this.checkBoxApproved);
             this.groupBoxRequest.Controls.Add(this.textBoxApprovedDate);
             this.groupBoxRequest.Controls.Add(this.textBoxApproveUser);
             this.groupBoxRequest.Controls.Add(this.label2);
             this.groupBoxRequest.Controls.Add(this.label1);
             this.groupBoxRequest.Controls.Add(this.checkBoxExecuted);
-            this.groupBoxRequest.Controls.Add(this.checkBoxApproved);
             this.groupBoxRequest.Controls.Add(this.buttonReturn);
             this.groupBoxRequest.Controls.Add(this.buttonRequestedQueries);
             this.groupBoxRequest.Controls.Add(this.ButtonApprove);
@@ -218,49 +206,73 @@ namespace Patch_Master.Forms
             this.groupBoxRequest.Controls.Add(this.labelReqDescription);
             this.groupBoxRequest.Controls.Add(this.labelRequirmentObjective);
             this.groupBoxRequest.Controls.Add(this.dataGridViewRequestDetails);
-            this.groupBoxRequest.Location = new System.Drawing.Point(342, 102);
-            this.groupBoxRequest.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBoxRequest.Location = new System.Drawing.Point(391, 136);
             this.groupBoxRequest.Name = "groupBoxRequest";
-            this.groupBoxRequest.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBoxRequest.Size = new System.Drawing.Size(733, 494);
+            this.groupBoxRequest.Size = new System.Drawing.Size(838, 659);
             this.groupBoxRequest.TabIndex = 1;
             this.groupBoxRequest.TabStop = false;
             this.groupBoxRequest.Text = "Request Details";
             this.groupBoxRequest.Visible = false;
             // 
+            // buttonRejectRequest
+            // 
+            this.buttonRejectRequest.Location = new System.Drawing.Point(213, 599);
+            this.buttonRejectRequest.Name = "buttonRejectRequest";
+            this.buttonRejectRequest.Size = new System.Drawing.Size(140, 29);
+            this.buttonRejectRequest.TabIndex = 28;
+            this.buttonRejectRequest.Text = "Reject Request";
+            this.buttonRejectRequest.UseVisualStyleBackColor = true;
+            this.buttonRejectRequest.Visible = false;
+            this.buttonRejectRequest.Click += new System.EventHandler(this.buttonRejectRequest_Click);
+            // 
+            // labelApproval
+            // 
+            this.labelApproval.AutoSize = true;
+            this.labelApproval.Location = new System.Drawing.Point(391, 439);
+            this.labelApproval.Name = "labelApproval";
+            this.labelApproval.Size = new System.Drawing.Size(114, 20);
+            this.labelApproval.TabIndex = 27;
+            this.labelApproval.Text = "Approval Status";
+            // 
+            // checkBoxApproved
+            // 
+            this.checkBoxApproved.Location = new System.Drawing.Point(519, 436);
+            this.checkBoxApproved.Name = "checkBoxApproved";
+            this.checkBoxApproved.ReadOnly = true;
+            this.checkBoxApproved.Size = new System.Drawing.Size(125, 27);
+            this.checkBoxApproved.TabIndex = 26;
+            // 
             // textBoxApprovedDate
             // 
-            this.textBoxApprovedDate.Location = new System.Drawing.Point(454, 380);
-            this.textBoxApprovedDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxApprovedDate.Location = new System.Drawing.Point(519, 507);
             this.textBoxApprovedDate.Name = "textBoxApprovedDate";
             this.textBoxApprovedDate.ReadOnly = true;
-            this.textBoxApprovedDate.Size = new System.Drawing.Size(110, 23);
+            this.textBoxApprovedDate.Size = new System.Drawing.Size(125, 27);
             this.textBoxApprovedDate.TabIndex = 25;
             // 
             // textBoxApproveUser
             // 
-            this.textBoxApproveUser.Location = new System.Drawing.Point(454, 352);
-            this.textBoxApproveUser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxApproveUser.Location = new System.Drawing.Point(519, 469);
             this.textBoxApproveUser.Name = "textBoxApproveUser";
             this.textBoxApproveUser.ReadOnly = true;
-            this.textBoxApproveUser.Size = new System.Drawing.Size(110, 23);
+            this.textBoxApproveUser.Size = new System.Drawing.Size(125, 27);
             this.textBoxApproveUser.TabIndex = 24;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(342, 380);
+            this.label2.Location = new System.Drawing.Point(391, 507);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(86, 15);
+            this.label2.Size = new System.Drawing.Size(111, 20);
             this.label2.TabIndex = 23;
             this.label2.Text = "Approved Date";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(342, 355);
+            this.label1.Location = new System.Drawing.Point(391, 473);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 15);
+            this.label1.Size = new System.Drawing.Size(108, 20);
             this.label1.TabIndex = 22;
             this.label1.Text = "Approved User";
             // 
@@ -268,32 +280,18 @@ namespace Patch_Master.Forms
             // 
             this.checkBoxExecuted.AutoSize = true;
             this.checkBoxExecuted.Enabled = false;
-            this.checkBoxExecuted.Location = new System.Drawing.Point(596, 326);
-            this.checkBoxExecuted.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.checkBoxExecuted.Location = new System.Drawing.Point(681, 435);
             this.checkBoxExecuted.Name = "checkBoxExecuted";
-            this.checkBoxExecuted.Size = new System.Drawing.Size(74, 19);
+            this.checkBoxExecuted.Size = new System.Drawing.Size(91, 24);
             this.checkBoxExecuted.TabIndex = 21;
             this.checkBoxExecuted.Text = "Executed";
             this.checkBoxExecuted.UseVisualStyleBackColor = true;
             // 
-            // checkBoxApproved
-            // 
-            this.checkBoxApproved.AutoSize = true;
-            this.checkBoxApproved.Enabled = false;
-            this.checkBoxApproved.Location = new System.Drawing.Point(342, 326);
-            this.checkBoxApproved.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.checkBoxApproved.Name = "checkBoxApproved";
-            this.checkBoxApproved.Size = new System.Drawing.Size(78, 19);
-            this.checkBoxApproved.TabIndex = 20;
-            this.checkBoxApproved.Text = "Approved";
-            this.checkBoxApproved.UseVisualStyleBackColor = true;
-            // 
             // buttonReturn
             // 
-            this.buttonReturn.Location = new System.Drawing.Point(618, 449);
-            this.buttonReturn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonReturn.Location = new System.Drawing.Point(706, 599);
             this.buttonReturn.Name = "buttonReturn";
-            this.buttonReturn.Size = new System.Drawing.Size(90, 22);
+            this.buttonReturn.Size = new System.Drawing.Size(103, 29);
             this.buttonReturn.TabIndex = 19;
             this.buttonReturn.Text = "Return";
             this.buttonReturn.UseVisualStyleBackColor = true;
@@ -301,10 +299,9 @@ namespace Patch_Master.Forms
             // 
             // buttonRequestedQueries
             // 
-            this.buttonRequestedQueries.Location = new System.Drawing.Point(267, 450);
-            this.buttonRequestedQueries.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonRequestedQueries.Location = new System.Drawing.Point(507, 599);
             this.buttonRequestedQueries.Name = "buttonRequestedQueries";
-            this.buttonRequestedQueries.Size = new System.Drawing.Size(138, 22);
+            this.buttonRequestedQueries.Size = new System.Drawing.Size(158, 29);
             this.buttonRequestedQueries.TabIndex = 18;
             this.buttonRequestedQueries.Text = "Requested Queries";
             this.buttonRequestedQueries.UseVisualStyleBackColor = true;
@@ -312,10 +309,9 @@ namespace Patch_Master.Forms
             // 
             // ButtonApprove
             // 
-            this.ButtonApprove.Location = new System.Drawing.Point(17, 450);
-            this.ButtonApprove.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ButtonApprove.Location = new System.Drawing.Point(19, 600);
             this.ButtonApprove.Name = "ButtonApprove";
-            this.ButtonApprove.Size = new System.Drawing.Size(124, 22);
+            this.ButtonApprove.Size = new System.Drawing.Size(142, 29);
             this.ButtonApprove.TabIndex = 17;
             this.ButtonApprove.Text = "Approve Request";
             this.ButtonApprove.UseVisualStyleBackColor = true;
@@ -324,129 +320,117 @@ namespace Patch_Master.Forms
             // 
             // textBoxRequestDate
             // 
-            this.textBoxRequestDate.Location = new System.Drawing.Point(162, 382);
-            this.textBoxRequestDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxRequestDate.Location = new System.Drawing.Point(185, 509);
             this.textBoxRequestDate.Name = "textBoxRequestDate";
             this.textBoxRequestDate.ReadOnly = true;
-            this.textBoxRequestDate.Size = new System.Drawing.Size(126, 23);
+            this.textBoxRequestDate.Size = new System.Drawing.Size(143, 27);
             this.textBoxRequestDate.TabIndex = 14;
             // 
             // textBoxReqUser
             // 
-            this.textBoxReqUser.Location = new System.Drawing.Point(162, 350);
-            this.textBoxReqUser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxReqUser.Location = new System.Drawing.Point(185, 467);
             this.textBoxReqUser.Name = "textBoxReqUser";
             this.textBoxReqUser.ReadOnly = true;
-            this.textBoxReqUser.Size = new System.Drawing.Size(126, 23);
+            this.textBoxReqUser.Size = new System.Drawing.Size(143, 27);
             this.textBoxReqUser.TabIndex = 13;
             // 
             // textBoxDatabase
             // 
-            this.textBoxDatabase.Location = new System.Drawing.Point(162, 218);
-            this.textBoxDatabase.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxDatabase.Location = new System.Drawing.Point(185, 291);
             this.textBoxDatabase.Name = "textBoxDatabase";
             this.textBoxDatabase.ReadOnly = true;
-            this.textBoxDatabase.Size = new System.Drawing.Size(203, 23);
+            this.textBoxDatabase.Size = new System.Drawing.Size(231, 27);
             this.textBoxDatabase.TabIndex = 12;
             // 
             // Database
             // 
             this.Database.AutoSize = true;
-            this.Database.Location = new System.Drawing.Point(15, 218);
+            this.Database.Location = new System.Drawing.Point(17, 291);
             this.Database.Name = "Database";
-            this.Database.Size = new System.Drawing.Size(55, 15);
+            this.Database.Size = new System.Drawing.Size(72, 20);
             this.Database.TabIndex = 11;
             this.Database.Text = "Database";
             // 
             // textBoxRequirmentName
             // 
-            this.textBoxRequirmentName.Location = new System.Drawing.Point(162, 193);
-            this.textBoxRequirmentName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxRequirmentName.Location = new System.Drawing.Point(185, 257);
             this.textBoxRequirmentName.Name = "textBoxRequirmentName";
             this.textBoxRequirmentName.ReadOnly = true;
-            this.textBoxRequirmentName.Size = new System.Drawing.Size(203, 23);
+            this.textBoxRequirmentName.Size = new System.Drawing.Size(231, 27);
             this.textBoxRequirmentName.TabIndex = 10;
             // 
             // RequirmentName
             // 
             this.RequirmentName.AutoSize = true;
-            this.RequirmentName.Location = new System.Drawing.Point(15, 193);
+            this.RequirmentName.Location = new System.Drawing.Point(17, 257);
             this.RequirmentName.Name = "RequirmentName";
-            this.RequirmentName.Size = new System.Drawing.Size(104, 15);
+            this.RequirmentName.Size = new System.Drawing.Size(130, 20);
             this.RequirmentName.TabIndex = 9;
             this.RequirmentName.Text = "Requirment Name";
             // 
             // textBoxRequestDescription
             // 
-            this.textBoxRequestDescription.Location = new System.Drawing.Point(162, 288);
-            this.textBoxRequestDescription.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxRequestDescription.Location = new System.Drawing.Point(185, 384);
             this.textBoxRequestDescription.Multiline = true;
             this.textBoxRequestDescription.Name = "textBoxRequestDescription";
             this.textBoxRequestDescription.ReadOnly = true;
-            this.textBoxRequestDescription.Size = new System.Drawing.Size(514, 35);
+            this.textBoxRequestDescription.Size = new System.Drawing.Size(587, 45);
             this.textBoxRequestDescription.TabIndex = 8;
             // 
             // textBoxRequirmentObjective
             // 
-            this.textBoxRequirmentObjective.Location = new System.Drawing.Point(162, 243);
-            this.textBoxRequirmentObjective.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBoxRequirmentObjective.Location = new System.Drawing.Point(185, 324);
             this.textBoxRequirmentObjective.Multiline = true;
             this.textBoxRequirmentObjective.Name = "textBoxRequirmentObjective";
             this.textBoxRequirmentObjective.ReadOnly = true;
-            this.textBoxRequirmentObjective.Size = new System.Drawing.Size(514, 35);
+            this.textBoxRequirmentObjective.Size = new System.Drawing.Size(587, 45);
             this.textBoxRequirmentObjective.TabIndex = 7;
             // 
             // labelRequestedDate
             // 
             this.labelRequestedDate.AutoSize = true;
-            this.labelRequestedDate.Location = new System.Drawing.Point(15, 385);
+            this.labelRequestedDate.Location = new System.Drawing.Point(17, 513);
             this.labelRequestedDate.Name = "labelRequestedDate";
-            this.labelRequestedDate.Size = new System.Drawing.Size(89, 15);
+            this.labelRequestedDate.Size = new System.Drawing.Size(115, 20);
             this.labelRequestedDate.TabIndex = 4;
             this.labelRequestedDate.Text = "Requested Date";
             // 
             // labelRequestUser
             // 
             this.labelRequestUser.AutoSize = true;
-            this.labelRequestUser.Location = new System.Drawing.Point(15, 355);
+            this.labelRequestUser.Location = new System.Drawing.Point(17, 473);
             this.labelRequestUser.Name = "labelRequestUser";
-            this.labelRequestUser.Size = new System.Drawing.Size(88, 15);
+            this.labelRequestUser.Size = new System.Drawing.Size(112, 20);
             this.labelRequestUser.TabIndex = 3;
             this.labelRequestUser.Text = "Requested User";
             // 
             // labelReqDescription
             // 
             this.labelReqDescription.AutoSize = true;
-            this.labelReqDescription.Location = new System.Drawing.Point(15, 300);
+            this.labelReqDescription.Location = new System.Drawing.Point(17, 400);
             this.labelReqDescription.Name = "labelReqDescription";
-            this.labelReqDescription.Size = new System.Drawing.Size(112, 15);
+            this.labelReqDescription.Size = new System.Drawing.Size(142, 20);
             this.labelReqDescription.TabIndex = 2;
             this.labelReqDescription.Text = "Request Description";
             // 
             // labelRequirmentObjective
             // 
             this.labelRequirmentObjective.AutoSize = true;
-            this.labelRequirmentObjective.Location = new System.Drawing.Point(15, 245);
+            this.labelRequirmentObjective.Location = new System.Drawing.Point(17, 327);
             this.labelRequirmentObjective.Name = "labelRequirmentObjective";
-            this.labelRequirmentObjective.Size = new System.Drawing.Size(122, 15);
+            this.labelRequirmentObjective.Size = new System.Drawing.Size(153, 20);
             this.labelRequirmentObjective.TabIndex = 1;
             this.labelRequirmentObjective.Text = "Requirment Objective";
             // 
             // dataGridViewRequestDetails
             // 
             this.dataGridViewRequestDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewRequestDetails.Location = new System.Drawing.Point(13, 20);
-            this.dataGridViewRequestDetails.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dataGridViewRequestDetails.Location = new System.Drawing.Point(15, 27);
             this.dataGridViewRequestDetails.Name = "dataGridViewRequestDetails";
             this.dataGridViewRequestDetails.RowHeadersWidth = 51;
-            this.dataGridViewRequestDetails.Size = new System.Drawing.Size(685, 164);
+            this.dataGridViewRequestDetails.Size = new System.Drawing.Size(783, 219);
             this.dataGridViewRequestDetails.TabIndex = 0;
             this.dataGridViewRequestDetails.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewRequestDetails_RowHeaderMouseClick);
-            // 
-            // backgroundWorker3
-            // 
-            this.backgroundWorker3.WorkerReportsProgress = false;
-            this.backgroundWorker3.WorkerSupportsCancellation = false;
             // 
             // groupBoxSearchByStatus
             // 
@@ -455,11 +439,9 @@ namespace Patch_Master.Forms
             this.groupBoxSearchByStatus.Controls.Add(this.comboBoxApproved);
             this.groupBoxSearchByStatus.Controls.Add(this.Approved);
             this.groupBoxSearchByStatus.Controls.Add(this.Executed);
-            this.groupBoxSearchByStatus.Location = new System.Drawing.Point(342, 18);
-            this.groupBoxSearchByStatus.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBoxSearchByStatus.Location = new System.Drawing.Point(391, 24);
             this.groupBoxSearchByStatus.Name = "groupBoxSearchByStatus";
-            this.groupBoxSearchByStatus.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBoxSearchByStatus.Size = new System.Drawing.Size(733, 68);
+            this.groupBoxSearchByStatus.Size = new System.Drawing.Size(838, 91);
             this.groupBoxSearchByStatus.TabIndex = 2;
             this.groupBoxSearchByStatus.TabStop = false;
             this.groupBoxSearchByStatus.Text = "Search Request";
@@ -467,10 +449,9 @@ namespace Patch_Master.Forms
             // 
             // buttonSearch
             // 
-            this.buttonSearch.Location = new System.Drawing.Point(444, 32);
-            this.buttonSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonSearch.Location = new System.Drawing.Point(507, 43);
             this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(72, 23);
+            this.buttonSearch.Size = new System.Drawing.Size(82, 31);
             this.buttonSearch.TabIndex = 1;
             this.buttonSearch.Text = "Search";
             this.buttonSearch.UseVisualStyleBackColor = true;
@@ -478,13 +459,12 @@ namespace Patch_Master.Forms
             // 
             // InquireRequest
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1128, 562);
+            this.ClientSize = new System.Drawing.Size(1308, 803);
             this.Controls.Add(this.groupBoxSearchByStatus);
             this.Controls.Add(this.groupBoxRequest);
             this.Controls.Add(this.groupBoxSearchRequest);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "InquireRequest";
             this.Text = "InquireRequest";
             this.Load += new System.EventHandler(this.InquireRequest_Load);
@@ -534,10 +514,12 @@ namespace Patch_Master.Forms
         public System.Windows.Forms.GroupBox groupBoxRequest;
         public System.Windows.Forms.GroupBox groupBoxSearchByStatus;
         private System.Windows.Forms.CheckBox checkBoxExecuted;
-        private System.Windows.Forms.CheckBox checkBoxApproved;
         private System.Windows.Forms.TextBox textBoxApprovedDate;
         private System.Windows.Forms.TextBox textBoxApproveUser;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelApproval;
+        private System.Windows.Forms.TextBox checkBoxApproved;
+        private System.Windows.Forms.Button buttonRejectRequest;
     }
 }

@@ -20,7 +20,7 @@ namespace Patch_Master.Forms
         string roleName = string.Empty;
         int roleId = 0;
         int RequirmentID;
-        public static string NavigatedFrom="";
+        public static string NavigatedFrom= string.Empty;
 
         public static string REQUIREMENTID = string.Empty; 
         public static string REQUIREMENTNAME = string.Empty;
@@ -572,6 +572,7 @@ namespace Patch_Master.Forms
         #endregion
         private void buttonReturn_Click(object sender, EventArgs e)
         {
+            NavigatedFrom = string.Empty;
             this.Close();
         }
        

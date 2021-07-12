@@ -34,6 +34,7 @@ namespace Patch_Master.Forms
             this.button_SaveProcess = new System.Windows.Forms.Button();
             this.SubProcesses_btn = new System.Windows.Forms.Button();
             this.groupBoxMainProcess = new System.Windows.Forms.GroupBox();
+            this.buttonReturn = new System.Windows.Forms.Button();
             this.buttonModifyMP = new System.Windows.Forms.Button();
             this.textBoxMPCreatedDate = new System.Windows.Forms.TextBox();
             this.textBoxMPCreatedUser = new System.Windows.Forms.TextBox();
@@ -59,7 +60,6 @@ namespace Patch_Master.Forms
             this.dataGridView_SubProcesses = new System.Windows.Forms.DataGridView();
             this.lbl_processName = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.buttonReturn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Processws)).BeginInit();
             this.groupBoxMainProcess.SuspendLayout();
             this.SubProcess_panel.SuspendLayout();
@@ -140,6 +140,16 @@ namespace Patch_Master.Forms
             this.groupBoxMainProcess.TabStop = false;
             this.groupBoxMainProcess.Text = "Main Processors";
             // 
+            // buttonReturn
+            // 
+            this.buttonReturn.Location = new System.Drawing.Point(502, 577);
+            this.buttonReturn.Name = "buttonReturn";
+            this.buttonReturn.Size = new System.Drawing.Size(109, 43);
+            this.buttonReturn.TabIndex = 14;
+            this.buttonReturn.Text = "Return";
+            this.buttonReturn.UseVisualStyleBackColor = true;
+            this.buttonReturn.Click += new System.EventHandler(this.buttonReturn_Click);
+            // 
             // buttonModifyMP
             // 
             this.buttonModifyMP.Location = new System.Drawing.Point(114, 577);
@@ -180,7 +190,7 @@ namespace Patch_Master.Forms
             // 
             this.textBoxMPName.Location = new System.Drawing.Point(173, 361);
             this.textBoxMPName.Name = "textBoxMPName";
-            this.textBoxMPName.Size = new System.Drawing.Size(125, 27);
+            this.textBoxMPName.Size = new System.Drawing.Size(237, 27);
             this.textBoxMPName.TabIndex = 9;
             // 
             // label5
@@ -284,7 +294,7 @@ namespace Patch_Master.Forms
             // 
             this.textBoxSPName.Location = new System.Drawing.Point(196, 358);
             this.textBoxSPName.Name = "textBoxSPName";
-            this.textBoxSPName.Size = new System.Drawing.Size(125, 27);
+            this.textBoxSPName.Size = new System.Drawing.Size(302, 27);
             this.textBoxSPName.TabIndex = 17;
             // 
             // label6
@@ -391,16 +401,6 @@ namespace Patch_Master.Forms
             this.label1.Size = new System.Drawing.Size(134, 28);
             this.label1.TabIndex = 7;
             this.label1.Text = "Process Name";
-            // 
-            // buttonReturn
-            // 
-            this.buttonReturn.Location = new System.Drawing.Point(502, 577);
-            this.buttonReturn.Name = "buttonReturn";
-            this.buttonReturn.Size = new System.Drawing.Size(109, 43);
-            this.buttonReturn.TabIndex = 14;
-            this.buttonReturn.Text = "Return";
-            this.buttonReturn.UseVisualStyleBackColor = true;
-            this.buttonReturn.Click += new System.EventHandler(this.buttonReturn_Click);
             // 
             // Processes
             // 
