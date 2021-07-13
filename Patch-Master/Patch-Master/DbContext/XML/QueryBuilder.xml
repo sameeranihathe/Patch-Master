@@ -3,7 +3,7 @@
 
   <SqlQueryString Id="LoadColumnList">
     USE [??DbName]
-    SELECT COLUMN_NAME AS ColumnName
+    SELECT COLUMN_NAME AS ColumnName,DATA_TYPE AS DataType
     FROM INFORMATION_SCHEMA.COLUMNS
     WHERE TABLE_NAME = N'??Table'
   </SqlQueryString>
