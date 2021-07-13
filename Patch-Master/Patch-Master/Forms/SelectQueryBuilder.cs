@@ -269,6 +269,7 @@ namespace Patch_Master.Forms
                 while (reader.Read())
                 {
                     var column = reader["ColumnName"].ToString();
+                    var dataType = reader["DataType"].ToString();
                     columnList.Add(column);
                 }
 
