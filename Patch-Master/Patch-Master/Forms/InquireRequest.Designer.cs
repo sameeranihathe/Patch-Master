@@ -42,6 +42,8 @@ namespace Patch_Master.Forms
             this.Approved = new System.Windows.Forms.Label();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.groupBoxRequest = new System.Windows.Forms.GroupBox();
+            this.richTextBoxComment = new System.Windows.Forms.RichTextBox();
+            this.labelComment = new System.Windows.Forms.Label();
             this.buttonRejectRequest = new System.Windows.Forms.Button();
             this.labelApproval = new System.Windows.Forms.Label();
             this.checkBoxApproved = new System.Windows.Forms.TextBox();
@@ -182,6 +184,8 @@ namespace Patch_Master.Forms
             // 
             // groupBoxRequest
             // 
+            this.groupBoxRequest.Controls.Add(this.richTextBoxComment);
+            this.groupBoxRequest.Controls.Add(this.labelComment);
             this.groupBoxRequest.Controls.Add(this.buttonRejectRequest);
             this.groupBoxRequest.Controls.Add(this.labelApproval);
             this.groupBoxRequest.Controls.Add(this.checkBoxApproved);
@@ -208,15 +212,32 @@ namespace Patch_Master.Forms
             this.groupBoxRequest.Controls.Add(this.dataGridViewRequestDetails);
             this.groupBoxRequest.Location = new System.Drawing.Point(391, 136);
             this.groupBoxRequest.Name = "groupBoxRequest";
-            this.groupBoxRequest.Size = new System.Drawing.Size(838, 659);
+            this.groupBoxRequest.Size = new System.Drawing.Size(851, 702);
             this.groupBoxRequest.TabIndex = 1;
             this.groupBoxRequest.TabStop = false;
             this.groupBoxRequest.Text = "Request Details";
             this.groupBoxRequest.Visible = false;
             // 
+            // richTextBoxComment
+            // 
+            this.richTextBoxComment.Location = new System.Drawing.Point(253, 553);
+            this.richTextBoxComment.Name = "richTextBoxComment";
+            this.richTextBoxComment.Size = new System.Drawing.Size(440, 63);
+            this.richTextBoxComment.TabIndex = 30;
+            this.richTextBoxComment.Text = "";
+            // 
+            // labelComment
+            // 
+            this.labelComment.AutoSize = true;
+            this.labelComment.Location = new System.Drawing.Point(19, 556);
+            this.labelComment.Name = "labelComment";
+            this.labelComment.Size = new System.Drawing.Size(228, 20);
+            this.labelComment.TabIndex = 29;
+            this.labelComment.Text = "Comment on Approval/Rejection";
+            // 
             // buttonRejectRequest
             // 
-            this.buttonRejectRequest.Location = new System.Drawing.Point(213, 599);
+            this.buttonRejectRequest.Location = new System.Drawing.Point(213, 649);
             this.buttonRejectRequest.Name = "buttonRejectRequest";
             this.buttonRejectRequest.Size = new System.Drawing.Size(140, 29);
             this.buttonRejectRequest.TabIndex = 28;
@@ -289,7 +310,7 @@ namespace Patch_Master.Forms
             // 
             // buttonReturn
             // 
-            this.buttonReturn.Location = new System.Drawing.Point(706, 599);
+            this.buttonReturn.Location = new System.Drawing.Point(706, 649);
             this.buttonReturn.Name = "buttonReturn";
             this.buttonReturn.Size = new System.Drawing.Size(103, 29);
             this.buttonReturn.TabIndex = 19;
@@ -299,17 +320,18 @@ namespace Patch_Master.Forms
             // 
             // buttonRequestedQueries
             // 
-            this.buttonRequestedQueries.Location = new System.Drawing.Point(507, 599);
+            this.buttonRequestedQueries.Location = new System.Drawing.Point(507, 649);
             this.buttonRequestedQueries.Name = "buttonRequestedQueries";
             this.buttonRequestedQueries.Size = new System.Drawing.Size(158, 29);
             this.buttonRequestedQueries.TabIndex = 18;
             this.buttonRequestedQueries.Text = "Requested Queries";
             this.buttonRequestedQueries.UseVisualStyleBackColor = true;
             this.buttonRequestedQueries.Visible = false;
+            this.buttonRequestedQueries.Click += new System.EventHandler(this.buttonRequestedQueries_Click);
             // 
             // ButtonApprove
             // 
-            this.ButtonApprove.Location = new System.Drawing.Point(19, 600);
+            this.ButtonApprove.Location = new System.Drawing.Point(19, 650);
             this.ButtonApprove.Name = "ButtonApprove";
             this.ButtonApprove.Size = new System.Drawing.Size(142, 29);
             this.ButtonApprove.TabIndex = 17;
@@ -461,7 +483,7 @@ namespace Patch_Master.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1308, 803);
+            this.ClientSize = new System.Drawing.Size(1315, 850);
             this.Controls.Add(this.groupBoxSearchByStatus);
             this.Controls.Add(this.groupBoxRequest);
             this.Controls.Add(this.groupBoxSearchRequest);
@@ -521,5 +543,7 @@ namespace Patch_Master.Forms
         private System.Windows.Forms.Label labelApproval;
         private System.Windows.Forms.TextBox checkBoxApproved;
         private System.Windows.Forms.Button buttonRejectRequest;
+        private System.Windows.Forms.RichTextBox richTextBoxComment;
+        private System.Windows.Forms.Label labelComment;
     }
 }

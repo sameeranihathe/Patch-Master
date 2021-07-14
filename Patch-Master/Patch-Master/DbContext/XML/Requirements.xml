@@ -40,6 +40,7 @@
 	  full join PM_Users y
 	  on RQ.CreatedBy = y.User_Id
 	  WHERE RQ.SubProcessId=@SubProcessId AND RQ.DB_Id = @DB_Id AND RQ.Status = @Status and RQ.FormulationStatus = 0;
+	  
 	  else
 	  SELECT RQ.RequirementId as 'Requirement ID' ,RQ. RequirementName as 'Requirment Name',RQ.Description as 'Req Description',
 	  RQ.Objective as 'Req Objective', Db.DBName as 'Database',  y.UserName as 'CreatedBy', RQ.CreatedDate as 'Created Date'

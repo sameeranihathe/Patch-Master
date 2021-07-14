@@ -32,3 +32,6 @@ VALUES('SELECT',0,1),
 
 ALTER TABLE PM_Queries
 ADD QueryString VARCHAR(MAX) NULL
+
+ALTER TABLE [dbo].[PM_Queries]
+  ADD ExecutionOrder int 

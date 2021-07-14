@@ -16,7 +16,7 @@
 		select RS.Requirement_Id as 'Requirment ID',
 		Rs.Request_Id as 'Request ID', RQ.RequirementName as 'Requirment Name', Rq.Objective as 'Objective', RS.Description as 'Desc',
 		Db.DBName as 'Database', RS.Request_User as 'Requested User', RS.Request_Date  as 'Requested Date', RS.Approval_Status as 'Approve',
-		RS.Execution_Status as 'Executed', us.UserName as 'Approved User', RS.ApprovedDate as 'Approved Date'
+		RS.Execution_Status as 'Executed', us.UserName as 'Approved User', RS.ApprovedDate as 'Approved Date', RS.Comment as 'Comment'
 		From PM_Request RS
 		inner join PM_Requiremenet RQ
 		on RS.Requirement_Id = RQ.RequirementId
@@ -30,7 +30,7 @@
 		select RS.Requirement_Id as 'Requirment ID',
 		Rs.Request_Id as 'Request ID', RQ.RequirementName as 'Requirment Name', Rq.Objective as 'Objective', RS.Description as 'Desc',
 		Db.DBName as 'Database', RS.Request_User as 'Requested User', RS.Request_Date  as 'Requested Date', RS.Approval_Status as 'Approve',
-		RS.Execution_Status as 'Executed', us.UserName as 'Approved User', RS.ApprovedDate as 'Approved Date'
+		RS.Execution_Status as 'Executed', us.UserName as 'Approved User', RS.ApprovedDate as 'Approved Date', RS.Comment as 'Comment'
 		From PM_Request RS
 		inner join PM_Requiremenet RQ
 		on RS.Requirement_Id = RQ.RequirementId
@@ -44,7 +44,7 @@
 		select RS.Requirement_Id as 'Requirment ID',
 		Rs.Request_Id as 'Request ID', RQ.RequirementName as 'Requirment Name', Rq.Objective as 'Objective', RS.Description as 'Desc',
 		Db.DBName as 'Database', RS.Request_User as 'Requested User', RS.Request_Date  as 'Requested Date', RS.Approval_Status as 'Approve',
-		RS.Execution_Status as 'Executed', us.UserName as 'Approved User', RS.ApprovedDate as 'Approved Date'
+		RS.Execution_Status as 'Executed', us.UserName as 'Approved User', RS.ApprovedDate as 'Approved Date', RS.Comment as 'Comment'
 		From PM_Request RS
 		inner join PM_Requiremenet RQ
 		on RS.Requirement_Id = RQ.RequirementId
@@ -58,7 +58,7 @@
 		select RS.Requirement_Id as 'Requirment ID',
 		Rs.Request_Id as 'Request ID', RQ.RequirementName as 'Requirment Name', Rq.Objective as 'Objective', RS.Description as 'Desc',
 		Db.DBName as 'Database', RS.Request_User as 'Requested User', RS.Request_Date  as 'Requested Date', RS.Approval_Status as 'Approve',
-		RS.Execution_Status as 'Executed', us.UserName as 'Approved User', RS.ApprovedDate as 'Approved Date'
+		RS.Execution_Status as 'Executed', us.UserName as 'Approved User', RS.ApprovedDate as 'Approved Date', RS.Comment as 'Comment'
 		From PM_Request RS
 		inner join PM_Requiremenet RQ
 		on RS.Requirement_Id = RQ.RequirementId
@@ -72,7 +72,7 @@
 		select RS.Requirement_Id as 'Requirment ID',
 		Rs.Request_Id as 'Request ID', RQ.RequirementName as 'Requirment Name', Rq.Objective as 'Objective', RS.Description as 'Desc',
 		Db.DBName as 'Database', RS.Request_User as 'Requested User', RS.Request_Date  as 'Requested Date', RS.Approval_Status as 'Approve',
-		RS.Execution_Status as 'Executed',us.UserName as 'Approved User', RS.ApprovedDate as 'Approved Date' From PM_Request RS
+		RS.Execution_Status as 'Executed',us.UserName as 'Approved User', RS.ApprovedDate as 'Approved Date', RS.Comment as 'Comment' From PM_Request RS
 		inner join PM_Requiremenet RQ
 		on RS.Requirement_Id = RQ.RequirementId
 		inner join PM_Databases DB
@@ -85,7 +85,7 @@
 		select RS.Requirement_Id as 'Requirment ID',
 		Rs.Request_Id as 'Request ID', RQ.RequirementName as 'Requirment Name', Rq.Objective as 'Objective', RS.Description as 'Desc',
 		Db.DBName as 'Database', RS.Request_User as 'Requested User', RS.Request_Date  as 'Requested Date', RS.Approval_Status as 'Approve',
-		RS.Execution_Status as 'Executed',us.UserName as 'Approved User', RS.ApprovedDate as 'Approved Date' From PM_Request RS
+		RS.Execution_Status as 'Executed',us.UserName as 'Approved User', RS.ApprovedDate as 'Approved Date', RS.Comment as 'Comment' From PM_Request RS
 		inner join PM_Requiremenet RQ
 		on RS.Requirement_Id = RQ.RequirementId
 		inner join PM_Databases DB
@@ -98,7 +98,7 @@
 		select RS.Requirement_Id as 'Requirment ID',
 		Rs.Request_Id as 'Request ID', RQ.RequirementName as 'Requirment Name', Rq.Objective as 'Objective', RS.Description as 'Desc',
 		Db.DBName as 'Database', RS.Request_User as 'Requested User', RS.Request_Date  as 'Requested Date', RS.Approval_Status as 'Approve',
-		RS.Execution_Status as 'Executed',us.UserName as 'Approved User', RS.ApprovedDate as 'Approved Date' From PM_Request RS
+		RS.Execution_Status as 'Executed',us.UserName as 'Approved User', RS.ApprovedDate as 'Approved Date', RS.Comment as 'Comment' From PM_Request RS
 		inner join PM_Requiremenet RQ
 		on RS.Requirement_Id = RQ.RequirementId
 		inner join PM_Databases DB
@@ -111,7 +111,7 @@
 		select RS.Requirement_Id as 'Requirment ID',
 		Rs.Request_Id as 'Request ID', RQ.RequirementName as 'Requirment Name', Rq.Objective as 'Objective', RS.Description as 'Desc',
 		Db.DBName as 'Database', RS.Request_User as 'Requested User', RS.Request_Date  as 'Requested Date', RS.Approval_Status as 'Approve',
-		RS.Execution_Status as 'Executed',us.UserName as 'Approved User', RS.ApprovedDate as 'Approved Date' From PM_Request RS
+		RS.Execution_Status as 'Executed',us.UserName as 'Approved User', RS.ApprovedDate as 'Approved Date' , RS.Comment as 'Comment' From PM_Request RS
 		inner join PM_Requiremenet RQ
 		on RS.Requirement_Id = RQ.RequirementId
 		inner join PM_Databases DB
@@ -122,7 +122,7 @@
 	</SqlQueryString>
 	<SqlQueryString Id="ApproveRequest">
 		update PM_Request
-		set Approval_Status = @ApprovedRejected, [ApprovedDate] = GETDATE(),ApprovedBy = @LoginUserID
+		set Approval_Status = @ApprovedRejected, Comment = @Comment ,[ApprovedDate] = GETDATE(),ApprovedBy = @LoginUserID
 		output inserted.Request_Id, inserted.Approval_Status
 		where Request_Id = @RequestId
 	</SqlQueryString>
