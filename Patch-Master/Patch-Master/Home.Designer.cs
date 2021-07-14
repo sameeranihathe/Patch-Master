@@ -60,6 +60,7 @@ namespace Patch_Master
             this.ViewAllProcesses_label = new System.Windows.Forms.Label();
             this.AllProcessCount_label = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl_home.SuspendLayout();
             this.hometabPage_mine.SuspendLayout();
@@ -328,11 +329,22 @@ namespace Patch_Master
             this.label3.TabIndex = 0;
             this.label3.Text = "All Processes:";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(859, 447);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "UpdateQuery";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1086, 591);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.tabControl_home);
             this.Controls.Add(this.UserFirstName_label);
             this.Controls.Add(this.label1);
@@ -390,6 +402,7 @@ namespace Patch_Master
         private System.Windows.Forms.Label AllProcessCount_label;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolStripMenuItem requirmentsByProcessToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
     }
 }
 
