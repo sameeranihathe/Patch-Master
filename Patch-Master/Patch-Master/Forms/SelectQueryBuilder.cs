@@ -26,6 +26,7 @@ namespace Patch_Master.Forms
         int availablecheckedListBoxCount = 0;
 
         bool queryValidated = true;
+        string firstSelectedTable = string.Empty;
 
         Dictionary<string, string> SelectedColumnList = new Dictionary<string, string>();
         public static List<String> AddedTableList = new List<string>();
@@ -212,6 +213,10 @@ namespace Patch_Master.Forms
             {
                 AddJoins_button.Enabled = true;
             }
+            if (AddedTableList.Count ==1)
+            {
+                firstSelectedTable = tableName;
+            }
 
         }
         private void CheckTableColumn(object sender, ItemCheckEventArgs e)
@@ -264,6 +269,7 @@ namespace Patch_Master.Forms
                 while (reader.Read())
                 {
                     var column = reader["ColumnName"].ToString();
+                    var dataType = reader["DataType"].ToString();
                     columnList.Add(column);
                 }
 
@@ -373,7 +379,7 @@ namespace Patch_Master.Forms
 
                     }
                     Query_richTextBox.Text = SelectString;
-                    Query_richTextBox.Text += Environment.NewLine + FromString + " " + TableString + Environment.NewLine;
+                    Query_richTextBox.Text += Environment.NewLine + FromString + " " + firstSelectedTable + Environment.NewLine;
                     Query_richTextBox.Text += joinstring;
 
 
@@ -411,7 +417,7 @@ namespace Patch_Master.Forms
                         i++;
                     }
                     Query_richTextBox.Text = SelectString;
-                    Query_richTextBox.Text += Environment.NewLine + FromString + " " + TableString;
+                    Query_richTextBox.Text += Environment.NewLine + FromString + " " + firstSelectedTable;
 
                 }
             }
@@ -420,12 +426,13 @@ namespace Patch_Master.Forms
             {
                 conditionstring = $"WHERE {conditionstring}";
 
-                Query_richTextBox.Text += conditionstring;
+                Query_richTextBox.Text += Environment.NewLine + conditionstring;
             }
 
         }
         private void Clear_button_Click(object sender, EventArgs e)
         {
+            firstSelectedTable = string.Empty;
             availablecheckedListBoxCount = 0;
             AddJoins_button.Enabled = false;
             AddedTableList = new List<string>();
@@ -448,7 +455,7 @@ namespace Patch_Master.Forms
             selectJoinBuilder.Show();
         }
 
-        private void Validate_button_Click(object sender, EventArgs e)
+        private void ValidateQuery_button1_Click(object sender, EventArgs e)
         {
             DbConnector dbContext = new DbConnector();
             queryValidated = true;
