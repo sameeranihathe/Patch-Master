@@ -226,16 +226,5 @@ namespace Patch_Master
             inquireRequest.NavigatedFrom = "ExecuteRequest";
             inquireRequest.Show();
         }
-
-        private void hometabPage_mine_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void requirmentsByProcessToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-            
-        }
     }
 }

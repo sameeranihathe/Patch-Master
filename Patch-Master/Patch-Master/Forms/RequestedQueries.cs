@@ -94,29 +94,68 @@ namespace Patch_Master.Forms
         #region Execute Query
         private void buttonExecute_Click(object sender, EventArgs e)
         {
-            
-            switch (textBoxQueryType.Text)
+            string impact = "Retrieved";
+            string queryString = richTextBoxQuery.Text;
+            string database = textBoxDatabase.Text;
+            if (textBoxQueryType.Text == "UPDATE")
             {
-                case "SELECT":
-                    dtQueryResults = ExecuteQuery();
-                    dataGridViewRetrievedData.Columns.Clear();
-                    dataGridViewRetrievedData.DataSource = dtQueryResults;
-                    groupBoxReqQueries.Visible = false;
-                    groupBoxSELECTResults.Visible = true;
-                    break;
-                    
+                List<string> UpdateFieldsOnly = new List<string>();
+                #region Get Primary Keys
+                string TableAfterfrom = queryString.Substring(queryString.IndexOf("from") + 5);
+                string PrimaryTable = TableAfterfrom.Substring(0, TableAfterfrom.IndexOf(" "));
+                DataTable PrimaryKeys = new DataTable();
+                PrimaryKeys = GetPrimaryKeyFields(database, PrimaryTable);
+                foreach (DataRow row in PrimaryKeys.Rows)
+                {
+                    string PrimaryField = row["Column_Name"].ToString();
+                    PrimaryField = "deleted." + PrimaryField + " as " + "'" + PrimaryField + "(Identity)" + "'";
+                    UpdateFieldsOnly.Add(PrimaryField);
+                }
+                #endregion
+                #region Get Updated Fields 
+                string stringAfterSet = queryString.Substring(queryString.IndexOf("set") + 4);
+                string stringBeforeFrom = stringAfterSet.Substring(0, stringAfterSet.IndexOf("from"));
+                string[] UpdatefieldsWithValues = stringBeforeFrom.Split(", ");
+
+                foreach (string field in UpdatefieldsWithValues)
+                {
+                    string FieldAfterPeriod = field.Substring(field.IndexOf(".") + 1);
+                    string FieldBeforeEqual = FieldAfterPeriod.Substring(0, FieldAfterPeriod.IndexOf("="));
+                    FieldBeforeEqual = FieldBeforeEqual.Trim();
+                    string DeleteOutput = "deleted." + FieldBeforeEqual + " as " + "'" + FieldBeforeEqual + "(Before)" + "'";
+                    string insertedOutput = "inserted." + FieldBeforeEqual + " as " + "'" + FieldBeforeEqual + "(After)" + "'";
+                    UpdateFieldsOnly.Add(DeleteOutput);
+                    UpdateFieldsOnly.Add(insertedOutput);
+                }
+                string JoinedUpdateFieldsOnly = string.Join(",", UpdateFieldsOnly);
+                #endregion
+                #region Build query with Output
+                string Output = "OUTPUT " + JoinedUpdateFieldsOnly;
+                string queryAfterfrom = queryString.Substring(queryString.IndexOf("from") + 0);
+                string queryBeforeFrom = queryString.Substring(0, queryString.IndexOf("from"));
+                queryString = queryBeforeFrom + " " + Output + " " + queryAfterfrom;
+                #endregion
+                impact = "Affected";
+
             }
+            dtQueryResults = ExecuteQuery(database, queryString);
+            int numberOfRecords = dtQueryResults.Rows.Count;
+            MessageBox.Show(numberOfRecords+" Records " + impact);
+            dataGridViewRetrievedData.Columns.Clear();
+            dataGridViewRetrievedData.DataSource = dtQueryResults;
+            groupBoxReqQueries.Visible = false;
+            groupBoxSELECTResults.Visible = true;
             int RequestedQueryID = Convert.ToInt32(dataGridViewRequestedQueries.SelectedRows[0].Cells[0].Value.ToString());
             int RequestID = Convert.ToInt32(dataGridViewRequestedQueries.SelectedRows[0].Cells[1].Value.ToString());
             setExecutionStatus(RequestedQueryID, RequestID);
         }
-        private DataTable ExecuteQuery()
+        private DataTable ExecuteQuery(string database, string queryString)
         {
             DbConnector dbContext = new DbConnector();
             DataTable dt = new DataTable();
             try
             {
-                string queryString = "USE "+ textBoxDatabase.Text+ " " +richTextBoxQuery.Text;
+                queryString = "USE "+ database + " " + queryString;
                 List<SqlParameter> sqlParams = new List<SqlParameter>();
                 DataSet ds = dbContext.ExecuteQueryWithDataSet(queryString, sqlParams);
                 dt = ds.Tables[0];
@@ -225,6 +264,30 @@ namespace Patch_Master.Forms
                 dbContext.CloseConnection();
             }
         }
+        private DataTable GetPrimaryKeyFields(string database, string PrimaryTable)
+        {
+            DbConnector dbContext = new DbConnector();
+            DataTable dt = new DataTable();
+            try
+            {
+                string queryString = SqlQueryStringReader.GetQueryStringById("GetPrimaryKeys", "RequestedQueries");
+                queryString = "USE " + database + " " + queryString;
+                List<SqlParameter> sqlParams = new List<SqlParameter>();
+                sqlParams.Add(new SqlParameter("PrimaryTable", PrimaryTable));
+                DataSet ds = dbContext.ExecuteQueryWithDataSet(queryString, sqlParams);
+                dt = ds.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                dbContext.CloseConnection();
+
+            }
+            return dt;
+        }
         #endregion
         #region Export to Excel
         private void buttonExcel_Click(object sender, EventArgs e)
@@ -321,12 +384,10 @@ namespace Patch_Master.Forms
             richTextBoxQuery.Text = string.Empty;
         }
         #endregion
-
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
-
         private void groupBoxReqQueries_Enter(object sender, EventArgs e)
         {
 

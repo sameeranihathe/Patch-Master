@@ -44,7 +44,6 @@
             // label1
             // 
             this.label1.AutoSize = true;
-
             this.label1.Location = new System.Drawing.Point(322, 97);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(159, 20);
@@ -53,7 +52,6 @@
             // 
             // Query_richTextBox
             // 
-
             this.Query_richTextBox.Location = new System.Drawing.Point(427, 460);
             this.Query_richTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Query_richTextBox.Name = "Query_richTextBox";
@@ -63,7 +61,6 @@
             // 
             // TableList_treeView
             // 
-
             this.TableList_treeView.Location = new System.Drawing.Point(26, 152);
             this.TableList_treeView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TableList_treeView.Name = "TableList_treeView";
@@ -74,7 +71,6 @@
             // label2
             // 
             this.label2.AutoSize = true;
-
             this.label2.Location = new System.Drawing.Point(26, 97);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(106, 20);
@@ -83,7 +79,7 @@
             // 
             // SaveQuery_button
             // 
-            this.SaveQuery_button.Location = new System.Drawing.Point(855, 635);
+            this.SaveQuery_button.Location = new System.Drawing.Point(1203, 637);
             this.SaveQuery_button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.SaveQuery_button.Name = "SaveQuery_button";
             this.SaveQuery_button.Size = new System.Drawing.Size(95, 31);
@@ -94,8 +90,7 @@
             // 
             // btnSingleSelectCondition
             // 
-
-            this.btnSingleSelectCondition.Location = new System.Drawing.Point(711, 81);
+            this.btnSingleSelectCondition.Location = new System.Drawing.Point(1029, 73);
             this.btnSingleSelectCondition.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSingleSelectCondition.Name = "btnSingleSelectCondition";
             this.btnSingleSelectCondition.Size = new System.Drawing.Size(156, 31);
@@ -106,10 +101,8 @@
             // 
             // BuildQuery_button
             // 
-
-            this.BuildQuery_button.Location = new System.Drawing.Point(882, 81);
+            this.BuildQuery_button.Location = new System.Drawing.Point(1200, 73);
             this.BuildQuery_button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-
             this.BuildQuery_button.Name = "BuildQuery_button";
             this.BuildQuery_button.Size = new System.Drawing.Size(98, 31);
             this.BuildQuery_button.TabIndex = 12;
@@ -119,7 +112,6 @@
             // 
             // TableView_panel
             // 
-
             this.TableView_panel.Location = new System.Drawing.Point(427, 152);
             this.TableView_panel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.TableView_panel.Name = "TableView_panel";
@@ -128,8 +120,7 @@
             // 
             // Clear_button
             // 
-
-            this.Clear_button.Location = new System.Drawing.Point(762, 635);
+            this.Clear_button.Location = new System.Drawing.Point(1110, 637);
             this.Clear_button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Clear_button.Name = "Clear_button";
             this.Clear_button.Size = new System.Drawing.Size(86, 31);
@@ -141,8 +132,7 @@
             // AddJoins_button
             // 
             this.AddJoins_button.Enabled = false;
-
-            this.AddJoins_button.Location = new System.Drawing.Point(618, 81);
+            this.AddJoins_button.Location = new System.Drawing.Point(936, 73);
             this.AddJoins_button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.AddJoins_button.Name = "AddJoins_button";
             this.AddJoins_button.Size = new System.Drawing.Size(86, 31);
