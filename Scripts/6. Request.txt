@@ -31,3 +31,6 @@ GO
 
 ALTER TABLE [dbo].[PM_Request] CHECK CONSTRAINT [FK_Request_Request]
 GO
+
+ALTER TABLE [dbo].[PM_Request]
+  ADD Comment varchar(MAX) 

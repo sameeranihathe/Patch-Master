@@ -2,11 +2,8 @@
 using Patch_Master.DbContext.QueryReader;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Patch_Master.Forms
@@ -204,6 +201,7 @@ namespace Patch_Master.Forms
             checkBoxExecuted.Checked = Convert.ToBoolean(dataGridViewRequestDetails.Rows[rowindex].Cells[9].Value.ToString());
             textBoxApproveUser.Text = (dataGridViewRequestDetails.Rows[rowindex].Cells[10].Value.ToString());
             textBoxApprovedDate.Text = (dataGridViewRequestDetails.Rows[rowindex].Cells[11].Value.ToString());
+            richTextBoxComment.Text = (dataGridViewRequestDetails.Rows[rowindex].Cells[12].Value.ToString());
             if (checkBoxApproved.Text =="Pending" && NavigatedFrom != "MakeRequest")
             {
                 ButtonApprove.Visible = true;
@@ -233,14 +231,15 @@ namespace Patch_Master.Forms
         private void ButtonApprove_Click(object sender, EventArgs e)
         {
             string ApprovedRejected = "Approved";
-            this.UpdateApprovalStatus(ApprovedRejected);
+            string Commnent = richTextBoxComment.Text;
+            this.UpdateApprovalStatus(ApprovedRejected, Commnent);
             DataTable dt = LoadRequest();
             dataGridViewRequestDetails.Columns.Clear();
             dataGridViewRequestDetails.DataSource = dt;
             this.ClearRequest();
 
         }
-        private void UpdateApprovalStatus (string ApprovedRejected)
+        private void UpdateApprovalStatus (string ApprovedRejected, string Commnent)
         {
             string MessageDisplay = string.Empty;
             DbConnector dbContext = new DbConnector();
@@ -252,6 +251,7 @@ namespace Patch_Master.Forms
                 sqlParams.Add(new SqlParameter("RequestId", RequestID));;
                 sqlParams.Add(new SqlParameter("LoginUserID", loggedUserId)); 
                 sqlParams.Add(new SqlParameter("ApprovedRejected", ApprovedRejected));
+                sqlParams.Add(new SqlParameter("Comment", Commnent));
                 var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
                 var reader = dataReaders[0];
                 int RequestId = 0;
@@ -263,7 +263,7 @@ namespace Patch_Master.Forms
 
                 if (RequestId > 0)
                 {
-                    MessageBox.Show("Request" + ApprovedRejected);
+                    MessageBox.Show("Request " + ApprovedRejected);
                 }
                 else
                 {
@@ -283,20 +283,27 @@ namespace Patch_Master.Forms
             }
         }
         #endregion
-
         private void buttonReturn_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void buttonRejectRequest_Click(object sender, EventArgs e)
         {
             string ApprovedRejected = "Rejected";
-            this.UpdateApprovalStatus(ApprovedRejected);
+            string Commnent = richTextBoxComment.Text;
+            this.UpdateApprovalStatus(ApprovedRejected, Commnent);
             DataTable dt = LoadRequest();
             dataGridViewRequestDetails.Columns.Clear();
             dataGridViewRequestDetails.DataSource = dt;
             this.ClearRequest();
+        }
+        private void buttonRequestedQueries_Click(object sender, EventArgs e)
+        {
+            RequestedQueries requestedQueries = new RequestedQueries();
+            RequestedQueries.REQUESTID = RequestID;
+            requestedQueries.textBoxrequestID.Text = RequestID.ToString();
+            requestedQueries.richTextBoxRequestDes.Text = textBoxRequestDescription.Text;
+            requestedQueries.Show();
         }
     }
 }

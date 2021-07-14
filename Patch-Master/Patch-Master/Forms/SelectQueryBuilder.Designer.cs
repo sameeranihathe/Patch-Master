@@ -45,7 +45,9 @@
             // label1
             // 
             this.label1.AutoSize = true;
+
             this.label1.Location = new System.Drawing.Point(282, 73);
+
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(127, 15);
             this.label1.TabIndex = 0;
@@ -53,7 +55,9 @@
             // 
             // Query_richTextBox
             // 
+
             this.Query_richTextBox.Location = new System.Drawing.Point(374, 345);
+
             this.Query_richTextBox.Name = "Query_richTextBox";
             this.Query_richTextBox.Size = new System.Drawing.Size(769, 115);
             this.Query_richTextBox.TabIndex = 1;
@@ -61,7 +65,9 @@
             // 
             // TableList_treeView
             // 
+
             this.TableList_treeView.Location = new System.Drawing.Point(23, 114);
+
             this.TableList_treeView.Name = "TableList_treeView";
             this.TableList_treeView.Size = new System.Drawing.Size(280, 358);
             this.TableList_treeView.TabIndex = 2;
@@ -70,7 +76,9 @@
             // label2
             // 
             this.label2.AutoSize = true;
+
             this.label2.Location = new System.Drawing.Point(23, 73);
+
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(82, 15);
             this.label2.TabIndex = 5;
@@ -78,7 +86,9 @@
             // 
             // SaveQuery_button
             // 
+
             this.SaveQuery_button.Location = new System.Drawing.Point(834, 476);
+
             this.SaveQuery_button.Name = "SaveQuery_button";
             this.SaveQuery_button.Size = new System.Drawing.Size(83, 23);
             this.SaveQuery_button.TabIndex = 7;
@@ -88,7 +98,9 @@
             // 
             // btnSingleSelectCondition
             // 
+
             this.btnSingleSelectCondition.Location = new System.Drawing.Point(622, 61);
+
             this.btnSingleSelectCondition.Name = "btnSingleSelectCondition";
             this.btnSingleSelectCondition.Size = new System.Drawing.Size(136, 23);
             this.btnSingleSelectCondition.TabIndex = 11;
@@ -98,7 +110,9 @@
             // 
             // BuildQuery_button
             // 
+
             this.BuildQuery_button.Location = new System.Drawing.Point(772, 61);
+
             this.BuildQuery_button.Name = "BuildQuery_button";
             this.BuildQuery_button.Size = new System.Drawing.Size(86, 23);
             this.BuildQuery_button.TabIndex = 12;
@@ -108,14 +122,18 @@
             // 
             // TableView_panel
             // 
+
             this.TableView_panel.Location = new System.Drawing.Point(374, 114);
+
             this.TableView_panel.Name = "TableView_panel";
             this.TableView_panel.Size = new System.Drawing.Size(762, 225);
             this.TableView_panel.TabIndex = 13;
             // 
             // Clear_button
             // 
+
             this.Clear_button.Location = new System.Drawing.Point(667, 476);
+
             this.Clear_button.Name = "Clear_button";
             this.Clear_button.Size = new System.Drawing.Size(75, 23);
             this.Clear_button.TabIndex = 14;
@@ -126,7 +144,9 @@
             // AddJoins_button
             // 
             this.AddJoins_button.Enabled = false;
+
             this.AddJoins_button.Location = new System.Drawing.Point(541, 61);
+
             this.AddJoins_button.Name = "AddJoins_button";
             this.AddJoins_button.Size = new System.Drawing.Size(75, 23);
             this.AddJoins_button.TabIndex = 15;

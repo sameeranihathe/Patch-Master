@@ -430,7 +430,6 @@ namespace Patch_Master.Forms
             }
 
         }
-
         private void Clear_button_Click(object sender, EventArgs e)
         {
             firstSelectedTable = string.Empty;

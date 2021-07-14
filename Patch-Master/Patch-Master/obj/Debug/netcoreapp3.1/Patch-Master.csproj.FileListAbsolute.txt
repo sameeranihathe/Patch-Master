@@ -151,5 +151,10 @@ C:\Users\Dell Admin\Documents\Project Apps\GitHub\Patch-Master\Patch-Master\Patc
 C:\Users\Dell Admin\Documents\Project Apps\GitHub\Patch-Master\Patch-Master\Patch-Master\bin\Debug\netcoreapp3.1\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
 C:\Users\Dell Admin\Documents\Project Apps\GitHub\Patch-Master\Patch-Master\Patch-Master\obj\Debug\netcoreapp3.1\Patch-Master.csproj.AssemblyReference.cache
 C:\Users\Dell Admin\Documents\Project Apps\GitHub\Patch-Master\Patch-Master\Patch-Master\obj\Debug\netcoreapp3.1\Patch_Master.Forms.AvailableQueries.resources
-C:\Users\Dell Admin\Documents\Project Apps\GitHub\Patch-Master\Patch-Master\Patch-Master\obj\Debug\netcoreapp3.1\Patch_Master.Forms.ConditionBuilder.resources
 C:\Users\Dell Admin\Documents\Project Apps\GitHub\Patch-Master\Patch-Master\Patch-Master\obj\Debug\netcoreapp3.1\Patch_Master.Forms.SelectJoinBuilder.resources
+C:\Users\Dell Admin\Documents\Project Apps\GitHub\Patch-Master\Patch-Master\Patch-Master\obj\Debug\netcoreapp3.1\Patch_Master.Forms.NameConditionBuilder.resources
+C:\Users\Dell Admin\Documents\Project Apps\GitHub\Patch-Master\Patch-Master\Patch-Master\obj\Debug\netcoreapp3.1\Patch_Master.Forms.Register.resources
+C:\Users\Dell Admin\Documents\Project Apps\GitHub\Patch-Master\Patch-Master\Patch-Master\obj\Debug\netcoreapp3.1\Patch_Master.Forms.RequestedQueries.resources
+C:\Users\Dell Admin\Documents\Project Apps\GitHub\Patch-Master\Patch-Master\Patch-Master\obj\Debug\netcoreapp3.1\Interop.Microsoft.Office.Interop.Excel.dll
+C:\Users\Dell Admin\Documents\Project Apps\GitHub\Patch-Master\Patch-Master\Patch-Master\obj\Debug\netcoreapp3.1\Patch-Master.csproj.ResolveComReference.cache
+C:\Users\Dell Admin\Documents\Project Apps\GitHub\Patch-Master\Patch-Master\Patch-Master\bin\Debug\netcoreapp3.1\Interop.Microsoft.Office.Interop.Excel.dll

@@ -228,17 +228,6 @@ namespace Patch_Master
             inquireRequest.Show();
         }
 
-        private void hometabPage_mine_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void requirmentsByProcessToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-            
-        }
-
         private void button1_Click_1(object sender, EventArgs e)
         {
             UpdateQueryBuilder updateQueryBuilder = new UpdateQueryBuilder();
