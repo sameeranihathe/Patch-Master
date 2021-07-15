@@ -1,0 +1,11 @@
+CREATE TABLE [dbo].[PM_Requested_Queries](
+	[Requested_Query_ID] [int] IDENTITY(1,1) NOT NULL,
+	[Request_ID] [int] NOT NULL,
+	[QueryID] [int] NOT NULL,
+	[QueryString] [varchar](max) NULL,
+	[ExecutionOrder] [int] NOT NULL,
+ CONSTRAINT [PK_PM_Requested_Queries] PRIMARY KEY CLUSTERED 
+(
+	[Requested_Query_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]

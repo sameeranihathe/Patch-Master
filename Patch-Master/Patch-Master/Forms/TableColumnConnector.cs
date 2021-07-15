@@ -17,6 +17,8 @@ namespace Patch_Master.Forms
     {
         string clickedElementName = "";
         NameConditionBuilder ConditionGenerationForm;
+        UpdateQueryBuilder UpdateQueryBuilderForm;
+        string QueryGereratorQueryType = "";
         public TableColumnConnector()
         {
             InitializeComponent();
@@ -37,6 +39,15 @@ namespace Patch_Master.Forms
             clickedElementName = elementName;
             ConditionGenerationForm = conditionForm;
             LoadTableList();
+            //conditionForm.
+        }
+        public TableColumnConnector(string elementName, UpdateQueryBuilder conditionForm,string QueryGeneratorType)
+        {
+            InitializeComponent();
+            clickedElementName = elementName;
+            UpdateQueryBuilderForm = conditionForm;
+            LoadTableList();
+            QueryGereratorQueryType = QueryGeneratorType;
             //conditionForm.
         }
 
@@ -515,7 +526,34 @@ namespace Patch_Master.Forms
 
         private void BtnAddCondition_Click(object sender, EventArgs e)
         {
-            if(clickedElementName != null)
+            if (QueryGereratorQueryType != null && QueryGereratorQueryType == "UpdateQueryBuilder" && clickedElementName !=null)
+            {
+                if (clickedElementName.Split("_")[0] == "BtnAddTableColumnValue")
+                {
+                    foreach (Control ctn in UpdateQueryBuilderForm.Controls)
+                    {
+                        if (ctn.Name == "panel2")
+                        {
+
+
+                                if (ctn.Controls["textColumnValue_" + clickedElementName.Split("_")[1].ToString()] != null)
+                                {
+
+                                    ctn.Controls["textColumnValue_" + clickedElementName.Split("_")[1].ToString()].Text = GeneratedTCConditionBox.Text;
+
+                                }
+                          
+
+                            
+                        }
+                    }
+                }
+                this.Hide();
+                UpdateQueryBuilderForm.Show();
+                return;
+            }
+
+            else if(clickedElementName != null)
             {
                 if(clickedElementName.Split("_")[0] == "BtnTCCondition2")
                 {

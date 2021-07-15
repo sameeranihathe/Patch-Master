@@ -31,6 +31,9 @@
     <Compile Update="Forms\Register.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\RequestedQueries.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\Requirements.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -44,6 +47,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\TableColumnConnector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\UpdateQueryBuilder.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\Users.cs">

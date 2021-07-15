@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SqlQueryStrings>
+	<SqlQueryString Id="ListRequestedQuery">
+		select RQ.[Requested_Query_ID] as ID,RQ.[Request_ID] as 'Request ID',RQ.[QueryID] as 'Query ID' ,RQ.[ExecutionOrder] as 'Ex Order',
+		RQ.[ExecutionStatus] as 'Execution Status', US.UserName as 'Executed User', RQ.[ExecutedDate]  as 'Executed Date', RQ.[QueryString] as 'Query'
+		,QT.QueryType as 'Query Type', DB.DBName as 'Database', QR.QueryName as 'QueryName'
+		from [dbo].[PM_Requested_Queries] RQ
+		left outer  join PM_Users US
+		on US.User_Id = RQ.ExecutedBy
+		inner join PM_Queries QR
+		on RQ.QueryID = QR.QueryId
+		inner join PM_QueryTypes QT
+		on QT.QueryTypeId = QR.QueryTypeId
+		inner join PM_Request RS
+		on RS.Request_Id = RQ.Request_ID
+		inner join PM_Requiremenet RQQ
+		on RS.Requirement_Id = RQQ.RequirementId
+		inner join PM_Databases DB
+		on RQQ.DB_Id = DB.DB_Id
+		where RQ.Request_ID = @RequestID
+		order by RQ.ExecutionOrder
+	</SqlQueryString>
+	<SqlQueryString Id="UpdateExecute">
+		update PM_Requested_Queries
+		set ExecutedBy = @LoggedUserId, ExecutedDate = GETDATE(), ExecutionStatus = 1
+		where Requested_Query_ID = @RequestedQueryId
+	</SqlQueryString>
+	<SqlQueryString Id="CountExecutedQueries">
+		select COUNT(RQ.Requested_Query_ID) as RQCount from PM_Request RS
+		inner join PM_Requested_Queries RQ
+		on RS.Request_Id = RQ.Requested_Query_ID
+		where RQ.ExecutionStatus = 0 and RS.Request_Id = @RequestId
+	</SqlQueryString>
+	<SqlQueryString Id="UpdateRequest">
+		update PM_Request
+		set Execution_Status = 1
+		where Request_Id = @RequestId
+	</SqlQueryString>
+	<SqlQueryString Id="GetPrimaryKeys">
+		SELECT Col.Column_Name from
+		INFORMATION_SCHEMA.TABLE_CONSTRAINTS Tab,
+		INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE Col
+		WHERE
+		Col.Constraint_Name = Tab.Constraint_Name
+		AND Col.Table_Name = Tab.Table_Name
+		AND Constraint_Type = 'PRIMARY KEY'
+		AND Col.Table_Name = @PrimaryTable
+	</SqlQueryString>
+</SqlQueryStrings>

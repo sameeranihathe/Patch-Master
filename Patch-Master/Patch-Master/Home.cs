@@ -123,6 +123,7 @@ namespace Patch_Master
         private void menuStrip1_ItemClicked_1(object sender, ToolStripItemClickedEventArgs e)
         {
 
+
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -227,15 +228,11 @@ namespace Patch_Master
             inquireRequest.Show();
         }
 
-        private void hometabPage_mine_Click(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e)
         {
-
-        }
-
-        private void requirmentsByProcessToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-            
+            UpdateQueryBuilder updateQueryBuilder = new UpdateQueryBuilder();
+            this.Hide();
+            updateQueryBuilder.Show();
         }
     }
 }

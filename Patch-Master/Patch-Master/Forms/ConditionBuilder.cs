@@ -16,17 +16,25 @@ namespace Patch_Master.Forms
     public partial class NameConditionBuilder : Form
     {
         public static string CONDITIONSTRING = string.Empty;
-        public NameConditionBuilder()
+        public static string FROMQUERYTYPE = string.Empty;
+        public NameConditionBuilder(string fromQueryType)
         {
             InitializeComponent();
             LoadTableList();
 
             CONDITIONSTRING = string.Empty;
+            FROMQUERYTYPE = fromQueryType;
         }
 
         private void LoadTableList()
         {
+          
             List<string> tableList = SelectQueryBuilder.AddedTableList;
+            if(FROMQUERYTYPE == "UpdateQueryBuilder")
+            {
+                tableList.Clear();
+                //tableList.Add(UpdateQueryBuilder.CmbTable.SelectedItem.ToString());
+            }
             CmbTable_1.Items.Clear();
             foreach (var table in tableList)
             {
