@@ -18,7 +18,7 @@ namespace Patch_Master.Forms
         {
             InitializeComponent();
             //LoadAvailableTablesForDb(Requirements.SELECTEDDATABSENAME);
-            LoadAvailableTablesForDb("elibraryDB");
+            LoadAvailableTablesForDb("PatchMaster-1");
             
         }
 
@@ -73,7 +73,7 @@ namespace Patch_Master.Forms
         private void CmbTable_SelectedIndexChanged(object sender, EventArgs e)
         {
             //string selectedDatbase = Requirements.SELECTEDDATABSENAME;
-            string selectedDatbase = "elibraryDB";//Need to change
+            string selectedDatbase = "PatchMaster-1";//Need to change
             ComboBox TableSelectComboBox = sender as ComboBox;
 
             if (TableSelectComboBox == null) // just to be on the safe side
