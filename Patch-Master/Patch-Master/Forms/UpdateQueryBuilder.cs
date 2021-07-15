@@ -193,5 +193,25 @@ namespace Patch_Master.Forms
             TableColumnConnector tableColumnSelector = new TableColumnConnector(AddTableColumnBtn.Name.ToString(), this, "UpdateQueryBuilder");
             tableColumnSelector.Show();
         }
+
+        private void AddJoin_btn_Click(object sender, EventArgs e)
+        {
+            List<string> AddedTableList = new List<string>();
+
+            foreach (var item in CheckListBoxTable.CheckedItems)
+            {
+                AddedTableList.Add(item.ToString());
+            }
+            if (AddedTableList.Count>0)
+            {
+                SelectJoinBuilder selectJoinBuilder = new SelectJoinBuilder(AddedTableList);
+                selectJoinBuilder.Show();
+            }
+            else
+            {
+                MessageBox.Show("Please select table to add joins!", "Update Query");
+            }
+
+        }
     }
 }

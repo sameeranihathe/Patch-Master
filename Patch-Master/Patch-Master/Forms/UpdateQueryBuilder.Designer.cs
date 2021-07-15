@@ -44,11 +44,11 @@
             this.SelectTableLBL = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.TabletreeView = new System.Windows.Forms.TreeView();
             this.CheckListBoxTable = new System.Windows.Forms.CheckedListBox();
+            this.Return_btn = new System.Windows.Forms.Button();
+            this.AddJoin_btn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -166,7 +166,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(890, 340);
+            this.button3.Location = new System.Drawing.Point(809, 495);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(101, 23);
             this.button3.TabIndex = 5;
@@ -200,18 +200,10 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "Add Condition";
             // 
-            // richTextBox3
-            // 
-            this.richTextBox3.Location = new System.Drawing.Point(36, 106);
-            this.richTextBox3.Name = "richTextBox3";
-            this.richTextBox3.Size = new System.Drawing.Size(147, 382);
-            this.richTextBox3.TabIndex = 9;
-            this.richTextBox3.Text = "";
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(36, 69);
+            this.label1.Location = new System.Drawing.Point(36, 52);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(55, 15);
             this.label1.TabIndex = 10;
@@ -226,31 +218,43 @@
             this.label4.TabIndex = 11;
             this.label4.Text = "Update Query Builder";
             // 
-            // TabletreeView
-            // 
-            this.TabletreeView.Location = new System.Drawing.Point(36, 106);
-            this.TabletreeView.Name = "TabletreeView";
-            this.TabletreeView.Size = new System.Drawing.Size(147, 382);
-            this.TabletreeView.TabIndex = 12;
-            // 
             // CheckListBoxTable
             // 
             this.CheckListBoxTable.FormattingEnabled = true;
-            this.CheckListBoxTable.Location = new System.Drawing.Point(45, 113);
+            this.CheckListBoxTable.Location = new System.Drawing.Point(36, 70);
             this.CheckListBoxTable.Name = "CheckListBoxTable";
-            this.CheckListBoxTable.Size = new System.Drawing.Size(128, 364);
+            this.CheckListBoxTable.Size = new System.Drawing.Size(128, 418);
             this.CheckListBoxTable.TabIndex = 13;
+            // 
+            // Return_btn
+            // 
+            this.Return_btn.Location = new System.Drawing.Point(916, 495);
+            this.Return_btn.Name = "Return_btn";
+            this.Return_btn.Size = new System.Drawing.Size(75, 23);
+            this.Return_btn.TabIndex = 14;
+            this.Return_btn.Text = "Return";
+            this.Return_btn.UseVisualStyleBackColor = true;
+            // 
+            // AddJoin_btn
+            // 
+            this.AddJoin_btn.Location = new System.Drawing.Point(912, 343);
+            this.AddJoin_btn.Name = "AddJoin_btn";
+            this.AddJoin_btn.Size = new System.Drawing.Size(75, 23);
+            this.AddJoin_btn.TabIndex = 15;
+            this.AddJoin_btn.Text = "Add Joins";
+            this.AddJoin_btn.UseVisualStyleBackColor = true;
+            this.AddJoin_btn.Click += new System.EventHandler(this.AddJoin_btn_Click);
             // 
             // UpdateQueryBuilder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1055, 543);
+            this.Controls.Add(this.AddJoin_btn);
+            this.Controls.Add(this.Return_btn);
             this.Controls.Add(this.CheckListBoxTable);
-            this.Controls.Add(this.TabletreeView);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.richTextBox3);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.SelectTableLBL);
@@ -290,11 +294,11 @@
         private System.Windows.Forms.Label SelectTableLBL;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.RichTextBox richTextBox3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TreeView TabletreeView;
         private System.Windows.Forms.CheckedListBox CheckListBoxTable;
         private System.Windows.Forms.Button BtnAddTableColumnValue_1;
+        private System.Windows.Forms.Button Return_btn;
+        private System.Windows.Forms.Button AddJoin_btn;
     }
 }
