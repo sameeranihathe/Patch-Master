@@ -32,7 +32,7 @@ namespace Patch_Master.Forms
         {
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.Delete = new System.Windows.Forms.RadioButton();
             this.Insert = new System.Windows.Forms.RadioButton();
             this.Update = new System.Windows.Forms.RadioButton();
             this.Select = new System.Windows.Forms.RadioButton();
@@ -58,7 +58,7 @@ namespace Patch_Master.Forms
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.radioButton4);
+            this.groupBox1.Controls.Add(this.Delete);
             this.groupBox1.Controls.Add(this.Insert);
             this.groupBox1.Controls.Add(this.Update);
             this.groupBox1.Controls.Add(this.Select);
@@ -69,17 +69,17 @@ namespace Patch_Master.Forms
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Select a query type";
             // 
-            // radioButton4
+            // Delete
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(28, 180);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(93, 19);
-            this.radioButton4.TabIndex = 4;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Delete Query";
-            this.radioButton4.UseVisualStyleBackColor = true;
-            this.radioButton4.CheckedChanged += new System.EventHandler(this.selectQueryType);
+            this.Delete.AutoSize = true;
+            this.Delete.Location = new System.Drawing.Point(28, 180);
+            this.Delete.Name = "Delete";
+            this.Delete.Size = new System.Drawing.Size(93, 19);
+            this.Delete.TabIndex = 4;
+            this.Delete.TabStop = true;
+            this.Delete.Text = "Delete Query";
+            this.Delete.UseVisualStyleBackColor = true;
+            this.Delete.CheckedChanged += new System.EventHandler(this.selectQueryType);
             // 
             // Insert
             // 
@@ -200,7 +200,7 @@ namespace Patch_Master.Forms
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton Delete;
         private System.Windows.Forms.RadioButton Insert;
         private System.Windows.Forms.RadioButton Update;
         private System.Windows.Forms.RadioButton Select;
