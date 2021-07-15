@@ -159,8 +159,20 @@ namespace Patch_Master.Forms
                 textColumnValue.TabIndex = 0;
             }
 
+            Button TableColumnBtn = new Button();
+            {
+                TableColumnBtn.Location = new System.Drawing.Point(310, LocationY);
+                TableColumnBtn.Name = "BtnAddTableColumnValue_"+ nameSufficx;
+                TableColumnBtn.Size = new System.Drawing.Size(26, 25);
+                TableColumnBtn.TabIndex = 1;
+                TableColumnBtn.Text = "...";
+                TableColumnBtn.UseVisualStyleBackColor = true;
+                TableColumnBtn.Click += new System.EventHandler(this.BtnAddTableColumnValue_1_Click);
+            }
+
             panel2.Controls.Add(textColumnValue);
             panel2.Controls.Add(textColumnName);
+            panel2.Controls.Add(TableColumnBtn);
         }
 
         private void BtnCondition_Click(object sender, EventArgs e)
@@ -169,6 +181,17 @@ namespace Patch_Master.Forms
             this.Hide();
             nameConditionBuilder.Show();
 
+        }
+
+        private void BtnAddTableColumnValue_1_Click(object sender, EventArgs e)
+        {
+            Button AddTableColumnBtn = sender as Button;
+
+            if (AddTableColumnBtn == null) // just to be on the safe side
+                return;
+
+            TableColumnConnector tableColumnSelector = new TableColumnConnector(AddTableColumnBtn.Name.ToString(), this, "UpdateQueryBuilder");
+            tableColumnSelector.Show();
         }
     }
 }
