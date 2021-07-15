@@ -31,6 +31,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.BtnAddTableColumnValue_1 = new System.Windows.Forms.Button();
             this.textColumnValue_1 = new System.Windows.Forms.TextBox();
             this.textColumnName_1 = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -74,16 +75,28 @@
             // 
             this.panel2.AutoScroll = true;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.BtnAddTableColumnValue_1);
             this.panel2.Controls.Add(this.textColumnValue_1);
             this.panel2.Controls.Add(this.textColumnName_1);
             this.panel2.Location = new System.Drawing.Point(433, 113);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(334, 219);
+            this.panel2.Size = new System.Drawing.Size(342, 219);
             this.panel2.TabIndex = 0;
+            // 
+            // BtnAddTableColumnValue_1
+            // 
+            this.BtnAddTableColumnValue_1.Location = new System.Drawing.Point(304, 18);
+            this.BtnAddTableColumnValue_1.Name = "BtnAddTableColumnValue_1";
+            this.BtnAddTableColumnValue_1.Size = new System.Drawing.Size(26, 25);
+            this.BtnAddTableColumnValue_1.TabIndex = 1;
+            this.BtnAddTableColumnValue_1.Text = "...";
+            this.BtnAddTableColumnValue_1.UseVisualStyleBackColor = true;
+            this.BtnAddTableColumnValue_1.Visible = false;
+            this.BtnAddTableColumnValue_1.Click += new System.EventHandler(this.BtnAddTableColumnValue_1_Click);
             // 
             // textColumnValue_1
             // 
-            this.textColumnValue_1.Location = new System.Drawing.Point(171, 19);
+            this.textColumnValue_1.Location = new System.Drawing.Point(163, 19);
             this.textColumnValue_1.Name = "textColumnValue_1";
             this.textColumnValue_1.Size = new System.Drawing.Size(138, 23);
             this.textColumnValue_1.TabIndex = 0;
@@ -91,7 +104,7 @@
             // 
             // textColumnName_1
             // 
-            this.textColumnName_1.Location = new System.Drawing.Point(20, 19);
+            this.textColumnName_1.Location = new System.Drawing.Point(12, 19);
             this.textColumnName_1.Name = "textColumnName_1";
             this.textColumnName_1.Size = new System.Drawing.Size(145, 23);
             this.textColumnName_1.TabIndex = 0;
@@ -127,7 +140,7 @@
             // 
             this.BtnValue.Location = new System.Drawing.Point(433, 70);
             this.BtnValue.Name = "BtnValue";
-            this.BtnValue.Size = new System.Drawing.Size(334, 23);
+            this.BtnValue.Size = new System.Drawing.Size(342, 23);
             this.BtnValue.TabIndex = 2;
             this.BtnValue.Text = "Add Values";
             this.BtnValue.UseVisualStyleBackColor = true;
@@ -282,5 +295,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TreeView TabletreeView;
         private System.Windows.Forms.CheckedListBox CheckListBoxTable;
+        private System.Windows.Forms.Button BtnAddTableColumnValue_1;
     }
 }
