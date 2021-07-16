@@ -39,7 +39,7 @@
             this.CmbTable = new System.Windows.Forms.ComboBox();
             this.BtnValue = new System.Windows.Forms.Button();
             this.BtnCondition = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.UpdateQry_richTextBox = new System.Windows.Forms.RichTextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.SelectTableLBL = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -49,6 +49,7 @@
             this.CheckListBoxTable = new System.Windows.Forms.CheckedListBox();
             this.Return_btn = new System.Windows.Forms.Button();
             this.AddJoin_btn = new System.Windows.Forms.Button();
+            this.Clear_button = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -156,22 +157,23 @@
             this.BtnCondition.UseVisualStyleBackColor = true;
             this.BtnCondition.Click += new System.EventHandler(this.BtnCondition_Click);
             // 
-            // richTextBox1
+            // UpdateQry_richTextBox
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(208, 372);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(783, 117);
-            this.richTextBox1.TabIndex = 4;
-            this.richTextBox1.Text = "";
+            this.UpdateQry_richTextBox.Location = new System.Drawing.Point(208, 372);
+            this.UpdateQry_richTextBox.Name = "UpdateQry_richTextBox";
+            this.UpdateQry_richTextBox.Size = new System.Drawing.Size(783, 117);
+            this.UpdateQry_richTextBox.TabIndex = 4;
+            this.UpdateQry_richTextBox.Text = "";
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(809, 495);
+            this.button3.Location = new System.Drawing.Point(728, 495);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(101, 23);
             this.button3.TabIndex = 5;
             this.button3.Text = "Build Query";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // SelectTableLBL
             // 
@@ -234,6 +236,7 @@
             this.Return_btn.TabIndex = 14;
             this.Return_btn.Text = "Return";
             this.Return_btn.UseVisualStyleBackColor = true;
+            this.Return_btn.Click += new System.EventHandler(this.Return_btn_Click);
             // 
             // AddJoin_btn
             // 
@@ -245,11 +248,22 @@
             this.AddJoin_btn.UseVisualStyleBackColor = true;
             this.AddJoin_btn.Click += new System.EventHandler(this.AddJoin_btn_Click);
             // 
+            // Clear_button
+            // 
+            this.Clear_button.Location = new System.Drawing.Point(835, 495);
+            this.Clear_button.Name = "Clear_button";
+            this.Clear_button.Size = new System.Drawing.Size(75, 23);
+            this.Clear_button.TabIndex = 16;
+            this.Clear_button.Text = "Clear";
+            this.Clear_button.UseVisualStyleBackColor = true;
+            this.Clear_button.Click += new System.EventHandler(this.Clear_button_Click);
+            // 
             // UpdateQueryBuilder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1055, 543);
+            this.Controls.Add(this.Clear_button);
             this.Controls.Add(this.AddJoin_btn);
             this.Controls.Add(this.Return_btn);
             this.Controls.Add(this.CheckListBoxTable);
@@ -259,7 +273,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.SelectTableLBL);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.UpdateQry_richTextBox);
             this.Controls.Add(this.BtnCondition);
             this.Controls.Add(this.BtnValue);
             this.Controls.Add(this.CmbTable);
@@ -289,7 +303,7 @@
         public System.Windows.Forms.ComboBox CmbTable;
         private System.Windows.Forms.Button BtnValue;
         private System.Windows.Forms.Button BtnCondition;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox UpdateQry_richTextBox;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label SelectTableLBL;
         private System.Windows.Forms.Label label2;
@@ -300,5 +314,7 @@
         private System.Windows.Forms.Button BtnAddTableColumnValue_1;
         private System.Windows.Forms.Button Return_btn;
         private System.Windows.Forms.Button AddJoin_btn;
+        private System.Windows.Forms.RichTextBox UpdateQuery_richTextBox;
+        private System.Windows.Forms.Button Clear_button;
     }
 }
