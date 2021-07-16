@@ -17,8 +17,8 @@ namespace Patch_Master.Forms
         public UpdateQueryBuilder()
         {
             InitializeComponent();
-            //LoadAvailableTablesForDb(Requirements.SELECTEDDATABSENAME);
-            LoadAvailableTablesForDb("PatchMaster-1");
+            LoadAvailableTablesForDb(Requirements.SELECTEDDATABSENAME);
+            //LoadAvailableTablesForDb("PatchMaster-1");
             
         }
 
@@ -72,8 +72,8 @@ namespace Patch_Master.Forms
 
         private void CmbTable_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //string selectedDatbase = Requirements.SELECTEDDATABSENAME;
-            string selectedDatbase = "PatchMaster-1";//Need to change
+            string selectedDatbase = Requirements.SELECTEDDATABSENAME;
+            //string selectedDatbase = "PatchMaster-1";//Need to change
             ComboBox TableSelectComboBox = sender as ComboBox;
 
             if (TableSelectComboBox == null) // just to be on the safe side
@@ -212,6 +212,38 @@ namespace Patch_Master.Forms
                 MessageBox.Show("Please select table to add joins!", "Update Query");
             }
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var joinDetails = SelectJoinBuilder.joindetailList;
+            string joinstring = string.Empty;
+
+            if (joinDetails.Count > 0)
+            {
+                foreach (var join in joinDetails)
+                {
+
+                    joinstring += $"{join.JoinName} {join.TableTwo} ON {join.TableOne}.{join.TableOneColumn} = {join.TableTwo}.{join.TableTwoColumn} {Environment.NewLine}";
+
+                }
+
+                UpdateQry_richTextBox.Text += joinstring;
+
+            }
+        }
+
+        private void Clear_button_Click(object sender, EventArgs e)
+        {
+            UpdateQry_richTextBox.Text = string.Empty;
+            richTextBox2.Text = string.Empty;
+            //CheckListBoxTable.Items.Clear();
+        }
+
+        private void Return_btn_Click(object sender, EventArgs e)
+        {
+            UpdateQry_richTextBox.Text = string.Empty;
+            this.Close();
         }
     }
 }
