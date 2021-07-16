@@ -17,13 +17,24 @@ namespace Patch_Master.Forms
     {
         public static string CONDITIONSTRING = string.Empty;
         public static string FROMQUERYTYPE = string.Empty;
+        public UpdateQueryBuilder UpdateQueryBuilderForm;
         public NameConditionBuilder(string fromQueryType)
         {
+            CONDITIONSTRING = string.Empty;
+            FROMQUERYTYPE = fromQueryType;
             InitializeComponent();
             LoadTableList();
 
+
+        }
+        public NameConditionBuilder(string fromQueryType, UpdateQueryBuilder UpdateQueryForm)
+        {
             CONDITIONSTRING = string.Empty;
             FROMQUERYTYPE = fromQueryType;
+            UpdateQueryBuilderForm = UpdateQueryForm;
+            InitializeComponent();
+            LoadTableList();
+
         }
 
         private void LoadTableList()
@@ -34,8 +45,14 @@ namespace Patch_Master.Forms
             {
                 tableList.Clear();
                 //tableList.Add(UpdateQueryBuilder.CmbTable.SelectedItem.ToString());
+                    CheckedListBox UpdateFormChecklistBox = (CheckedListBox)UpdateQueryBuilderForm.Controls["CheckListBoxTable"];
+                    foreach (var item in UpdateFormChecklistBox.CheckedItems)
+                    {
+                        tableList.Add(item.ToString());
+                    }
             }
             CmbTable_1.Items.Clear();
+
             foreach (var table in tableList)
             {
                 tableList_listBox.Items.Add(table);               
@@ -163,6 +180,17 @@ namespace Patch_Master.Forms
                 CmbTable.TabIndex = 0;
                 CmbTable.SelectedIndexChanged += new System.EventHandler(this.CmbTable_1_SelectedIndexChanged);
                 List<string> tableList = SelectQueryBuilder.AddedTableList;
+                if (FROMQUERYTYPE == "UpdateQueryBuilder")
+                {
+                    tableList.Clear();
+                    //tableList.Add(UpdateQueryBuilder.CmbTable.SelectedItem.ToString());
+                    CheckedListBox UpdateFormChecklistBox = (CheckedListBox)UpdateQueryBuilderForm.Controls["CheckListBoxTable"];
+                    foreach (var item in UpdateFormChecklistBox.CheckedItems)
+                    {
+                        tableList.Add(item.ToString());
+                    }
+                }
+                CmbTable.Items.Clear();
                 foreach (string TableName in tableList)
                 {
                     CmbTable.Items.Add(TableName);
@@ -646,10 +674,23 @@ namespace Patch_Master.Forms
         {
             string condition = ConditionBox.Text.ToString();
 
-            if (!string.IsNullOrEmpty(condition))
+             if (!string.IsNullOrEmpty(condition) && FROMQUERYTYPE == "UpdateQueryBuilder")
+            {
+                Panel UpdateConditionViewPanel = (Panel)UpdateQueryBuilderForm.Controls["panel3"];
+                RichTextBox UpdateConditionView = (RichTextBox)UpdateConditionViewPanel.Controls["UpdarteConditionViewer"];
+                UpdateConditionView.Text = condition.ToString();
+                this.Hide();
+                UpdateConditionView.Show();
+
+                return;
+            }
+
+            else if (!string.IsNullOrEmpty(condition))
             {
                 CONDITIONSTRING = condition;
             }
+            
+                
             else
             {
                 MessageBox.Show("No condition created", "Conditions");

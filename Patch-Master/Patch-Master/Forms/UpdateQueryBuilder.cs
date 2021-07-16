@@ -20,7 +20,7 @@ namespace Patch_Master.Forms
             InitializeComponent();
             LoadAvailableTablesForDb(Requirements.SELECTEDDATABSENAME);
             //LoadAvailableTablesForDb("PatchMaster-1");
-            
+
         }
 
         private void LoadAvailableTablesForDb(string databaseName)
@@ -87,10 +87,13 @@ namespace Patch_Master.Forms
                 checkedListBox1.Items.Add(item);
             }
         }
+        Dictionary<string, string> TableColumnList = new Dictionary<string, string>();
         public List<string> LoadAllColumns(string dbName, string tableName)
         {
             DbConnector dbContext = new DbConnector();
             List<string> columnList = new List<string>();
+            TableColumnList.Clear();
+
             try
             {
                 string queryString = SqlQueryStringReader.GetQueryStringById("LoadColumnList", "QueryBuilder");
@@ -104,6 +107,7 @@ namespace Patch_Master.Forms
                 {
                     var column = reader["ColumnName"].ToString();
                     var dataType = reader["DataType"].ToString();
+                    TableColumnList.Add(column, dataType);
                     columnList.Add(column);
                 }
 
@@ -118,7 +122,7 @@ namespace Patch_Master.Forms
             }
             return columnList;
         }
-
+        int maxSetColumnSuffixValue = 0;
         private void BtnValue_Click(object sender, EventArgs e)
         {
             List<string> selectedColumnList = new List<string>();
@@ -128,20 +132,20 @@ namespace Patch_Master.Forms
             foreach (object itemChecked in checkedListBox1.CheckedItems)
             {
                 Count++;
-                TextBoxgenerator(itemChecked.ToString(),Count.ToString(),19 + ((Count-1)*50));
-               // selectedColumnList.Add(itemChecked.ToString());
+                TextBoxgenerator(itemChecked.ToString(), Count.ToString(), 19 + ((Count - 1) * 50));
+                // selectedColumnList.Add(itemChecked.ToString());
 
             }
 
-
+            maxSetColumnSuffixValue = Count;
             //    for (int x = 0; x < checkedListBox1.Items.Count; x++)
             //{
             //    selectedColumnList.Add(checkedListBox1.Items[x]);
             //}
-           int count  = selectedColumnList.Count();
-                
+            int count = selectedColumnList.Count();
+
         }
-        private void TextBoxgenerator(string itemName,string nameSufficx,int LocationY)
+        private void TextBoxgenerator(string itemName, string nameSufficx, int LocationY)
         {
             TextBox textColumnName = new TextBox();
             {
@@ -163,7 +167,7 @@ namespace Patch_Master.Forms
             Button TableColumnBtn = new Button();
             {
                 TableColumnBtn.Location = new System.Drawing.Point(310, LocationY);
-                TableColumnBtn.Name = "BtnAddTableColumnValue_"+ nameSufficx;
+                TableColumnBtn.Name = "BtnAddTableColumnValue_" + nameSufficx;
                 TableColumnBtn.Size = new System.Drawing.Size(26, 25);
                 TableColumnBtn.TabIndex = 1;
                 TableColumnBtn.Text = "...";
@@ -178,8 +182,8 @@ namespace Patch_Master.Forms
 
         private void BtnCondition_Click(object sender, EventArgs e)
         {
-            NameConditionBuilder nameConditionBuilder = new NameConditionBuilder("UpdateQueryBuilder");
-            this.Hide();
+            NameConditionBuilder nameConditionBuilder = new NameConditionBuilder("UpdateQueryBuilder", this);
+            //this.Hide();
             nameConditionBuilder.Show();
 
         }
@@ -203,7 +207,7 @@ namespace Patch_Master.Forms
             {
                 AddedTableList.Add(item.ToString());
             }
-            if (AddedTableList.Count>0)
+            if (AddedTableList.Count > 0)
             {
                 SelectJoinBuilder selectJoinBuilder = new SelectJoinBuilder(AddedTableList);
                 selectJoinBuilder.Show();
@@ -217,6 +221,40 @@ namespace Patch_Master.Forms
 
         private void button3_Click(object sender, EventArgs e)
         {
+            string UpdateTableName = "";
+            string UpdateSetColumnlist = "";
+            string UpdateJoin = "";
+            string UpdateCondition = "";
+            string BuildQuery = "";
+
+            UpdateTableName = CmbTable.SelectedItem.ToString();
+            IDictionary<string, string> SetColumnValues = new Dictionary<string, string>();
+            Panel panel2 = (Panel)this.Controls["panel2"];
+            Panel panel3 = (Panel)this.Controls["panel3"];
+            for (int i = 1; i <= maxSetColumnSuffixValue; i++)
+            {
+                string ColumnType = TableColumnList[panel2.Controls["textColumnName_" + i].Text];
+                string ColumnValue = "";
+                if (ColumnType != "int")
+                {
+                    ColumnValue = "'" + panel2.Controls["textColumnValue_" + i].Text.ToString() + "'";
+                }
+                else
+                {
+                    ColumnValue = panel2.Controls["textColumnValue_" + i].Text.ToString();
+                }
+                string SetColumnValue = panel2.Controls["textColumnName_" + i].Text.ToString() + "  =  " + ColumnValue +" ";
+                if(i != 1)
+                {
+                    SetColumnValue = ", "+SetColumnValue ;
+                }
+
+                UpdateSetColumnlist += SetColumnValue;
+
+                SetColumnValues.Add(panel2.Controls["textColumnName_" + i].Text.ToString(), panel2.Controls["textColumnValue_" + i].Text.ToString());
+
+            }
+
             var joinDetails = SelectJoinBuilder.joindetailList;
             string joinstring = string.Empty;
 
@@ -229,15 +267,32 @@ namespace Patch_Master.Forms
 
                 }
 
-                UpdateQry_richTextBox.Text += joinstring;
-
+               // UpdateQry_richTextBox.Text += joinstring;
             }
+            UpdateJoin = joinstring;
+            UpdateCondition = panel3.Controls["UpdarteConditionViewer"].Text.ToString();
+            BuildQuery = BuildUpdateQuery(UpdateTableName, UpdateSetColumnlist, UpdateJoin, UpdateCondition);
+            UpdateQry_richTextBox.Text = BuildQuery;
+
+
+        }
+        public string BuildUpdateQuery(string UpdateTableName, string UpdateSetColumnlist, string UpdateJoin, string UpdateCondition)
+        {
+            String UpdateQuery = "";
+            UpdateQuery = "UPDATE " + UpdateTableName + Environment.NewLine
+                + " SET " + UpdateSetColumnlist + Environment.NewLine
+                + UpdateJoin + Environment.NewLine
+                + " WHERE " + UpdateCondition;
+
+            return UpdateQuery;
+
+
         }
 
         private void Clear_button_Click(object sender, EventArgs e)
         {
             UpdateQry_richTextBox.Text = string.Empty;
-            richTextBox2.Text = string.Empty;
+            UpdarteConditionViewer.Text = string.Empty;
             //CheckListBoxTable.Items.Clear();
         }
 

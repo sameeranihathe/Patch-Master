@@ -28,6 +28,14 @@ namespace Patch_Master.Forms
         {
             List<string> tableList = SelectQueryBuilder.AddedTableList;
             comTableName_1.Items.Clear();
+            if (QueryGereratorQueryType != null && QueryGereratorQueryType == "UpdateQueryBuilder" && clickedElementName != null)
+            {
+                CheckedListBox UpdateFormChecklistBox = (CheckedListBox)UpdateQueryBuilderForm.Controls["CheckListBoxTable"];
+                foreach (var item in UpdateFormChecklistBox.CheckedItems)
+                {
+                    tableList.Add(item.ToString());
+                }
+            }
             foreach (var table in tableList)
             {
                 comTableName_1.Items.Add(table);
@@ -35,19 +43,20 @@ namespace Patch_Master.Forms
         }
         public TableColumnConnector(string elementName, NameConditionBuilder conditionForm)
         {
-            InitializeComponent();
+            
             clickedElementName = elementName;
             ConditionGenerationForm = conditionForm;
+            InitializeComponent();
             LoadTableList();
             //conditionForm.
         }
         public TableColumnConnector(string elementName, UpdateQueryBuilder conditionForm,string QueryGeneratorType)
         {
-            InitializeComponent();
             clickedElementName = elementName;
             UpdateQueryBuilderForm = conditionForm;
-            LoadTableList();
             QueryGereratorQueryType = QueryGeneratorType;
+            InitializeComponent();
+            LoadTableList();
             //conditionForm.
         }
 
@@ -235,7 +244,19 @@ namespace Patch_Master.Forms
             {
                 TableName_1.FormattingEnabled = true;
                 TableName_1.Name = "comTableName_"+ GroupBoxSuffixValue;
+                
                 List<string> tableList = SelectQueryBuilder.AddedTableList;
+
+                if (QueryGereratorQueryType != null && QueryGereratorQueryType == "UpdateQueryBuilder" && clickedElementName != null)
+                {
+                   CheckedListBox UpdateFormChecklistBox  = (CheckedListBox)UpdateQueryBuilderForm.Controls["CheckListBoxTable"];
+                    tableList.Clear();
+                    foreach (var item in UpdateFormChecklistBox.CheckedItems)
+                    {
+                        tableList.Add(item.ToString());
+                    }
+                }
+                TableName_1.Items.Clear();
                 foreach (string TableName in tableList)
                 {
                     TableName_1.Items.Add(TableName);

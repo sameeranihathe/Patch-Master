@@ -35,7 +35,7 @@
             this.textColumnValue_1 = new System.Windows.Forms.TextBox();
             this.textColumnName_1 = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.UpdarteConditionViewer = new System.Windows.Forms.RichTextBox();
             this.CmbTable = new System.Windows.Forms.ComboBox();
             this.BtnValue = new System.Windows.Forms.Button();
             this.BtnCondition = new System.Windows.Forms.Button();
@@ -115,19 +115,19 @@
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.richTextBox2);
+            this.panel3.Controls.Add(this.UpdarteConditionViewer);
             this.panel3.Location = new System.Drawing.Point(791, 113);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(200, 219);
             this.panel3.TabIndex = 0;
             // 
-            // richTextBox2
+            // UpdarteConditionViewer
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(17, 19);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(165, 183);
-            this.richTextBox2.TabIndex = 0;
-            this.richTextBox2.Text = "";
+            this.UpdarteConditionViewer.Location = new System.Drawing.Point(17, 19);
+            this.UpdarteConditionViewer.Name = "UpdarteConditionViewer";
+            this.UpdarteConditionViewer.Size = new System.Drawing.Size(165, 183);
+            this.UpdarteConditionViewer.TabIndex = 0;
+            this.UpdarteConditionViewer.Text = "";
             // 
             // CmbTable
             // 
@@ -311,7 +311,7 @@
         private System.Windows.Forms.TextBox textColumnValue_1;
         private System.Windows.Forms.TextBox textColumnName_1;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.RichTextBox UpdarteConditionViewer;
         public System.Windows.Forms.ComboBox CmbTable;
         private System.Windows.Forms.Button BtnValue;
         private System.Windows.Forms.Button BtnCondition;
