@@ -50,6 +50,7 @@
             this.Return_btn = new System.Windows.Forms.Button();
             this.AddJoin_btn = new System.Windows.Forms.Button();
             this.Clear_button = new System.Windows.Forms.Button();
+            this.Validate_button = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -258,11 +259,22 @@
             this.Clear_button.UseVisualStyleBackColor = true;
             this.Clear_button.Click += new System.EventHandler(this.Clear_button_Click);
             // 
+            // Validate_button
+            // 
+            this.Validate_button.Location = new System.Drawing.Point(647, 495);
+            this.Validate_button.Name = "Validate_button";
+            this.Validate_button.Size = new System.Drawing.Size(75, 23);
+            this.Validate_button.TabIndex = 17;
+            this.Validate_button.Text = "Validate";
+            this.Validate_button.UseVisualStyleBackColor = true;
+            this.Validate_button.Click += new System.EventHandler(this.Validate_button_Click);
+            // 
             // UpdateQueryBuilder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1055, 543);
+            this.Controls.Add(this.Validate_button);
             this.Controls.Add(this.Clear_button);
             this.Controls.Add(this.AddJoin_btn);
             this.Controls.Add(this.Return_btn);
@@ -316,5 +328,6 @@
         private System.Windows.Forms.Button AddJoin_btn;
         private System.Windows.Forms.RichTextBox UpdateQuery_richTextBox;
         private System.Windows.Forms.Button Clear_button;
+        private System.Windows.Forms.Button Validate_button;
     }
 }

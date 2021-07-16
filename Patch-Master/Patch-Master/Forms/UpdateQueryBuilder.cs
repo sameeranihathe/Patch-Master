@@ -14,6 +14,7 @@ namespace Patch_Master.Forms
 {
     public partial class UpdateQueryBuilder : Form
     {
+        bool queryValidated = false;
         public UpdateQueryBuilder()
         {
             InitializeComponent();
@@ -244,6 +245,45 @@ namespace Patch_Master.Forms
         {
             UpdateQry_richTextBox.Text = string.Empty;
             this.Close();
+        }
+
+        private void Validate_button_Click(object sender, EventArgs e)
+        {
+            DbConnector dbContext = new DbConnector();
+            queryValidated = true;
+            try
+            {
+                string Query = UpdateQry_richTextBox.Text;
+                if (!string.IsNullOrEmpty(Query))
+                {
+                    string query = SqlQueryStringReader.GetQueryStringById("CheckQueryValidation", "Queries");
+                    List<SqlParameter> sqlParams = new List<SqlParameter>();
+                    sqlParams.Add(new SqlParameter("Query", Query));
+                    sqlParams.Add(new SqlParameter("Database", Requirements.SELECTEDDATABSENAME.ToString()));
+                    dbContext.ExecuteQueryWithIDataReader(query, sqlParams);
+
+                }
+                else
+                {
+                    MessageBox.Show("No built query available!", "Validate Query");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                queryValidated = false;
+                MessageBox.Show(ex.Message.ToString(), "Validate Query");
+            }
+            //finally
+            //{
+            //    dbContext.CloseConnection();
+            //}
+
+            if (queryValidated)
+            {
+                MessageBox.Show("Query successfully validated!", "Validate Query");
+            }
+            dbContext.CloseConnection();
         }
     }
 }
