@@ -655,5 +655,10 @@ namespace Patch_Master.Forms
                 MessageBox.Show("No condition created", "Conditions");
             }
         }
+
+        private void Close_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

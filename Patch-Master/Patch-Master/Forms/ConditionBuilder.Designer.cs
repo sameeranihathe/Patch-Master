@@ -360,6 +360,7 @@ namespace Patch_Master.Forms
             this.Close.TabIndex = 5;
             this.Close.Text = "Close";
             this.Close.UseVisualStyleBackColor = true;
+            this.Close.Click += new System.EventHandler(this.Close_Click);
             // 
             // Generate
             // 
