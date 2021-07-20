@@ -1,4 +1,5 @@
-﻿using Patch_Master.DbContext.Database;
+﻿using Patch_Master.CustomElements;
+using Patch_Master.DbContext.Database;
 using Patch_Master.DbContext.QueryReader;
 using System;
 using System.Collections.Generic;
@@ -147,13 +148,14 @@ namespace Patch_Master.Forms
         }
         private void TextBoxgenerator(string itemName, string nameSufficx, int LocationY)
         {
-            TextBox textColumnName = new TextBox();
+            CustomTextBox textColumnName = new CustomTextBox();
             {
                 textColumnName.Location = new System.Drawing.Point(20, LocationY);
                 textColumnName.Name = "textColumnName_" + nameSufficx;
                 textColumnName.Size = new System.Drawing.Size(145, 23);
                 textColumnName.TabIndex = 0;
                 textColumnName.Text = itemName;
+                textColumnName.isTCCombinedValue = false;
             }
 
             TextBox textColumnValue = new TextBox();
@@ -234,8 +236,14 @@ namespace Patch_Master.Forms
             for (int i = 1; i <= maxSetColumnSuffixValue; i++)
             {
                 string ColumnType = TableColumnList[panel2.Controls["textColumnName_" + i].Text];
+                CustomTextBox textColumnValue = (CustomTextBox)panel2.Controls["textColumnName_" + i];
+                bool isTCValue = false;
+                if(textColumnValue != null)
+                {
+                    isTCValue = textColumnValue.isTCCombinedValue;
+                }
                 string ColumnValue = "";
-                if (ColumnType != "int")
+                if (ColumnType != "int" && isTCValue == false)
                 {
                     ColumnValue = "'" + panel2.Controls["textColumnValue_" + i].Text.ToString() + "'";
                 }
@@ -263,7 +271,7 @@ namespace Patch_Master.Forms
                 foreach (var join in joinDetails)
                 {
 
-                    joinstring += $"{join.JoinName} {join.TableTwo} ON {join.TableOne}.{join.TableOneColumn} = {join.TableTwo}.{join.TableTwoColumn} {Environment.NewLine}";
+                    joinstring += $"{join.TableOne} {join.JoinName} {join.TableTwo} ON {join.TableOne}.{join.TableOneColumn} = {join.TableTwo}.{join.TableTwoColumn} {Environment.NewLine}";
 
                 }
 
@@ -281,7 +289,7 @@ namespace Patch_Master.Forms
             String UpdateQuery = "";
             UpdateQuery = "UPDATE " + UpdateTableName + Environment.NewLine
                 + " SET " + UpdateSetColumnlist + Environment.NewLine
-                + UpdateJoin + Environment.NewLine
+                + UpdateJoin 
                 + " WHERE " + UpdateCondition;
 
             return UpdateQuery;

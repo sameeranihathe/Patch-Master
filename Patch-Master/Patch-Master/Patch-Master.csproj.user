@@ -7,6 +7,9 @@
     <Compile Update="CustomElements\CustomPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="CustomElements\CustomTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="Forms\AvailableQueries.cs">
       <SubType>Form</SubType>
     </Compile>

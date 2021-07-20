@@ -462,6 +462,8 @@ namespace Patch_Master.Forms
         {
             String generatedTCConditionString =  GenerateTCConditionString();
             GeneratedTCConditionBox.Text = generatedTCConditionString;
+            GeneratedTCConditionBox.ReadOnly = true;
+
         }
         private string GenerateTCConditionString()
         {
@@ -559,10 +561,12 @@ namespace Patch_Master.Forms
 
                                 if (ctn.Controls["textColumnValue_" + clickedElementName.Split("_")[1].ToString()] != null)
                                 {
+                                
+                                ctn.Controls["textColumnValue_" + clickedElementName.Split("_")[1].ToString()].Text = GeneratedTCConditionBox.Text;
+                                CustomTextBox TableColumnValue = (CustomTextBox)ctn.Controls["textColumnName_" + clickedElementName.Split("_")[1].ToString()];
+                                TableColumnValue.isTCCombinedValue = true;
 
-                                    ctn.Controls["textColumnValue_" + clickedElementName.Split("_")[1].ToString()].Text = GeneratedTCConditionBox.Text;
-
-                                }
+                            }
                           
 
                             
@@ -588,8 +592,11 @@ namespace Patch_Master.Forms
                             {
                                 if (conditionGroupBox.Controls["textValue_" + clickedElementName.Split("_")[1].ToString()] != null)
                                 {
-
-                                    conditionGroupBox.Controls["textValue_" + clickedElementName.Split("_")[1].ToString()].Text = GeneratedTCConditionBox.Text;
+                                    CustomTextBox TextBoxValue = (CustomTextBox)conditionGroupBox.Controls["textValue_" + clickedElementName.Split("_")[1].ToString()];
+                                    TextBoxValue.Text = GeneratedTCConditionBox.Text;
+                                    TextBoxValue.isTCCombinedValue = true;
+                                   //conditionGroupBox.Controls["textValue_" + clickedElementName.Split("_")[1].ToString()].Text = GeneratedTCConditionBox.Text;
+                                 
 
                                 }
                             }    

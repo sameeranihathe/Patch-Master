@@ -243,7 +243,7 @@ namespace Patch_Master.Forms
             "<",
             "<="});
             }
-            TextBox textValue = new TextBox();
+            CustomTextBox textValue = new CustomTextBox();
             {
                 textValue.Location = new System.Drawing.Point(509, 42);
                 textValue.Name = "textValue_"+ GroupBoxSuffixValue;
@@ -487,33 +487,13 @@ namespace Patch_Master.Forms
                 string Comparer = "";
                 string Value2 = "";
                 string CloseBracket = "";
+                string ColumnType = "";
 
 
 
                 foreach (Control ctn in GroupBoxRow.Controls)
                 {
-                    if (ctn is TextBox)
-                    {
-                        string ControllerName = ctn.Name.ToString();
-                        if (ControllerName != null && ControllerName.Split("_").Length > 0 && ctn.Visible ==true)
-                        {
-                            TextBox ValuerBox = (TextBox)GroupBoxRow.Controls[ControllerName];
-
-                            if (ControllerName.Split("_")[0] == "textValue1")
-                            {
-
-                                TCValye1 = ValuerBox.Text;
-
-                            }
-                            if (ControllerName.Split("_")[0] == "textValue")
-                            {
-
-                                Value2 = ValuerBox.Text;
-
-                            }
-                        }                          
-                           
-                    }
+                   
 
                     if (ctn is ComboBox && ctn.Visible == true)
                     {
@@ -536,7 +516,11 @@ namespace Patch_Master.Forms
                             if (ControllerName.Split("_")[0] == "CmbColumn")
                             {
 
-                                ColumnName = TCComboBox.SelectedItem != null ? TCComboBox.SelectedItem.ToString() : "";
+                                //ColumnName = TCComboBox.SelectedItem != null ? TCComboBox.SelectedItem.ToString() : "";
+                                //ColumnType = TCComboBox.SelectedItem != null ? TCComboBox.SelectedItem.ToString() : "";
+                                ColumnName = (TCComboBox.SelectedItem as dynamic).Text;
+                                ColumnType = (TCComboBox.SelectedItem as dynamic).Value.Split(",")[1];
+                               
 
                             }
 
@@ -555,6 +539,33 @@ namespace Patch_Master.Forms
 
                             }
                         }
+                    }
+                    if (ctn is TextBox)
+                    {
+                        string ControllerName = ctn.Name.ToString();
+                        if (ControllerName != null && ControllerName.Split("_").Length > 0 && ctn.Visible == true)
+                        {
+                            TextBox ValuerBox = (TextBox)GroupBoxRow.Controls[ControllerName];
+
+                            if (ControllerName.Split("_")[0] == "textValue1")
+                            {
+
+                                TCValye1 = ValuerBox.Text;
+
+                            }
+                            if (ControllerName.Split("_")[0] == "textValue")
+                            {
+                                CustomTextBox valueTextBox = (CustomTextBox)GroupBoxRow.Controls[ControllerName];
+
+                                Value2 = ValuerBox.Text;
+                                if (ColumnType != "int" && valueTextBox.isTCCombinedValue != true)
+                                {
+                                    Value2 = "'" + Value2 + "'";
+                                }
+
+                            }
+                        }
+
                     }
 
                 }
@@ -613,28 +624,36 @@ namespace Patch_Master.Forms
 
             string GroupControllerName = "GroupConditionRow_" + TableSelectComboBox.Name.Split("_")[1].ToString();
             string ControllerName = "CmbColumn_" + TableSelectComboBox.Name.Split("_")[1].ToString();
-            List<string> ColumnList = LoadAllColumns(selectedDatbase, TableSelectComboBox.SelectedItem.ToString());
+            Dictionary<string, string> ColumnList = LoadAllColumns(selectedDatbase, TableSelectComboBox.SelectedItem.ToString());
 
             customGroupBox customGroupBox = (customGroupBox)this.PanelConditionContainer.Controls[GroupControllerName];
             ComboBox ColumnBox = (ComboBox)customGroupBox.Controls[ControllerName];
             if (ColumnList != null && ColumnList.Count() > 0 && ColumnBox != null)
             {
                 ColumnBox.Items.Clear();
-                foreach (string item in ColumnList)
+                ColumnBox.DisplayMember = "Text";
+                ColumnBox.ValueMember = "Value";
+                foreach (var item in ColumnList)
                 {
-                    ColumnBox.Items.Add(item);
+                    string columnName = item.Key;
+                    string columnType = item.Value;
+                    ColumnBox.Items.Add(new { Text = columnName , Value = columnName+","+ columnType });
+                   // ColumnBox.Items.Add(new KeyValuePair(columnType, columnName));
                 }
             }
            
 
             // LoadAllColumns();
         }
-        public List<string> LoadAllColumns(string dbName, string tableName)
+
+       
+        public Dictionary<string, string> LoadAllColumns(string dbName, string tableName)
         {
             DbConnector dbContext = new DbConnector();
-            List<string> columnList = new List<string>();
+            Dictionary<string, string> TableColumnList = new Dictionary<string, string>();
             try
             {
+               
                 string queryString = SqlQueryStringReader.GetQueryStringById("LoadColumnList", "QueryBuilder");
                 List<SqlParameter> sqlParams = new List<SqlParameter>();
                 sqlParams.Add(new SqlParameter("DbName", dbName));
@@ -645,7 +664,9 @@ namespace Patch_Master.Forms
                 while (reader.Read())
                 {
                     var column = reader["ColumnName"].ToString();
-                    columnList.Add(column);
+                    var dataType = reader["DataType"].ToString();
+                    TableColumnList.Add(column, dataType);
+                    
                 }
 
             }
@@ -657,7 +678,7 @@ namespace Patch_Master.Forms
             {
                 dbContext.CloseConnection();
             }
-            return columnList;
+            return TableColumnList;
         }
 
         private void CmbColumn_1_SelectedIndexChanged(object sender, EventArgs e)
@@ -688,6 +709,9 @@ namespace Patch_Master.Forms
             else if (!string.IsNullOrEmpty(condition))
             {
                 CONDITIONSTRING = condition;
+                MessageBox.Show("Successfully added the condition ", "Conditions");
+                this.Hide();
+                //NameConditionBuilder.Show();
             }
             
                 

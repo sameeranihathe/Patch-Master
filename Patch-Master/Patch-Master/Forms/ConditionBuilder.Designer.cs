@@ -46,7 +46,7 @@ namespace Patch_Master.Forms
             this.label1 = new System.Windows.Forms.Label();
             this.BtnTCCondition2_1 = new System.Windows.Forms.Button();
             this.BtnTCCondition1_1 = new System.Windows.Forms.Button();
-            this.textValue_1 = new System.Windows.Forms.TextBox();
+            this.textValue_1 = new CustomTextBox();
             this.CmbCloseBracket_1 = new System.Windows.Forms.ComboBox();
             this.CmbComparer_1 = new System.Windows.Forms.ComboBox();
             this.CmbColumn_1 = new System.Windows.Forms.ComboBox();
@@ -401,7 +401,7 @@ namespace Patch_Master.Forms
         private customGroupBox GroupConditionRow_1;
         private System.Windows.Forms.Button BtnTCCondition2_1;
         private System.Windows.Forms.Button BtnTCCondition1_1;
-        private System.Windows.Forms.TextBox textValue_1;
+        private CustomTextBox textValue_1;
         private System.Windows.Forms.ComboBox CmbCloseBracket_1;
         private System.Windows.Forms.ComboBox CmbComparer_1;
         private System.Windows.Forms.ComboBox CmbTable_1;
