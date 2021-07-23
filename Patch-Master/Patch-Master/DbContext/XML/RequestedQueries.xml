@@ -22,7 +22,7 @@
 	</SqlQueryString>
 	<SqlQueryString Id="UpdateExecute">
 		update PM_Requested_Queries
-		set ExecutedBy = @LoggedUserId, ExecutedDate = GETDATE(), ExecutionStatus = 1
+		set ExecutedBy = @LoggedUserId, ExecutedDate = GETDATE(), ExecutionStatus = 1, NoOfRecordsAffected = @NoOfRows
 		where Requested_Query_ID = @RequestedQueryId
 	</SqlQueryString>
 	<SqlQueryString Id="CountExecutedQueries">
@@ -45,5 +45,10 @@
 		AND Col.Table_Name = Tab.Table_Name
 		AND Constraint_Type = 'PRIMARY KEY'
 		AND Col.Table_Name = @PrimaryTable
+	</SqlQueryString>
+	<SqlQueryString Id="UpadteModifiedQuery">
+		update PM_Requested_Queries
+		set QueryString = @ModifiedQueryString
+		where Requested_Query_ID = @RequestedQueryID
 	</SqlQueryString>
 </SqlQueryStrings>

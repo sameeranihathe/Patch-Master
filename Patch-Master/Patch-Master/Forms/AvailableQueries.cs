@@ -18,10 +18,18 @@ namespace Patch_Master.Forms
         string loggedUserName = string.Empty;
         string roleName = string.Empty;
         int roleId = 0;
+        Requirements requirements;
 
         public AvailableQueries()
         {
             InitializeComponent();
+            CheckLogin();
+            LoadSavedQueriesGrid();
+        }
+        public AvailableQueries(Requirements Passedrequirements)
+        {
+            InitializeComponent();
+            requirements = Passedrequirements;
             CheckLogin();
             LoadSavedQueriesGrid();
         }
@@ -36,21 +44,28 @@ namespace Patch_Master.Forms
         }
         private void LoadSavedQueriesGrid()
         {
-            
+            DataTable dt = LoadQueries(Requirements.REQUIREMENTID);
+
+            SavedQueries_dataGridView.Columns.Clear();
+            SavedQueries_dataGridView.DataSource = dt;
+
             if (Requirements.NavigatedFrom == "Formulate") 
             {
                 AddQuery_button.Visible = true;
                 DeleteQuery_button.Visible = true;
+                int numRows = SavedQueries_dataGridView.Rows.Count;
+                if (numRows>0)
+                {
+                    buttonConfirmFormulation.Visible = true;
+                }
             }
             else
             {
                 AddQuery_button.Visible = false;
                 DeleteQuery_button.Visible = false;
+                buttonConfirmFormulation.Visible = false;
             }
-            DataTable dt = LoadQueries(Requirements.REQUIREMENTID);
 
-            SavedQueries_dataGridView.Columns.Clear();
-            SavedQueries_dataGridView.DataSource = dt;
         }
 
         private DataTable LoadQueries(string requirementId)
@@ -77,13 +92,11 @@ namespace Patch_Master.Forms
 
             return dt;
         }
-
         private void AddQuery_button_Click(object sender, EventArgs e)
         {
             QueryTypeSelector queryTypeSelector = new QueryTypeSelector();
             queryTypeSelector.Show();
         }
-
         private void ViewQuery_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             int rowindex = e.RowIndex;
@@ -92,7 +105,6 @@ namespace Patch_Master.Forms
             string SavedQueryString = LoadQueryString(QueryID);
             Query_richTextBox.Text = SavedQueryString;
         }
-
         private string LoadQueryString(int queryID)
         {
             DbConnector dbContext = new DbConnector();
@@ -122,15 +134,57 @@ namespace Patch_Master.Forms
             }
             return Query;
         }
-
         private void DeleteQuery_button_Click(object sender, EventArgs e)
         {
 
         }
-
         private void buttonReturn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        private void buttonConfirmFormulation_Click(object sender, EventArgs e)
+        {
+            DbConnector dbContext = new DbConnector();
+            try
+            {
+                string queryString = SqlQueryStringReader.GetQueryStringById("UpdateFormulation", "Requirements");
+                List<SqlParameter> sqlParams = new List<SqlParameter>();
+                sqlParams.Add(new SqlParameter("RequirmentID", Requirements.REQUIREMENTID));
+                sqlParams.Add(new SqlParameter("LoginUserID", loggedUserId));
+                var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
+                var reader = dataReaders[0];
+                int RequestId = 0;
+                while (reader.Read())
+                {
+                    RequestId = Convert.ToInt32(reader["RequirmentID"]);
+
+                }
+
+                if (RequestId > 0)
+                {
+                    MessageBox.Show("Queries are Successfully Formulated Against the Requirment");
+                    string selectedSubProcessId = (((KeyValuePair<int, string>)requirements.SubProcess_comboBox.SelectedItem).Key).ToString();
+                    string selectedDatabaseID = (((KeyValuePair<int, string>)requirements.comboBoxDatabase.SelectedItem).Key).ToString();
+                    requirements.ViewRequirements(selectedSubProcessId, selectedDatabaseID);
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Formulation of Queries against the Requirment failed");
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            finally
+            {
+
+                dbContext.CloseConnection();
+            }
+
         }
     }
 }

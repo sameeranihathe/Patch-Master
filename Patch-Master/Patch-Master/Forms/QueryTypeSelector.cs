@@ -75,6 +75,7 @@ namespace Patch_Master.Forms
 
                 string QueryName = QueryName_textBox.Text;
                 string QueryDescription = QueryDecription_richTextBox.Text;
+                int ExecutionOrder = Convert.ToInt32(textBoxExecutionOrder.Text);
 
                 if (string.IsNullOrEmpty(QueryName))
                 {
@@ -92,6 +93,11 @@ namespace Patch_Master.Forms
                     MessageBox.Show("Please select a query type to proceed", "Add Query");
                     return;
                 }
+                if (ExecutionOrder==0)
+                {
+                    MessageBox.Show("Please Enter the Order in which this Query to be Executed", "Add Query");
+                    return;
+                }
 
                 string queryString = SqlQueryStringReader.GetQueryStringById("SaveQueryDetails", "Queries");
                 List<SqlParameter> sqlParams = new List<SqlParameter>();
@@ -100,7 +106,7 @@ namespace Patch_Master.Forms
                 sqlParams.Add(new SqlParameter("QueryDescription", QueryDescription));
                 sqlParams.Add(new SqlParameter("QueryType", QueryType));
                 sqlParams.Add(new SqlParameter("CreatedBy", loggedUserId));
-
+                sqlParams.Add(new SqlParameter("ExecutionOrder", ExecutionOrder));
                 var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
                 var reader = dataReaders[0];
 

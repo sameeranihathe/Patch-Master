@@ -22,6 +22,17 @@ namespace Patch_Master.Forms
             InitializeComponent();
             LoadTableList();
         }
+        #region New Computation Condition
+        public TableColumnConnector(string elementName, NameConditionBuilder conditionForm)
+        {
+            InitializeComponent();
+            clickedElementName = elementName;
+            ConditionGenerationForm = conditionForm;
+            LoadTableList();
+            //conditionForm.
+        }
+        #endregion
+        #region Load Tables and Colunms 
         private void LoadTableList()
         {
             List<string> tableList = SelectQueryBuilder.AddedTableList;
@@ -31,20 +42,63 @@ namespace Patch_Master.Forms
                 comTableName_1.Items.Add(table);
             }
         }
-        public TableColumnConnector(string elementName, NameConditionBuilder conditionForm)
+        private void comTableName_1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            InitializeComponent();
-            clickedElementName = elementName;
-            ConditionGenerationForm = conditionForm;
-            LoadTableList();
-            //conditionForm.
-        }
+            string selectedDatbase = Requirements.SELECTEDDATABSENAME;
+            ComboBox TableSelectComboBox = sender as ComboBox;
 
-        private void label3_Click(object sender, EventArgs e)
+            if (TableSelectComboBox == null) // just to be on the safe side
+                return;
+
+            string GroupControllerName = "TcGoupBox_" + TableSelectComboBox.Name.Split("_")[1].ToString();
+            string ControllerName = "cmbColumnName_" + TableSelectComboBox.Name.Split("_")[1].ToString();
+            List<string> ColumnList = LoadAllColumns(selectedDatbase, TableSelectComboBox.SelectedItem.ToString());
+
+            customGroupBox customGroupBox = (customGroupBox)this.ConditionContainerPanel.Controls[GroupControllerName];
+            ComboBox ColumnBox = (ComboBox)customGroupBox.Controls[ControllerName];
+            if (ColumnList != null && ColumnList.Count() > 0 && ColumnBox != null)
+            {
+                ColumnBox.Items.Clear();
+                foreach (string item in ColumnList)
+                {
+                    ColumnBox.Items.Add(item);
+                }
+            }
+
+        }
+        public List<string> LoadAllColumns(string dbName, string tableName)
         {
+            DbConnector dbContext = new DbConnector();
+            List<string> columnList = new List<string>();
+            try
+            {
+                string queryString = SqlQueryStringReader.GetQueryStringById("LoadColumnList", "QueryBuilder");
+                List<SqlParameter> sqlParams = new List<SqlParameter>();
+                sqlParams.Add(new SqlParameter("DbName", dbName));
+                sqlParams.Add(new SqlParameter("Table", tableName));
+                var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
+                var reader = dataReaders[0];
 
+                while (reader.Read())
+                {
+                    var column = reader["ColumnName"].ToString();
+                    columnList.Add(column);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            finally
+            {
+                dbContext.CloseConnection();
+            }
+            return columnList;
         }
-
+        #endregion
+        #region Add Computation Row
+        #region Computation Button Clicks 
         private void button1_Click(object sender, EventArgs e)
         {
             OperatorPanel.Show();
@@ -65,7 +119,6 @@ namespace Patch_Master.Forms
 
 
         }
-
         private void btnAdd_Click(object sender, EventArgs e)
         {
             OperatorPanel.Visible = false;
@@ -104,7 +157,6 @@ namespace Patch_Master.Forms
             AddTableColumnRow("-", newGroupOrderNumber);
             
         }
-
         private void BtnMul_Click(object sender, EventArgs e)
         {
             OperatorPanel.Visible = false;
@@ -124,8 +176,6 @@ namespace Patch_Master.Forms
             AddTableColumnRow("*", newGroupOrderNumber);
             
         }
-
-
         private void BtnDev_Click(object sender, EventArgs e)
         {
             OperatorPanel.Visible = false;
@@ -145,8 +195,9 @@ namespace Patch_Master.Forms
             AddTableColumnRow("/", newGroupOrderNumber);
            
         }
-
-        private void AddTableColumnRow(string OperatorType,int currentOrderNumber)
+        #endregion
+        #region create New Row
+        private void AddTableColumnRow(string OperatorType, int currentOrderNumber)
         {
             string GroupRowName = "";
             switch (OperatorType)
@@ -192,11 +243,11 @@ namespace Patch_Master.Forms
             string PreviousControllerName = getGroupRowElementfromOrderNumber(currentOrderNumber - 1);
             int PreviousControllerLocationY = this.ConditionContainerPanel.Controls[PreviousControllerName].Location.Y;
 
-            int GroupRowdrawingLocationY = (50 +PreviousControllerLocationY);
+            int GroupRowdrawingLocationY = (50 + PreviousControllerLocationY);
             customGroupBox TCGoupBox = new customGroupBox();
             {
-                TCGoupBox.Location = new System.Drawing.Point(35, 21+GroupRowdrawingLocationY);
-                TCGoupBox.Name = "TcGoupBox_"+GroupBoxSuffixValue;
+                TCGoupBox.Location = new System.Drawing.Point(35, 21 + GroupRowdrawingLocationY);
+                TCGoupBox.Name = "TcGoupBox_" + GroupBoxSuffixValue;
                 TCGoupBox.Size = new System.Drawing.Size(733, 66);
                 TCGoupBox.TabIndex = 1;
                 TCGoupBox.TabStop = false;
@@ -216,23 +267,23 @@ namespace Patch_Master.Forms
             "(((",
             "((((",
             "AddMore"});
-                OpenBacket.Name = "cmbOpenBacket_"+ GroupBoxSuffixValue;
+                OpenBacket.Name = "cmbOpenBacket_" + GroupBoxSuffixValue;
                 OpenBacket.Size = new System.Drawing.Size(74, 23);
                 OpenBacket.TabIndex = 0;
             }
             ComboBox TableName_1 = new ComboBox();
             {
                 TableName_1.FormattingEnabled = true;
-                TableName_1.Name = "comTableName_"+ GroupBoxSuffixValue;
+                TableName_1.Name = "comTableName_" + GroupBoxSuffixValue;
                 List<string> tableList = SelectQueryBuilder.AddedTableList;
                 foreach (string TableName in tableList)
                 {
                     TableName_1.Items.Add(TableName);
                 }
-            //    TableName_1.Items.AddRange(new object[] {
-            //"Tab1",
-            //"Tab2",
-            //"Tab3"});
+                //    TableName_1.Items.AddRange(new object[] {
+                //"Tab1",
+                //"Tab2",
+                //"Tab3"});
                 TableName_1.Size = new System.Drawing.Size(161, 23);
                 TableName_1.TabIndex = 0;
                 TableName_1.SelectedIndexChanged += new System.EventHandler(this.comTableName_1_SelectedIndexChanged);
@@ -240,7 +291,7 @@ namespace Patch_Master.Forms
             ComboBox TableColumn = new ComboBox();
             {
                 TableColumn.FormattingEnabled = true;
-                TableColumn.Name = "cmbColumnName_" + GroupBoxSuffixValue; 
+                TableColumn.Name = "cmbColumnName_" + GroupBoxSuffixValue;
                 TableColumn.Items.AddRange(new object[] {
             "Col1",
             "Col2",
@@ -258,7 +309,7 @@ namespace Patch_Master.Forms
             ")))",
             "))))",
             "AddMore"});
-                CloseBracket.Name = "cmbClosedBacket_"+ GroupBoxSuffixValue;
+                CloseBracket.Name = "cmbClosedBacket_" + GroupBoxSuffixValue;
                 CloseBracket.Size = new System.Drawing.Size(81, 23);
                 CloseBracket.TabIndex = 0;
             }
@@ -266,7 +317,7 @@ namespace Patch_Master.Forms
             Button Addtablecolumn = new Button();
             {
                 Addtablecolumn.Location = new System.Drawing.Point(567, 36);
-                Addtablecolumn.Name = "BtnAddOperator_"+ GroupBoxSuffixValue;
+                Addtablecolumn.Name = "BtnAddOperator_" + GroupBoxSuffixValue;
                 Addtablecolumn.Size = new System.Drawing.Size(75, 23);
                 Addtablecolumn.TabIndex = 1;
                 Addtablecolumn.Text = "+";
@@ -301,16 +352,6 @@ namespace Patch_Master.Forms
             ConditionContainerPanel.Controls.Add(TCGoupBox);
 
         }
-
-        private void TableColumnConnector_Load(object sender, EventArgs e)
-        {
-            //AddTableColumnRow("+", 1);
-        }
-
-        private void TcGoupBox_1_Enter(object sender, EventArgs e)
-        {
-
-        }
         private void ReorderWhenAddingTCRow(int orderNumber)
         {
             int newlyAddedOrderNumber = orderNumber;
@@ -327,25 +368,24 @@ namespace Patch_Master.Forms
                         if (ControllerName.Split("_")[0] == "TcGoupBox")
                         {
                             customGroupBox customGroupBox = (customGroupBox)this.ConditionContainerPanel.Controls[ControllerName];
-                           
-                            if (customGroupBox.GroupBoxOrderNumber>= newlyAddedOrderNumber)
+
+                            if (customGroupBox.GroupBoxOrderNumber >= newlyAddedOrderNumber)
                             {
 
                                 int newLocationY = customGroupBox.Location.Y + 70;
                                 int newLocationX = customGroupBox.Location.X;
                                 int GroupBoxNewOrderNumber = customGroupBox.GroupBoxOrderNumber + 1;
-                               
+
                                 customGroupBox.Location = new System.Drawing.Point(newLocationX, newLocationY);
                                 customGroupBox.GroupBoxOrderNumber = GroupBoxNewOrderNumber;
                             }
-                            
+
                         }
                     }
                 }
             }
 
         }
-
         private string getGroupRowElementfromOrderNumber(int GroupBoxOrderNumber)
         {
             string groupElementName = "";
@@ -372,7 +412,9 @@ namespace Patch_Master.Forms
             }
             return groupElementName;
         }
-
+        #endregion
+        #endregion
+        #region Delete Computation Condition Row
         private void BtnDeleteRow_Click(object sender, EventArgs e)
         {
             Button DeleteRowButton = sender as Button;
@@ -390,7 +432,6 @@ namespace Patch_Master.Forms
                 ReorderWhenDeletingTCRow(deleteRowOrderNumber);
             }
         }
-
         private void ReorderWhenDeletingTCRow(int orderNumber)
         {
             int DeletedRowOrderNumber = orderNumber;
@@ -425,7 +466,8 @@ namespace Patch_Master.Forms
             }
 
         }
-
+        #endregion
+        #region Genarate Condition
         private void GenerateTCCondition_Click(object sender, EventArgs e)
         {
             String generatedTCConditionString =  GenerateTCConditionString();
@@ -512,7 +554,6 @@ namespace Patch_Master.Forms
             }
             return GroupBoxElementList;
         }
-
         private void BtnAddCondition_Click(object sender, EventArgs e)
         {
             if(clickedElementName != null)
@@ -595,67 +636,27 @@ namespace Patch_Master.Forms
             this.Hide();
             ConditionGenerationForm.Show();
         }
+        private void BtnClose_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        #endregion
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void TableColumnConnector_Load(object sender, EventArgs e)
+        {
+            //AddTableColumnRow("+", 1);
+        }
+        private void TcGoupBox_1_Enter(object sender, EventArgs e)
+        {
+
+        }
         private void cmbColumnName_1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
-
-        private void comTableName_1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string selectedDatbase = Requirements.SELECTEDDATABSENAME;
-            ComboBox TableSelectComboBox = sender as ComboBox;
-
-            if (TableSelectComboBox == null) // just to be on the safe side
-                return;
-
-            string GroupControllerName = "TcGoupBox_" + TableSelectComboBox.Name.Split("_")[1].ToString();
-            string ControllerName = "cmbColumnName_" + TableSelectComboBox.Name.Split("_")[1].ToString();
-            List<string> ColumnList = LoadAllColumns(selectedDatbase, TableSelectComboBox.SelectedItem.ToString());
-
-            customGroupBox customGroupBox = (customGroupBox)this.ConditionContainerPanel.Controls[GroupControllerName];
-            ComboBox ColumnBox = (ComboBox)customGroupBox.Controls[ControllerName];
-            if (ColumnList != null && ColumnList.Count() > 0 && ColumnBox != null)
-            {
-                ColumnBox.Items.Clear();
-                foreach (string item in ColumnList)
-                {
-                    ColumnBox.Items.Add(item);
-                }
-            }
-
-        }
-
-        public List<string> LoadAllColumns(string dbName, string tableName)
-        {
-            DbConnector dbContext = new DbConnector();
-            List<string> columnList = new List<string>();
-            try
-            {
-                string queryString = SqlQueryStringReader.GetQueryStringById("LoadColumnList", "QueryBuilder");
-                List<SqlParameter> sqlParams = new List<SqlParameter>();
-                sqlParams.Add(new SqlParameter("DbName", dbName));
-                sqlParams.Add(new SqlParameter("Table", tableName));
-                var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
-                var reader = dataReaders[0];
-
-                while (reader.Read())
-                {
-                    var column = reader["ColumnName"].ToString();
-                    columnList.Add(column);
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-            finally
-            {
-                dbContext.CloseConnection();
-            }
-            return columnList;
-        }
-
     }
 }

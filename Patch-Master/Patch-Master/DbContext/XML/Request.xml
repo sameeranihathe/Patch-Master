@@ -2,10 +2,9 @@
 <SqlQueryStrings>
 	<SqlQueryString Id="CreateRequest">
 		insert into PM_Request ([Requirement_Id],[Description],[Request_Date],[Request_User],[RequestBy],[Approval_Status],[Execution_Status])
-		OUTPUT Inserted.[Request_Id], Inserted.[Description], Inserted.[Request_Date]
+		OUTPUT Inserted.[Request_Id], Inserted.[Description], Inserted.[Request_Date],inserted.Approval_Status
 		values (@RequirmentId, @RequirmentDescription, GETDATE(),@LoginUser,@LoginUserID,'Pending',0)
 	</SqlQueryString>
-
 	<SqlQueryString Id="ModifyRequestDescription">
 		update PM_Request
 		set Description = @RequestDescription
@@ -126,5 +125,20 @@
 		output inserted.Request_Id, inserted.Approval_Status
 		where Request_Id = @RequestId
 	</SqlQueryString>
-	
+	<SqlQueryString Id="CreateRequestedQueries">
+		insert into PM_Requested_Queries 
+		select @RequestID,QueryId,QueryString,ExecutionOrder,0,'',null from [dbo].[PM_Queries]
+		where RequirementId = @RequirmentId
+	</SqlQueryString>
+	<SqlQueryString Id="SELECTApprovalReq">
+		select [ApprovalRequired] from PM_QueryTypes
+		where QueryTypeId in (1,5)
+	</SqlQueryString>
+	<SqlQueryString Id="CountOfUpadte">
+		select COUNT(RQ.Requested_Query_ID) as CountUPDATE from PM_Requested_Queries RQ
+		inner join PM_Queries Q
+		on RQ.QueryID = Q.QueryId
+		where RQ.Request_ID = @RequuestId and Q.QueryTypeId not in (1,5)
+	</SqlQueryString>
+		
 </SqlQueryStrings>

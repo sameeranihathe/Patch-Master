@@ -10,8 +10,6 @@
 	  ,[DB_Id]
 	  ,[CreatedBy]
 	  ,[CreatedDate]
-	  ,[IsApproved]
-	  ,[ApprovedBy]
 	  ,[Status]
 	  ,[FormulationStatus])
 	  OUTPUT Inserted.RequirementId
@@ -23,8 +21,6 @@
 	  @DatabaseId,
 	  @UserID,
 	  GETDATE(),
-	  0,
-	  0,
 	  2,
 	  0
 	  )
@@ -54,25 +50,23 @@
   </SqlQueryString>
 	<SqlQueryString Id="LoadFormulatedRequirements">
 		SELECT RQ.RequirementId as 'Requirement ID' ,RQ. RequirementName as 'Requirment Name',RQ.Description as 'Req Description',
-		RQ.Objective as 'Req Objective', Db.DBName as 'Database',RQ.CreatedUserName as 'Created By', RQ.CreatedDate as 'Created Date'
+		RQ.Objective as 'Req Objective', Db.DBName as 'Database',y.UserName as 'CreatedBy', RQ.CreatedDate as 'Created Date'
 		FROM PM_Requiremenet RQ
 		inner join PM_Databases DB
 		on RQ.DB_Id = Db.DB_Id
+		full join PM_Users y
+		on RQ.CreatedBy = y.User_Id
 		WHERE RQ.SubProcessId=@SubProcessId AND RQ.Status = @Status AND RQ.DB_Id = @DB_Id AND RQ.FormulationStatus = @FormulationStatus
 	</SqlQueryString>
-  <SqlQueryString Id="DeleteRequirements">
-    UPDATE PM_Queries
-    SET status=0
-    WHERE RequirementId in (@RequirementIdList)
-
-    UPDATE PM_Requiremenet
-    SET Status=0
-    WHERE RequirementId in (@RequirementIdList)
-  </SqlQueryString>
-
 	<SqlQueryString Id="UpdateRequirement">
 		update PM_Requiremenet
 		set Objective = @Objective, Description = @Description
 		where RequirementId = @RequirmentId
+	</SqlQueryString>
+	<SqlQueryString Id="UpdateFormulation">
+		update PM_Requiremenet
+		set FormulationStatus = 1, [FormulatedUser] = @LoginUserID, [FormulatedDate] = GETDATE()
+		output inserted.RequirementId as RequirmentID
+		where RequirementId = @RequirmentID
 	</SqlQueryString>
 </SqlQueryStrings>

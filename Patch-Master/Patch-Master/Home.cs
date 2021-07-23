@@ -226,5 +226,11 @@ namespace Patch_Master
             inquireRequest.NavigatedFrom = "ExecuteRequest";
             inquireRequest.Show();
         }
+
+        private void AprovalToolStripMenu_Click(object sender, EventArgs e)
+        {
+            QueryTypes queryTypes = new QueryTypes();
+            queryTypes.Show();
+        }
     }
 }

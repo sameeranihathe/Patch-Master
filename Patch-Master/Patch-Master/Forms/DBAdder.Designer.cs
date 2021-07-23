@@ -215,7 +215,7 @@
             this.btnSaveDB.TabIndex = 4;
             this.btnSaveDB.Text = "Save";
             this.btnSaveDB.UseVisualStyleBackColor = true;
-            this.btnSaveDB.Click += new System.EventHandler(this.button2_Click);
+            this.btnSaveDB.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // buttonReturn
             // 

@@ -190,6 +190,7 @@ namespace Patch_Master.Forms
             // 
             this.textBoxMPName.Location = new System.Drawing.Point(173, 361);
             this.textBoxMPName.Name = "textBoxMPName";
+            this.textBoxMPName.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBoxMPName.Size = new System.Drawing.Size(237, 27);
             this.textBoxMPName.TabIndex = 9;
             // 

@@ -25,6 +25,9 @@
     <Compile Update="Forms\Processes.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\QueryTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\QueryTypeSelector.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -32,6 +35,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\RequestedQueries.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\RequestedQueryConditions.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\Requirements.cs">

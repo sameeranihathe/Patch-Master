@@ -515,7 +515,6 @@ namespace Patch_Master.Forms
         private System.Windows.Forms.ComboBox comboBoxSubProcess;
         private System.Windows.Forms.ComboBox comboBoxProcess;
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
-        private System.Windows.Forms.DataGridView dataGridViewRequestDetails;
         private System.Windows.Forms.Button buttonReturn;
         private System.Windows.Forms.Button buttonRequestedQueries;
         private System.Windows.Forms.Button ButtonApprove;
@@ -545,5 +544,6 @@ namespace Patch_Master.Forms
         private System.Windows.Forms.Button buttonRejectRequest;
         private System.Windows.Forms.RichTextBox richTextBoxComment;
         private System.Windows.Forms.Label labelComment;
+        public System.Windows.Forms.DataGridView dataGridViewRequestDetails;
     }
 }

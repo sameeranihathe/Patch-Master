@@ -9,16 +9,17 @@
   </SqlQueryString>
   
 <SqlQueryString Id="SaveQueryDetails">
-  INSERT INTO PM_Queries
-  ([QueryName]
-  ,[QueryDescription]
-  ,[QueryTypeId]
-  ,[RequirementId]
-  ,[CreatedDate]
-  ,[CreatedBy]
-  ,[Status])
-  OUTPUT Inserted.QueryId
-  VALUES(@QueryName,@QueryDescription,@QueryType,@RequirementId,GETDATE(),@CreatedBy,1)
+	INSERT INTO PM_Queries
+	([QueryName]
+	,[QueryDescription]
+	,[QueryTypeId]
+	,[RequirementId]
+	,[CreatedDate]
+	,[CreatedBy]
+	,[Status]
+	,[ExecutionOrder])
+	OUTPUT Inserted.QueryId
+	VALUES(@QueryName,@QueryDescription,@QueryType,@RequirementId,GETDATE(),@CreatedBy,1,@ExecutionOrder)
 </SqlQueryString>
   LoadQuery
   <SqlQueryString Id="LoadQuery">

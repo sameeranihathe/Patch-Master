@@ -42,6 +42,10 @@ namespace Patch_Master.Forms
             this.buttonExecute = new System.Windows.Forms.Button();
             this.buttonReturn = new System.Windows.Forms.Button();
             this.groupBoxReqQueries = new System.Windows.Forms.GroupBox();
+            this.buttonValidate = new System.Windows.Forms.Button();
+            this.buttonModifyConditions = new System.Windows.Forms.Button();
+            this.textBoxRequestApproval = new System.Windows.Forms.TextBox();
+            this.labelApproval = new System.Windows.Forms.Label();
             this.richTextBoxRequestDes = new System.Windows.Forms.RichTextBox();
             this.textBoxrequestID = new System.Windows.Forms.TextBox();
             this.labelReqDescription = new System.Windows.Forms.Label();
@@ -136,6 +140,7 @@ namespace Patch_Master.Forms
             // 
             this.richTextBoxQuery.Location = new System.Drawing.Point(153, 463);
             this.richTextBoxQuery.Name = "richTextBoxQuery";
+            this.richTextBoxQuery.ReadOnly = true;
             this.richTextBoxQuery.Size = new System.Drawing.Size(754, 130);
             this.richTextBoxQuery.TabIndex = 8;
             this.richTextBoxQuery.Text = "";
@@ -172,6 +177,10 @@ namespace Patch_Master.Forms
             // 
             // groupBoxReqQueries
             // 
+            this.groupBoxReqQueries.Controls.Add(this.buttonValidate);
+            this.groupBoxReqQueries.Controls.Add(this.buttonModifyConditions);
+            this.groupBoxReqQueries.Controls.Add(this.textBoxRequestApproval);
+            this.groupBoxReqQueries.Controls.Add(this.labelApproval);
             this.groupBoxReqQueries.Controls.Add(this.richTextBoxRequestDes);
             this.groupBoxReqQueries.Controls.Add(this.textBoxrequestID);
             this.groupBoxReqQueries.Controls.Add(this.labelReqDescription);
@@ -194,27 +203,63 @@ namespace Patch_Master.Forms
             this.groupBoxReqQueries.Controls.Add(this.textBoxExUser);
             this.groupBoxReqQueries.Location = new System.Drawing.Point(12, 1);
             this.groupBoxReqQueries.Name = "groupBoxReqQueries";
-            this.groupBoxReqQueries.Size = new System.Drawing.Size(917, 635);
+            this.groupBoxReqQueries.Size = new System.Drawing.Size(917, 649);
             this.groupBoxReqQueries.TabIndex = 12;
             this.groupBoxReqQueries.TabStop = false;
             this.groupBoxReqQueries.Text = "Requested Queries";
-            this.groupBoxReqQueries.Enter += new System.EventHandler(this.groupBoxReqQueries_Enter);
+            // 
+            // buttonValidate
+            // 
+            this.buttonValidate.Location = new System.Drawing.Point(485, 601);
+            this.buttonValidate.Name = "buttonValidate";
+            this.buttonValidate.Size = new System.Drawing.Size(87, 31);
+            this.buttonValidate.TabIndex = 24;
+            this.buttonValidate.Text = "Validate";
+            this.buttonValidate.UseVisualStyleBackColor = true;
+            this.buttonValidate.Click += new System.EventHandler(this.buttonValidate_Click);
+            // 
+            // buttonModifyConditions
+            // 
+            this.buttonModifyConditions.Location = new System.Drawing.Point(629, 599);
+            this.buttonModifyConditions.Name = "buttonModifyConditions";
+            this.buttonModifyConditions.Size = new System.Drawing.Size(168, 29);
+            this.buttonModifyConditions.TabIndex = 23;
+            this.buttonModifyConditions.Text = "Modify Conditions";
+            this.buttonModifyConditions.UseVisualStyleBackColor = true;
+            this.buttonModifyConditions.Visible = false;
+            this.buttonModifyConditions.Click += new System.EventHandler(this.buttonModifyConditions_Click);
+            // 
+            // textBoxRequestApproval
+            // 
+            this.textBoxRequestApproval.Location = new System.Drawing.Point(371, 23);
+            this.textBoxRequestApproval.Name = "textBoxRequestApproval";
+            this.textBoxRequestApproval.ReadOnly = true;
+            this.textBoxRequestApproval.Size = new System.Drawing.Size(137, 27);
+            this.textBoxRequestApproval.TabIndex = 22;
+            // 
+            // labelApproval
+            // 
+            this.labelApproval.AutoSize = true;
+            this.labelApproval.Location = new System.Drawing.Point(237, 26);
+            this.labelApproval.Name = "labelApproval";
+            this.labelApproval.Size = new System.Drawing.Size(114, 20);
+            this.labelApproval.TabIndex = 21;
+            this.labelApproval.Text = "Approval Status";
             // 
             // richTextBoxRequestDes
             // 
-            this.richTextBoxRequestDes.Enabled = false;
             this.richTextBoxRequestDes.Location = new System.Drawing.Point(115, 59);
             this.richTextBoxRequestDes.Name = "richTextBoxRequestDes";
+            this.richTextBoxRequestDes.ReadOnly = true;
             this.richTextBoxRequestDes.Size = new System.Drawing.Size(783, 49);
             this.richTextBoxRequestDes.TabIndex = 20;
             this.richTextBoxRequestDes.Text = "";
-            this.richTextBoxRequestDes.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // textBoxrequestID
             // 
-            this.textBoxrequestID.Enabled = false;
             this.textBoxrequestID.Location = new System.Drawing.Point(115, 26);
             this.textBoxrequestID.Name = "textBoxrequestID";
+            this.textBoxrequestID.ReadOnly = true;
             this.textBoxrequestID.Size = new System.Drawing.Size(116, 27);
             this.textBoxrequestID.TabIndex = 19;
             // 
@@ -273,7 +318,7 @@ namespace Patch_Master.Forms
             this.groupBoxSELECTResults.Controls.Add(this.buttonReturnFormRetreval);
             this.groupBoxSELECTResults.Controls.Add(this.buttonExcel);
             this.groupBoxSELECTResults.Controls.Add(this.dataGridViewRetrievedData);
-            this.groupBoxSELECTResults.Location = new System.Drawing.Point(12, 5);
+            this.groupBoxSELECTResults.Location = new System.Drawing.Point(12, 1);
             this.groupBoxSELECTResults.Name = "groupBoxSELECTResults";
             this.groupBoxSELECTResults.Size = new System.Drawing.Size(1264, 625);
             this.groupBoxSELECTResults.TabIndex = 13;
@@ -299,6 +344,7 @@ namespace Patch_Master.Forms
             this.buttonExcel.TabIndex = 1;
             this.buttonExcel.Text = "Export To Excel";
             this.buttonExcel.UseVisualStyleBackColor = true;
+            this.buttonExcel.Visible = false;
             this.buttonExcel.Click += new System.EventHandler(this.buttonExcel_Click);
             // 
             // dataGridViewRetrievedData
@@ -318,7 +364,7 @@ namespace Patch_Master.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1288, 643);
+            this.ClientSize = new System.Drawing.Size(1288, 656);
             this.Controls.Add(this.groupBoxSELECTResults);
             this.Controls.Add(this.groupBoxReqQueries);
             this.Name = "RequestedQueries";
@@ -343,7 +389,6 @@ namespace Patch_Master.Forms
         private System.Windows.Forms.TextBox textBoxExOrder;
         private System.Windows.Forms.TextBox textBoxExUser;
         private System.Windows.Forms.TextBox textBoxExDate;
-        private System.Windows.Forms.RichTextBox richTextBoxQuery;
         private System.Windows.Forms.Label labelQuery;
         private System.Windows.Forms.Button buttonExecute;
         private System.Windows.Forms.Button buttonReturn;
@@ -360,5 +405,10 @@ namespace Patch_Master.Forms
         private System.Windows.Forms.Label labelRequestID;
         public System.Windows.Forms.RichTextBox richTextBoxRequestDes;
         public System.Windows.Forms.TextBox textBoxrequestID;
+        public System.Windows.Forms.TextBox textBoxRequestApproval;
+        private System.Windows.Forms.Label labelApproval;
+        private System.Windows.Forms.Button buttonModifyConditions;
+        public System.Windows.Forms.RichTextBox richTextBoxQuery;
+        private System.Windows.Forms.Button buttonValidate;
     }
 }

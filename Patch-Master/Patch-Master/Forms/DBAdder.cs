@@ -18,19 +18,16 @@ namespace Patch_Master.Forms
         {
             InitializeComponent();
         }
+        #region Default Server Name 
         private void DBAdder_Load(object sender, EventArgs e)
         {
             ServerName.Text = string.Format(@"{0}\SQLEXPRESS", Environment.MachineName);
-            //cboServer.Items.Add(".");
-            //cboServer.Items.Add("(local)");
-            //cboServer.Items.Add(@".\SQLEXPRESS");
-            //cboServer.Items.Add(string.Format(@"{0}\SQLEXPRESS", Environment.MachineName));
-            //cboServer.SelectedIndex = 3;
         }
+        #endregion
+        #region Connect To Database
         private void connectToDB_Click(object sender, EventArgs e)
         {
             string connectionString = string.Format("Data Source={0};Initial Catalog={1};Integrated Security = true;", ServerName.Text.Trim(), "master");
-
             if (!ConnectionIntregatedSecurity.Checked)
             {
                 if (userName.Text.Trim() == "")
@@ -48,7 +45,6 @@ namespace Patch_Master.Forms
                     IList<string> databaseNameList = helper.databaseNameList();
                     if (databaseNameList.Count > 0)
                     {
-                        //AddDatabasesCheckboxButton(databaseNameList);
                         AddDatabaselist(databaseNameList);
                     }
 
@@ -64,11 +60,7 @@ namespace Patch_Master.Forms
                                 DatabaseCheckList.SetItemChecked(i, true);
                             }
                         }
-
                     }
-
-
-                    // MessageBox.Show("Test connection succeeded.", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
             }
@@ -77,41 +69,49 @@ namespace Patch_Master.Forms
                 MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private List<string> getAvailableDatabses(string DBserverName)
+        {
+            List<string> AvailableDatabases = new List<string>();
+            string DatabaseServerName = ServerName.Text.ToString();
+            string UserName = userName.Text.ToString();
+            string Password = passWord.Text.ToString();
+            bool isIntregatedSecurity = ConnectionIntregatedSecurity.Checked;
+
+            DbConnector dbContext = new DbConnector();
+
+
+            string queryString = SqlQueryStringReader.GetQueryStringById("getAvailableDatabses", "DBConnections");
+            List<SqlParameter> sqlParams = new List<SqlParameter>();
+            sqlParams.Add(new SqlParameter("ServerName", DBserverName));
+
+            var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
+
+            if (dataReaders.Length == 0)
+            {
+                return null;
+            }
+            var reader = dataReaders[0];
+
+            while (reader.Read())
+            {
+                AvailableDatabases.Add(reader["DBName"].ToString());
+            }
+
+            dbContext.CloseConnection();
+            return AvailableDatabases;
+
+        }
         public void AddDatabaselist(IList<string> databaseNameList)
-        
         {
             DatabaseCheckList.Items.Clear();
             for (int i = 0; i < databaseNameList.Count; i++)
             {
                 DatabaseCheckList.Items.Add(databaseNameList[i]);
             }
-
         }
-        //public void AddDatabasesCheckboxButton(IList<string> databaseNameList)
-        //{
-        //    for (int i = 0; i < databaseNameList.Count; i++)
-        //    {
-        //        CheckBox rdo = new CheckBox();
-        //        rdo.Name = "DBCheckboxButton" + i;
-        //        rdo.Text = databaseNameList[i];
-        //        rdo.Location = new Point(15, 30 + 30 * i);
-        //        this.Controls.Add(rdo);
-        //        groupBox2.Controls.Add(rdo);
-        //    }
-
-        //}
-        public void AddDatabaseToSelectedGroup(IList<string> databaseNameList)
-        {
-
-            /* TextBox tbox = new TextBox();
-             tbox.Name = "DBAliasTextBox" + i;
-             tbox.Text = databaseNameList[i];
-             tbox.Location = new Point(15, 30 + 30 * i);
-             this.Controls.Add(tbox);
-             groupBox3.Controls.Add(tbox);*/
-
-        }
-        private void button2_Click(object sender, EventArgs e) //save btn
+        #endregion
+        #region Save selecetd Databases
+        private void buttonSave_Click(object sender, EventArgs e) //save btn
         {
             List<string> DatabaseList = new List<string>();
             List<string> RemovableDatabaseList = new List<string>();
@@ -133,13 +133,11 @@ namespace Patch_Master.Forms
                     {
                         DatabaseList.Add(DatabaseCheckList.Items[i].ToString());
                     }
-                    
                 }
                 else
                 {
                     RemovableDatabaseList.Add(DatabaseCheckList.Items[i].ToString());
                 }
-
             }
 
             if (RemovableDatabaseList.Count > 0)
@@ -150,7 +148,6 @@ namespace Patch_Master.Forms
                     removeDatabase(DatabaseServerName, removeDBname);
                 }
             }
-
             if (DatabaseList.Count > 0)
             {
                 foreach (string DatabaseName in DatabaseList)
@@ -161,10 +158,8 @@ namespace Patch_Master.Forms
                     if (databaseId > 1)
                     {
                         SavedDBChecklist.Items.Add(DatabaseName,CheckState.Checked);
-
                     }
                 }
-
             }
 
             //get available database list
@@ -180,22 +175,16 @@ namespace Patch_Master.Forms
                         DatabaseCheckList.SetItemChecked(i, true);
                     }
                 }
-
             }
-
-
         }
         public void removeDatabase(string DatabaseServerName, string removeDBname)
         {
             DbConnector dbContext = new DbConnector();
 
-            // DbContext dbContext = new DbContext();
             string queryString = SqlQueryStringReader.GetQueryStringById("removeDatabasefromName", "DBConnections");
             List<SqlParameter> sqlParams = new List<SqlParameter>();
             sqlParams.Add(new SqlParameter("DBName", removeDBname));
             sqlParams.Add(new SqlParameter("ServerName", DatabaseServerName));
-
-
             var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
 
             if (dataReaders.Length == 0)
@@ -205,13 +194,7 @@ namespace Patch_Master.Forms
             }
             var reader = dataReaders[0];
 
-            while (reader.Read())
-            {
-               // DatabaseId = Convert.ToInt32(reader["DB_Id"].ToString());
-            }
-
             dbContext.CloseConnection();
-            //return DatabaseId;
         }
         public int SaveDatabaseDetails(string DatabaseName)
         {
@@ -223,7 +206,6 @@ namespace Patch_Master.Forms
 
             DbConnector dbContext = new DbConnector();
 
-            // DbContext dbContext = new DbContext();
             string queryString = SqlQueryStringReader.GetQueryStringById("SaveDatabaseDetails", "DBConnections");
             List<SqlParameter> sqlParams = new List<SqlParameter>();
             sqlParams.Add(new SqlParameter("DBName", DatabaseName));
@@ -233,12 +215,10 @@ namespace Patch_Master.Forms
             sqlParams.Add(new SqlParameter("Is_Intregatedsecurity", isIntregatedSecurity));
             sqlParams.Add(new SqlParameter("CreatedBy", 10));
 
-
             var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
 
             if (dataReaders.Length == 0)
             {
-                //label_errorMessage.Text = "Incorrect Username or Password.";
                 return 0;
             }
             var reader = dataReaders[0];
@@ -251,9 +231,27 @@ namespace Patch_Master.Forms
             dbContext.CloseConnection();
             return DatabaseId;
         }
+        #endregion
+        #region Return 
+        private void buttonReturn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        #endregion
+        public void AddDatabaseToSelectedGroup(IList<string> databaseNameList)
+        {
+
+            /* TextBox tbox = new TextBox();
+             tbox.Name = "DBAliasTextBox" + i;
+             tbox.Text = databaseNameList[i];
+             tbox.Location = new Point(15, 30 + 30 * i);
+             this.Controls.Add(tbox);
+             groupBox3.Controls.Add(tbox);*/
+
+        }
         private void DatabaseCheckList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
         private void DatabaseCheckList_ItemCheck(Object sender, ItemCheckEventArgs e)
         {
@@ -262,42 +260,6 @@ namespace Patch_Master.Forms
 
             //}
         }
-        private List<string> getAvailableDatabses(string DBserverName)
-        {
-            List<string> AvailableDatabases = new List<string>();
-            string DatabaseServerName = ServerName.Text.ToString();
-            string UserName = userName.Text.ToString();
-            string Password = passWord.Text.ToString();
-            bool isIntregatedSecurity = ConnectionIntregatedSecurity.Checked;
 
-           DbConnector dbContext = new DbConnector();
-
-            
-            string queryString = SqlQueryStringReader.GetQueryStringById("getAvailableDatabses", "DBConnections");
-            List<SqlParameter> sqlParams = new List<SqlParameter>();
-            sqlParams.Add(new SqlParameter("ServerName", DBserverName));
-            
-            var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
-
-            if (dataReaders.Length == 0)
-            {
-                //label_errorMessage.Text = "Incorrect Username or Password.";
-                return null;
-            }
-            var reader = dataReaders[0];
-
-            while (reader.Read())
-            {
-                AvailableDatabases.Add(reader["DBName"].ToString());
-            }
-
-            dbContext.CloseConnection();
-            return AvailableDatabases;
-
-        }
-        private void buttonReturn_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
     }
 }

@@ -65,18 +65,20 @@ namespace Patch_Master.Forms
             // 
             // tableList_listBox
             // 
-            this.tableList_listBox.ItemHeight = 15;
-            this.tableList_listBox.Location = new System.Drawing.Point(28, 50);
+            this.tableList_listBox.ItemHeight = 20;
+            this.tableList_listBox.Location = new System.Drawing.Point(12, 27);
+            this.tableList_listBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableList_listBox.Name = "tableList_listBox";
-            this.tableList_listBox.Size = new System.Drawing.Size(120, 439);
+            this.tableList_listBox.Size = new System.Drawing.Size(157, 624);
             this.tableList_listBox.TabIndex = 6;
             this.tableList_listBox.SelectedIndexChanged += new System.EventHandler(this.tableList_listBox_SelectedIndexChanged);
             // 
             // ConditionBox
             // 
-            this.ConditionBox.Location = new System.Drawing.Point(160, 405);
+            this.ConditionBox.Location = new System.Drawing.Point(183, 540);
+            this.ConditionBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ConditionBox.Name = "ConditionBox";
-            this.ConditionBox.Size = new System.Drawing.Size(995, 83);
+            this.ConditionBox.Size = new System.Drawing.Size(1137, 109);
             this.ConditionBox.TabIndex = 2;
             this.ConditionBox.Text = "";
             // 
@@ -84,9 +86,10 @@ namespace Patch_Master.Forms
             // 
             this.PanelConditionContainer.AutoScroll = true;
             this.PanelConditionContainer.Controls.Add(this.GroupConditionRow_1);
-            this.PanelConditionContainer.Location = new System.Drawing.Point(160, 31);
+            this.PanelConditionContainer.Location = new System.Drawing.Point(183, 41);
+            this.PanelConditionContainer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.PanelConditionContainer.Name = "PanelConditionContainer";
-            this.PanelConditionContainer.Size = new System.Drawing.Size(995, 311);
+            this.PanelConditionContainer.Size = new System.Drawing.Size(1137, 450);
             this.PanelConditionContainer.TabIndex = 3;
             // 
             // GroupConditionRow_1
@@ -109,9 +112,11 @@ namespace Patch_Master.Forms
             this.GroupConditionRow_1.Controls.Add(this.CmbColumn_1);
             this.GroupConditionRow_1.Controls.Add(this.CmbTable_1);
             this.GroupConditionRow_1.Controls.Add(this.CmbOpenBracket_1);
-            this.GroupConditionRow_1.Location = new System.Drawing.Point(27, 11);
+            this.GroupConditionRow_1.Location = new System.Drawing.Point(31, 15);
+            this.GroupConditionRow_1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.GroupConditionRow_1.Name = "GroupConditionRow_1";
-            this.GroupConditionRow_1.Size = new System.Drawing.Size(953, 82);
+            this.GroupConditionRow_1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.GroupConditionRow_1.Size = new System.Drawing.Size(1089, 109);
             this.GroupConditionRow_1.TabIndex = 0;
             this.GroupConditionRow_1.TabStop = false;
             this.GroupConditionRow_1.Text = "Condition Row";
@@ -119,18 +124,19 @@ namespace Patch_Master.Forms
             // LbTablecolumn_1
             // 
             this.LbTablecolumn_1.AutoSize = true;
-            this.LbTablecolumn_1.Location = new System.Drawing.Point(196, 34);
+            this.LbTablecolumn_1.Location = new System.Drawing.Point(206, 32);
             this.LbTablecolumn_1.Name = "LbTablecolumn_1";
-            this.LbTablecolumn_1.Size = new System.Drawing.Size(82, 15);
+            this.LbTablecolumn_1.Size = new System.Drawing.Size(101, 20);
             this.LbTablecolumn_1.TabIndex = 7;
             this.LbTablecolumn_1.Text = "Table/Column";
             this.LbTablecolumn_1.Visible = false;
             // 
             // textValue1_1
             // 
-            this.textValue1_1.Location = new System.Drawing.Point(116, 53);
+            this.textValue1_1.Location = new System.Drawing.Point(120, 56);
+            this.textValue1_1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textValue1_1.Name = "textValue1_1";
-            this.textValue1_1.Size = new System.Drawing.Size(254, 23);
+            this.textValue1_1.Size = new System.Drawing.Size(302, 27);
             this.textValue1_1.TabIndex = 6;
             this.textValue1_1.Visible = false;
             this.textValue1_1.TextChanged += new System.EventHandler(this.textValue1_1_TextChanged);
@@ -138,9 +144,10 @@ namespace Patch_Master.Forms
             // Delete_1
             // 
             this.Delete_1.Enabled = false;
-            this.Delete_1.Location = new System.Drawing.Point(887, 40);
+            this.Delete_1.Location = new System.Drawing.Point(1014, 53);
+            this.Delete_1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Delete_1.Name = "Delete_1";
-            this.Delete_1.Size = new System.Drawing.Size(53, 23);
+            this.Delete_1.Size = new System.Drawing.Size(61, 31);
             this.Delete_1.TabIndex = 5;
             this.Delete_1.Text = "Delete";
             this.Delete_1.UseVisualStyleBackColor = true;
@@ -148,9 +155,10 @@ namespace Patch_Master.Forms
             // 
             // butnAddNewRow_1
             // 
-            this.butnAddNewRow_1.Location = new System.Drawing.Point(795, 40);
+            this.butnAddNewRow_1.Location = new System.Drawing.Point(909, 54);
+            this.butnAddNewRow_1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.butnAddNewRow_1.Name = "butnAddNewRow_1";
-            this.butnAddNewRow_1.Size = new System.Drawing.Size(75, 23);
+            this.butnAddNewRow_1.Size = new System.Drawing.Size(86, 31);
             this.butnAddNewRow_1.TabIndex = 4;
             this.butnAddNewRow_1.Text = "+";
             this.butnAddNewRow_1.UseVisualStyleBackColor = true;
@@ -159,62 +167,63 @@ namespace Patch_Master.Forms
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(698, 22);
+            this.label6.Location = new System.Drawing.Point(798, 29);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(78, 15);
+            this.label6.Size = new System.Drawing.Size(98, 20);
             this.label6.TabIndex = 3;
             this.label6.Text = "Close Bracket";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(509, 24);
+            this.label5.Location = new System.Drawing.Point(582, 32);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(113, 15);
+            this.label5.Size = new System.Drawing.Size(140, 20);
             this.label5.TabIndex = 3;
             this.label5.Text = "Table/Column value";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(413, 24);
+            this.label4.Location = new System.Drawing.Point(472, 32);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 15);
+            this.label4.Size = new System.Drawing.Size(75, 20);
             this.label4.TabIndex = 3;
             this.label4.Text = "Comparer";
             // 
             // LblColumn_1
             // 
             this.LblColumn_1.AutoSize = true;
-            this.LblColumn_1.Location = new System.Drawing.Point(242, 22);
+            this.LblColumn_1.Location = new System.Drawing.Point(277, 29);
             this.LblColumn_1.Name = "LblColumn_1";
-            this.LblColumn_1.Size = new System.Drawing.Size(50, 15);
+            this.LblColumn_1.Size = new System.Drawing.Size(60, 20);
             this.LblColumn_1.TabIndex = 3;
             this.LblColumn_1.Text = "Column";
             // 
             // LblTable_1
             // 
             this.LblTable_1.AutoSize = true;
-            this.LblTable_1.Location = new System.Drawing.Point(119, 22);
+            this.LblTable_1.Location = new System.Drawing.Point(136, 29);
             this.LblTable_1.Name = "LblTable_1";
-            this.LblTable_1.Size = new System.Drawing.Size(34, 15);
+            this.LblTable_1.Size = new System.Drawing.Size(44, 20);
             this.LblTable_1.TabIndex = 3;
             this.LblTable_1.Text = "Table";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 22);
+            this.label1.Location = new System.Drawing.Point(25, 29);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 15);
+            this.label1.Size = new System.Drawing.Size(98, 20);
             this.label1.TabIndex = 3;
             this.label1.Text = "Open Bracket";
             // 
             // BtnTCCondition2_1
             // 
-            this.BtnTCCondition2_1.Location = new System.Drawing.Point(649, 41);
+            this.BtnTCCondition2_1.Location = new System.Drawing.Point(746, 56);
+            this.BtnTCCondition2_1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BtnTCCondition2_1.Name = "BtnTCCondition2_1";
-            this.BtnTCCondition2_1.Size = new System.Drawing.Size(30, 23);
+            this.BtnTCCondition2_1.Size = new System.Drawing.Size(34, 31);
             this.BtnTCCondition2_1.TabIndex = 2;
             this.BtnTCCondition2_1.Text = "...";
             this.BtnTCCondition2_1.UseVisualStyleBackColor = true;
@@ -222,9 +231,10 @@ namespace Patch_Master.Forms
             // 
             // BtnTCCondition1_1
             // 
-            this.BtnTCCondition1_1.Location = new System.Drawing.Point(371, 42);
+            this.BtnTCCondition1_1.Location = new System.Drawing.Point(424, 56);
+            this.BtnTCCondition1_1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BtnTCCondition1_1.Name = "BtnTCCondition1_1";
-            this.BtnTCCondition1_1.Size = new System.Drawing.Size(30, 23);
+            this.BtnTCCondition1_1.Size = new System.Drawing.Size(34, 31);
             this.BtnTCCondition1_1.TabIndex = 2;
             this.BtnTCCondition1_1.Text = "...";
             this.BtnTCCondition1_1.UseVisualStyleBackColor = true;
@@ -232,9 +242,10 @@ namespace Patch_Master.Forms
             // 
             // textValue_1
             // 
-            this.textValue_1.Location = new System.Drawing.Point(509, 42);
+            this.textValue_1.Location = new System.Drawing.Point(553, 56);
+            this.textValue_1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textValue_1.Name = "textValue_1";
-            this.textValue_1.Size = new System.Drawing.Size(139, 23);
+            this.textValue_1.Size = new System.Drawing.Size(187, 27);
             this.textValue_1.TabIndex = 1;
             // 
             // CmbCloseBracket_1
@@ -246,9 +257,10 @@ namespace Patch_Master.Forms
             ")))",
             "))))",
             "Add More"});
-            this.CmbCloseBracket_1.Location = new System.Drawing.Point(698, 42);
+            this.CmbCloseBracket_1.Location = new System.Drawing.Point(798, 56);
+            this.CmbCloseBracket_1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.CmbCloseBracket_1.Name = "CmbCloseBracket_1";
-            this.CmbCloseBracket_1.Size = new System.Drawing.Size(75, 23);
+            this.CmbCloseBracket_1.Size = new System.Drawing.Size(85, 28);
             this.CmbCloseBracket_1.TabIndex = 0;
             // 
             // CmbComparer_1
@@ -261,10 +273,12 @@ namespace Patch_Master.Forms
             ">=",
             "<",
             "<="});
-            this.CmbComparer_1.Location = new System.Drawing.Point(413, 42);
+            this.CmbComparer_1.Location = new System.Drawing.Point(472, 56);
+            this.CmbComparer_1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.CmbComparer_1.Name = "CmbComparer_1";
-            this.CmbComparer_1.Size = new System.Drawing.Size(80, 23);
+            this.CmbComparer_1.Size = new System.Drawing.Size(75, 28);
             this.CmbComparer_1.TabIndex = 0;
+            this.CmbComparer_1.Text = "=";
             // 
             // CmbColumn_1
             // 
@@ -275,9 +289,10 @@ namespace Patch_Master.Forms
             "ColumnThree",
             "ColumnFour",
             "ColumnFive"});
-            this.CmbColumn_1.Location = new System.Drawing.Point(239, 42);
+            this.CmbColumn_1.Location = new System.Drawing.Point(273, 56);
+            this.CmbColumn_1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.CmbColumn_1.Name = "CmbColumn_1";
-            this.CmbColumn_1.Size = new System.Drawing.Size(131, 23);
+            this.CmbColumn_1.Size = new System.Drawing.Size(149, 28);
             this.CmbColumn_1.TabIndex = 0;
             this.CmbColumn_1.SelectedIndexChanged += new System.EventHandler(this.CmbColumn_1_SelectedIndexChanged);
             // 
@@ -289,9 +304,10 @@ namespace Patch_Master.Forms
             "TableTwo",
             "TableThree",
             "TableFour"});
-            this.CmbTable_1.Location = new System.Drawing.Point(116, 42);
+            this.CmbTable_1.Location = new System.Drawing.Point(120, 56);
+            this.CmbTable_1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.CmbTable_1.Name = "CmbTable_1";
-            this.CmbTable_1.Size = new System.Drawing.Size(121, 23);
+            this.CmbTable_1.Size = new System.Drawing.Size(151, 28);
             this.CmbTable_1.TabIndex = 0;
             this.CmbTable_1.SelectedIndexChanged += new System.EventHandler(this.CmbTable_1_SelectedIndexChanged);
             // 
@@ -304,9 +320,10 @@ namespace Patch_Master.Forms
             "(((",
             "((((",
             "Add More"});
-            this.CmbOpenBracket_1.Location = new System.Drawing.Point(25, 42);
+            this.CmbOpenBracket_1.Location = new System.Drawing.Point(29, 56);
+            this.CmbOpenBracket_1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.CmbOpenBracket_1.Name = "CmbOpenBracket_1";
-            this.CmbOpenBracket_1.Size = new System.Drawing.Size(75, 23);
+            this.CmbOpenBracket_1.Size = new System.Drawing.Size(85, 28);
             this.CmbOpenBracket_1.TabIndex = 0;
             // 
             // PanelOperator
@@ -314,18 +331,20 @@ namespace Patch_Master.Forms
             this.PanelOperator.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PanelOperator.Controls.Add(this.btnConAND);
             this.PanelOperator.Controls.Add(this.BtnConditionOR);
-            this.PanelOperator.Location = new System.Drawing.Point(969, 2);
+            this.PanelOperator.Location = new System.Drawing.Point(1107, 3);
+            this.PanelOperator.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.PanelOperator.Name = "PanelOperator";
-            this.PanelOperator.Size = new System.Drawing.Size(99, 74);
+            this.PanelOperator.Size = new System.Drawing.Size(113, 98);
             this.PanelOperator.TabIndex = 4;
             this.PanelOperator.Visible = false;
             // 
             // btnConAND
             // 
             this.btnConAND.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConAND.Location = new System.Drawing.Point(13, 10);
+            this.btnConAND.Location = new System.Drawing.Point(15, 13);
+            this.btnConAND.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnConAND.Name = "btnConAND";
-            this.btnConAND.Size = new System.Drawing.Size(75, 23);
+            this.btnConAND.Size = new System.Drawing.Size(86, 31);
             this.btnConAND.TabIndex = 0;
             this.btnConAND.Text = "AND";
             this.btnConAND.UseVisualStyleBackColor = true;
@@ -334,9 +353,10 @@ namespace Patch_Master.Forms
             // BtnConditionOR
             // 
             this.BtnConditionOR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnConditionOR.Location = new System.Drawing.Point(13, 43);
+            this.BtnConditionOR.Location = new System.Drawing.Point(15, 57);
+            this.BtnConditionOR.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BtnConditionOR.Name = "BtnConditionOR";
-            this.BtnConditionOR.Size = new System.Drawing.Size(75, 23);
+            this.BtnConditionOR.Size = new System.Drawing.Size(86, 31);
             this.BtnConditionOR.TabIndex = 0;
             this.BtnConditionOR.Text = "OR";
             this.BtnConditionOR.UseVisualStyleBackColor = true;
@@ -344,9 +364,10 @@ namespace Patch_Master.Forms
             // 
             // AddCondition
             // 
-            this.AddCondition.Location = new System.Drawing.Point(1019, 494);
+            this.AddCondition.Location = new System.Drawing.Point(1178, 659);
+            this.AddCondition.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.AddCondition.Name = "AddCondition";
-            this.AddCondition.Size = new System.Drawing.Size(136, 34);
+            this.AddCondition.Size = new System.Drawing.Size(138, 33);
             this.AddCondition.TabIndex = 5;
             this.AddCondition.Text = "Add Condition";
             this.AddCondition.UseVisualStyleBackColor = true;
@@ -354,18 +375,20 @@ namespace Patch_Master.Forms
             // 
             // Close
             // 
-            this.Close.Location = new System.Drawing.Point(851, 494);
+            this.Close.Location = new System.Drawing.Point(1058, 659);
+            this.Close.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Close.Name = "Close";
-            this.Close.Size = new System.Drawing.Size(136, 34);
+            this.Close.Size = new System.Drawing.Size(114, 33);
             this.Close.TabIndex = 5;
             this.Close.Text = "Close";
             this.Close.UseVisualStyleBackColor = true;
             // 
             // Generate
             // 
-            this.Generate.Location = new System.Drawing.Point(1019, 365);
+            this.Generate.Location = new System.Drawing.Point(1228, 499);
+            this.Generate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Generate.Name = "Generate";
-            this.Generate.Size = new System.Drawing.Size(136, 34);
+            this.Generate.Size = new System.Drawing.Size(88, 33);
             this.Generate.TabIndex = 5;
             this.Generate.Text = "Generate";
             this.Generate.UseVisualStyleBackColor = true;
@@ -373,9 +396,9 @@ namespace Patch_Master.Forms
             // 
             // NameConditionBuilder
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1188, 540);
+            this.ClientSize = new System.Drawing.Size(1334, 698);
             this.Controls.Add(this.Generate);
             this.Controls.Add(this.Close);
             this.Controls.Add(this.AddCondition);
@@ -383,6 +406,7 @@ namespace Patch_Master.Forms
             this.Controls.Add(this.PanelConditionContainer);
             this.Controls.Add(this.ConditionBox);
             this.Controls.Add(this.tableList_listBox);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "NameConditionBuilder";
             this.Text = "ConditionBuilder";
             this.PanelConditionContainer.ResumeLayout(false);

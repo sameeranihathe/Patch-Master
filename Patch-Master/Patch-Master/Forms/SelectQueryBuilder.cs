@@ -39,7 +39,16 @@ namespace Patch_Master.Forms
             LoadAvailableTablesForDb(Requirements.SELECTEDDATABSENAME);
 
         }
+        private void CheckLogin()
+        {
+            userLogged = Home.Userlogged;
+            loggedUserId = Home.loggedUserId;
+            loggedUserName = Home.UserName;
+            roleId = Home.RoleId;
+            roleName = Home.Role;
 
+        }
+        #region Load Tables of the Database
         private void LoadAvailableTablesForDb(string databaseName)
         {
             List<string> AvailableTables = LoadAvailableTablesFromDb(databaseName);
@@ -50,54 +59,6 @@ namespace Patch_Master.Forms
             }
 
         }
-
-        private void InitializeScrollBars()
-        {
-            TableView_panel.AutoScroll = false;
-            TableView_panel.VerticalScroll.Enabled = false;
-            TableView_panel.VerticalScroll.Visible = false;
-            TableView_panel.VerticalScroll.Maximum = 0;
-            TableView_panel.AutoScroll = true;
-        }
-
-        private void CheckLogin()
-        {
-            userLogged = Home.Userlogged;
-            loggedUserId = Home.loggedUserId;
-            loggedUserName = Home.UserName;
-            roleId = Home.RoleId;
-            roleName = Home.Role;
-
-        }
-        //private void LoadAvailableDatabases()
-        //{
-        //    Dictionary<int, string> savedDatabases = GetDatabaseList();
-        //    foreach (var db in savedDatabases)
-        //    {
-        //        DatabaseList_comboBox.Items.Add(db);
-        //    }
-        //    this.DatabaseList_comboBox.SelectedIndexChanged -= new EventHandler(DatabaseList_comboBox_SelectedIndexChanged);
-
-        //    DatabaseList_comboBox.DataSource = new BindingSource(savedDatabases, null);
-        //    DatabaseList_comboBox.DisplayMember = "Value";
-        //    DatabaseList_comboBox.ValueMember = "Key";
-
-        //    this.DatabaseList_comboBox.SelectedIndexChanged += new EventHandler(DatabaseList_comboBox_SelectedIndexChanged);
-
-        //}
-
-        //private void DatabaseList_comboBox_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    string DbName = (((KeyValuePair<int, string>)DatabaseList_comboBox.SelectedItem).Value).ToString();
-        //    SelectedDatabase = DbName;
-        //    List<string> AvailableTables = LoadAvailableTablesFromDb(DbName);
-
-        //    foreach (var tableName in AvailableTables)
-        //    {
-        //        TableList_treeView.Nodes.Add(tableName);
-        //    }
-        //}
-
         private List<string> LoadAvailableTablesFromDb(string dbName)
         {
             DbConnector dbContext = new DbConnector();
@@ -130,42 +91,16 @@ namespace Patch_Master.Forms
             }
             return AvailableTableList;
         }
-
-        private Dictionary<int, string> GetDatabaseList()
+        private void InitializeScrollBars()
         {
-            Dictionary<int, string> savedDatabasesList = new Dictionary<int, string>();
-            DbConnector dbContext = new DbConnector();
-            bool Status = true;
-            try
-            {
-                string queryString = SqlQueryStringReader.GetQueryStringById("loadDatabases", "DBConnections");
-                List<SqlParameter> sqlParams = new List<SqlParameter>();
-                sqlParams.Add(new SqlParameter("Status", Convert.ToBoolean(Status)));
-                var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
-                var reader = dataReaders[0];
-
-                while (reader.Read())
-                {
-
-                    var DatabaseId = Convert.ToInt32(reader["DB_Id"]);
-                    var DatabaseName = reader["DBName"].ToString();
-
-                    savedDatabasesList.Add(DatabaseId, DatabaseName);
-                }
-
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-            finally
-            {
-                dbContext.CloseConnection();
-            }
-            return savedDatabasesList;
+            TableView_panel.AutoScroll = false;
+            TableView_panel.VerticalScroll.Enabled = false;
+            TableView_panel.VerticalScroll.Visible = false;
+            TableView_panel.VerticalScroll.Maximum = 0;
+            TableView_panel.AutoScroll = true;
         }
-
+        #endregion
+        #region view table colunms
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             bool tableAlreadyAdded = false;
@@ -219,44 +154,11 @@ namespace Patch_Master.Forms
             }
 
         }
-        private void CheckTableColumn(object sender, ItemCheckEventArgs e)
-        {
-
-            CheckedListBox btn = (CheckedListBox)sender;
-            string selectedTable = btn.AccessibilityObject.Name;
-
-            string selectedColumn = btn.SelectedItem.ToString();
-
-            string key = selectedTable + "&" + selectedColumn;
-
-            if (e.NewValue == CheckState.Checked)
-            {
-                SelectedColumnList.Add(key, selectedColumn);
-            }
-            else
-            {
-                SelectedColumnList.Remove(key);
-            }
-            //string AvailableQuery = Query_richTextBox.Text;
-
-                //if (AvailableQuery == null || AvailableQuery=="")
-                //{
-                //    string QuerySelect = "SELECT " + selectedTable + "." + selectedColumn;
-                //    Query_richTextBox.Text = QuerySelect;
-
-                //    string QueryFrom = "FROM " + selectedTable;
-                //    Query_richTextBox.Text += Environment.NewLine + QueryFrom;
-
-                //}
-                //else
-                //{
-                //    string AvailableText = Query_richTextBox.Text;
-                //}
-        }
         public List<string> LoadAllColumns(string dbName, string tableName)
         {
             DbConnector dbContext = new DbConnector();
             List<string> columnList = new List<string>();
+            
             try
             {
                 string queryString = SqlQueryStringReader.GetQueryStringById("LoadColumnList", "QueryBuilder");
@@ -284,7 +186,25 @@ namespace Patch_Master.Forms
             }
             return columnList;
         }
+        private void CheckTableColumn(object sender, ItemCheckEventArgs e)
+        {
 
+            CheckedListBox btn = (CheckedListBox)sender;
+            string selectedTable = btn.AccessibilityObject.Name;
+            string selectedColumn = btn.SelectedItem.ToString();
+            string key = selectedTable + "&" + selectedColumn;
+            if (e.NewValue == CheckState.Checked)
+            {
+                SelectedColumnList.Add(key, selectedColumn);
+            }
+            else
+            {
+                SelectedColumnList.Remove(key);
+            }
+            
+        }
+        #endregion
+        #region Query conditions
         private void btnSingleSelectCondition_Click(object sender, EventArgs e)
         {
             // this.Hide();
@@ -293,59 +213,20 @@ namespace Patch_Master.Forms
             //SelectConditionBuilder selectConditionBuilder = new SelectConditionBuilder();
             //selectConditionBuilder.Show();
         }
-
-        private void SaveQuerybutton_Click(object sender, EventArgs e)
+        #endregion
+        #region Query Joins
+        private void AddJoins_button_Click(object sender, EventArgs e)
         {
-            string QueryString = Query_richTextBox.Text;
-
-            if (!string.IsNullOrEmpty(QueryString))
-            {
-                SaveQuery(QueryString);
-            }
-            else
-            {
-                MessageBox.Show("Please build a query to save.", "Save Query");
-            }
+            SelectJoinBuilder selectJoinBuilder = new SelectJoinBuilder();
+            selectJoinBuilder.Show();
         }
-
-        private void SaveQuery(string queryString)
-        {
-            DbConnector dbContext = new DbConnector();
-
-            try
-            {
-                int QueryId = QueryTypeSelector.SAVEDQUERYID;
-                string query = SqlQueryStringReader.GetQueryStringById("SaveQueryString", "Queries");
-                List<SqlParameter> sqlParams = new List<SqlParameter>();
-                sqlParams.Add(new SqlParameter("QueryId", QueryId));
-                sqlParams.Add(new SqlParameter("QueryString", queryString));
-                dbContext.ExecuteQueryWithIDataReader(query, sqlParams);
-
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-            finally
-            {
-                dbContext.CloseConnection();
-                this.Dispose();
-
-                Application.OpenForms["QueryTypeSelector"].Close();
-                Application.OpenForms["AvailableQueries"].Close();
-
-                AvailableQueries availableQueries = new AvailableQueries();
-                availableQueries.Show();
-                
-            }
-        }
-
+        #endregion
+        #region Build query 
         private void BuildQuery_button_Click(object sender, EventArgs e)
         {
             Query_richTextBox.Text = string.Empty;
             var joinDetails = SelectJoinBuilder.joindetailList;
-            if (joinDetails.Count>0)
+            if (joinDetails.Count > 0)
             {
                 string joinstring = string.Empty;
                 if (SelectedColumnList.Count > 0)
@@ -354,7 +235,7 @@ namespace Patch_Master.Forms
                     string SelectString = string.Empty;
                     string FromString = "FROM";
                     string TableString = string.Empty;
-                    
+
                     foreach (var item in SelectedColumnList)
                     {
                         var column = item.Value;
@@ -374,15 +255,11 @@ namespace Patch_Master.Forms
                     }
                     foreach (var join in joinDetails)
                     {
-
                         joinstring += $"{join.JoinName} {join.TableTwo} ON {join.TableOne}.{join.TableOneColumn} = {join.TableTwo}.{join.TableTwoColumn} {Environment.NewLine}";
-
                     }
                     Query_richTextBox.Text = SelectString;
                     Query_richTextBox.Text += Environment.NewLine + FromString + " " + firstSelectedTable + Environment.NewLine;
                     Query_richTextBox.Text += joinstring;
-
-
                 }
             }
             else
@@ -393,7 +270,6 @@ namespace Patch_Master.Forms
                     string SelectString = string.Empty;
                     string FromString = "FROM";
                     string TableString = string.Empty;
-
                     foreach (var item in SelectedColumnList)
                     {
                         var column = item.Value;
@@ -418,43 +294,17 @@ namespace Patch_Master.Forms
                     }
                     Query_richTextBox.Text = SelectString;
                     Query_richTextBox.Text += Environment.NewLine + FromString + " " + firstSelectedTable;
-
                 }
             }
             string conditionstring = NameConditionBuilder.CONDITIONSTRING;
             if (!string.IsNullOrEmpty(conditionstring))
             {
                 conditionstring = $"WHERE {conditionstring}";
-
                 Query_richTextBox.Text += Environment.NewLine + conditionstring;
             }
-
         }
-        private void Clear_button_Click(object sender, EventArgs e)
-        {
-            firstSelectedTable = string.Empty;
-            availablecheckedListBoxCount = 0;
-            AddJoins_button.Enabled = false;
-            AddedTableList = new List<string>();
-            SelectedColumnList = new Dictionary<string, string>();
-            TableView_panel.Controls.Clear();
-            foreach (Control item in TableView_panel.Controls.OfType<CheckedListBox>())
-            {
-                TableView_panel.Controls.Remove(item);
-            }
-            foreach (Control item in TableView_panel.Controls.OfType<Label>())
-            {
-                TableView_panel.Controls.Remove(item);
-            }
-            Query_richTextBox.Text = string.Empty;
-        }
-
-        private void AddJoins_button_Click(object sender, EventArgs e)
-        {
-            SelectJoinBuilder selectJoinBuilder = new SelectJoinBuilder();
-            selectJoinBuilder.Show();
-        }
-
+        #endregion
+        #region Validate Query 
         private void ValidateQuery_button1_Click(object sender, EventArgs e)
         {
             DbConnector dbContext = new DbConnector();
@@ -489,9 +339,109 @@ namespace Patch_Master.Forms
 
             if (queryValidated)
             {
-                MessageBox.Show("Query successfully validated!", "Validate Query");
+                MessageBox.Show("Query Successfully Validated!", "Validate Query");
             }
             dbContext.CloseConnection();
+        }
+        #endregion
+        #region save query
+        private void SaveQuerybutton_Click(object sender, EventArgs e)
+        {
+            string QueryString = Query_richTextBox.Text;
+
+            if (!string.IsNullOrEmpty(QueryString))
+            {
+                SaveQuery(QueryString);
+            }
+            else
+            {
+                MessageBox.Show("Please build a query to save.", "Save Query");
+            }
+        }
+        private void SaveQuery(string queryString)
+        {
+            DbConnector dbContext = new DbConnector();
+
+            try
+            {
+                int QueryId = QueryTypeSelector.SAVEDQUERYID;
+                string query = SqlQueryStringReader.GetQueryStringById("SaveQueryString", "Queries");
+                List<SqlParameter> sqlParams = new List<SqlParameter>();
+                sqlParams.Add(new SqlParameter("QueryId", QueryId));
+                sqlParams.Add(new SqlParameter("QueryString", queryString));
+                dbContext.ExecuteQueryWithIDataReader(query, sqlParams);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            finally
+            {
+                dbContext.CloseConnection();
+                this.Dispose();
+
+                Application.OpenForms["QueryTypeSelector"].Close();
+                Application.OpenForms["AvailableQueries"].Close();
+
+                AvailableQueries availableQueries = new AvailableQueries();
+                availableQueries.Show();
+                
+            }
+        }
+        #endregion
+        private void Clear_button_Click(object sender, EventArgs e)
+        {
+            firstSelectedTable = string.Empty;
+            availablecheckedListBoxCount = 0;
+            AddJoins_button.Enabled = false;
+            AddedTableList = new List<string>();
+            SelectedColumnList = new Dictionary<string, string>();
+            TableView_panel.Controls.Clear();
+            foreach (Control item in TableView_panel.Controls.OfType<CheckedListBox>())
+            {
+                TableView_panel.Controls.Remove(item);
+            }
+            foreach (Control item in TableView_panel.Controls.OfType<Label>())
+            {
+                TableView_panel.Controls.Remove(item);
+            }
+            Query_richTextBox.Text = string.Empty;
+        }
+        private Dictionary<int, string> GetDatabaseList()
+        {
+            Dictionary<int, string> savedDatabasesList = new Dictionary<int, string>();
+            DbConnector dbContext = new DbConnector();
+            bool Status = true;
+            try
+            {
+                string queryString = SqlQueryStringReader.GetQueryStringById("loadDatabases", "DBConnections");
+                List<SqlParameter> sqlParams = new List<SqlParameter>();
+                sqlParams.Add(new SqlParameter("Status", Convert.ToBoolean(Status)));
+                var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
+                var reader = dataReaders[0];
+
+                while (reader.Read())
+                {
+
+                    var DatabaseId = Convert.ToInt32(reader["DB_Id"]);
+                    var DatabaseName = reader["DBName"].ToString();
+
+                    savedDatabasesList.Add(DatabaseId, DatabaseName);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            finally
+            {
+                dbContext.CloseConnection();
+            }
+            return savedDatabasesList;
         }
     }
 }

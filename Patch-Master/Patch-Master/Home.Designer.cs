@@ -138,6 +138,7 @@ namespace Patch_Master
             this.AprovalToolStripMenu.Name = "AprovalToolStripMenu";
             this.AprovalToolStripMenu.Size = new System.Drawing.Size(258, 26);
             this.AprovalToolStripMenu.Text = "Requisition on Approvals";
+            this.AprovalToolStripMenu.Click += new System.EventHandler(this.AprovalToolStripMenu_Click);
             // 
             // processesToolStripMenu
             // 

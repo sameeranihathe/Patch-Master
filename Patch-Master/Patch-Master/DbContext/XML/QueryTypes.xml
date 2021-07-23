@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SqlQueryStrings>
+	<SqlQueryString Id="ListQueryTypes">
+		select [QueryTypeId] as 'Type ID' ,[QueryType] as 'Query Type', [ApprovalRequired] as 'Approval Required'
+		from [dbo].[PM_QueryTypes]
+		where Status = @status
+	</SqlQueryString> 
+	<SqlQueryString Id="ApprovalRequiredStatus">
+		update [dbo].[PM_QueryTypes]
+		set [ApprovalRequired] = @SetApprovalRequired
+		where [QueryTypeId] = @QueryTypeId
+	</SqlQueryString>
+</SqlQueryStrings>

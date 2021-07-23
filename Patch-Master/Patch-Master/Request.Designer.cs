@@ -363,6 +363,7 @@ namespace Patch_Master
             this.buttonRequestConditions.TabIndex = 9;
             this.buttonRequestConditions.Text = "Modify Query Conditions";
             this.buttonRequestConditions.UseVisualStyleBackColor = true;
+            this.buttonRequestConditions.Click += new System.EventHandler(this.buttonRequestConditions_Click);
             // 
             // btnDone
             // 

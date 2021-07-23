@@ -20,6 +20,8 @@ namespace Patch_Master
         string roleName = string.Empty;
         int roleId = 0;
         int RequirmentID;
+        int RequuestId;
+        string RequestApproval;
         public Request()
         {
             InitializeComponent();
@@ -223,18 +225,32 @@ namespace Patch_Master
                 var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
 
                 var reader = dataReaders[0];
-                int RequuestId = 0;
                 while (reader.Read())
                 {
                     RequuestId = Convert.ToInt32(reader["Request_Id"]);
                     textRequestID.Text = Convert.ToString(reader["Request_Id"]);
                     textRequestDescription.Text = Convert.ToString(reader["Description"]);
                     textRequestDate.Text = Convert.ToString(reader["Request_Date"]);
+                    RequestApproval = Convert.ToString(reader["Approval_Status"]);
                 }
 
                 if (RequuestId > 0)
                 {
                     MessageBox.Show("Request Created successfully");
+                    this.CreateRequestedQueries(RequuestId);
+                    bool ApprovalReq =GetSELECTQueryTypeApprovalRequired();
+                    if (ApprovalReq == false)
+                    {
+                        int CountUpdateQueries = GetCountOfUpdate(RequuestId);
+                        if (CountUpdateQueries ==0)
+                        {
+                            string ApprovedRejected = "Approved";
+                            string Commnent = "Approved by the System";
+                            InquireRequest inquireRequest = new InquireRequest();
+                            inquireRequest.RequestID = RequuestId;
+                            inquireRequest.UpdateApprovalStatus(ApprovedRejected, Commnent);
+                        }
+                    }
                 }
                 else
                 {
@@ -252,6 +268,28 @@ namespace Patch_Master
                 dbContext.CloseConnection();
             }
 
+        }
+        private void CreateRequestedQueries(int RequuestId)
+        {
+            DbConnector dbContext = new DbConnector();
+            try
+            {
+                string queryString = SqlQueryStringReader.GetQueryStringById("CreateRequestedQueries", "Request");
+                List<SqlParameter> sqlParams = new List<SqlParameter>();
+                sqlParams.Add(new SqlParameter("RequirmentId", RequirmentID));
+                sqlParams.Add(new SqlParameter("RequestID", RequuestId));
+                var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            finally
+            {
+
+                dbContext.CloseConnection();
+            }
         }
         private void btnDone_Click(object sender, EventArgs e)
         {
@@ -295,12 +333,81 @@ namespace Patch_Master
             inquireRequest.groupBoxSearchByStatus.Visible = true;
             inquireRequest.Show();
         }
+        private bool GetSELECTQueryTypeApprovalRequired()
+        {
+            bool ApprovalReq = true;
+            DbConnector dbContext = new DbConnector();
 
+            try
+            {
+                string queryString = SqlQueryStringReader.GetQueryStringById("SELECTApprovalReq", "Request");
+                List<SqlParameter> sqlParams = new List<SqlParameter>();
+                var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
+
+                var reader = dataReaders[0];
+                while (reader.Read())
+                {
+                    int ApprovalRequired = Convert.ToInt32(reader["ApprovalRequired"]);
+                    if (ApprovalRequired == 0)
+                    {
+                        ApprovalReq = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            finally
+            {
+
+                dbContext.CloseConnection();
+            }
+            return ApprovalReq;
+        }
+        private int GetCountOfUpdate(int RequuestId)
+        {
+            int CountUpdate = 0;
+            DbConnector dbContext = new DbConnector();
+            try
+            {
+                string queryString = SqlQueryStringReader.GetQueryStringById("CountOfUpadte", "Request");
+                List<SqlParameter> sqlParams = new List<SqlParameter>();
+                sqlParams.Add(new SqlParameter("RequuestId", RequuestId));
+                var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
+
+                var reader = dataReaders[0];
+                while (reader.Read())
+                {
+                    CountUpdate = Convert.ToInt32(reader["CountUPDATE"]);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            finally
+            {
+
+                dbContext.CloseConnection();
+            }
+            return CountUpdate;
+        }
         #endregion
-
         private void buttonReturn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        private void buttonRequestConditions_Click(object sender, EventArgs e)
+        {
+            RequestedQueries requestedQueries = new RequestedQueries();
+            RequestedQueries.REQUESTID = RequuestId;
+            requestedQueries.textBoxrequestID.Text = RequuestId.ToString();
+            requestedQueries.richTextBoxRequestDes.Text = textRequestDescription.Text;
+            requestedQueries.textBoxRequestApproval.Text = RequestApproval;
+            requestedQueries.Show();
         }
     }
 
