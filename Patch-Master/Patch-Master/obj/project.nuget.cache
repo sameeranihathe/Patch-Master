@@ -1,22 +1,22 @@
 {
   "version": 2,
-  "dgSpecHash": "k366Hh2pCKUs0BGpqKaLOQOFzdUM05L4jn9WqVJhgOzdg89NGfq5vJiQ2l74xZN2eUo3QdxLSWn42d04j6XCyA==",
+  "dgSpecHash": "re6Okv09AO0ts2odwfPMsBuU4GjXziqFkR50R+FgszVVkaJRbzFWpO2X3a7MCxQlWWAFw1SjWLIlOuUWWdd9jg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Dell Admin\\Documents\\Project Apps\\GitHub\\Patch-Master\\Patch-Master\\Patch-Master\\Patch-Master.csproj",
+  "projectFilePath": "E:\\Academic\\Projects\\ColomboMITSqlQuerybuilder\\GitRepoSQLQueryBuilder_05Integrated\\Patch-Master\\Patch-Master\\Patch-Master\\Patch-Master.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Dell Admin\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
-    "C:\\Users\\Dell Admin\\.nuget\\packages\\microsoft.reportingservices.reportviewercontrol.webforms\\150.1449.0\\microsoft.reportingservices.reportviewercontrol.webforms.150.1449.0.nupkg.sha512",
-    "C:\\Users\\Dell Admin\\.nuget\\packages\\microsoft.sqlserver.types\\14.0.314.76\\microsoft.sqlserver.types.14.0.314.76.nupkg.sha512",
-    "C:\\Users\\Dell Admin\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
-    "C:\\Users\\Dell Admin\\.nuget\\packages\\netcore.encrypt\\2.0.9\\netcore.encrypt.2.0.9.nupkg.sha512",
-    "C:\\Users\\Dell Admin\\.nuget\\packages\\newtonsoft.json\\12.0.1\\newtonsoft.json.12.0.1.nupkg.sha512",
-    "C:\\Users\\Dell Admin\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",
-    "C:\\Users\\Dell Admin\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
-    "C:\\Users\\Dell Admin\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
-    "C:\\Users\\Dell Admin\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
-    "C:\\Users\\Dell Admin\\.nuget\\packages\\system.data.sqlclient\\4.8.2\\system.data.sqlclient.4.8.2.nupkg.sha512",
-    "C:\\Users\\Dell Admin\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
-    "C:\\Users\\Dell Admin\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512"
+    "C:\\Users\\Lapstore.lk\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
+    "C:\\Users\\Lapstore.lk\\.nuget\\packages\\microsoft.reportingservices.reportviewercontrol.webforms\\150.1449.0\\microsoft.reportingservices.reportviewercontrol.webforms.150.1449.0.nupkg.sha512",
+    "C:\\Users\\Lapstore.lk\\.nuget\\packages\\microsoft.sqlserver.types\\14.0.314.76\\microsoft.sqlserver.types.14.0.314.76.nupkg.sha512",
+    "C:\\Users\\Lapstore.lk\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
+    "C:\\Users\\Lapstore.lk\\.nuget\\packages\\netcore.encrypt\\2.0.9\\netcore.encrypt.2.0.9.nupkg.sha512",
+    "C:\\Users\\Lapstore.lk\\.nuget\\packages\\newtonsoft.json\\12.0.1\\newtonsoft.json.12.0.1.nupkg.sha512",
+    "C:\\Users\\Lapstore.lk\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",
+    "C:\\Users\\Lapstore.lk\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\Lapstore.lk\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\Lapstore.lk\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\Lapstore.lk\\.nuget\\packages\\system.data.sqlclient\\4.8.2\\system.data.sqlclient.4.8.2.nupkg.sha512",
+    "C:\\Users\\Lapstore.lk\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
+    "C:\\Users\\Lapstore.lk\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512"
   ],
   "logs": [
     {

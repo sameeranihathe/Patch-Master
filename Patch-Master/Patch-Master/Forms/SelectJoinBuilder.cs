@@ -11,15 +11,28 @@ namespace Patch_Master.Forms
     {
         public static List<SelectJoinDetails> joindetailList = new List<SelectJoinDetails>();
         string currentJoin = string.Empty;
+        private List<string> addedTableList;
+
         public SelectJoinBuilder()
         {
-            InitializeComponent();
-            InitializeJoinConditions();
-        }
-        #region create rows to add Conditions 
-        private void InitializeJoinConditions()
-        {
             var AddedTableList = SelectQueryBuilder.AddedTableList;
+
+            InitializeComponent();
+            InitializeJoinConditions(AddedTableList);
+        }
+
+        #region create rows to add Conditions 
+
+
+        public SelectJoinBuilder(List<string> addedTableList)
+        {
+            InitializeComponent();
+            this.addedTableList = addedTableList;
+            InitializeJoinConditions(this.addedTableList);
+        }
+
+        private void InitializeJoinConditions(List<string> AddedTableList)
+        {
 
             for (int i = 0; i < AddedTableList.Count-1; i++)
             {

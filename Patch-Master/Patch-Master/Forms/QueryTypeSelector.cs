@@ -55,15 +55,28 @@ namespace Patch_Master.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //this.Hide();
-            //SelectQueryBuilder selectQueryBuilder = new SelectQueryBuilder();
-            //selectQueryBuilder.Show();
-            SaveQueryDetails();
-            //ConditionBuilder ConditionBuilder = new ConditionBuilder();
-            //ConditionBuilder.Show();
+            string queryType = string.Empty;
+            if (Select.Checked)
+            {
+                queryType = "select";
+            }
+            else if (Insert.Checked)
+            {
+                queryType = "insert";
+            }
+            else if(Update.Checked)
+            {
+                queryType = "update";
+            }
+            else if (Delete.Checked)
+            {
+                queryType = "delete";
+            }
+
+            SaveQueryDetails(queryType);
         }
 
-        private void SaveQueryDetails()
+        private void SaveQueryDetails(string queryType)
         {
             DbConnector dbContext = new DbConnector();
             SAVEDQUERYID = 0;
@@ -128,8 +141,24 @@ namespace Patch_Master.Forms
 
                 if (SAVEDQUERYID > 0)
                 {
-                    SelectQueryBuilder selectQueryBuilder = new SelectQueryBuilder();
-                    selectQueryBuilder.Show(); 
+                    if (queryType=="select")
+                    {
+                        SelectQueryBuilder selectQueryBuilder = new SelectQueryBuilder();
+                        selectQueryBuilder.Show();
+                    }
+                    else if (queryType == "insert")
+                    {
+
+                    }
+                    else if (queryType == "update")
+                    {
+                        UpdateQueryBuilder updateQueryBuilder = new UpdateQueryBuilder();
+                        updateQueryBuilder.Show();
+                    }
+                    else if (queryType == "delete")
+                    {
+
+                    }
                 }
             }
 

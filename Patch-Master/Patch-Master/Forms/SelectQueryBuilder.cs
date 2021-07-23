@@ -37,7 +37,7 @@ namespace Patch_Master.Forms
             InitializeScrollBars();
             //LoadAvailableDatabases();
             LoadAvailableTablesForDb(Requirements.SELECTEDDATABSENAME);
-
+            
         }
         private void CheckLogin()
         {
@@ -208,7 +208,7 @@ namespace Patch_Master.Forms
         private void btnSingleSelectCondition_Click(object sender, EventArgs e)
         {
             // this.Hide();
-            NameConditionBuilder conditionBuilder = new NameConditionBuilder();            
+            NameConditionBuilder conditionBuilder = new NameConditionBuilder("SelectQueryBuilder");            
             conditionBuilder.Show();
             //SelectConditionBuilder selectConditionBuilder = new SelectConditionBuilder();
             //selectConditionBuilder.Show();
