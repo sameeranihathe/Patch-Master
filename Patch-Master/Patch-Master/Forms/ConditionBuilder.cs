@@ -16,43 +16,18 @@ namespace Patch_Master.Forms
     public partial class NameConditionBuilder : Form
     {
         public static string CONDITIONSTRING = string.Empty;
-        public static string FROMQUERYTYPE = string.Empty;
-        public UpdateQueryBuilder UpdateQueryBuilderForm;
-        public NameConditionBuilder(string fromQueryType)
+        public NameConditionBuilder()
         {
-            CONDITIONSTRING = string.Empty;
-            FROMQUERYTYPE = fromQueryType;
             InitializeComponent();
             LoadTableList();
 
-
-        }
-        public NameConditionBuilder(string fromQueryType, UpdateQueryBuilder UpdateQueryForm)
-        {
             CONDITIONSTRING = string.Empty;
-            FROMQUERYTYPE = fromQueryType;
-            UpdateQueryBuilderForm = UpdateQueryForm;
-            InitializeComponent();
-            LoadTableList();
-
         }
         #region Load Table and Colunms
         private void LoadTableList()
         {
-          
             List<string> tableList = SelectQueryBuilder.AddedTableList;
-            if(FROMQUERYTYPE == "UpdateQueryBuilder")
-            {
-                tableList.Clear();
-                //tableList.Add(UpdateQueryBuilder.CmbTable.SelectedItem.ToString());
-                    CheckedListBox UpdateFormChecklistBox = (CheckedListBox)UpdateQueryBuilderForm.Controls["CheckListBoxTable"];
-                    foreach (var item in UpdateFormChecklistBox.CheckedItems)
-                    {
-                        tableList.Add(item.ToString());
-                    }
-            }
             CmbTable_1.Items.Clear();
-
             foreach (var table in tableList)
             {
                 tableList_listBox.Items.Add(table);               
@@ -242,17 +217,6 @@ namespace Patch_Master.Forms
                 CmbTable.TabIndex = 0;
                 CmbTable.SelectedIndexChanged += new System.EventHandler(this.CmbTable_1_SelectedIndexChanged);
                 List<string> tableList = SelectQueryBuilder.AddedTableList;
-                if (FROMQUERYTYPE == "UpdateQueryBuilder")
-                {
-                    tableList.Clear();
-                    //tableList.Add(UpdateQueryBuilder.CmbTable.SelectedItem.ToString());
-                    CheckedListBox UpdateFormChecklistBox = (CheckedListBox)UpdateQueryBuilderForm.Controls["CheckListBoxTable"];
-                    foreach (var item in UpdateFormChecklistBox.CheckedItems)
-                    {
-                        tableList.Add(item.ToString());
-                    }
-                }
-                CmbTable.Items.Clear();
                 foreach (string TableName in tableList)
                 {
                     CmbTable.Items.Add(TableName);
@@ -307,7 +271,7 @@ namespace Patch_Master.Forms
             "!="});
                 CmbComparer.Text = "=";
             }
-            CustomTextBox textValue = new CustomTextBox();
+            TextBox textValue = new TextBox();
             {
                 textValue.Location = new System.Drawing.Point(553, 56);
                 textValue.Name = "textValue_" + GroupBoxSuffixValue;
@@ -536,11 +500,31 @@ namespace Patch_Master.Forms
                 string Comparer = "";
                 string Value2 = "";
                 string CloseBracket = "";
-                string ColumnType = "";
 
                 foreach (Control ctn in GroupBoxRow.Controls)
                 {
-                   
+                    if (ctn is TextBox)
+                    {
+                        string ControllerName = ctn.Name.ToString();
+                        if (ControllerName != null && ControllerName.Split("_").Length > 0 && ctn.Visible ==true)
+                        {
+                            TextBox ValuerBox = (TextBox)GroupBoxRow.Controls[ControllerName];
+
+                            if (ControllerName.Split("_")[0] == "textValue1")
+                            {
+
+                                TCValye1 = ValuerBox.Text;
+
+                            }
+                            if (ControllerName.Split("_")[0] == "textValue")
+                            {
+
+                                Value2 = ValuerBox.Text;
+
+                            }
+                        }                          
+                           
+                    }
 
                     if (ctn is ComboBox && ctn.Visible == true)
                     {
@@ -563,11 +547,7 @@ namespace Patch_Master.Forms
                             if (ControllerName.Split("_")[0] == "CmbColumn")
                             {
 
-                                //ColumnName = TCComboBox.SelectedItem != null ? TCComboBox.SelectedItem.ToString() : "";
-                                //ColumnType = TCComboBox.SelectedItem != null ? TCComboBox.SelectedItem.ToString() : "";
-                                ColumnName = (TCComboBox.SelectedItem as dynamic).Text;
-                                ColumnType = (TCComboBox.SelectedItem as dynamic).Value.Split(",")[1];
-                               
+                                ColumnName = TCComboBox.SelectedItem != null ? TCComboBox.SelectedItem.ToString() : "";
 
                             }
 
@@ -586,33 +566,6 @@ namespace Patch_Master.Forms
 
                             }
                         }
-                    }
-                    if (ctn is TextBox)
-                    {
-                        string ControllerName = ctn.Name.ToString();
-                        if (ControllerName != null && ControllerName.Split("_").Length > 0 && ctn.Visible == true)
-                        {
-                            TextBox ValuerBox = (TextBox)GroupBoxRow.Controls[ControllerName];
-
-                            if (ControllerName.Split("_")[0] == "textValue1")
-                            {
-
-                                TCValye1 = ValuerBox.Text;
-
-                            }
-                            if (ControllerName.Split("_")[0] == "textValue")
-                            {
-                                CustomTextBox valueTextBox = (CustomTextBox)GroupBoxRow.Controls[ControllerName];
-
-                                Value2 = ValuerBox.Text;
-                                if (ColumnType != "int" && valueTextBox.isTCCombinedValue != true)
-                                {
-                                    Value2 = "'" + Value2 + "'";
-                                }
-
-                            }
-                        }
-
                     }
 
                 }
@@ -654,67 +607,9 @@ namespace Patch_Master.Forms
             }
             return GroupBoxElementList;
         }
-
-        private void tableList_listBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void AddCondition_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void CmbTable_1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string selectedDatbase = Requirements.SELECTEDDATABSENAME;
-            ComboBox TableSelectComboBox = sender as ComboBox;
-
-            if (TableSelectComboBox == null) // just to be on the safe side
-                return;
-
-            string GroupControllerName = "GroupConditionRow_" + TableSelectComboBox.Name.Split("_")[1].ToString();
-            string ControllerName = "CmbColumn_" + TableSelectComboBox.Name.Split("_")[1].ToString();
-            Dictionary<string, string> ColumnList = LoadAllColumns(selectedDatbase, TableSelectComboBox.SelectedItem.ToString());
-
-            customGroupBox customGroupBox = (customGroupBox)this.PanelConditionContainer.Controls[GroupControllerName];
-            ComboBox ColumnBox = (ComboBox)customGroupBox.Controls[ControllerName];
-            if (ColumnList != null && ColumnList.Count() > 0 && ColumnBox != null)
-            {
-                ColumnBox.Items.Clear();
-                ColumnBox.DisplayMember = "Text";
-                ColumnBox.ValueMember = "Value";
-                foreach (var item in ColumnList)
-                {
-                    string columnName = item.Key;
-                    string columnType = item.Value;
-                    ColumnBox.Items.Add(new { Text = columnName , Value = columnName+","+ columnType });
-                   // ColumnBox.Items.Add(new KeyValuePair(columnType, columnName));
-                }
-            }
-           
-
-            // LoadAllColumns();
-        }
-
-       
-        public Dictionary<string, string> LoadAllColumns(string dbName, string tableName)
-        {
-            DbConnector dbContext = new DbConnector();
-            Dictionary<string, string> TableColumnList = new Dictionary<string, string>();
-            try
-            {
-               
-                string queryString = SqlQueryStringReader.GetQueryStringById("LoadColumnList", "QueryBuilder");
-                List<SqlParameter> sqlParams = new List<SqlParameter>();
-                sqlParams.Add(new SqlParameter("DbName", dbName));
-                sqlParams.Add(new SqlParameter("Table", tableName));
-                var dataReaders = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
-                var reader = dataReaders[0];
-
-                while (reader.Read())
-                {
-                    var column = reader["ColumnName"].ToString();
-                    var dataType = reader["DataType"].ToString();
-                    TableColumnList.Add(column, dataType);
-                    
-                }
-
+            string condition = ConditionBox.Text.ToString();
 
             if (!string.IsNullOrEmpty(condition))
             {
@@ -724,9 +619,6 @@ namespace Patch_Master.Forms
             {
                 MessageBox.Show("No condition created", "Conditions");
             }
-
-            return TableColumnList;
-
         }
         #endregion
         private void tableList_listBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -740,37 +632,7 @@ namespace Patch_Master.Forms
         private void textValue1_1_TextChanged(object sender, EventArgs e)
         {
 
-
-             if (!string.IsNullOrEmpty(condition) && FROMQUERYTYPE == "UpdateQueryBuilder")
-            {
-                Panel UpdateConditionViewPanel = (Panel)UpdateQueryBuilderForm.Controls["panel3"];
-                RichTextBox UpdateConditionView = (RichTextBox)UpdateConditionViewPanel.Controls["UpdarteConditionViewer"];
-                UpdateConditionView.Text = condition.ToString();
-                this.Hide();
-                UpdateConditionView.Show();
-
-                return;
-            }
-
-            else if (!string.IsNullOrEmpty(condition))
-            {
-                CONDITIONSTRING = condition;
-                MessageBox.Show("Successfully added the condition ", "Conditions");
-                this.Hide();
-                //NameConditionBuilder.Show();
-            }
-            
-                
-            else
-            {
-                MessageBox.Show("No condition created", "Conditions");
-            }
         }
-
-        private void Close_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
+        
     }
 }
