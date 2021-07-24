@@ -123,7 +123,6 @@ namespace Patch_Master
         private void menuStrip1_ItemClicked_1(object sender, ToolStripItemClickedEventArgs e)
         {
 
-
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -228,12 +227,10 @@ namespace Patch_Master
             inquireRequest.Show();
         }
 
-
         private void AprovalToolStripMenu_Click(object sender, EventArgs e)
         {
             QueryTypes queryTypes = new QueryTypes();
             queryTypes.Show();
-
         }
     }
 }

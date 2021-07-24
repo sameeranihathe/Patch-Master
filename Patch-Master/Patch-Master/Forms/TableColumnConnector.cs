@@ -17,8 +17,6 @@ namespace Patch_Master.Forms
     {
         string clickedElementName = "";
         NameConditionBuilder ConditionGenerationForm;
-        UpdateQueryBuilder UpdateQueryBuilderForm;
-        string QueryGereratorQueryType = "";
         public TableColumnConnector()
         {
             InitializeComponent();
@@ -39,14 +37,6 @@ namespace Patch_Master.Forms
         {
             List<string> tableList = SelectQueryBuilder.AddedTableList;
             comTableName_1.Items.Clear();
-            if (QueryGereratorQueryType != null && QueryGereratorQueryType == "UpdateQueryBuilder" && clickedElementName != null)
-            {
-                CheckedListBox UpdateFormChecklistBox = (CheckedListBox)UpdateQueryBuilderForm.Controls["CheckListBoxTable"];
-                foreach (var item in UpdateFormChecklistBox.CheckedItems)
-                {
-                    tableList.Add(item.ToString());
-                }
-            }
             foreach (var table in tableList)
             {
                 comTableName_1.Items.Add(table);
@@ -54,24 +44,8 @@ namespace Patch_Master.Forms
         }
         private void comTableName_1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            
-            clickedElementName = elementName;
-            ConditionGenerationForm = conditionForm;
-            InitializeComponent();
-            LoadTableList();
-            //conditionForm.
-        }
-        public TableColumnConnector(string elementName, UpdateQueryBuilder conditionForm,string QueryGeneratorType)
-        {
-            clickedElementName = elementName;
-            UpdateQueryBuilderForm = conditionForm;
-            QueryGereratorQueryType = QueryGeneratorType;
-            InitializeComponent();
-            LoadTableList();
-            //conditionForm.
-        }
-
+            string selectedDatbase = Requirements.SELECTEDDATABSENAME;
+            ComboBox TableSelectComboBox = sender as ComboBox;
 
             if (TableSelectComboBox == null) // just to be on the safe side
                 return;
@@ -300,22 +274,8 @@ namespace Patch_Master.Forms
             ComboBox TableName_1 = new ComboBox();
             {
                 TableName_1.FormattingEnabled = true;
-
-                TableName_1.Name = "comTableName_"+ GroupBoxSuffixValue;
-                
-
+                TableName_1.Name = "comTableName_" + GroupBoxSuffixValue;
                 List<string> tableList = SelectQueryBuilder.AddedTableList;
-
-                if (QueryGereratorQueryType != null && QueryGereratorQueryType == "UpdateQueryBuilder" && clickedElementName != null)
-                {
-                   CheckedListBox UpdateFormChecklistBox  = (CheckedListBox)UpdateQueryBuilderForm.Controls["CheckListBoxTable"];
-                    tableList.Clear();
-                    foreach (var item in UpdateFormChecklistBox.CheckedItems)
-                    {
-                        tableList.Add(item.ToString());
-                    }
-                }
-                TableName_1.Items.Clear();
                 foreach (string TableName in tableList)
                 {
                     TableName_1.Items.Add(TableName);
@@ -512,8 +472,6 @@ namespace Patch_Master.Forms
         {
             String generatedTCConditionString =  GenerateTCConditionString();
             GeneratedTCConditionBox.Text = generatedTCConditionString;
-            GeneratedTCConditionBox.ReadOnly = true;
-
         }
         private string GenerateTCConditionString()
         {
@@ -598,36 +556,7 @@ namespace Patch_Master.Forms
         }
         private void BtnAddCondition_Click(object sender, EventArgs e)
         {
-            if (QueryGereratorQueryType != null && QueryGereratorQueryType == "UpdateQueryBuilder" && clickedElementName !=null)
-            {
-                if (clickedElementName.Split("_")[0] == "BtnAddTableColumnValue")
-                {
-                    foreach (Control ctn in UpdateQueryBuilderForm.Controls)
-                    {
-                        if (ctn.Name == "panel2")
-                        {
-
-
-                                if (ctn.Controls["textColumnValue_" + clickedElementName.Split("_")[1].ToString()] != null)
-                                {
-                                
-                                ctn.Controls["textColumnValue_" + clickedElementName.Split("_")[1].ToString()].Text = GeneratedTCConditionBox.Text;
-                                CustomTextBox TableColumnValue = (CustomTextBox)ctn.Controls["textColumnName_" + clickedElementName.Split("_")[1].ToString()];
-                                TableColumnValue.isTCCombinedValue = true;
-
-                            }
-                          
-
-                            
-                        }
-                    }
-                }
-                this.Hide();
-                UpdateQueryBuilderForm.Show();
-                return;
-            }
-
-            else if(clickedElementName != null)
+            if(clickedElementName != null)
             {
                 if(clickedElementName.Split("_")[0] == "BtnTCCondition2")
                 {
@@ -641,11 +570,8 @@ namespace Patch_Master.Forms
                             {
                                 if (conditionGroupBox.Controls["textValue_" + clickedElementName.Split("_")[1].ToString()] != null)
                                 {
-                                    CustomTextBox TextBoxValue = (CustomTextBox)conditionGroupBox.Controls["textValue_" + clickedElementName.Split("_")[1].ToString()];
-                                    TextBoxValue.Text = GeneratedTCConditionBox.Text;
-                                    TextBoxValue.isTCCombinedValue = true;
-                                   //conditionGroupBox.Controls["textValue_" + clickedElementName.Split("_")[1].ToString()].Text = GeneratedTCConditionBox.Text;
-                                 
+
+                                    conditionGroupBox.Controls["textValue_" + clickedElementName.Split("_")[1].ToString()].Text = GeneratedTCConditionBox.Text;
 
                                 }
                             }    
