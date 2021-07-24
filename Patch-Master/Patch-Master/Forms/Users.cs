@@ -338,7 +338,6 @@ namespace Patch_Master.Forms
             AcceptUser(UserId, selectedRoleId);
             LoadUserList();
             ClearTextBoxes();
-            buttonAccept.Visible = false;
         }
         private void AcceptUser(int UserId, string RoleID)
         {

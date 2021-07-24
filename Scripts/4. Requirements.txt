@@ -25,10 +25,3 @@ PRIMARY KEY (RequirementId)
  ALTER TABLE PM_Requiremenet
   ADD FormulationStatus bit,
   CreatedUserName varchar (50)
-
-ALTER TABLE [dbo].[PM_Requiremenet]
-  ADD FormulatedBy int,
-  FormulatedDate datetime;
-
-alter table [dbo].[PM_Requiremenet]
-drop COLUMN [IsApproved],[ApprovedBy],[ApprovedDate]

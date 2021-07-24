@@ -34,6 +34,3 @@ GO
 
 ALTER TABLE [dbo].[PM_Request]
   ADD Comment varchar(MAX) 
-
-alter table [dbo].[PM_Request]
-drop COLUMN [ApprovedUser],[ExecutedUser]

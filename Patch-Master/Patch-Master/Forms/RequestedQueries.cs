@@ -10,6 +10,9 @@ using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
+
+
+
 namespace Patch_Master.Forms
 {
     public partial class RequestedQueries : Form
@@ -20,19 +23,11 @@ namespace Patch_Master.Forms
         string roleName = string.Empty;
         int roleId = 0;
         public static int REQUESTID;
-        InquireRequest inquireRequest;
         DataTable dtQueryResults;
-        string queryType = "";
-        string path;
+
+
         public RequestedQueries()
         {
-            InitializeComponent();
-            CheckLogin();
-        }
-        public RequestedQueries(int RequestID, InquireRequest passedinquireRequest)
-        {
-            REQUESTID = RequestID;
-            inquireRequest = passedinquireRequest;
             InitializeComponent();
             CheckLogin();
         }
@@ -48,7 +43,7 @@ namespace Patch_Master.Forms
         #region Display Queries
         private void RequestedQueries_Load(object sender, EventArgs e)
         {
-
+            
             DataTable dt = LoadRequestedQueries();
             dataGridViewRequestedQueries.Columns.Clear();
             dataGridViewRequestedQueries.DataSource = dt;
@@ -86,15 +81,13 @@ namespace Patch_Master.Forms
             richTextBoxQuery.Text = dataGridViewRequestedQueries.Rows[rowindex].Cells[7].Value.ToString();
             textBoxQueryType.Text = dataGridViewRequestedQueries.Rows[rowindex].Cells[8].Value.ToString();
             textBoxDatabase.Text = dataGridViewRequestedQueries.Rows[rowindex].Cells[9].Value.ToString();
-            if (!checkBoxExecuted.Checked && textBoxRequestApproval.Text == "Approved")
+            if (!checkBoxExecuted.Checked)
             {
                 buttonExecute.Visible = true;
-                buttonModifyConditions.Visible = false;
             }
             else
             {
                 buttonExecute.Visible = false;
-                buttonModifyConditions.Visible = true;
             }
         }
         #endregion
@@ -102,15 +95,13 @@ namespace Patch_Master.Forms
         private void buttonExecute_Click(object sender, EventArgs e)
         {
             string impact = "Retrieved";
-            path = "Data Retrievals";
             string queryString = richTextBoxQuery.Text;
             string database = textBoxDatabase.Text;
-            queryType = textBoxQueryType.Text;
-            if (queryType == "UPDATE")
+            if (textBoxQueryType.Text == "UPDATE")
             {
                 List<string> UpdateFieldsOnly = new List<string>();
                 #region Get Primary Keys
-                string TableAfterfrom = queryString.Substring(queryString.IndexOf("FROM") + 5);
+                string TableAfterfrom = queryString.Substring(queryString.IndexOf("from") + 5);
                 string PrimaryTable = TableAfterfrom.Substring(0, TableAfterfrom.IndexOf(" "));
                 DataTable PrimaryKeys = new DataTable();
                 PrimaryKeys = GetPrimaryKeyFields(database, PrimaryTable);
@@ -122,8 +113,8 @@ namespace Patch_Master.Forms
                 }
                 #endregion
                 #region Get Updated Fields 
-                string stringAfterSet = queryString.Substring(queryString.IndexOf("SET") + 4);
-                string stringBeforeFrom = stringAfterSet.Substring(0, stringAfterSet.IndexOf("FROM"));
+                string stringAfterSet = queryString.Substring(queryString.IndexOf("set") + 4);
+                string stringBeforeFrom = stringAfterSet.Substring(0, stringAfterSet.IndexOf("from"));
                 string[] UpdatefieldsWithValues = stringBeforeFrom.Split(", ");
 
                 foreach (string field in UpdatefieldsWithValues)
@@ -140,30 +131,23 @@ namespace Patch_Master.Forms
                 #endregion
                 #region Build query with Output
                 string Output = "OUTPUT " + JoinedUpdateFieldsOnly;
-                string queryAfterfrom = queryString.Substring(queryString.IndexOf("FROM") + 0);
-                string queryBeforeFrom = queryString.Substring(0, queryString.IndexOf("FROM"));
+                string queryAfterfrom = queryString.Substring(queryString.IndexOf("from") + 0);
+                string queryBeforeFrom = queryString.Substring(0, queryString.IndexOf("from"));
                 queryString = queryBeforeFrom + " " + Output + " " + queryAfterfrom;
                 #endregion
                 impact = "Affected";
-                path = "Data Manipulations";
-                dtQueryResults = ExecuteQuery(database, queryString);
-                SetExcelDirectory();
-                buttonExcel.Visible = false;
+
             }
-            else
-            {
-                dtQueryResults = ExecuteQuery(database, queryString);
-                buttonExcel.Visible = true;
-            }
+            dtQueryResults = ExecuteQuery(database, queryString);
             int numberOfRecords = dtQueryResults.Rows.Count;
-            MessageBox.Show(numberOfRecords + " Records " + impact);
+            MessageBox.Show(numberOfRecords+" Records " + impact);
             dataGridViewRetrievedData.Columns.Clear();
             dataGridViewRetrievedData.DataSource = dtQueryResults;
             groupBoxReqQueries.Visible = false;
             groupBoxSELECTResults.Visible = true;
             int RequestedQueryID = Convert.ToInt32(dataGridViewRequestedQueries.SelectedRows[0].Cells[0].Value.ToString());
             int RequestID = Convert.ToInt32(dataGridViewRequestedQueries.SelectedRows[0].Cells[1].Value.ToString());
-            setExecutionStatus(RequestedQueryID, RequestID, numberOfRecords);
+            setExecutionStatus(RequestedQueryID, RequestID);
         }
         private DataTable ExecuteQuery(string database, string queryString)
         {
@@ -171,7 +155,7 @@ namespace Patch_Master.Forms
             DataTable dt = new DataTable();
             try
             {
-                queryString = "USE " + database + " " + queryString;
+                queryString = "USE "+ database + " " + queryString;
                 List<SqlParameter> sqlParams = new List<SqlParameter>();
                 DataSet ds = dbContext.ExecuteQueryWithDataSet(queryString, sqlParams);
                 dt = ds.Tables[0];
@@ -187,17 +171,16 @@ namespace Patch_Master.Forms
             }
             return dt;
         }
-        private void setExecutionStatus(int RequestedQueryID, int RequestID, int numberOfRecords)
+        private void setExecutionStatus(int RequestedQueryID, int RequestID)
         {
             #region Update Execution status of Requested Queries
             DbConnector dbContext = new DbConnector();
             try
             {
-                string queryString = SqlQueryStringReader.GetQueryStringById("UpdateExecute", "RequestedQueries");
+                string queryString= SqlQueryStringReader.GetQueryStringById("UpdateExecute", "RequestedQueries");
                 List<SqlParameter> sqlParams = new List<SqlParameter>();
                 sqlParams.Add(new SqlParameter("RequestedQueryId", RequestedQueryID));
                 sqlParams.Add(new SqlParameter("LoggedUserId", loggedUserId));
-                sqlParams.Add(new SqlParameter("NoOfRows", numberOfRecords));
                 var dataReader = dbContext.ExecuteQueryWithIDataReader(queryString, sqlParams);
             }
             catch (Exception ex)
@@ -280,9 +263,6 @@ namespace Patch_Master.Forms
 
                 dbContext.CloseConnection();
             }
-            DataTable dt = inquireRequest.LoadRequest();
-            inquireRequest.dataGridViewRequestDetails.Columns.Clear();
-            inquireRequest.dataGridViewRequestDetails.DataSource = dt;
         }
         private DataTable GetPrimaryKeyFields(string database, string PrimaryTable)
         {
@@ -312,20 +292,16 @@ namespace Patch_Master.Forms
         #region Export to Excel
         private void buttonExcel_Click(object sender, EventArgs e)
         {
-
-            SetExcelDirectory();
-        }
-        private void SetExcelDirectory()
-        {
+            //DataTable dtQueryResults = ExecuteQuery();
             string QueryName = dataGridViewRequestedQueries.SelectedRows[0].Cells[10].Value.ToString();
-            string directory = ConfigurationManager.AppSettings["ExcelPatch"] + path + @"\" + loggedUserName + @"\" + QueryName;
+            string directory = ConfigurationManager.AppSettings["ExcelPatch"] + loggedUserName+@"\" + QueryName;
             if (!Directory.Exists(directory))
             {
                 Directory.CreateDirectory(directory);
             }
             DateTime now = DateTime.Now;
             string datetime = now.ToString("yyy-MM-dd hh-mm-ss tt");
-            string filePath = directory + @"\" + datetime;
+            string filePath =  directory + @"\" + datetime;
             ExportToExcel(dtQueryResults, filePath);
         }
         private void ExportToExcel(DataTable DataTable, string ExcelFilePath)
@@ -360,14 +336,10 @@ namespace Patch_Master.Forms
                 {
                     try
                     {
-
-                        Worksheet.SaveAs(ExcelFilePath);
-                        if (queryType != "UPDATE")
-                        {
-                            MessageBox.Show("Excel file saved!");
-                            Excel.Visible = true;
-                        }
                         
+                        Worksheet.SaveAs(ExcelFilePath);
+                        MessageBox.Show("Excel file saved!");
+                        Excel.Visible = true;
                     }
                     catch (Exception ex)
                     {
@@ -394,13 +366,13 @@ namespace Patch_Master.Forms
         private void buttonReturnFormRetreval_Click(object sender, EventArgs e)
         {
             groupBoxSELECTResults.Visible = false;
-
+            
             DataTable dt = LoadRequestedQueries();
             dataGridViewRequestedQueries.Columns.Clear();
             dataGridViewRequestedQueries.DataSource = dt;
             clear();
             groupBoxReqQueries.Visible = true;
-
+            
         }
         private void clear()
         {
@@ -412,79 +384,13 @@ namespace Patch_Master.Forms
             richTextBoxQuery.Text = string.Empty;
         }
         #endregion
-        #region Modify Query Conditions 
-        private void buttonModifyConditions_Click(object sender, EventArgs e)
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
-            string Query = richTextBoxQuery.Text;
-            string QeryAfterWhere = Query.Substring(Query.IndexOf("WHERE") + 5);
-            string QueryBeforeWhere = Query.Substring(0, Query.IndexOf("WHERE"));
-            QeryAfterWhere = QeryAfterWhere.Trim();
-            String[] spearator = { " AND ", " OR " };
-            String[] ConditionsList = QeryAfterWhere.Split(spearator,
-               StringSplitOptions.RemoveEmptyEntries);
-            List<string> TrimmedConditionsList = new List<string>();
-            foreach (String s in ConditionsList)
-            {
-                TrimmedConditionsList.Add(s.Trim());
-            }
-            if (TrimmedConditionsList.Count > 0)
-            {
-                int RequestedQueryID = Convert.ToInt32(dataGridViewRequestedQueries.SelectedRows[0].Cells[0].Value.ToString());
-                RequestedQueryConditions requestedQueryConditions = new RequestedQueryConditions(TrimmedConditionsList, QeryAfterWhere, QueryBeforeWhere, RequestedQueryID, this);
-                requestedQueryConditions.Show();
-            }
-            else
-            {
-                MessageBox.Show("No Query Conditions to Modify");
-            }
 
         }
-        private void buttonBuildandSave_Click(object sender, EventArgs e)
+        private void groupBoxReqQueries_Enter(object sender, EventArgs e)
         {
-            string Query = richTextBoxQuery.Text;
+
         }
-        #endregion
-        #region Validate Requested Query 
-        private void buttonValidate_Click(object sender, EventArgs e)
-        {
-            DbConnector dbContext = new DbConnector();
-            bool queryValidated = true;
-            try
-            {
-                string Query = richTextBoxQuery.Text;
-                string Database = textBoxDatabase.Text;
-                if (!string.IsNullOrEmpty(Query))
-                {
-                    string query = SqlQueryStringReader.GetQueryStringById("CheckQueryValidation", "Queries");
-                    List<SqlParameter> sqlParams = new List<SqlParameter>();
-                    sqlParams.Add(new SqlParameter("Query", Query));
-                    sqlParams.Add(new SqlParameter("Database", Database));
-                    dbContext.ExecuteQueryWithIDataReader(query, sqlParams);
-
-                }
-                else
-                {
-                    MessageBox.Show("No built query available!", "Validate Query");
-                }
-
-            }
-            catch (Exception ex)
-            {
-                queryValidated = false;
-                MessageBox.Show(ex.Message.ToString(), "Validate Query");
-            }
-            //finally
-            //{
-            //    dbContext.CloseConnection();
-            //}
-
-            if (queryValidated)
-            {
-                MessageBox.Show("Query Successfully Validated!", "Validate Query");
-            }
-            dbContext.CloseConnection();
-        }
-        #endregion
-
     }
 }

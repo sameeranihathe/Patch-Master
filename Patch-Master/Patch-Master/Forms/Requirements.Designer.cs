@@ -566,6 +566,7 @@ namespace Patch_Master.Forms
 
         private System.Windows.Forms.GroupBox Requirements_groupBox;
         private System.Windows.Forms.Label Process_label;
+        private System.Windows.Forms.ComboBox SubProcess_comboBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox Process_comboBox;
         private System.Windows.Forms.Button ViewRequirement_button;
@@ -588,6 +589,7 @@ namespace Patch_Master.Forms
         private System.Windows.Forms.TextBox RequirementNameView_textBox;
         private System.Windows.Forms.Label RequiremetDescriptionView_label;
         private System.Windows.Forms.Label RequirementName_label;
+        private System.Windows.Forms.ComboBox comboBoxDatabase;
         private System.Windows.Forms.Label labelDatabase;
         private System.Windows.Forms.RichTextBox richTextBoxObjective;
         private System.Windows.Forms.Label label3;
@@ -604,7 +606,5 @@ namespace Patch_Master.Forms
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox checkBoxQueryformulated;
         private System.Windows.Forms.Button buttonReturn;
-        public System.Windows.Forms.ComboBox SubProcess_comboBox;
-        public System.Windows.Forms.ComboBox comboBoxDatabase;
     }
 }
