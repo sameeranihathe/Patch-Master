@@ -17,7 +17,7 @@ namespace Patch_Master.Forms
         int roleId = 0;
         public int RequirmentID;
         public string NavigatedFrom;
-        public int RequestID;
+        int RequestID;
         Requirements rq = new Requirements();
         public InquireRequest()
         {
@@ -118,7 +118,7 @@ namespace Patch_Master.Forms
 
         }
         #endregion
-        public DataTable LoadRequest()
+        private DataTable LoadRequest()
         {
             DbConnector dbContext = new DbConnector();
             DataTable dt = new DataTable();
@@ -239,7 +239,7 @@ namespace Patch_Master.Forms
             this.ClearRequest();
 
         }
-        public void UpdateApprovalStatus (string ApprovedRejected, string Commnent)
+        private void UpdateApprovalStatus (string ApprovedRejected, string Commnent)
         {
             string MessageDisplay = string.Empty;
             DbConnector dbContext = new DbConnector();
@@ -299,10 +299,10 @@ namespace Patch_Master.Forms
         }
         private void buttonRequestedQueries_Click(object sender, EventArgs e)
         {
-            RequestedQueries requestedQueries = new RequestedQueries(RequestID,this);
+            RequestedQueries requestedQueries = new RequestedQueries();
+            RequestedQueries.REQUESTID = RequestID;
             requestedQueries.textBoxrequestID.Text = RequestID.ToString();
             requestedQueries.richTextBoxRequestDes.Text = textBoxRequestDescription.Text;
-            requestedQueries.textBoxRequestApproval.Text = checkBoxApproved.Text;
             requestedQueries.Show();
         }
     }

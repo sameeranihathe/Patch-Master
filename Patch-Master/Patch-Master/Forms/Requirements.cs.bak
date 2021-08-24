@@ -268,7 +268,7 @@ namespace Patch_Master.Forms
 
             #endregion
         }
-        public void ViewRequirements(string SubprocessId, string DatabaseID)
+        private void ViewRequirements(string SubprocessId, string DatabaseID)
         {
             
             DataTable dt = LoadRequirements(SubprocessId, DatabaseID);
@@ -565,7 +565,7 @@ namespace Patch_Master.Forms
                 REQUIREMENTNAME = Requirements_dataGridView.SelectedRows[0].Cells[1].Value.ToString();
                 string requirementDescription = Requirements_dataGridView.SelectedRows[0].Cells[2].Value.ToString();
                 
-                AvailableQueries availableQueries = new AvailableQueries(this);
+                AvailableQueries availableQueries = new AvailableQueries();
                 availableQueries.Show();
             }
         }

@@ -46,9 +46,4 @@
 		AND Constraint_Type = 'PRIMARY KEY'
 		AND Col.Table_Name = @PrimaryTable
 	</SqlQueryString>
-	<SqlQueryString Id="UpadteModifiedQuery">
-		update PM_Requested_Queries
-		set QueryString = @ModifiedQueryString
-		where Requested_Query_ID = @RequestedQueryID
-	</SqlQueryString>
 </SqlQueryStrings>

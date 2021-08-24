@@ -34,7 +34,6 @@ namespace Patch_Master.Forms
             this.DeleteQuery_button = new System.Windows.Forms.Button();
             this.Query_richTextBox = new System.Windows.Forms.RichTextBox();
             this.buttonReturn = new System.Windows.Forms.Button();
-            this.buttonConfirmFormulation = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.SavedQueries_dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,7 +64,7 @@ namespace Patch_Master.Forms
             // 
             // DeleteQuery_button
             // 
-            this.DeleteQuery_button.Location = new System.Drawing.Point(179, 465);
+            this.DeleteQuery_button.Location = new System.Drawing.Point(257, 467);
             this.DeleteQuery_button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DeleteQuery_button.Name = "DeleteQuery_button";
             this.DeleteQuery_button.Size = new System.Drawing.Size(118, 31);
@@ -81,13 +80,13 @@ namespace Patch_Master.Forms
             this.Query_richTextBox.Location = new System.Drawing.Point(26, 259);
             this.Query_richTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Query_richTextBox.Name = "Query_richTextBox";
-            this.Query_richTextBox.Size = new System.Drawing.Size(713, 148);
+            this.Query_richTextBox.Size = new System.Drawing.Size(706, 148);
             this.Query_richTextBox.TabIndex = 3;
             this.Query_richTextBox.Text = "";
             // 
             // buttonReturn
             // 
-            this.buttonReturn.Location = new System.Drawing.Point(656, 467);
+            this.buttonReturn.Location = new System.Drawing.Point(744, 470);
             this.buttonReturn.Name = "buttonReturn";
             this.buttonReturn.Size = new System.Drawing.Size(94, 29);
             this.buttonReturn.TabIndex = 4;
@@ -95,23 +94,11 @@ namespace Patch_Master.Forms
             this.buttonReturn.UseVisualStyleBackColor = true;
             this.buttonReturn.Click += new System.EventHandler(this.buttonReturn_Click);
             // 
-            // buttonConfirmFormulation
-            // 
-            this.buttonConfirmFormulation.Location = new System.Drawing.Point(469, 467);
-            this.buttonConfirmFormulation.Name = "buttonConfirmFormulation";
-            this.buttonConfirmFormulation.Size = new System.Drawing.Size(181, 31);
-            this.buttonConfirmFormulation.TabIndex = 5;
-            this.buttonConfirmFormulation.Text = "Confirm Formulation";
-            this.buttonConfirmFormulation.UseVisualStyleBackColor = true;
-            this.buttonConfirmFormulation.Visible = false;
-            this.buttonConfirmFormulation.Click += new System.EventHandler(this.buttonConfirmFormulation_Click);
-            // 
             // AvailableQueries
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(788, 532);
-            this.Controls.Add(this.buttonConfirmFormulation);
+            this.ClientSize = new System.Drawing.Size(892, 532);
             this.Controls.Add(this.buttonReturn);
             this.Controls.Add(this.Query_richTextBox);
             this.Controls.Add(this.DeleteQuery_button);
@@ -133,6 +120,5 @@ namespace Patch_Master.Forms
         private System.Windows.Forms.Button AddQuery_button;
         private System.Windows.Forms.RichTextBox Query_richTextBox;
         private System.Windows.Forms.Button buttonReturn;
-        private System.Windows.Forms.Button buttonConfirmFormulation;
     }
 }

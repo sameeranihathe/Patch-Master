@@ -5,6 +5,7 @@
 		OUTPUT Inserted.[Request_Id], Inserted.[Description], Inserted.[Request_Date],inserted.Approval_Status
 		values (@RequirmentId, @RequirmentDescription, GETDATE(),@LoginUser,@LoginUserID,'Pending',0)
 	</SqlQueryString>
+
 	<SqlQueryString Id="ModifyRequestDescription">
 		update PM_Request
 		set Description = @RequestDescription
